@@ -1,9 +1,8 @@
 package com.portfolio.mapper;
 
-import org.apache.ibatis.annotations.Select;
+import com.portfolio.domain.BoardVO;
 
 public interface BoardMapper {
 
-    @Select("SELECT title FROM board WHERE bno=1")
-    public String getTitle();
+    BoardVO getBoard();
 }
