@@ -42,6 +42,8 @@ public class MyBatisTest {
 //        selectedVO.setContent("he needs a queen!");
 //        boardMapper.update(selectedVO);
 //        List<BoardVO> vo = boardMapper.selectAll();
+        boardMapper.addViewCnt(1);
+        List<BoardVO> vo = boardMapper.selectAll();
     }
 
 }
