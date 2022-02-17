@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.portfolio.mapper.BoardMapper">
+
+    <insert id="insert" parameterType="BoardVO">
+        INSERT INTO BOARD (bno, title, content, writer)
+        VALUES ((SELECT nvl(max(bno) + 1, 1) FROM board), #{title}, #{content}, #{writer})
+    </insert>
+
+    <select id="select" parameterType="int" resultType="BoardVO">
+        SELECT bno, title, content, writer, regdate, viewcnt, likecnt FROM BOARD where bno=#{bno}
+    </select>
+
+    <update id="update" parameterType="BoardVO">
+        UPDATE BOARD SET title = #{title},
+                         content = #{content}
+        WHERE bno=#{bno}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM BOARD WHERE bno=#{bno}
+    </delete>
+
+    <select id="selectAll" resultType="BoardVO">
+        SELECT * FROM BOARD
+    </select>
+
+    <update id="addViewCnt" parameterType="int">
+        UPDATE BOARD SET viewcnt=viewcnt + 1
+        WHERE bno=#{bno}
+    </update>
+
+    <update id="addLike" parameterType="int">
+        UPDATE BOARD SET likecnt=likecnt + 1
+        WHERE bno=#{bno}
+    </update>
+
+</mapper>
