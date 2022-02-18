@@ -7,16 +7,13 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class BoardVO {
+public class FileVO {
 
+    // 외래키(게시글 번호)
     private int bno;
-    private String title;
-    private String content;
-    private String writer;
-    private Date regDate;
-    private int viewCnt;
-    private int likeCnt;
-    private String img;
+
+    // 파일 경로
+    private String file;
 
 }
 

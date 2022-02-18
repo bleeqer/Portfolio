@@ -5,7 +5,7 @@ import com.portfolio.domain.BoardVO;
 import java.util.List;
 
 public interface BoardService {
-    void create(BoardVO boardVO);
+    int create(BoardVO boardVO);
     BoardVO read(int bno);
     void update(BoardVO boardVO);
     void delete(int bno);

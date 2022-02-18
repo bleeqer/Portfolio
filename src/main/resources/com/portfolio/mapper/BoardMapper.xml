@@ -6,8 +6,14 @@
 <mapper namespace="com.portfolio.mapper.BoardMapper">
 
     <insert id="insert" parameterType="BoardVO">
+
+        -- file 테이블의 외래키로 사용될 bno를 반환받아 BoardVO에 담김
+        <selectKey keyProperty="bno" resultType="int" order="BEFORE">
+            select QUE_SEQUENCE.NEXTVAL from dual
+        </selectKey>
+
         INSERT INTO BOARD (bno, title, content, writer)
-        VALUES ((SELECT nvl(max(bno) + 1, 1) FROM board), #{title}, #{content}, #{writer})
+        VALUES (#{bno}, #{title}, #{content}, #{writer})
     </insert>
 
     <select id="select" parameterType="int" resultType="BoardVO">

@@ -1,7 +1,9 @@
 package com.portfolio.service;
 
 import com.portfolio.domain.BoardVO;
+import com.portfolio.domain.FileVO;
 import com.portfolio.mapper.BoardMapper;
+import com.portfolio.mapper.FileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,43 +11,25 @@ import java.util.List;
 
 
 @Service
-public class BoardServiceImpl implements BoardService {
+public class FileServiceImpl implements FileService {
 
     @Autowired
-    BoardMapper boardMapper;
+    FileMapper fileMapper;
 
     @Override
-    public void create(BoardVO boardVO) {
-        boardMapper.insert(boardVO);
+    public void save(FileVO vo) {
+        fileMapper.insert(vo);
     }
 
     @Override
-    public BoardVO read(int bno) {
-        return boardMapper.select(bno);
+    public void delete(FileVO vo) {
+        fileMapper.delete(vo);
     }
 
     @Override
-    public void update(BoardVO boardVO) {
-        boardMapper.update(boardVO);
+    public List<FileVO> readAll(int bno) {
+
+        return fileMapper.selectAll(bno);
     }
 
-    @Override
-    public void delete(int bno) {
-        boardMapper.delete(bno);
-    }
-
-    @Override
-    public List<BoardVO> readAll() {
-        return boardMapper.selectAll();
-    }
-
-    @Override
-    public void addViewCnt(int bno) {
-        boardMapper.addViewCnt(bno);
-    }
-
-    @Override
-    public void addLikeCnt(int bno) {
-        boardMapper.addLikeCnt(bno);
-    }
 }

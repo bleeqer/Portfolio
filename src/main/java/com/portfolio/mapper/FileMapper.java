@@ -1,16 +1,12 @@
 package com.portfolio.mapper;
 
-import com.portfolio.domain.BoardVO;
+import com.portfolio.domain.FileVO;
 
 import java.util.List;
 
 public interface FileMapper {
 
-    void insert(BoardVO boardVO);
-    BoardVO select(int bno);
-    void update(BoardVO boardVO);
-    void delete(int bno);
-    List<BoardVO> selectAll();
-    void addViewCnt(int bno);
-    void addLikeCnt(int bno);
+    void insert(FileVO fileVO);
+    void delete(FileVO fileVO);
+    List<FileVO> selectAll(int bno);
 }

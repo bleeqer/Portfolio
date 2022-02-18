@@ -16,6 +16,8 @@ public class BoardVO {
     private Date regDate;
     private int viewCnt;
     private int likeCnt;
+    private String img;
+
 }
 
 

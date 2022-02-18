@@ -25,4 +25,11 @@
     </bean>
 
     <mybatis:scan base-package="com.portfolio.mapper"/>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+        <!--up to 5MB-->
+        <property name="maxUploadSize" value="5242880"/>
+    </bean>
 </beans>

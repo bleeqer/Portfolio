@@ -1,15 +1,12 @@
 package com.portfolio.service;
 
 import com.portfolio.domain.BoardVO;
+import com.portfolio.domain.FileVO;
 
 import java.util.List;
 
-public interface BoardService {
-    void create(BoardVO boardVO);
-    BoardVO read(int bno);
-    void update(BoardVO boardVO);
-    void delete(int bno);
-    List<BoardVO> readAll();
-    void addViewCnt(int bno);
-    void addLikeCnt(int bno);
+public interface FileService {
+    void save(FileVO vo);
+    void delete(FileVO vo);
+    List<FileVO> readAll(int bno);
 }

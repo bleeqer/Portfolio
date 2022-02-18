@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface BoardMapper {
 
-    void insert(BoardVO boardVO);
+    int insert(BoardVO boardVO);
     BoardVO select(int bno);
     void update(BoardVO boardVO);
     void delete(int bno);

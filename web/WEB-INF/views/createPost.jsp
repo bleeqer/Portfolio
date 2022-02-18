@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>CREATE POST</title>
-    <form action="/board/create" method="POST">
+    <form action="/board/create" method="POST" enctype="multipart/form-data">
         <label for="title">TITLE</label>
         <input type="text" name="title" id="title">
 
@@ -19,6 +19,8 @@
         <label for="writer">WRITER</label>
 
         <input type="text" name="writer" id="writer">
+
+        <input type="file" multiple="multiple" name="image" id="image">
         <button type="submit">SUBMIT</button>
     </form>
 </head>
