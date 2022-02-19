@@ -6,8 +6,8 @@
 <mapper namespace="com.portfolio.mapper.FileMapper">
 
     <insert id="insert" parameterType="FileVO">
-        INSERT INTO QUESTION_FILE (bno, name)
-        VALUES (#{bno}, #{file})
+        INSERT INTO QUESTION_FILE (bno, path)
+        VALUES (#{bno}, #{path})
     </insert>
 
     <delete id="delete" parameterType="FileVO">

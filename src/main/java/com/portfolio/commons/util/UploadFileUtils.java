@@ -26,8 +26,11 @@ public class UploadFileUtils {
             // 파일 이름
             String originalFileName = mtf.getOriginalFilename();
 
+            // 공백문자를 언더스코어로 교체하기
+            originalFileName = originalFileName.replace(' ', '_');
+
             // 업로드 경로
-            String uploadPath = mtfRequest.getSession().getServletContext().getRealPath(File.separator + "uploadedImages" + File.separator);
+            String uploadPath = mtfRequest.getSession().getServletContext().getRealPath(File.separator + "WEB-INF" + File.separator + "uploadedImages" + File.separator);
 
             // 조회시 과부하를 막기 위한 경로 구분용 현재 날짜를 yyyyMMdd 형태로 반환받기
             String date = getTodayDate();
@@ -64,7 +67,7 @@ public class UploadFileUtils {
 
         for (FileVO fileVO : atchList) {
 
-            String filePath = uploadPath + fileVO.getFile();
+            String filePath = uploadPath + fileVO.getPath();
 
             File file = new File(filePath);
 

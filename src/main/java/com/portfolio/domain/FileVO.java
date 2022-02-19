@@ -13,7 +13,7 @@ public class FileVO {
     private int bno;
 
     // 파일 경로
-    private String file;
+    private String path;
 
 }
 

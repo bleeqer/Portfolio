@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -61,7 +62,7 @@ public class BoardController {
 
                 // fileVO 객체에 데이터 채우기
                 fileVO.setBno(bno);
-                fileVO.setFile(fileDir);
+                fileVO.setPath(fileDir);
 
                 // 데이터베이스에 저장
                 fileService.save(fileVO);
@@ -77,7 +78,14 @@ public class BoardController {
     @RequestMapping("/{bno}")
     public String viewPost(@PathVariable int bno, Model model) {
         BoardVO post = boardService.read(bno);
+        List<FileVO> files = fileService.readAll(bno);
+
+        for (FileVO file : files) {
+            System.out.println(file.getPath());
+        }
+
         model.addAttribute("post", post);
+        model.addAttribute("files", files);
 
         return "viewPost";
     }
@@ -108,13 +116,10 @@ public class BoardController {
         // 파일관련유틸에 절대경로를 얻기위한 HttpServletRequest 객체, 삭제할 파일 리스트 전달하여 파일삭제
         UploadFileUtils.deleteFile(request, atchList);
 
-        //
+        // 첨부파일 리스트 순회하며 데이터베이스에서 삭제
         for (FileVO atch : atchList) {
             fileService.delete(atch);
         }
-
-        // 첨부파일 삭제
-//       fileService.delete(bno);
 
         return "redirect:/board";
     }
