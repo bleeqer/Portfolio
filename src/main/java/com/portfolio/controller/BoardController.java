@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -90,15 +89,16 @@ public class BoardController {
         return "viewPost";
     }
 
-    @GetMapping("edit/{bno}")
-    public String editPost(@PathVariable int bno, Model model) {
-        BoardVO post = boardService.read(bno);
+    @ResponseBody
+    @GetMapping(value="edit/{bno}") //, produces="application/json"
+    public BoardVO editPost(@PathVariable int bno) {
 
-        model.addAttribute("post", post);
-        return "editPost";
+
+//        model.addAttribute("post", post);
+        return boardService.read(bno);
     }
 
-    @PostMapping("edit/{bno}")
+    @PostMapping("edit/")
     public String editPost(BoardVO vo) {
         boardService.update(vo);
 
