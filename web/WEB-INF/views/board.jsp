@@ -14,8 +14,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/tinymce/tinymce.min.js"></script>
 
-
-
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -43,6 +41,9 @@
             </tr>
         </c:forEach>
     </table>
+
+    <label for="test"></label>
+    <input id="test" type="reset">
 
     <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
 
@@ -73,6 +74,10 @@
         // style 속성 감시
         observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
+
+
+
+
     </script>
 
     <script>
@@ -93,8 +98,6 @@
                 $("#writer").val(post.writer)
 
             })
-
-
         })
     </script>
 </body>

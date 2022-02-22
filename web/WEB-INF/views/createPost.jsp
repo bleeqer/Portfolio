@@ -97,7 +97,6 @@
 
         // 읽어온 이미지를 에디터 Content에 img 태그로 추가
         tinymce.activeEditor.insertContent('<img alt="photo" src="' + image + '" style="width: 800px; height: 500px;"/>')
-
     }
 </script>
 <script>
