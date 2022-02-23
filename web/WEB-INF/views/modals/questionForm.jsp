@@ -4,7 +4,7 @@
 
         <input type="hidden" id="bno" name="bno">
 
-        <input type="text" id="title" name="title" onchange="test()">
+        <input type="text" id="title" name="title">
 
         <%--    Editor로 사용할 태그    --%>
         <textarea name="content" id="content" style="width: 100%; height: 100%;"></textarea>
@@ -14,7 +14,7 @@
             <span id="upload-button">Image</span>
             <button type="submit" id="submit-button" class="btn">Submit</button>
         </div>
-        <%--      이미지 업로드 input 태그(숨김)      --%>
+<%--        이미지 업로드 input 태그(숨김)--%>
         <input type="file" multiple="multiple" name="image" id="image" style="display: none;" accept="image/*">
     </form>
 </div>
@@ -63,21 +63,44 @@
             type: "POST",
 
             // ajax 요청 성공 시 콜백함수
-            success: function (imgs) {
+            success: function (paths) {
 
-                // 읽어온 이미지를 에디터 Content에 img 태그로 추가
-                for (const [idx, img] of imgs.entries()) {
-                    console.log(idx)
-                    tinymce.activeEditor.insertContent('<img class="insertedImg" alt="photo" src="/uploadedImages/' + img.uploadPath + '" style="width: 200px; height: 150px;" data-idx=' + idx + ' />')
+                let tags = ''
+
+                for (const path of paths) {
+
+                    // 이미지 태그 클릭하면 에러 발생함 나중에 삭제버튼 추가하기
+                    tags = tags + '<img class="inserted-image" alt="photo" src="/uploadedImages/' + path + '" style="width: 200px; height: 150px;" />\n'
                 }
+
+                tinymce.activeEditor.insertContent(tags)
+
+                // 사진 클릭 시 태그 삭제후에 x 버튼으로 대신할 것
+                $("#content_ifr").contents().find(".inserted-image").bind('click', function(){
+                    this.remove()
+                })
+
             }
         })
     })
 
-    $(document).on('click', '.insertedImg', function () {
-        console.log("img clicked")
-        // this.remove()
+    $("#submit-button").on('click', function(e) {
+
+        e.preventDefault()
+
+        let path2 = $("#content_ifr").contents().find(".inserted-image")
+
+        for (let i=0; i<Object.keys(path2).length - 2; i++) {
+            const src = $(path2[i]).attr("src")
+
+            const tag = '<input type="hidden" name="imageList[' + i + ']" value="' + src + '">'
+            $("#question-form").append(tag)
+        }
+
+        $("#question-form").submit()
+
     })
+
 </script>
 
 

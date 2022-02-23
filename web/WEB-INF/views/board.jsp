@@ -13,6 +13,7 @@
     <title>Title</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/tinymce/tinymce.min.js"></script>
+    <script src="/js/tinymce/jquery.tinymce.min.js"></script>
 
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
@@ -30,6 +31,7 @@
             <th>VIEWS</th>
             <th>OPTION</th>
         </tr>
+        <span id="ask-button">ASK QUESTION</span>
         <c:forEach var="post" items="${posts}">
             <tr>
                 <td>${post.bno}</td>
@@ -37,7 +39,7 @@
                 <td>${post.writer}</td>
                 <td>${post.regDate}</td>
                 <td>${post.viewCnt}</td>
-                <td><a href="#modal-question" class="editBtn" data-id="${post.bno}">EDIT</a></td>
+                <td><a href="#modal-question" class="edit-button" data-id="${post.bno}">EDIT</a></td>
             </tr>
         </c:forEach>
     </table>
@@ -57,6 +59,12 @@
                 statusbar: false,
                 toolbar: false,
                 height: $("#modal-question").height() - $("title").height(),
+                setup: function(editor) {
+
+                    editor.on('init', function(e) {
+                        console.log("editor initialized")
+                    })
+                }
             })
         }
 
@@ -82,13 +90,16 @@
 
     <script>
 
-        $(".editBtn").click(async function (e) {
+        $(".edit-button").click(async function (e) {
             e.preventDefault()
-            var bno = $(this).data('id')
-            await $("#modal-question").modal("show")
-            await initEditor()
+
+            const bno = $(this).data('id')
 
             $("#question-form").attr("action", "/board/edit/")
+
+            await $("#modal-question").modal("show")
+
+            await initEditor()
 
             $.getJSON('/board/edit/' + bno, function (post) {
 
@@ -99,6 +110,30 @@
 
             })
         })
+
+        $("#ask-button").click(async function (e) {
+
+            e.preventDefault()
+
+            // 새로운 글 생성 시 bno 비활성화
+            $("#bno").attr('disabled', true)
+
+            $("#question-form").attr("action", "/board/create/")
+
+            await $("#modal-question").modal("show")
+
+            await initEditor()
+
+            // $.getJSON('/board/edit/' + bno, function (post) {
+            //
+            //     $("#bno").val(post.bno)
+            //     $("#title").val(post.title)
+            //     tinymce.activeEditor.setContent(post.content)
+            //     $("#writer").val(post.writer)
+            //
+            // })
+        })
+
     </script>
 </body>
 </html>

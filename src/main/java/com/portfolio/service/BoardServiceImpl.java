@@ -1,9 +1,12 @@
 package com.portfolio.service;
 
 import com.portfolio.domain.BoardVO;
+import com.portfolio.domain.ImageVO;
 import com.portfolio.mapper.BoardMapper;
+import com.portfolio.mapper.ImageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,10 +17,22 @@ public class BoardServiceImpl implements BoardService {
     @Autowired
     BoardMapper boardMapper;
 
-    @Override
-    public int create(BoardVO boardVO) {
+    @Autowired
+    ImageMapper fileMapper;
 
-        return boardMapper.insert(boardVO);
+    @Transactional
+    @Override
+    public void create(BoardVO boardVO) {
+//
+//        // boardVO 인서트 성공 시 bno property에 자동생성된 bno 세팅
+//        boardMapper.insert(boardVO);
+//
+//        // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
+//        for (ImageVO imageVO : boardVO.getImageList()) {
+//            System.out.println(imageVO.getUploadPath());
+//            imageVO.setBno(boardVO.getBno());
+//            fileMapper.insert(imageVO);
+//        }
     }
 
     @Override

@@ -2,14 +2,14 @@ package com.portfolio.controller;
 
 import com.portfolio.commons.util.UploadFileUtils;
 import com.portfolio.domain.BoardVO;
-import com.portfolio.domain.FileVO;
+import com.portfolio.domain.ImageVO;
 import com.portfolio.service.BoardService;
-import com.portfolio.service.FileService;
+import com.portfolio.service.ImageService;
+import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -22,7 +22,7 @@ public class BoardController {
     BoardService boardService;
 
     @Autowired
-    FileService fileService;
+    ImageService fileService;
 
     @RequestMapping("")
     public String listPosts(Model model) {
@@ -34,28 +34,29 @@ public class BoardController {
         return "board";
     }
 
-    @GetMapping("create")
-    public String createPost() {return "createPost";}
+//    @GetMapping("create")
+//    public String createPost() {return "createPost";}
 
 
-    @PostMapping("create")
+    @PostMapping("create/")
     public String createPost(BoardVO boardVO) {
+        // @NotNull BoardVO boardVO
 
         // 게시글 저장
         boardService.create(boardVO);
+        System.out.println("됩니까" + boardVO.getImageList());
 
+        return "board";
 
-
-        return "redirect:/board";
     }
 
     @RequestMapping("/{bno}")
     public String viewPost(@PathVariable int bno, Model model) {
         BoardVO post = boardService.read(bno);
-        List<FileVO> files = fileService.readAll(bno);
+        List<ImageVO> files = fileService.readAll(bno);
 
-        for (FileVO file : files) {
-            System.out.println(file.getPath());
+        for (ImageVO file : files) {
+            System.out.println(file.getUploadPath());
         }
 
         model.addAttribute("post", post);
@@ -77,7 +78,7 @@ public class BoardController {
     public String editPost(BoardVO vo) {
         boardService.update(vo);
 
-        return "/board";
+        return "";
     }
 
     @RequestMapping("delete/{bno}")
@@ -86,13 +87,13 @@ public class BoardController {
         boardService.delete(bno);
 
         // 삭제하려는 게시글의 모든 첨부파일(이미지) 불러오기
-        List<FileVO> atchList = fileService.readAll(bno);
+        List<ImageVO> atchList = fileService.readAll(bno);
 
         // 파일관련유틸에 절대경로를 얻기위한 HttpServletRequest 객체, 삭제할 파일 리스트 전달하여 파일삭제
         UploadFileUtils.deleteFile(request, atchList);
 
         // 첨부파일 리스트 순회하며 데이터베이스에서 삭제
-        for (FileVO atch : atchList) {
+        for (ImageVO atch : atchList) {
             fileService.delete(atch);
         }
 

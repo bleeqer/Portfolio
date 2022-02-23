@@ -3,7 +3,9 @@ package com.portfolio.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,7 +18,7 @@ public class BoardVO {
     private Date regDate;
     private int viewCnt;
     private int likeCnt;
-    private String img;
+    private List<String> imageList;
 
 }
 
