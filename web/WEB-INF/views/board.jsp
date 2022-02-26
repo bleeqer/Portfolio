@@ -30,16 +30,18 @@
             <th>DATE</th>
             <th>VIEWS</th>
             <th>OPTION</th>
+            <th>OPTION2</th>
         </tr>
         <span id="ask-button">ASK QUESTION</span>
         <c:forEach var="post" items="${posts}">
-            <tr>
+            <tr class="question-list">
                 <td>${post.bno}</td>
                 <td><a href="/board/${post.bno}">${post.title}</a></td>
                 <td>${post.writer}</td>
                 <td>${post.regDate}</td>
                 <td>${post.viewCnt}</td>
                 <td><a href="#modal-question" class="edit-button" data-id="${post.bno}">EDIT</a></td>
+                <td><span id="answer-button">ANSWER</span></td>
             </tr>
         </c:forEach>
     </table>
@@ -82,10 +84,6 @@
         // style 속성 감시
         observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
-
-
-
-
     </script>
 
     <script>
@@ -124,16 +122,13 @@
 
             await initEditor()
 
-            // $.getJSON('/board/edit/' + bno, function (post) {
-            //
-            //     $("#bno").val(post.bno)
-            //     $("#title").val(post.title)
-            //     tinymce.activeEditor.setContent(post.content)
-            //     $("#writer").val(post.writer)
-            //
-            // })
         })
 
+        $("#answer-button").on('click', function() {
+
+            $(this).parent().parent().append("<div>질문칸 삽입</div>")
+
+        })
     </script>
 </body>
 </html>

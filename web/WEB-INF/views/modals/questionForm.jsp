@@ -8,6 +8,7 @@
 
         <%--    Editor로 사용할 태그    --%>
         <textarea name="content" id="content" style="width: 100%; height: 100%;"></textarea>
+
         <input type="text" id="writer" name="writer" placeholder="">
 
         <div id="form-footer">
@@ -70,7 +71,7 @@
                 for (const path of paths) {
 
                     // 이미지 태그 클릭하면 에러 발생함 나중에 삭제버튼 추가하기
-                    tags = tags + '<img class="inserted-image" alt="photo" src="/uploadedImages/' + path + '" style="width: 200px; height: 150px;" />\n'
+                    tags = tags + '<img class="inserted-image" alt="photo" src= "' + path + '" style="width: 200px; height: 150px;" />\n'
                 }
 
                 tinymce.activeEditor.insertContent(tags)

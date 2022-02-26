@@ -130,10 +130,6 @@
 
     $('#upload-button').on("click", triggerTag)
 
-    $("#submit-button").on("click", function() {
-        const theContent = tinymce.activeEditor.getContent()
-    })
-
 </script>
 
 </body>

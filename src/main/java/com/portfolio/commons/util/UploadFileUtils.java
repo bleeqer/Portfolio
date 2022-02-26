@@ -34,7 +34,7 @@ public class UploadFileUtils {
 //            imageFileDTO.setImageName(originalFileName);
 
             // 업로드 경로
-            String uploadPath = mtfRequest.getSession().getServletContext().getRealPath(File.separator + "WEB-INF" + File.separator + "uploadedImages" + File.separator);
+            String uploadPath = mtfRequest.getSession().getServletContext().getRealPath(File.separator + "WEB-INF" + File.separator);
 
             // 조회시 과부하를 막기 위한 경로 구분용 현재 날짜를 yyyyMMdd 형태로 반환받기
             String date = getTodayDate();
@@ -44,7 +44,7 @@ public class UploadFileUtils {
 
             // 데이터베이스에 기록될 경로 형태
             // 현재날짜 + UUID + "_" + 파일
-            String dbFile = date + uuid + "_" + originalFileName;
+            String dbFile = File.separator + "uploadedImages" + File.separator + date + uuid + "_" + originalFileName;
 
 
             // 위에서 생성했던 리스트에 첨부 이미지 데이터 담기
@@ -71,7 +71,7 @@ public class UploadFileUtils {
 
     public static void deleteFile(HttpServletRequest request, List<ImageVO> atchList) {
 
-        String uploadPath = request.getSession().getServletContext().getRealPath(File.separator + "uploadedImages" + File.separator);
+        String uploadPath = request.getSession().getServletContext().getRealPath(File.separator + "WEB-INF");
 
         for (ImageVO fileVO : atchList) {
 
@@ -85,7 +85,7 @@ public class UploadFileUtils {
                 if (res) {
                     System.out.println("파일 삭제 성공");
                 } else {
-                    System.out.println("파일 삭제 실");
+                    System.out.println("파일 삭제 실패");
                 }
             }
         }

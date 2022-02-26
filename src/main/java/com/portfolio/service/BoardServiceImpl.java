@@ -23,16 +23,19 @@ public class BoardServiceImpl implements BoardService {
     @Transactional
     @Override
     public void create(BoardVO boardVO) {
-//
-//        // boardVO 인서트 성공 시 bno property에 자동생성된 bno 세팅
-//        boardMapper.insert(boardVO);
-//
-//        // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
-//        for (ImageVO imageVO : boardVO.getImageList()) {
-//            System.out.println(imageVO.getUploadPath());
-//            imageVO.setBno(boardVO.getBno());
-//            fileMapper.insert(imageVO);
-//        }
+
+        // boardVO 인서트 성공 시 bno property에 자동생성된 bno 세팅
+        boardMapper.insert(boardVO);
+
+        // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
+        for (String uploadPath : boardVO.getImageList()) {
+            ImageVO imgVO = new ImageVO();
+
+            imgVO.setBno(boardVO.getBno());
+            imgVO.setUploadPath(uploadPath);
+
+            fileMapper.insert(imgVO);
+        }
     }
 
     @Override
@@ -42,7 +45,9 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void update(BoardVO boardVO) {
+
         boardMapper.update(boardVO);
+
     }
 
     @Override

@@ -12,35 +12,35 @@
             select QUE_SEQUENCE.NEXTVAL from dual
         </selectKey>
 
-        INSERT INTO BOARD (bno, title, content, writer)
+        INSERT INTO TB_QUESTION (bno, title, content, writer)
         VALUES (#{bno}, #{title}, #{content}, #{writer})
     </insert>
 
     <select id="select" parameterType="int" resultType="BoardVO">
-        SELECT bno, title, content, writer, regdate, viewcnt, likecnt FROM BOARD where bno=#{bno}
+        SELECT bno, title, content, writer, regdate, viewcnt, likecnt FROM TB_QUESTION where bno=#{bno}
     </select>
 
     <update id="update" parameterType="BoardVO">
-        UPDATE BOARD SET title = #{title},
+        UPDATE TB_QUESTION SET title = #{title},
                          content = #{content}
         WHERE bno=#{bno}
     </update>
 
     <delete id="delete" parameterType="int">
-        DELETE FROM BOARD WHERE bno=#{bno}
+        DELETE FROM TB_QUESTION WHERE bno=#{bno}
     </delete>
 
     <select id="selectAll" resultType="BoardVO">
-        SELECT * FROM BOARD
+        SELECT * FROM TB_QUESTION
     </select>
 
     <update id="addViewCnt" parameterType="int">
-        UPDATE BOARD SET viewcnt=viewcnt + 1
+        UPDATE TB_QUESTION SET viewcnt=viewcnt + 1
         WHERE bno=#{bno}
     </update>
 
     <update id="addLike" parameterType="int">
-        UPDATE BOARD SET likecnt=likecnt + 1
+        UPDATE TB_QUESTION SET likecnt=likecnt + 1
         WHERE bno=#{bno}
     </update>
 
