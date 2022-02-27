@@ -1,8 +1,7 @@
 package com.portfolio.controller;
 
 import com.portfolio.commons.util.UploadFileUtils;
-import com.portfolio.domain.ImageDTO;
-import com.portfolio.service.ImageService;
+import com.portfolio.service.AnswerImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/file/")
 public class ImageController {
-
-    @Autowired
-    ImageService fileService;
 
     @PostMapping(value="/upload")
     public ResponseEntity<List<String>> uploadFile(MultipartHttpServletRequest mtfRequest) throws Exception {

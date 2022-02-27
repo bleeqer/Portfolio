@@ -1,7 +1,7 @@
 package com.portfolio.service;
 
 import com.portfolio.domain.ImageVO;
-import com.portfolio.mapper.ImageMapper;
+import com.portfolio.mapper.QuestionImageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,25 +9,25 @@ import java.util.List;
 
 
 @Service
-public class ImageServiceImpl implements ImageService {
+public class QuestionImageServiceImpl implements QuestionImageService {
 
     @Autowired
-    ImageMapper imageManager;
+    QuestionImageMapper imageMapper;
 
     @Override
     public void save(ImageVO vo) {
-        imageManager.insert(vo);
+        imageMapper.insert(vo);
     }
 
     @Override
     public void delete(ImageVO vo) {
-        imageManager.delete(vo);
+        imageMapper.delete(vo);
     }
 
     @Override
     public List<ImageVO> readAll(int bno) {
 
-        return imageManager.selectAll(bno);
+        return imageMapper.selectAll(bno);
     }
 
 }

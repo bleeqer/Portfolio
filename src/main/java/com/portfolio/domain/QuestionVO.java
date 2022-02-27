@@ -3,15 +3,14 @@ package com.portfolio.domain;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
-public class BoardVO {
+public class QuestionVO {
 
-    private int bno;
+    private int quesNo;
     private String title;
     private String content;
     private String writer;

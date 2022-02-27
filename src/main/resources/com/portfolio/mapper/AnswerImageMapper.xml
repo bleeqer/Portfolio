@@ -3,19 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.portfolio.mapper.ImageMapper">
+<mapper namespace="com.portfolio.mapper.AnswerImageMapper">
 
     <insert id="insert" parameterType="ImageVO">
-        INSERT INTO TB_IMAGE (bno, uploadpath)
-        VALUES (#{bno}, #{uploadPath})
+        INSERT INTO TB_ANS_IMAGE (post_num, upload_path)
+        VALUES (#{post_num}, #{upload_path})
     </insert>
 
     <delete id="delete" parameterType="ImageVO">
-        DELETE FROM TB_IMAGE WHERE bno=#{bno}
+        DELETE FROM TB_ANS_IMAGE WHERE post_num=#{post_num}
     </delete>
 
     <select id="selectAll" parameterType="int" resultType="ImageVO">
-        SELECT * FROM TB_IMAGE WHERE bno=#{bno}
+        SELECT * FROM TB_ANS_IMAGE WHERE post_num=#{post_num}
     </select>
 
 </mapper>

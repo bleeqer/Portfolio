@@ -2,7 +2,7 @@
 
     <form id="question-form" action="" method="POST" enctype="multipart/form-data">
 
-        <input type="hidden" id="bno" name="bno">
+        <input type="hidden" id="quesNo" name="quesNo">
 
         <input type="text" id="title" name="title">
 
@@ -89,14 +89,16 @@
 
         e.preventDefault()
 
-        let path2 = $("#content_ifr").contents().find(".inserted-image")
+        let imgTags = $("#content_ifr").contents().find(".inserted-image")
 
-        for (let i=0; i<Object.keys(path2).length - 2; i++) {
-            const src = $(path2[i]).attr("src")
+        for (let i=0; i<Object.keys(imgTags).length - 2; i++) {
+            const src = $(imgTags[i]).attr("src")
 
             const tag = '<input type="hidden" name="imageList[' + i + ']" value="' + src + '">'
             $("#question-form").append(tag)
         }
+
+
 
         $("#question-form").submit()
 

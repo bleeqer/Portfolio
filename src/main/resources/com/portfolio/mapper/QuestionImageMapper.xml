@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.portfolio.mapper.QuestionImageMapper">
+
+    <insert id="insert" parameterType="ImageVO">
+        INSERT INTO TB_QUES_IMAGE (post_no, upload_path)
+        VALUES (#{postNo}, #{uploadPath})
+    </insert>
+
+    <delete id="delete" parameterType="ImageVO">
+        DELETE FROM TB_QUES_IMAGE WHERE post_no=#{postNo}
+    </delete>
+
+    <select id="selectAll" parameterType="int" resultType="ImageVO">
+        SELECT * FROM TB_QUES_IMAGE WHERE post_no=#{postNo}
+    </select>
+
+</mapper>

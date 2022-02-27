@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.portfolio.mapper.AnswerMapper">
+
+    <insert id="insert" parameterType="AnswerVO">
+
+        -- file 테이블의 외래키로 사용될 ques_no를 반환받아 QuestionVO에 담김
+        <selectKey keyProperty="ans_no" resultType="int" order="BEFORE">
+            select ANS_SEQUENCE.NEXTVAL from dual
+        </selectKey>
+
+        INSERT INTO TB_ANSWER (ans_no, title, content, writer)
+        VALUES (#{ansNo}, #{title}, #{content}, #{writer})
+    </insert>
+
+    <select id="select" parameterType="int" resultType="AnswerVO">
+        SELECT ques_num, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER where ans_no=#{ansNo}
+    </select>
+
+    <update id="update" parameterType="AnswerVO">
+        UPDATE TB_ANSWER SET title = #{title},
+                         content = #{content}
+        WHERE ans_no=#{ansNo}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM TB_ANSWER WHERE ans_no=#{ansNo}
+    </delete>
+
+    <select id="selectAll" resultType="AnswerVO">
+        SELECT * FROM TB_ANSWER
+    </select>
+
+    <update id="addViewCnt" parameterType="int">
+        UPDATE TB_ANSWER SET view_cnt=view_cnt + 1
+        WHERE ans_no=#{ansNo}
+    </update>
+
+    <update id="addLike" parameterType="int">
+        UPDATE TB_ANSWER SET like_cnt=like_cnt + 1
+        WHERE ans_no=#{ansNo}
+    </update>
+
+</mapper>

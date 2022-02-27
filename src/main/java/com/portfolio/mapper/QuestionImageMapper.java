@@ -4,7 +4,7 @@ import com.portfolio.domain.ImageVO;
 
 import java.util.List;
 
-public interface ImageMapper {
+public interface QuestionImageMapper {
 
     void insert(ImageVO imageVO);
     void delete(ImageVO imageVO);

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.portfolio.mapper.QuestionMapper">
+
+    <insert id="insert" parameterType="QuestionVO">
+
+        -- file 테이블의 외래키로 사용될 ques_no를 반환받아 QuestionVO에 담김
+        <selectKey keyProperty="quesNo" resultType="int" order="BEFORE">
+            select ques_sequence.NEXTVAL from dual
+        </selectKey>
+
+        INSERT INTO TB_QUESTION (ques_no, title, content, writer)
+        VALUES (#{quesNo}, #{title}, #{content}, #{writer})
+
+    </insert>
+
+    <select id="select" parameterType="int" resultType="QuestionVO">
+        SELECT ques_no, title, content, writer, reg_date, view_cnt, like_cnt FROM TB_QUESTION where ques_no=#{quesNo}
+    </select>
+
+    <update id="update" parameterType="QuestionVO">
+        UPDATE TB_QUESTION SET title = #{title},
+                         content = #{content}
+        WHERE ques_no=#{quesNo}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM TB_QUESTION WHERE ques_no=#{quesNo}
+    </delete>
+
+    <select id="selectAll" resultType="QuestionVO">
+        SELECT * FROM TB_QUESTION
+    </select>
+
+    <update id="addViewCnt" parameterType="int">
+        UPDATE TB_QUESTION SET view_cnt=view_cnt + 1
+        WHERE ques_no=#{quesNo}
+    </update>
+
+    <update id="addLike" parameterType="int">
+        UPDATE TB_QUESTION SET like_cnt=like_cnt + 1
+        WHERE ques_no=#{quesNo}
+    </update>
+
+</mapper>
