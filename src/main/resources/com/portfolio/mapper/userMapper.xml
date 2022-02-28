@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.portfolio.mapper.UserMapper">
+
+    <insert id="insert" parameterType="UserVO">
+        INSERT INTO TB_USER (user_id, password)
+        VALUES (#{user_id}, #{password})
+    </insert>
+
+    <select id="select" parameterType="int" resultType="UserVO">
+        SELECT user_id, password FROM TB_USER where user_id=#{userId}
+    </select>
+
+    <update id="update" parameterType="UserVO">
+        UPDATE TB_USER SET password = #{password}
+        WHERE user_id=#{userId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM TB_USER WHERE user_id=#{userId}
+    </delete>
+
+</mapper>
