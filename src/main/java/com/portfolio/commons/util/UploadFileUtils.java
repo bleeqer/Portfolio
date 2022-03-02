@@ -1,37 +1,40 @@
 package com.portfolio.commons.util;
 
+import com.portfolio.commons.exceptions.NotImageFileException;
 import com.portfolio.domain.ImageVO;
 import com.portfolio.domain.ImageDTO;
+import org.apache.tika.Tika;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.FileSystemException;
 import java.util.*;
 import java.util.List;
 
 public class UploadFileUtils {
 
-    public static List<String> uploadFile(MultipartHttpServletRequest mtfRequest) {
+    public static List<String> uploadFile(MultipartHttpServletRequest mtfRequest) throws IOException, NotImageFileException {
 
         // multipartFile 리스트
         List<MultipartFile> mtfs = mtfRequest.getFiles("image");
 
-//        List<ImageDTO> fileList = new ArrayList<>();
         List<String> fileList = new ArrayList<>();
 
         for (MultipartFile mtf : mtfs) {
 
-//            ImageDTO imageFileDTO = new ImageDTO();
+            if (!detectFileType(mtf)) {
+                throw new NotImageFileException();
+            }
 
             // 파일 이름
             String originalFileName = mtf.getOriginalFilename();
 
             // 공백문자를 언더스코어로 교체하기
             originalFileName = originalFileName.replace(' ', '_');
-
-//            imageFileDTO.setImageName(originalFileName);
 
             // 업로드 경로
             String uploadPath = mtfRequest.getSession().getServletContext().getRealPath(File.separator + "WEB-INF" + File.separator);
@@ -50,19 +53,12 @@ public class UploadFileUtils {
             // 위에서 생성했던 리스트에 첨부 이미지 데이터 담기
             fileList.add(dbFile);
 
-//            imageFileDTO.setUploadPath(dbFile);
-
             // 파일 저장 경로
             String saveFile = uploadPath + dbFile;
 
+            // 파일 경로에 저장하기
+            mtf.transferTo(new File(saveFile));
 
-            try {
-                // 파일 경로에 저장하기
-                mtf.transferTo(new File(saveFile));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
         return fileList;  // 파일 리스트 반환
@@ -122,6 +118,16 @@ public class UploadFileUtils {
                 e.getStackTrace();
             }
         }
+    }
+
+    private static boolean detectFileType(MultipartFile mtf) throws IOException {
+        Tika tika = new Tika();
+
+        InputStream fileInputStream = mtf.getInputStream();
+
+        String mimeType = tika.detect(fileInputStream);
+
+        return mimeType.startsWith("image");
     }
 
 }

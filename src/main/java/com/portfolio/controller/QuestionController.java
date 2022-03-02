@@ -29,7 +29,6 @@ public class QuestionController {
         // 게시글 저장
         questionService.create(questionVO);
 
-//        return "board";
         return "index";
 
     }

@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <div id="modal-question" class="modal">
 
     <form id="question-form" action="" method="POST" enctype="multipart/form-data">
@@ -77,10 +79,13 @@
                 tinymce.activeEditor.insertContent(tags)
 
                 // 사진 클릭 시 태그 삭제후에 x 버튼으로 대신할 것
-                $("#content_ifr").contents().find(".inserted-image").bind('click', function(){
+                $("#content_ifr").contents().find(".inserted-image").bind('click', function () {
                     this.remove()
                 })
 
+            },
+            error: function () {
+                alert("이미지 파일이 아닙니다.")
             }
         })
     })
