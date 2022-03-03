@@ -7,7 +7,7 @@
 
     <insert id="insert" parameterType="UserVO">
         INSERT INTO TB_USER (user_id, password)
-        VALUES (#{user_id}, #{password})
+        VALUES (#{userId}, #{password})
     </insert>
 
     <select id="select" parameterType="int" resultType="UserVO">
