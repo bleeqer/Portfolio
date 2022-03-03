@@ -15,8 +15,8 @@
         <label for="id">ID</label>
         <input type="text" name="userId" id="id">
         <br>
-        <label for="password">PASSWORD</label>
-        <input type="password" name="userPassword" id="password">
+        <label for="userPW">PASSWORD</label>
+        <input type="password" name="userPW" id="userPW">
         <button type="submit">register</button>
     </form>
 </body>

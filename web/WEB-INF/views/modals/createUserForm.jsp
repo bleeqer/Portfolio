@@ -9,14 +9,14 @@
 
 <div id="modal-user" class="modal">
 
-    <form id="user-form" action="/user/register/" method="POST" enctype="multipart/form-data">
+    <form id="user-form" action="/user/register/" method="POST">
 
         <input type="text" id="userId" name="userId" placeholder="Enter ID">
 
-        <input type="password" id="password" name="password" placeholder="Enter password">
+        <input type="password" id="userPW" name="userPW" placeholder="Enter password">
 
         <div id="form-footer">
-            <button type="submit" id="submit-button" class="btn">Next</button>
+            <input type="submit" id="submit-button" class="btn">Next</input>
         </div>
     </form>
 </div>
