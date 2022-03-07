@@ -15,7 +15,7 @@
 
         <div id="form-footer">
             <span id="upload-button">Image</span>
-            <button type="submit" id="submit-button" class="btn">Submit</button>
+            <button type="submit" id="question-submit" class="btn">Submit</button>
         </div>
 <%--        이미지 업로드 input 태그(숨김)--%>
         <input type="file" multiple="multiple" name="image" id="image" style="display: none;" accept="image/*">
@@ -90,24 +90,7 @@
         })
     })
 
-    $("#submit-button").on('click', function(e) {
 
-        e.preventDefault()
-
-        let imgTags = $("#content_ifr").contents().find(".inserted-image")
-
-        for (let i=0; i<Object.keys(imgTags).length - 2; i++) {
-            const src = $(imgTags[i]).attr("src")
-
-            const tag = '<input type="hidden" name="imageList[' + i + ']" value="' + src + '">'
-            $("#question-form").append(tag)
-        }
-
-
-
-        $("#question-form").submit()
-
-    })
 
 </script>
 

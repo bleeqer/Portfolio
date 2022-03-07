@@ -11,13 +11,13 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="/user/register/" method="POST">
+    <form action="/user/login" method="POST">
         <label for="id">ID</label>
         <input type="text" name="userId" id="id">
         <br>
         <label for="userPW">PASSWORD</label>
         <input type="password" name="userPW" id="userPW">
-        <button type="submit">register</button>
+        <button type="submit">login</button>
     </form>
 </body>
 </html>

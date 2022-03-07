@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/question")
 public class QuestionController {
 
     @Autowired

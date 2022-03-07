@@ -21,6 +21,10 @@ public class HomeController {
 
         List<QuestionVO> questions = questionService.readAll();
 
+        for (QuestionVO qVO : questions) {
+            System.out.println( qVO.getRegDate());
+        }
+
         model.addAttribute("questions", questions);
 
         return "index";

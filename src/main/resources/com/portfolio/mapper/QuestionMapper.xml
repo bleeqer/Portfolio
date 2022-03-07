@@ -31,7 +31,7 @@
         DELETE FROM TB_QUESTION WHERE ques_no=#{quesNo}
     </delete>
 
-    <select id="selectAll" resultType="QuestionVO">
+    <select id="selectAll" resultMap="QuestionMapper">
         SELECT * FROM TB_QUESTION
     </select>
 
@@ -44,5 +44,11 @@
         UPDATE TB_QUESTION SET like_cnt=like_cnt + 1
         WHERE ques_no=#{quesNo}
     </update>
+
+    <!--QuestionVO Mapper-->
+    <resultMap id="QuestionMapper" type="QuestionVO">
+        <id column="ques_no" property="quesNo"/>
+        <id column="reg_date" property="regDate"/>
+    </resultMap>
 
 </mapper>

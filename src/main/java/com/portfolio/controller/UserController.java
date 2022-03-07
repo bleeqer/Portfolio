@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping("register")
     public String loginUser() {
 
-        return "modals/createUserForm";
+        return "userForm";
 
     }
 
@@ -38,10 +38,14 @@ public class UserController {
         return "redirect:/user/register";
     }
 
-//    @PostMapping("login")
-//    public ResponseEntity<String> userLogin(UserVO userVO) {
-//
-//    }
+    @PostMapping("login")
+    public String userLogin(UserVO userVO) {
+
+        System.out.println(userVO.getUserId());
+        System.out.println(userVO.getUserPW());
+
+        return "index";
+    }
 
 //    @PostMapping("info")
 //    public ResponseEntity<UserVO> userInfo(String userId) {
