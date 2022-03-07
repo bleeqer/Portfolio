@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<div id="modal-user" class="modal">
+<div id="modal-userLogin" class="modal">
 
     <form id="userLogin-form" action="" method="POST">
 

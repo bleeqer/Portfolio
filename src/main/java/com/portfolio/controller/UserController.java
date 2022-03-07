@@ -18,12 +18,11 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @GetMapping("register")
-    public String loginUser() {
-
-        return "userForm";
-
-    }
+//    @GetMapping("register")
+//    public String loginUser() {
+//
+//        return "userForm";
+//    }
 
     @PostMapping("register")
     public String register(UserVO userVO) throws Exception {
@@ -35,7 +34,7 @@ public class UserController {
 
         userService.create(userVO);
 
-        return "redirect:/user/register";
+        return "redirect:/";
     }
 
     @PostMapping("login")

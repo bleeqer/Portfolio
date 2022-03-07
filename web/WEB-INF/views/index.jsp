@@ -26,6 +26,7 @@
     <h2>게시판</h2>
     <sec:authorize access="!isAuthenticated()"><span id="login-button">Login</span></sec:authorize>
     <span id="login-button">Login</span>
+    <span id="register-button">Register</span>
     <sec:authorize access="isAuthenticated()">Logout</sec:authorize>
     <sec:authorize access="hasRole('ADMIN')"><a href="#">Manage Users</a></sec:authorize>
     <table>
@@ -57,6 +58,7 @@
 
     <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
     <%@ include file="/WEB-INF/views/modals/userLoginForm.jsp" %>
+    <%@ include file="/WEB-INF/views/modals/userRegisterForm.jsp" %>
 
     <script>
 
@@ -95,13 +97,26 @@
 
     <script>
 
+        $("#register-button").click(async function (e) {
+
+            e.preventDefault()
+
+            $("#userRegister-form").attr("action", "/user/register/")
+
+            await $("#modal-userRegister").modal("show")
+
+            await initEditor()
+
+        })
+
+
         $("#login-button").click(async function (e) {
 
             e.preventDefault()
 
             $("#userLogin-form").attr("action", "/user/login/")
 
-            await $("#modal-user").modal("show")
+            await $("#modal-userLogin").modal("show")
 
             await initEditor()
 
@@ -189,6 +204,32 @@
                 data: form.serialize(),
                 success: function () {
                     alert("로그인 요청 성공")
+                }
+            })
+
+        })
+
+        $("#userRegister-submit").on('click', function(e) {
+
+            e.preventDefault()
+
+            console.log("tl")
+            const form = $("#userRegister-form")
+
+            if (check_pw(form.find("#pw").val()) !== check_pw(form.find("#pw2").val())) {
+
+                alert("비밀번호가 일치하지 않습니다")
+                return
+
+            }
+
+            //ajax form submit
+            $.ajax({
+                type: "POST",
+                url: "/user/register/",
+                data: form.serialize(),
+                success: function () {
+                    alert("회원 가입 성공")
                 }
             })
 
