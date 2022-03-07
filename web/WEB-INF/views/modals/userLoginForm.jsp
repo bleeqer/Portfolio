@@ -10,7 +10,7 @@
 
 <div id="modal-user" class="modal">
 
-    <form id="user-form" action="" method="POST">
+    <form id="userLogin-form" action="" method="POST">
 
         <input type="text" id="userId" name="userId" placeholder="Enter ID" autocomplete="off">
 
@@ -19,7 +19,7 @@
         <sec:csrfInput/>
 
         <div id="form-footer">
-            <input type="submit" id="user-submit" class="btn">Login</input>
+            <input type="submit" id="userLogin-submit" class="btn">Login</input>
         </div>
     </form>
 </div>

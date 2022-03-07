@@ -56,7 +56,7 @@
     <input id="test" type="reset">
 
     <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
-    <%@ include file="/WEB-INF/views/modals/userForm.jsp" %>
+    <%@ include file="/WEB-INF/views/modals/userLoginForm.jsp" %>
 
     <script>
 
@@ -99,7 +99,7 @@
 
             e.preventDefault()
 
-            $("#user-form").attr("action", "/user/login/")
+            $("#userLogin-form").attr("action", "/user/login/")
 
             await $("#modal-user").modal("show")
 
@@ -174,7 +174,23 @@
                 }
             })
 
-            // $("#question-form").submit()
+        })
+
+        $("#userLogin-submit").on('click', function(e) {
+
+            e.preventDefault()
+
+            const form = $("#userLogin-form")
+
+            //ajax form submit
+            $.ajax({
+                type: "POST",
+                url: "/user/login/",
+                data: form.serialize(),
+                success: function () {
+                    alert("로그인 요청 성공")
+                }
+            })
 
         })
     </script>
