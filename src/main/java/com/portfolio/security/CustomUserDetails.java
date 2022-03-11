@@ -1,16 +1,42 @@
 package com.portfolio.security;
 
-import com.portfolio.domain.UserVO;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class CustomUserDetails extends User {
+@Setter
+@Getter
+public class CustomUserDetails implements UserDetails {
 
-    public CustomUserDetails(UserVO userVO, Collection<? extends GrantedAuthority> authorities) {
-        super(userVO.getUserId(), userVO.getUserPW(), true, true, true, true, authorities);
+    private String username;
+    private String password;
+    private String authority;
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }

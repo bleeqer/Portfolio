@@ -17,7 +17,7 @@
 
     </insert>
 
-    <select id="select" parameterType="int" resultType="QuestionVO">
+    <select id="select" parameterType="int" resultMap="QuestionResultMap">
         SELECT ques_no, title, content, writer, reg_date, view_cnt, like_cnt FROM TB_QUESTION where ques_no=#{quesNo}
     </select>
 
@@ -31,7 +31,7 @@
         DELETE FROM TB_QUESTION WHERE ques_no=#{quesNo}
     </delete>
 
-    <select id="selectAll" resultMap="QuestionMapper">
+    <select id="selectAll" resultMap="QuestionResultMap">
         SELECT * FROM TB_QUESTION
     </select>
 
@@ -46,9 +46,11 @@
     </update>
 
     <!--QuestionVO Mapper-->
-    <resultMap id="QuestionMapper" type="QuestionVO">
+    <resultMap id="QuestionResultMap" type="QuestionVO">
         <id column="ques_no" property="quesNo"/>
         <id column="reg_date" property="regDate"/>
+        <id column="view_cnt" property="viewCnt"/>
+        <id column="like_cnt" property="likeCnt"/>
     </resultMap>
 
 </mapper>

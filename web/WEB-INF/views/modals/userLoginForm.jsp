@@ -12,11 +12,11 @@
 
     <form id="userLogin-form" action="" method="POST">
 
+        <sec:csrfInput/>
+
         <input type="text" id="userId" name="userId" placeholder="Enter ID" autocomplete="off">
 
         <input type="password" id="userPW" name="userPW" placeholder="Enter password" autocomplete="off">
-
-        <sec:csrfInput/>
 
         <div id="form-footer">
             <input type="submit" id="userLogin-submit" class="btn">Login</input>

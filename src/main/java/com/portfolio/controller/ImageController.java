@@ -26,7 +26,6 @@ public class ImageController {
             return new ResponseEntity<>(attachedImgs, HttpStatus.OK);
 
         } catch(NotImageFileException e) {
-
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
         }

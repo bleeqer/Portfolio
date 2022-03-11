@@ -21,14 +21,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
+
 </head>
 <body>
     <h2>게시판</h2>
-    <sec:authorize access="!isAuthenticated()"><span id="login-button">Login</span></sec:authorize>
+<%--    <sec:authorize access="!isAuthenticated()"><span id="login-button">Login</span></sec:authorize>--%>
     <span id="login-button">Login</span>
     <span id="register-button">Register</span>
-    <sec:authorize access="isAuthenticated()">Logout</sec:authorize>
-    <sec:authorize access="hasRole('ADMIN')"><a href="#">Manage Users</a></sec:authorize>
+<%--    <sec:authorize access="isAuthenticated()">Logout</sec:authorize>--%>
+<%--    <sec:authorize access="hasRole('ADMIN')"><a href="#">Manage Users</a></sec:authorize>--%>
     <table>
         <tr>
             <th>QUESTION NO</th>
@@ -43,7 +44,7 @@
         <c:forEach var="question" items="${questions}">
             <tr class="question-list">
                 <td>${question.quesNo}</td>
-                <td><a href="/board/${question.quesNo}">${question.title}</a></td>
+                <td><a href="/question/${question.quesNo}">${question.title}</a></td>
                 <td>${question.writer}</td>
                 <td>${question.regDate}</td>
                 <td>${question.viewCnt}</td>
@@ -53,12 +54,12 @@
         </c:forEach>
     </table>
 
+
     <label for="test"></label>
     <input id="test" type="reset">
 
     <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
     <%@ include file="/WEB-INF/views/modals/userLoginForm.jsp" %>
-    <%@ include file="/WEB-INF/views/modals/userRegisterForm.jsp" %>
 
     <script>
 
@@ -97,17 +98,7 @@
 
     <script>
 
-        $("#register-button").click(async function (e) {
 
-            e.preventDefault()
-
-            $("#userRegister-form").attr("action", "/user/register/")
-
-            await $("#modal-userRegister").modal("show")
-
-            await initEditor()
-
-        })
 
 
         $("#login-button").click(async function (e) {
@@ -184,12 +175,19 @@
                 type: "POST",
                 url: "/question/create/",
                 data: form.serialize(),
+                beforeSend : function(xhr)
+                {
+                    xhr.setRequestHeader(header, token);
+                },
                 success: function () {
                     alert("성공")
                 }
             })
 
         })
+
+        const csrfHeaderName = "${_csrf.headerName}"
+        const csrfTokenValue = "${_csrf.token}"
 
         $("#userLogin-submit").on('click', function(e) {
 
@@ -202,6 +200,9 @@
                 type: "POST",
                 url: "/user/login/",
                 data: form.serialize(),
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+                },
                 success: function () {
                     alert("로그인 요청 성공")
                 }
@@ -209,31 +210,7 @@
 
         })
 
-        $("#userRegister-submit").on('click', function(e) {
 
-            e.preventDefault()
-
-            console.log("tl")
-            const form = $("#userRegister-form")
-
-            if (check_pw(form.find("#pw").val()) !== check_pw(form.find("#pw2").val())) {
-
-                alert("비밀번호가 일치하지 않습니다")
-                return
-
-            }
-
-            //ajax form submit
-            $.ajax({
-                type: "POST",
-                url: "/user/register/",
-                data: form.serialize(),
-                success: function () {
-                    alert("회원 가입 성공")
-                }
-            })
-
-        })
     </script>
 </body>
 </html>

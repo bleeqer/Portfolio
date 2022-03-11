@@ -2,6 +2,7 @@ package com.portfolio.service;
 
 import com.portfolio.domain.UserVO;
 import com.portfolio.mapper.UserMapper;
+import com.portfolio.security.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO read(String userId) {
-
+    public CustomUserDetails read(String userId) {
+        System.out.println("도착?");
         return userMapper.select(userId);
 
     }

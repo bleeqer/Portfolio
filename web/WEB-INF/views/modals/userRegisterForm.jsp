@@ -12,24 +12,23 @@
 
     <form id="userRegister-form" action="" method="POST">
 
+        <sec:csrfInput/>
+
         <input type="text" id="userId" name="userId" placeholder="Enter ID" autofill="off">
 
         <input type="password" id="userPW" name="userPW" placeholder="Enter password" autocomplete="off">
         <input type="password" id="userPW2" name="userPW2" placeholder="Enter password again" autocomplete="off">
-
-        <sec:csrfInput/>
-
         <div id="form-footer">
-            <span id="userRegister-submit">Register</span>
-<%--            <input class="btn" id="userRegister-submit" type="submit" style="display: none;"/>--%>
+<%--            <span id="userRegister-submit">Register</span>--%>
+            <input class="btn" type="submit"/>
         </div>
     </form>
 </div>
 
-<script>
-    function check_pw(pw, pw2) {
+<%--<script>--%>
+<%--    function check_pw(pw, pw2) {--%>
 
-        return pw === pw2
+<%--        return pw === pw2--%>
 
-    }
-</script>
+<%--    }--%>
+<%--</script>--%>

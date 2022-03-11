@@ -27,7 +27,6 @@ public class UserController {
     @PostMapping("register")
     public String register(UserVO userVO) throws Exception {
 
-//        String hashedPW = BCrypt.hashpw(userVO.getUserPW(), BCrypt.gensalt());
         String hashedPW = passwordEncoder.encode(userVO.getUserPW());
 
         userVO.setUserPW(hashedPW);
@@ -37,13 +36,31 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("login")
+    public String userLogin() {
+        return "login";
+    }
+
     @PostMapping("login")
-    public String userLogin(UserVO userVO) {
+    public String userLoginPost() {
 
-        System.out.println(userVO.getUserId());
-        System.out.println(userVO.getUserPW());
+//        System.out.println(userVO.getUserId());
+//        System.out.println(userVO.getUserPW());
 
-        return "index";
+        return "/";
+    }
+
+    @GetMapping("test")
+    public String test() {
+
+        return "test";
+    }
+
+
+    @PostMapping("test")
+    public String test(UserVO userVO) {
+
+        return "test";
     }
 
 //    @PostMapping("info")

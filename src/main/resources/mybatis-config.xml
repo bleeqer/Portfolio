@@ -12,5 +12,6 @@
         <typeAlias type="com.portfolio.domain.UserVO" alias="UserVO"/>
         <typeAlias type="com.portfolio.domain.AnswerVO" alias="AnswerVO"/>
         <typeAlias type="com.portfolio.domain.ImageVO" alias="ImageVO"/>
+        <typeAlias type="com.portfolio.security.CustomUserDetails" alias="CustomUserDetails"/>
     </typeAliases>
 </configuration>

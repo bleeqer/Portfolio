@@ -38,8 +38,11 @@ public class QuestionController {
         QuestionVO post = questionService.read(postNo);
         List<ImageVO> files = imageService.readAll(postNo);
 
-        for (ImageVO file : files) {
-            System.out.println(file.getUploadPath());
+        if (!files.isEmpty()) {
+            for (ImageVO file : files) {
+                System.out.println(file.getUploadPath());
+            }
+
         }
 
         model.addAttribute("post", post);

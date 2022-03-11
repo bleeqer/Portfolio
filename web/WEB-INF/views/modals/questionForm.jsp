@@ -4,6 +4,8 @@
 
     <form id="question-form" action="" method="POST" enctype="multipart/form-data">
 
+        <sec:csrfInput/>
+
         <input type="hidden" id="quesNo" name="quesNo">
 
         <input type="text" id="title" name="title">
@@ -38,6 +40,8 @@
         // ajax submit용 form data
         const formData = new FormData()
 
+
+
         // input 태그 파일을 데이터 순회하며 form data에 추가
         // 첫번째 스트링 인자('image')는 서버에서 multipart file의 파라미터명으로 쓰이므로 주의
         for (let i=0; i<files.length; i++) {
@@ -58,6 +62,10 @@
 
             // contentType의 default 값 false
             contentType: false,
+
+            beforeSend: function(xhr){
+                xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+            },
 
             // 전송할 데이터
             data: formData,

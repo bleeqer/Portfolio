@@ -1,9 +1,6 @@
 package com.portfolio.security;
 
-import com.portfolio.domain.UserVO;
-import com.portfolio.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,33 +10,23 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
-    UserMapper userMapper;
+    UserAuthDAO userAuthDAO;
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 
-        UserVO userVO = userMapper.select(userId);
+        CustomUserDetails user = userAuthDAO.getUserById(userId);
 
-        String sampleRole = "";
+        System.out.println("유저아이디: " + user.getUsername());
+        System.out.println("유저비밀번호: " + user.getPassword());
 
-        System.out.println("userDetails 불러와짐");
+        if (user.getUsername().isEmpty()) {
 
-        if (userId.startsWith("user")) {
-
-            sampleRole = "ROLE_USER";
-
-        } else if (userId.startsWith("admin")) {
-
-            sampleRole = "ROLE_ADMIN";
+            throw new UsernameNotFoundException(userId);
 
         }
 
-        CustomUserDetails customUserDetails = new CustomUserDetails(
-                userVO,
-                AuthorityUtils.createAuthorityList(sampleRole)
-        );
-
-        return customUserDetails;
+        return user;
 
     }
 

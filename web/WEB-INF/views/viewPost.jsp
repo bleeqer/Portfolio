@@ -18,13 +18,13 @@
     WRITER : ${post.writer} <br>
 
 
-    <c:if test="${not empty files}">
-        <c:forEach var="image" items="${files}" varStatus="status">
-            <img src="/uploadedImages/<c:out value="${image.path}"/>" alt="" width="300" height="300">
-        </c:forEach>
-    </c:if>
-    <a href="/board/edit/${post.bno}">EDIT</a>
-    <a href="/board/delete/${post.bno}">DELETE</a>
+<%--    <c:if test="${not empty files}">--%>
+<%--        <c:forEach var="image" items="${files}" varStatus="status">--%>
+<%--            <img src="/uploadedImages/<c:out value="${image.uploadPath}"/>" alt="" width="300" height="300">--%>
+<%--        </c:forEach>--%>
+<%--    </c:if>--%>
+    <a href="/board/edit/${post.quesNo}">EDIT</a>
+    <a href="/board/delete/${post.quesNo}">DELETE</a>
 </head>
 <body>
 
