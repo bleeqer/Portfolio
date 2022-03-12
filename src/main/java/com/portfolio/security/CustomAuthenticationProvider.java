@@ -26,20 +26,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public CustomAuthenticationProvider() {
-        System.out.println("시발");
-    }
-
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        System.out.println("아니씨빨왜");
+
         String userId = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
 
         CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(userId);
-
-        System.out.println("Auth 유저네임: " + user.getUsername());
-        System.out.println("Auth 비밀번호: " + user.getPassword());
 
         if (!matchPassword(password, user.getPassword())) {
             throw new BadCredentialsException(userId);
@@ -47,8 +40,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
         roles.add(new SimpleGrantedAuthority(user.getAuthority()));
-
-
 
         return new UsernamePasswordAuthenticationToken(userId, password, roles);
     }
@@ -60,7 +51,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 
     private boolean matchPassword(String loginPwd, String password) {
-        System.out.println(passwordEncoder.matches(loginPwd, password));
         return passwordEncoder.matches(loginPwd, password);
     }
 }
