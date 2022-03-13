@@ -98,9 +98,6 @@
 
     <script>
 
-
-
-
         $("#login-button").click(async function (e) {
 
             e.preventDefault()
@@ -189,26 +186,26 @@
         const csrfHeaderName = "${_csrf.headerName}"
         const csrfTokenValue = "${_csrf.token}"
 
-        $("#userLogin-submit").on('click', function(e) {
-
-            e.preventDefault()
-
-            const form = $("#userLogin-form")
-
-            //ajax form submit
-            $.ajax({
-                type: "POST",
-                url: "/user/login/",
-                data: form.serialize(),
-                beforeSend: function(xhr){
-                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
-                },
-                success: function () {
-                    alert("로그인 요청 성공")
-                }
-            })
-
-        })
+        // $("#userLogin-submit").on('click', function(e) {
+        //
+        //     e.preventDefault()
+        //
+        //     const form = $("#userLogin-form")
+        //
+        //     //ajax form submit
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "/user/login/",
+        //         data: form.serialize(),
+        //         beforeSend: function(xhr){
+        //             xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+        //         },
+        //         success: function () {
+        //             alert("로그인 요청 성공")
+        //         }
+        //     })
+        //
+        // })
 
 
     </script>

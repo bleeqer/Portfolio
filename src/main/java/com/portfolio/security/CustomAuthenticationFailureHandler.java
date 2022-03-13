@@ -14,12 +14,11 @@ import java.io.IOException;
 @Component
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
+    private String defaultFailureUrl;
+
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-        System.out.println("로그인 실패: " + e.getMessage());
-//        e.printStackTrace();
-        System.out.println("아이디: " + httpServletRequest.getParameter("username"));
-        System.out.println("비밀번호: " + httpServletRequest.getParameter("password"));
+        System.out.println(e.getLocalizedMessage());
 
     }
 }

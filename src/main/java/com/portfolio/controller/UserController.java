@@ -1,8 +1,10 @@
 package com.portfolio.controller;
 
+import com.portfolio.domain.UserDetailsVO;
 import com.portfolio.domain.UserVO;
 import com.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -38,37 +40,21 @@ public class UserController {
 
     @GetMapping("login")
     public String userLogin() {
+        System.out.println("reached");
         return "login";
     }
 
-    @PostMapping("login")
-    public String userLoginPost() {
-
-//        System.out.println(userVO.getUserId());
-//        System.out.println(userVO.getUserPW());
-
-        return "/";
-    }
-
-    @GetMapping("test")
-    public String test() {
-
-        return "test";
-    }
-
-
-    @PostMapping("test")
-    public String test(UserVO userVO) {
-
-        return "test";
-    }
-
-//    @PostMapping("info")
-//    public ResponseEntity<UserVO> userInfo(String userId) {
+//    @PostMapping("login")
+//    @ResponseBody
+//    public String userLogin(UserDetailsVO user) {
 //
-//        UserVO user = userService.read(userId);
+//        return "ㅎㅎ";
+//    }
+
+//    @PostMapping("login")
+//    public String userLoginPost() {
 //
-//        return new ResponseEntity<>(user, HttpStatus.OK);
+//        return "/";
 //    }
 
 }

@@ -2,7 +2,6 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xmlns:sec="http://www.springframework.org/schema/security"
              xsi:schemaLocation="http://www.springframework.org/schema/security
                                  http://www.springframework.org/schema/security/spring-security.xsd
 		                         http://www.springframework.org/schema/beans
@@ -15,14 +14,12 @@
 
         <form-login
                 login-page="/user/login"
-                login-processing-url="/user/login"
+                login-processing-url="/user/login.ajax"
                 username-parameter="username"
                 password-parameter="password"
-                default-target-url="/"
-                authentication-success-forward-url="/"
-                authentication-success-handler-ref="customAuthenticationSuccessHandler"
                 authentication-failure-handler-ref="customAuthenticationFailureHandler"
         />
+        <!--authentication-success-handler-ref="customAuthenticationSuccessHandler"-->
 
     </http>
 

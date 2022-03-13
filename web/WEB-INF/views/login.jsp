@@ -10,29 +10,26 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
-    <title>Login</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- jQuery Modal -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
 </head>
 <body>
-    <form action="/user/login" method="POST">
-        <label for="id">ID</label>
-        <input type="text" name="username" id="id">
-        <br>
-        <label for="userPW">PASSWORD</label>
-        <input type="password" name="password" id="userPW">
-        <button type="submit">login</button>
-        <span id="register-button">Register</span>
-        <sec:csrfInput/>
-    </form>
+<form id="userLogin-form" action="/user/loginAJAX" method="POST">
+    <label for="id">ID</label>
+    <input type="text" name="username" id="id">
+    <br>
+    <label for="userPW">PASSWORD</label>
+    <input type="password" name="password" id="userPW">
+    <button id="userLogin-submit" type="submit">login</button>
+    <span id="register-button">Register</span>
+    <sec:csrfInput/>
+</form>
 
-    <%@ include file="/WEB-INF/views/modals/userRegisterForm.jsp" %>
+<%@ include file="/WEB-INF/views/modals/userRegisterForm.jsp" %>
 
-    <script>
+<script>
+    $(document).ready(function() {
+
+
         $("#register-button").click(async function (e) {
 
             e.preventDefault()
@@ -49,8 +46,6 @@
 
             e.preventDefault()
 
-
-            console.log("tl")
             const form = $("#userRegister-form")
 
             // if (check_pw(form.find("#pw").val()) !== check_pw(form.find("#pw2").val())) {
@@ -71,6 +66,52 @@
             })
 
         })
-    </script>
+        const csrfHeaderName = "${_csrf.headerName}"
+        const csrfTokenValue = "${_csrf.token}"
+
+        $("#userLogin-submit").on('click', function(e) {
+
+            e.preventDefault()
+            const form = $("#userLogin-form")
+
+            // if (check_pw(form.find("#pw").val()) !== check_pw(form.find("#pw2").val())) {
+            //
+            //     alert("비밀번호가 일치하지 않습니다")
+            //     return
+            //
+            // }
+
+
+
+            //ajax form submit
+            $.ajax({
+                type: "POST",
+                url: "/user/login.ajax",
+                data: form.serialize(),
+
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+                },
+
+                success: function () {
+                    window.location.replace("/")
+                },
+                error: function () {
+                    alert("로그인 실패")
+                }
+            })
+
+        })
+    })
+</script>
 </body>
+<head>
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+</head>
 </html>
