@@ -5,6 +5,7 @@ import com.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -48,7 +49,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> aClass) {
         return UsernamePasswordAuthenticationToken.class.isAssignableFrom(aClass);
     }
-
 
     private boolean matchPassword(String loginPwd, String password) {
         return passwordEncoder.matches(loginPwd, password);

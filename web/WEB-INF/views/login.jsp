@@ -93,16 +93,20 @@
                     xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
                 },
 
-                success: function () {
-                    window.location.replace("/")
+                dataType: "json",
+
+                success: function (res) {
+                    if (res.result === "fail") {
+                        alert(res.msg)
+                    }
                 },
-                error: function () {
-                    alert("로그인 실패")
+                error: function(request, status, error) {
+                    alert("code:" + request.status + "\n" + "error:" + error);
                 }
             })
-
         })
     })
+
 </script>
 </body>
 <head>

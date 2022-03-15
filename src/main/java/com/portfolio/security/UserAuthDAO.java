@@ -11,7 +11,7 @@ public class UserAuthDAO {
     private UserMapper userMapper;
 
     public CustomUserDetails getUserById(String userId) {
-        System.out.println(userId);
+
         return userMapper.select(userId);
 
     }
