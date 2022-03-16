@@ -1,6 +1,5 @@
 package com.portfolio.security;
 
-import com.google.gson.Gson;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.server.ServletServerHttpResponse;
