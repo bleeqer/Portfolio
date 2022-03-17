@@ -7,21 +7,21 @@
 		                         http://www.springframework.org/schema/beans
 		                         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-
     <http auto-config="true" use-expressions="false">
         <intercept-url pattern="/" access="ROLE_USER" />
 
         <form-login
-                login-page="/user/login"
-                login-processing-url="/user/login.ajax"
-                username-parameter="username"
-                password-parameter="password"
-                authentication-failure-handler-ref="customAuthenticationFailureHandler"
+            login-page="/user/login"
+            login-processing-url="/user/login.ajax"
+            username-parameter="username"
+            password-parameter="password"
+            authentication-success-handler-ref="customAuthenticationSuccessHandler"
+            authentication-failure-handler-ref="customAuthenticationFailureHandler"
         />
-        <!--authentication-success-handler-ref="customAuthenticationSuccessHandler"-->
 
     </http>
+
+    <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
     <authentication-manager>
         <authentication-provider ref="customAuthenticationProvider"/>

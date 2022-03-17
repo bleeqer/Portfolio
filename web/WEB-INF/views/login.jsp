@@ -98,10 +98,12 @@
                 success: function (res) {
                     if (res.result === "fail") {
                         alert(res.msg)
+                    } else if (res.result === "success") {
+                        window.location.href = "/"
                     }
                 },
-                error: function(request, status, error) {
-                    alert("code:" + request.status + "\n" + "error:" + error);
+                error: function(error) {
+                    alert("error:" + error);
                 }
             })
         })

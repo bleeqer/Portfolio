@@ -20,7 +20,7 @@ import java.util.Map;
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
 
         Map<String, String> map = new HashMap<>();
         map.put("result", "fail");
@@ -32,10 +32,12 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
             map.put("msg", "아이디 또는 비밀번호를 확인해주세요.");
         }
 
+        System.out.println(map.values());
+
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
 
         if (jsonConverter.canWrite(map.getClass(), MediaType.APPLICATION_JSON)) {
-            jsonConverter.write(map, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(httpServletResponse));
+            jsonConverter.write(map, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response));
         }
 
     }

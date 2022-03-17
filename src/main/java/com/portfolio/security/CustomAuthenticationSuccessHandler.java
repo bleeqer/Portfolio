@@ -3,6 +3,9 @@ package com.portfolio.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
@@ -32,7 +35,14 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
-        resultRedirectStrategy(request, response, authentication);
+        Map<String, String> map = new HashMap<>();
+        map.put("result", "success");
+
+        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
+
+        if (jsonConverter.canWrite(map.getClass(), MediaType.APPLICATION_JSON)) {
+            jsonConverter.write(map, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response));
+        }
 
     }
 
@@ -58,4 +68,5 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     public void setDefaultUrl(String defaultUrl) {
         this.defaultUrl = defaultUrl;
     }
+
 }
