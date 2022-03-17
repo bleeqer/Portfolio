@@ -32,8 +32,6 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
             map.put("msg", "아이디 또는 비밀번호를 확인해주세요.");
         }
 
-        System.out.println(map.values());
-
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
 
         if (jsonConverter.canWrite(map.getClass(), MediaType.APPLICATION_JSON)) {

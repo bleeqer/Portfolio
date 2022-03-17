@@ -18,7 +18,9 @@ public class AnswerController {
     @PostMapping("create")
     public String createAnswer(AnswerVO answer) {
 
-        answerService.create(answer);
+        System.out.println(answer.getQuesNo());
+
+//        answerService.create(answer);
 
         return "";
     }

@@ -15,7 +15,9 @@
     </delete>
 
     <select id="selectAll" parameterType="int" resultType="ImageVO">
-        SELECT * FROM TB_QUES_IMAGE WHERE post_no=#{postNo}
+        SELECT post_no as postNo, upload_path as uploadPath FROM TB_QUES_IMAGE WHERE post_no=#{postNo}
     </select>
+
+
 
 </mapper>

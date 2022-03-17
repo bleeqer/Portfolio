@@ -40,7 +40,7 @@ public class UserController {
 
     @GetMapping("login")
     public String userLogin() {
-        System.out.println("reached");
+
         return "login";
     }
 

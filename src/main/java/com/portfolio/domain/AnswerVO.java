@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 public class AnswerVO {
 
+    private int quesNo;
     private int ansNo;
 //    private String title;
     private String content;

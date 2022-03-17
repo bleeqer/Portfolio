@@ -54,6 +54,11 @@
     </script>
 
     <script>
+
+        const header = $("meta[name='_csrf_header']").attr("content")
+        const token = $("meta[name='_csrf']").attr("content")
+
+
         $("#answer-button").on("click", function () {
 
             // $("#answers").append(
@@ -71,8 +76,8 @@
                 "<div id='answer'>" +
                     "<div id='user-profile'>사용자</div>" +
                     "<form id='answer-form' action='/answer/create'>" +
-                        "<input id=ansNo type='hidden'>" +
-                        "<input id=writer type='hidden'>" +
+                        "<input id=quesNo value=${post.quesNo} type='hidden'>" +
+                        "<input id=writer value=${post.writer} type='hidden'>" +
                         "<textarea id='content'></textarea>" +
                         "<div id='answer-footer'>" +
                             "<span id='upload-button'>IMAGE</span>&nbsp;" +

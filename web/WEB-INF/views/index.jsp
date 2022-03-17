@@ -17,6 +17,8 @@
     <script src="/js/tinymce/tinymce.min.js"></script>
     <script src="/js/tinymce/jquery.tinymce.min.js"></script>
 
+    <sec:csrfMetaTags/>
+
     <!-- jQuery Modal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
@@ -59,7 +61,7 @@
     <input id="test" type="reset">
 
     <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
-    <%@ include file="/WEB-INF/views/modals/userLoginForm.jsp" %>
+<%--    <%@ include file="/WEB-INF/views/modals/userLoginForm.jsp" %>--%>
 
     <script>
 
@@ -71,20 +73,37 @@
                 statusbar: false,
                 toolbar: false,
                 height: $("#modal-question").height() - $("title").height(),
-                setup: function(editor) {
-
-                    editor.on('init', function(e) {
-                        console.log("editor initialized")
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        editor.save()
                     })
-                }
+                },
+                relative_urls: false,
+                // remove_script_host: false
+
+                // setup: function(editor) {
+                //
+                //     editor.on('init', function(e) {
+                //         console.log("editor initialized")
+                //     })
+                // }
             })
         }
 
         const observer = new MutationObserver(function() {
 
-            if ($("#modal-question").css("display") === "none") {
+            if ($(".modal").css("display") === "none") {
+
+                // 텍스트 에디터에 저장된 값 지우기
                 tinymce.activeEditor.setContent("")
+
+                // 기존 텍스트 에디터 객체 지우기
                 tinymce.remove()
+
+                // 인풋 태그에 저장된 값 지우기
+                $("input").val("")
+
+
             }
         })
 
@@ -111,6 +130,7 @@
         })
 
         $(".edit-button").click(async function (e) {
+
             e.preventDefault()
 
             const quesNo = $(this).data('id')
@@ -159,6 +179,7 @@
             let imgTags = $("#content_ifr").contents().find(".inserted-image")
 
             for (let i=0; i<Object.keys(imgTags).length - 2; i++) {
+
                 const src = $(imgTags[i]).attr("src")
 
                 const tag = '<input type="hidden" name="imageList[' + i + ']" value="' + src + '">'
@@ -166,6 +187,9 @@
             }
 
             const form = $("#question-form")
+
+            console.log(form.serialize())
+
 
             //ajax form submit
             $.ajax({
@@ -176,15 +200,18 @@
                 {
                     xhr.setRequestHeader(header, token);
                 },
-                success: function () {
-                    alert("성공")
+                success: function() {
+                    // tinymce.remove()
+                    window.location.href = '/'
+                },
+                error: function() {
+                    alert("질문글 생성에 실패했습니다.")
                 }
             })
 
         })
 
-        const csrfHeaderName = "${_csrf.headerName}"
-        const csrfTokenValue = "${_csrf.token}"
+
 
         // $("#userLogin-submit").on('click', function(e) {
         //

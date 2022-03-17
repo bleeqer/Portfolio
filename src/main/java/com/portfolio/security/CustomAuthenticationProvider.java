@@ -33,13 +33,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String userId = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
 
-        System.out.println("아이디: " + userId);
-        System.out.println("비밀번호: " + password);
-
         CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(userId);
-
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
 
         if (!matchPassword(password, user.getPassword())) {
             System.out.println("bad credentials exception");
@@ -48,8 +42,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
         roles.add(new SimpleGrantedAuthority(user.getAuthority()));
-
-        System.out.println("set roles");
 
         return new UsernamePasswordAuthenticationToken(userId, password, roles);
     }
