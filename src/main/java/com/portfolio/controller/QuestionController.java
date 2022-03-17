@@ -48,7 +48,7 @@ public class QuestionController {
         model.addAttribute("post", post);
         model.addAttribute("files", files);
 
-        return "viewPost";
+        return "viewQuestion";
     }
 
     @ResponseBody

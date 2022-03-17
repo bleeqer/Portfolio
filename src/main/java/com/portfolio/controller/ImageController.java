@@ -12,11 +12,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("/file/")
+@RequestMapping("file")
 public class ImageController {
 
-    @PostMapping(value="/upload")
+    @PostMapping(value="upload")
     public ResponseEntity<List<String>> uploadFile(MultipartHttpServletRequest mtfRequest) throws Exception {
+
+        System.out.println("외않되");
 
         // 파일(들)을 지정된 경로에 저장 및 경로 리스트 반환
         try {

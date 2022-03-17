@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: linux-king
@@ -16,6 +17,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/tinymce/tinymce.min.js"></script>
     <script src="/js/tinymce/jquery.tinymce.min.js"></script>
+
+    <sec:csrfMetaTags/>
 </head>
 <body>
     TITLE : ${post.title}
@@ -67,21 +70,45 @@
             $("#answer-container").append(
                 "<div id='answer'>" +
                     "<div id='user-profile'>사용자</div>" +
-                    "<form id='answer-form'>" +
+                    "<form id='answer-form' action='/answer/create'>" +
+                        "<input id=ansNo type='hidden'>" +
+                        "<input id=writer type='hidden'>" +
                         "<textarea id='content'></textarea>" +
                         "<div id='answer-footer'>" +
-                            "<span id='imageUpload-button'>IMAGE</span>&nbsp;" +
+                            "<span id='upload-button'>IMAGE</span>&nbsp;" +
                             "<span id='answerPost-button'>POST</span>&nbsp;" +
                             "<span id='postCancel-button'>CANCEL</span>&nbsp;" +
                         "</div>" +
+                        "<input type='file' multiple='multiple' name='image' id='image' style='display: none;' accept='image/*'>" +
                     "</form>" +
                 "</div>"
-                <%--"<%@ include file='/WEB-INF/views/testForm.jsp' %>"--%>
             )
+
+            $('#upload-button').on('click', function () {
+
+                $('#image').trigger('click')
+
+            })
+
+            $('#answerPost-button').on('click', function () {
+
+                $('#answer-form').submit()
+
+            })
+
+            $('#postCancel-button').on('click', function () {
+
+                $('#answer-container').empty()
+                tinymce.remove()
+            })
+
+            $.getScript('/js/imageUpload.js')
 
             initEditor("#content")
 
         })
+
     </script>
+
 </body>
 </html>
