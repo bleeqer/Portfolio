@@ -4,8 +4,6 @@
 
     <form id="question-form" action="" method="POST" enctype="multipart/form-data">
 
-        <sec:csrfInput/>
-
         <input type="hidden" id="quesNo" name="quesNo">
 
         <input type="text" id="title" name="title">
@@ -25,8 +23,6 @@
 </div>
 
 <script>
-    const header = $("meta[name='_csrf_header']").attr("content")
-    const token = $("meta[name='_csrf']").attr("content")
 
     // 이미지 업로드 버튼 클릭 시 image input 태그 클릭 작동
     $("#upload-button").click(function () {

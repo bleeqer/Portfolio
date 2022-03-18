@@ -135,13 +135,13 @@
 
             const quesNo = $(this).data('id')
 
-            $("#question-form").attr("action", "/board/edit/")
+            $("#question-form").attr("action", "/question/edit/")
 
             await $("#modal-question").modal("show")
 
             await initEditor()
 
-            $.getJSON('/board/edit/' + quesNo, function (question) {
+            $.getJSON('/question/edit/' + quesNo, function (question) {
 
                 $("#quesNo").val(question.quesNo)
                 $("#title").val(question.title)

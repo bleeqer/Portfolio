@@ -18,6 +18,8 @@
     <script src="/js/tinymce/tinymce.min.js"></script>
     <script src="/js/tinymce/jquery.tinymce.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <sec:csrfMetaTags/>
 </head>
 <body>
@@ -27,13 +29,15 @@
     <br>
     WRITER : ${post.writer}
     <br>
-    <a href="/board/edit/${post.quesNo}">EDIT</a>
-    <a href="/board/delete/${post.quesNo}">DELETE</a>
+    <a href="/question/edit/${post.quesNo}">EDIT</a>
+    <a href="/question/delete/${post.quesNo}">DELETE</a>
     <br>
     <span id="answer-button">ANSWER</span>
     <div id="answer-container">
 
     </div>
+
+    <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
 
     <script>
         async function initEditor (selectorID) {
@@ -58,19 +62,10 @@
         const header = $("meta[name='_csrf_header']").attr("content")
         const token = $("meta[name='_csrf']").attr("content")
 
-
         $("#answer-button").on("click", function () {
 
-            // $("#answers").append(
-            //     "<div id='answer'>" +
-            //         "<div id='editor'></div>" +
-            //         "<div id='answer-footer'>" +
-            //             "<span id='imageUpload-button'>IMAGE</span>&nbsp;" +
-            //             "<span id='post-button'>POST</span>&nbsp;" +
-            //             "<span id='postCancel-button'>CANCEL</span>" +
-            //         "</div>" +
-            //     "</div>"
-            // )
+            $("#answer-button").css("pointer-events", "none")
+            $("#answer-button").css("color", "grey")
 
             $("#answer-container").append(
                 "<div id='answer'>" +
@@ -105,12 +100,37 @@
 
                 $('#answer-container').empty()
                 tinymce.remove()
+                $("#answer-button").css("pointer-events", "auto")
+                $("#answer-button").css("color", "black")
             })
 
             $.getScript('/js/imageUpload.js')
 
             initEditor("#content")
 
+        })
+
+
+        $(".edit-button").click(async function (e) {
+
+            e.preventDefault()
+
+            const quesNo = $(this).data('id')
+
+            $("#question-form").attr("action", "/question/edit/")
+
+            await $("#modal-question").modal("show")
+
+            await initEditor()
+
+            $.getJSON('/question/edit/' + quesNo, function (question) {
+
+                $("#quesNo").val(question.quesNo)
+                $("#title").val(question.title)
+                tinymce.activeEditor.setContent(question.content)
+                $("#writer").val(question.writer)
+
+            })
         })
 
     </script>
