@@ -8,11 +8,13 @@ import com.portfolio.service.QuestionImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -58,8 +60,8 @@ public class QuestionController {
 
     @ResponseBody
     @GetMapping(value="edit/{postNo}") //, produces="application/json"
-    public QuestionVO editPost(@PathVariable int postNo) {
-
+    public QuestionVO editPost(@PathVariable int postNo, Principal authentication) {
+        System.out.println(authentication.getName());
         return questionService.read(postNo);
 
     }

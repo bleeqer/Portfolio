@@ -22,15 +22,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <sec:csrfMetaTags/>
 </head>
+
 <body>
+<%--    <sec:authentication property="principal.username">--%>
+<sec:authentication property="principal.username" var="currentUserName"/>
+
     TITLE : ${post.title}
     <br>
     CONTENT : ${post.content}
     <br>
     WRITER : ${post.writer}
     <br>
-    <a href="/question/edit/${post.quesNo}">EDIT</a>
-    <a href="/question/delete/${post.quesNo}">DELETE</a>
+    <c:if test="${currentUserName == post.writer}">
+        <span id="edit-button" data-id="${post.quesNo}">EDIT</span>
+        <span id="delete-button" data-id="${post.quesNo}">DELETE</span>
+    </c:if>
     <br>
     <span id="answer-button">ANSWER</span>
     <div id="answer-container">
@@ -64,6 +70,7 @@
 
         $("#answer-button").on("click", function () {
 
+            // answer-button 최초 클릭 시 버튼 비활성화
             $("#answer-button").css("pointer-events", "none")
             $("#answer-button").css("color", "grey")
 
@@ -93,13 +100,16 @@
             $('#answerPost-button').on('click', function () {
 
                 $('#answer-form').submit()
-
+                $('#answer-container').empty()
+                tinymce.remove()
             })
 
             $('#postCancel-button').on('click', function () {
 
                 $('#answer-container').empty()
                 tinymce.remove()
+
+                // 답변 작성 취소 시 answer-button 재활성화
                 $("#answer-button").css("pointer-events", "auto")
                 $("#answer-button").css("color", "black")
             })
@@ -111,7 +121,7 @@
         })
 
 
-        $(".edit-button").click(async function (e) {
+        $("#edit-button").click(async function (e) {
 
             e.preventDefault()
 
@@ -121,10 +131,9 @@
 
             await $("#modal-question").modal("show")
 
-            await initEditor()
+            await initEditor("#content")
 
             $.getJSON('/question/edit/' + quesNo, function (question) {
-
                 $("#quesNo").val(question.quesNo)
                 $("#title").val(question.title)
                 tinymce.activeEditor.setContent(question.content)
@@ -132,6 +141,28 @@
 
             })
         })
+
+        const observer = new MutationObserver(function() {
+
+            if ($(".modal").css("display") === "none") {
+
+                // 텍스트 에디터에 저장된 값 지우기
+                tinymce.activeEditor.setContent("")
+
+                // 기존 텍스트 에디터 객체 지우기
+                tinymce.remove()
+
+                // 인풋 태그에 저장된 값 지우기
+                $("input").val("")
+
+            }
+        })
+
+        // 변경 감시 대상
+        const target = document.getElementById('modal-question');
+
+        // style 속성 감시
+        observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
     </script>
 
