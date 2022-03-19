@@ -34,6 +34,8 @@ public class QuestionController {
         // 게시글 저장
         questionService.create(questionVO);
 
+        System.out.println(questionService.read(questionVO.getQuesNo()).getRegDate());
+
         return questionService.read(questionVO.getQuesNo());
     }
 

@@ -159,7 +159,11 @@
 
             e.preventDefault()
 
+            // tinymce 내용 textarea에 저장
             tinymce.activeEditor.save()
+
+            // 작성자란에 현재 로그인 유저 아이디 입력
+            $('#writer').val('<sec:authentication property="principal.username"/>')
 
             let actionURL = $('#question-form').attr('action')
 
@@ -187,9 +191,11 @@
                     xhr.setRequestHeader(header, token)
                 },
                 success: function(question) {
-                    // console.log(question.title)
-                    alert('업로드 성공')
-                    $('#question-table').append(
+
+                    // modal window 닫기
+                    $('.close-modal').trigger('click')
+
+                    $('#question-table').prepend(
                     '<tr class="question-row">' +
                     '<td>' + question.quesNo + '</td>' +
                     '<td><a href="/question/' + question.quesNo + '" >' + question.title + '</a></td>' +
@@ -199,12 +205,6 @@
                     '<td><span id="answer-button">ANSWER</span></td></tr>'
                     )
 
-                    // // modal window, backdrop 숨기기
-                    $('.modal').hide()
-                    $('.blocker').hide()
-                    //
-                    // $('#detail-title').html(question.title)
-                    // $('#detail-content').html(question.content)
                 },
                 error: function() {
                     alert("등록 실패했습니다.")

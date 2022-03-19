@@ -11,7 +11,7 @@
         <%--    Editor로 사용할 태그    --%>
         <textarea name="content" id="content" style="width: 100%; height: 100%;"></textarea>
 
-        <input type="text" id="writer" name="writer" style="display: none;" value="<sec:authentication property="principal.username"/>">
+        <input type="text" id="writer" name="writer" style="display: none;">
 
         <div id="form-footer">
             <span id="upload-button">Image</span>

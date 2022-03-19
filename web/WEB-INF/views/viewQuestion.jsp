@@ -33,6 +33,9 @@
     <br>
     WRITER : <div id="detail-writer">${post.writer}</div>
     <br>
+    <br>
+    REGDATE : <div id="detail-writer">${post.regDate}</div>
+    <br>
     <c:if test="${currentUserName == post.writer}">
         <span id="edit-button" data-id="${post.quesNo}">EDIT</span>
         <span id="delete-button" data-id="${post.quesNo}">DELETE</span>
