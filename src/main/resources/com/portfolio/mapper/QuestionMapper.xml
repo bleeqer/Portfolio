@@ -18,7 +18,7 @@
     </insert>
 
     <select id="select" parameterType="int" resultMap="QuestionResultMap">
-        SELECT ques_no, title, content, writer, reg_date, view_cnt, like_cnt FROM TB_QUESTION where ques_no=#{quesNo}
+        SELECT * FROM TB_QUESTION where ques_no=#{quesNo}
     </select>
 
     <update id="update" parameterType="QuestionVO">
@@ -32,7 +32,7 @@
     </delete>
 
     <select id="selectAll" resultMap="QuestionResultMap">
-        SELECT * FROM TB_QUESTION
+        SELECT * FROM TB_QUESTION ORDER BY ques_no DESC
     </select>
 
     <update id="addViewCnt" parameterType="int">

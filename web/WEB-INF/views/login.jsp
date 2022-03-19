@@ -24,7 +24,7 @@
     <sec:csrfInput/>
 </form>
 
-<%@ include file="/WEB-INF/views/modals/userRegisterForm.jsp" %>
+<%--<%@ include file="/WEB-INF/views/modals/userRegisterForm.jsp" %>--%>
 
 <script>
     $(document).ready(function() {

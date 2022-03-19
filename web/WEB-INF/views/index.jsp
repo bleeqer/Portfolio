@@ -28,29 +28,19 @@
 <body>
     <h2>게시판</h2>
 <%--    <sec:authorize access="!isAuthenticated()"><span id="login-button">Login</span></sec:authorize>--%>
-    <span id="login-button">Login</span>
-    <span id="register-button">Register</span>
+<%--    <span id="login-button">Login</span>--%>
+<%--    <span id="register-button">Register</span>--%>
 <%--    <sec:authorize access="isAuthenticated()">Logout</sec:authorize>--%>
 <%--    <sec:authorize access="hasRole('ADMIN')"><a href="#">Manage Users</a></sec:authorize>--%>
-    <table>
-        <tr>
-            <th>QUESTION NO</th>
-            <th>TITLE</th>
-            <th>WRITER</th>
-            <th>DATE</th>
-            <th>VIEWS</th>
-            <th>OPTION</th>
-            <th>OPTION2</th>
-        </tr>
+    <table id="question-table">
         <span id="ask-button">ASK QUESTION</span>
         <c:forEach var="question" items="${questions}">
-            <tr class="question-list">
+            <tr class="question-row">
                 <td>${question.quesNo}</td>
                 <td><a href="/question/${question.quesNo}">${question.title}</a></td>
                 <td>${question.writer}</td>
                 <td>${question.regDate}</td>
                 <td>${question.viewCnt}</td>
-                <td><a href="#modal-question" class="edit-button" data-id="${question.quesNo}">EDIT</a></td>
                 <td><span id="answer-button">ANSWER</span></td>
             </tr>
         </c:forEach>
@@ -64,7 +54,6 @@
 <%--    <%@ include file="/WEB-INF/views/modals/userLoginForm.jsp" %>--%>
 
     <script>
-
         async function initEditor () {
 
             await tinymce.init({
@@ -73,11 +62,11 @@
                 statusbar: false,
                 toolbar: false,
                 height: $("#modal-question").height() - $("title").height(),
-                setup: function (editor) {
-                    editor.on('change', function () {
-                        editor.save()
-                    })
-                },
+                // setup: function (editor) {
+                //     editor.on('change', function () {
+                //         editor.save()
+                //     })
+                // },
                 relative_urls: false,
                 // remove_script_host: false
 
@@ -119,18 +108,6 @@
 
         const header = $("meta[name='_csrf_header']").attr("content")
         const token = $("meta[name='_csrf']").attr("content")
-
-        $("#login-button").click(async function (e) {
-
-            e.preventDefault()
-
-            $("#userLogin-form").attr("action", "/user/login/")
-
-            await $("#modal-userLogin").modal("show")
-
-            await initEditor()
-
-        })
 
         $(".edit-button").click(async function (e) {
 
@@ -174,10 +151,17 @@
             $(this).parent().parent().append("<div>질문칸 삽입</div>")
 
         })
+    </script>
+
+    <script>
 
         $("#question-submit").on('click', function(e) {
 
             e.preventDefault()
+
+            tinymce.activeEditor.save()
+
+            let actionURL = $('#question-form').attr('action')
 
             let imgTags = $("#content_ifr").contents().find(".inserted-image")
 
@@ -191,53 +175,43 @@
 
             const form = $("#question-form")
 
-            console.log(form.serialize())
-
+            // console.log(form.serialize())
 
             //ajax form submit
             $.ajax({
                 type: "POST",
-                url: "/question/create/",
+                url: actionURL,
                 data: form.serialize(),
                 beforeSend : function(xhr)
                 {
-                    xhr.setRequestHeader(header, token);
+                    xhr.setRequestHeader(header, token)
                 },
-                success: function() {
-                    // tinymce.remove()
-                    window.location.href = '/'
+                success: function(question) {
+                    // console.log(question.title)
+                    alert('업로드 성공')
+                    $('#question-table').append(
+                    '<tr class="question-row">' +
+                    '<td>' + question.quesNo + '</td>' +
+                    '<td><a href="/question/' + question.quesNo + '" >' + question.title + '</a></td>' +
+                    '<td>' + question.writer + '</td>' +
+                    '<td>' + question.regDate + '</td>' +
+                    '<td>' + question.viewCnt + '</td>' +
+                    '<td><span id="answer-button">ANSWER</span></td></tr>'
+                    )
+
+                    // // modal window, backdrop 숨기기
+                    $('.modal').hide()
+                    $('.blocker').hide()
+                    //
+                    // $('#detail-title').html(question.title)
+                    // $('#detail-content').html(question.content)
                 },
                 error: function() {
-                    alert("질문글 생성에 실패했습니다.")
+                    alert("등록 실패했습니다.")
                 }
             })
 
         })
-
-
-
-        // $("#userLogin-submit").on('click', function(e) {
-        //
-        //     e.preventDefault()
-        //
-        //     const form = $("#userLogin-form")
-        //
-        //     //ajax form submit
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "/user/login/",
-        //         data: form.serialize(),
-        //         beforeSend: function(xhr){
-        //             xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
-        //         },
-        //         success: function () {
-        //             alert("로그인 요청 성공")
-        //         }
-        //     })
-        //
-        // })
-
-
     </script>
 </body>
 </html>

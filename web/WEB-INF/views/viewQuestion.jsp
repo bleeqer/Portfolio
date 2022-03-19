@@ -27,11 +27,11 @@
 <%--    <sec:authentication property="principal.username">--%>
 <sec:authentication property="principal.username" var="currentUserName"/>
 
-    TITLE : ${post.title}
+    TITLE : <div id="detail-title">${post.title}</div>
     <br>
-    CONTENT : ${post.content}
+    CONTENT : <div id="detail-content">${post.content}</div>
     <br>
-    WRITER : ${post.writer}
+    WRITER : <div id="detail-writer">${post.writer}</div>
     <br>
     <c:if test="${currentUserName == post.writer}">
         <span id="edit-button" data-id="${post.quesNo}">EDIT</span>
@@ -46,19 +46,18 @@
     <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
 
     <script>
-        async function initEditor (selectorID) {
+        async function initEditor () {
 
             await tinymce.init({
-                selector: selectorID,
+                selector: '#content',
                 menubar: false,
                 statusbar: false,
                 toolbar: false,
-                setup: function(editor) {
-
-                    editor.on('init', function(e) {
-                        console.log("editor initialized")
-                    })
-                }
+                // setup: function (editor) {
+                //     editor.on('change', function () {
+                //         editor.save()
+                //     })
+                // },
             })
         }
     </script>
@@ -67,6 +66,7 @@
 
         const header = $("meta[name='_csrf_header']").attr("content")
         const token = $("meta[name='_csrf']").attr("content")
+
 
         $("#answer-button").on("click", function () {
 
@@ -116,7 +116,7 @@
 
             $.getScript('/js/imageUpload.js')
 
-            initEditor("#content")
+            initEditor()
 
         })
 
@@ -131,14 +131,13 @@
 
             await $("#modal-question").modal("show")
 
-            await initEditor("#content")
+            await initEditor()
 
             $.getJSON('/question/edit/' + quesNo, function (question) {
                 $("#quesNo").val(question.quesNo)
                 $("#title").val(question.title)
                 tinymce.activeEditor.setContent(question.content)
                 $("#writer").val(question.writer)
-
             })
         })
 

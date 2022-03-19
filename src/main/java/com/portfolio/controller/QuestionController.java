@@ -29,14 +29,12 @@ public class QuestionController {
 
     @PostMapping("create")
     @ResponseBody
-    public ResponseEntity<?> createPost(QuestionVO questionVO) {
+    public QuestionVO createPost(QuestionVO questionVO) {
 
         // 게시글 저장
         questionService.create(questionVO);
 
-        return new ResponseEntity<>(HttpStatus.OK);
-
-
+        return questionService.read(questionVO.getQuesNo());
     }
 
     @RequestMapping("/{postNo}")
@@ -67,7 +65,8 @@ public class QuestionController {
     }
 
     @PostMapping("edit/")
-    public String editPost(HttpServletRequest request, QuestionVO vo) {
+    @ResponseBody
+    public QuestionVO editPost(HttpServletRequest request, QuestionVO vo) {
 
         List<ImageVO> imgVOList = imageService.readAll(vo.getQuesNo());
 
@@ -82,7 +81,7 @@ public class QuestionController {
 
         questionService.update(vo);
 
-        return "";
+        return questionService.read(vo.getQuesNo());
     }
 
     @RequestMapping("delete/{postNo}")
