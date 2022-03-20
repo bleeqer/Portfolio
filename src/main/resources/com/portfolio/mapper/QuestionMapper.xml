@@ -31,9 +31,14 @@
         DELETE FROM TB_QUESTION WHERE ques_no=#{quesNo}
     </delete>
 
-    <select id="selectAll" resultMap="QuestionResultMap">
-        SELECT * FROM TB_QUESTION ORDER BY ques_no DESC
-    </select>
+<!--    <select id="selectAll" resultMap="QuestionResultMap">-->
+<!--        SELECT ques.* FROM (SELECT * FROM TB_QUESTION ORDER BY ques_no DESC) ques WHERE ROWNUM BETWEEN 0 and 10-->
+<!--    </select>-->
+
+        <select id="selectAll" resultMap="QuestionResultMap">
+            SELECT * FROM (SELECT * FROM TB_QUESTION ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 20
+        </select>
+
 
     <update id="addViewCnt" parameterType="int">
         UPDATE TB_QUESTION SET view_cnt=view_cnt + 1

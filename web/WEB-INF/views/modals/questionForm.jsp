@@ -27,8 +27,8 @@
 
 
     // 이미지 업로드 버튼 클릭 시 image input 태그 클릭 작동
-    $("#upload-button").click(function () {
-        $("#image").trigger("click")
+    $('#upload-button').click(function () {
+        $('#image').trigger('click')
     })
 
 </script>

@@ -86,7 +86,7 @@
                         "<textarea id='content'></textarea>" +
                         "<div id='answer-footer'>" +
                             "<span id='upload-button'>IMAGE</span>&nbsp;" +
-                            "<span id='answerPost-button'>POST</span>&nbsp;" +
+                            "<span id='answerSubmit-button'>POST</span>&nbsp;" +
                             "<span id='postCancel-button'>CANCEL</span>&nbsp;" +
                         "</div>" +
                         "<input type='file' multiple='multiple' name='image' id='image' style='display: none;' accept='image/*'>" +
@@ -94,13 +94,7 @@
                 "</div>"
             )
 
-            $('#upload-button').on('click', function () {
-
-                $('#image').trigger('click')
-
-            })
-
-            $('#answerPost-button').on('click', function () {
+            $('#answerSubmit-button').on('click', function () {
 
                 $('#answer-form').submit()
                 $('#answer-container').empty()
