@@ -34,21 +34,21 @@
 <%--    <sec:authorize access="hasRole('ADMIN')"><a href="#">Manage Users</a></sec:authorize>--%>
     <table id="question-table">
         <span id="ask-button">ASK QUESTION</span>
-        <c:forEach var="question" items="${questions}">
-            <tr class="question-row">
-                <td>${question.quesNo}</td>
-                <td><a href="/question/${question.quesNo}">${question.title}</a></td>
-                <td>${question.writer}</td>
-                <td>${question.regDate}</td>
-                <td>${question.viewCnt}</td>
-                <td><span id="answer-button">ANSWER</span></td>
-            </tr>
-        </c:forEach>
+        <div id="question-list">
+            <c:forEach var="question" items="${questions}">
+                <tr class="question-row" data-ques_no="${question.quesNo}">
+                    <td>${question.quesNo}</td>
+                    <td><a href="/question/${question.quesNo}">${question.title}</a></td>
+                    <td>${question.writer}</td>
+                    <td>${question.regDate}</td>
+                    <td>${question.viewCnt}</td>
+                    <td><span id="answer-button">ANSWER</span></td>
+                </tr>
+            </c:forEach>
+        </div><br/>
+        <div id="more-button">More</div>
+
     </table>
-
-
-    <label for="test"></label>
-    <input id="test" type="reset">
 
     <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
 <%--    <%@ include file="/WEB-INF/views/modals/userLoginForm.jsp" %>--%>
@@ -212,6 +212,44 @@
             })
 
         })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#more-button').on('click', function () {
+
+                requestURL = '/question/more'
+
+                const lastQuesNo = $('.question-row').last().data('ques_no')
+
+                let param = {quesNo: lastQuesNo}
+
+                $.ajax({
+                    type: 'POST',
+
+                    url: requestURL,
+
+                    contentType: 'application/json; charset=utf-8',
+
+                    data: JSON.stringify(param),
+
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader(header, token)
+                    },
+
+                    // dataType: 'json',
+
+                    success: function () {
+                        alert('뇽')
+                    },
+                    error: function () {
+                        alert('뉴우')
+                    }
+
+                })
+            })
+        })
+
     </script>
 </body>
 </html>

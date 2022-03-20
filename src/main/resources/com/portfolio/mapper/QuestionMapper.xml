@@ -39,6 +39,12 @@
             SELECT * FROM (SELECT * FROM TB_QUESTION ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 20
         </select>
 
+        <select id="selectMore" parameterType="int" resultMap="QuestionResultMap">
+
+            SELECT * FROM (SELECT * FROM TB_QUESTION WHERE ques_no<![CDATA[<]]>#{quesNo} ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 10
+
+        </select>
+
 
     <update id="addViewCnt" parameterType="int">
         UPDATE TB_QUESTION SET view_cnt=view_cnt + 1

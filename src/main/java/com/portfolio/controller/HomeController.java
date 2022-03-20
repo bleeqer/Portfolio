@@ -28,11 +28,7 @@ public class HomeController {
         return "index";
     }
 
-//    @RequestMapping("more")
-//    public ResponseEntity<List<QuestionVO>> listPosts() {
-//
-//        return new ResponseEntity<>(HttpStatus.OK, );
-//    }
+
 
 
 }

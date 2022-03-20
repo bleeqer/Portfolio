@@ -12,4 +12,5 @@ public interface QuestionMapper {
     List<QuestionVO> selectAll();
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);
+    List<QuestionVO> selectMore(int startQuesNo);
 }

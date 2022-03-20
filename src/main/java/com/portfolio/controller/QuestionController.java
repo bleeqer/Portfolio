@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.ws.Response;
 import java.security.Principal;
 import java.util.List;
 
@@ -103,5 +104,21 @@ public class QuestionController {
         }
 
         return "index";
+    }
+
+    @PostMapping("more")
+    @ResponseBody
+    public ResponseEntity<List<QuestionVO>> listPosts(@RequestBody QuestionVO question) {
+
+        System.out.println(question.getQuesNo());
+
+        int startQuesNo = question.getQuesNo() - 1;
+
+        List<QuestionVO> questions = questionService.getMore(startQuesNo);
+
+        for (QuestionVO q : questions) {
+            System.out.println(q.getQuesNo());
+        }
+        return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 }

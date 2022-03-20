@@ -12,4 +12,5 @@ public interface QuestionService {
     List<QuestionVO> readAll();
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);
+    List<QuestionVO> getMore(int startQuesNo);
 }

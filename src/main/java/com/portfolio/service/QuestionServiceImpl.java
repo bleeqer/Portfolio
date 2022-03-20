@@ -76,4 +76,9 @@ public class QuestionServiceImpl implements QuestionService {
     public void addLikeCnt(int postNo) {
         questionMapper.addLikeCnt(postNo);
     }
+
+    @Override
+    public List<QuestionVO> getMore(int startQuesNo) {
+        return questionMapper.selectMore(startQuesNo);
+    }
 }
