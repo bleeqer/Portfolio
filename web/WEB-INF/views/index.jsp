@@ -220,7 +220,6 @@
                 requestURL = '/question/more'
 
                 let lastQuesNo = $('.question-row').last().data('ques_no')
-                console.log(lastQuesNo)
                 let param = {quesNo: lastQuesNo}
 
                 $.ajax({

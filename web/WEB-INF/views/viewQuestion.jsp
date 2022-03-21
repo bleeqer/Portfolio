@@ -162,5 +162,53 @@
 
     </script>
 
+    <script>
+        $("#question-submit").on('click', function(e) {
+
+            e.preventDefault()
+
+            // tinymce 내용 textarea에 저장
+            tinymce.activeEditor.save()
+
+            let actionURL = $('#question-form').attr('action')
+
+            let imgTags = $("#content_ifr").contents().find(".inserted-image")
+
+            for (let i=0; i<Object.keys(imgTags).length - 2; i++) {
+
+                const src = $(imgTags[i]).attr("src")
+
+                const tag = '<input type="hidden" name="imageList[' + i + ']" value="' + src + '">'
+                $("#question-form").append(tag)
+            }
+
+            const form = $("#question-form")
+
+            // console.log(form.serialize())
+
+            //ajax form submit
+            $.ajax({
+                type: "POST",
+                url: actionURL,
+                data: form.serialize(),
+                beforeSend : function(xhr)
+                {
+                    xhr.setRequestHeader(header, token)
+                },
+                success: function(question) {
+
+                    // modal window 닫기
+                    $('.close-modal').trigger('click')
+
+                    $('#detail-title').html(question.title)
+                    $('#detail-content').html(question.content)
+                },
+                error: function() {
+                    alert("등록 실패했습니다.")
+                }
+            })
+        })
+    </script>
+
 </body>
 </html>

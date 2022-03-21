@@ -62,7 +62,6 @@ public class QuestionController {
     @ResponseBody
     @GetMapping(value="edit/{postNo}") //, produces="application/json"
     public QuestionVO editPost(@PathVariable int postNo, Principal authentication) {
-        System.out.println(authentication.getName());
         return questionService.read(postNo);
 
     }
