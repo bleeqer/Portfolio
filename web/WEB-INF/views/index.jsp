@@ -46,7 +46,7 @@
                 </tr>
             </c:forEach>
         </div><br/>
-        <div id="more-button">More</div>
+        <span id="more-button">More</span>
 
     </table>
 
@@ -196,7 +196,7 @@
                     $('.close-modal').trigger('click')
 
                     $('#question-table').prepend(
-                    '<tr class="question-row">' +
+                    '<tr class="question-row" data-ques_no="' + question.quesNo + '">' +
                     '<td>' + question.quesNo + '</td>' +
                     '<td><a href="/question/' + question.quesNo + '" >' + question.title + '</a></td>' +
                     '<td>' + question.writer + '</td>' +
@@ -204,7 +204,6 @@
                     '<td>' + question.viewCnt + '</td>' +
                     '<td><span id="answer-button">ANSWER</span></td></tr>'
                     )
-
                 },
                 error: function() {
                     alert("등록 실패했습니다.")
@@ -220,8 +219,8 @@
 
                 requestURL = '/question/more'
 
-                const lastQuesNo = $('.question-row').last().data('ques_no')
-
+                let lastQuesNo = $('.question-row').last().data('ques_no')
+                console.log(lastQuesNo)
                 let param = {quesNo: lastQuesNo}
 
                 $.ajax({
@@ -237,13 +236,22 @@
                         xhr.setRequestHeader(header, token)
                     },
 
-                    // dataType: 'json',
+                    dataType: 'json',
 
-                    success: function () {
-                        alert('뇽')
+                    success: function (questions) {
+                        for (const question of questions) {
+                            $('#question-table').append(
+                                '<tr class="question-row" data-ques_no="' + question.quesNo + '">' +
+                                '<td>' + question.quesNo + '</td>' +
+                                '<td><a href="/question/' + question.quesNo + '" >' + question.title + '</a></td>' +
+                                '<td>' + question.writer + '</td>' +
+                                '<td>' + question.regDate + '</td>' +
+                                '<td>' + question.viewCnt + '</td>' +
+                                '<td><span id="answer-button">ANSWER</span></td></tr>'
+                            )
+                        }
                     },
                     error: function () {
-                        alert('뉴우')
                     }
 
                 })

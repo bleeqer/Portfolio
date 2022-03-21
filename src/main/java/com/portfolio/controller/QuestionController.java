@@ -110,15 +110,10 @@ public class QuestionController {
     @ResponseBody
     public ResponseEntity<List<QuestionVO>> listPosts(@RequestBody QuestionVO question) {
 
-        System.out.println(question.getQuesNo());
-
         int startQuesNo = question.getQuesNo() - 1;
 
         List<QuestionVO> questions = questionService.getMore(startQuesNo);
 
-        for (QuestionVO q : questions) {
-            System.out.println(q.getQuesNo());
-        }
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 }
