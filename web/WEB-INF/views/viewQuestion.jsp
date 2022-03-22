@@ -48,9 +48,9 @@
 </div>
 
     <span id="answer-button">ANSWER</span>
-    <table id="answer-container">
+    <table id="answer-table">
         <c:forEach var="answer" items="${answers}">
-            <tr class="question-row">
+            <tr class="answer-row" data-ans_no="${answer.ansNo}">
                 <td>${answer.writer}</td>
                 <td>${answer.content}</td>
                 <td>${answer.regDate}</td>
@@ -58,7 +58,11 @@
                 <td id="answerReply-button" data-ans_no="${answer.ansNo}">Reply</td>
             </tr>
         </c:forEach>
+
+
     </table>
+<span id="more-button">More</span>
+
 
     <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
 
@@ -145,8 +149,8 @@
                         $("#answer-button").css("color", "black")
 
 
-                            $('#answer-container').prepend(
-                                '<tr class="question-row">' +
+                            $('#answer-table').prepend(
+                                '<tr class="answer-row" data-ans_no="' + answer.ansNo + '">' +
                                 '<td>' + answer.writer + '</td>' +
                                 '<td>' + answer.content + '</td>' +
                                 '<td>' + answer.regDate + '</td>' +
@@ -167,7 +171,7 @@
 
             $('#postCancel-button').on('click', function () {
 
-                $('#answer-container').empty()
+                $('#answer-table').empty()
                 tinymce.remove()
 
                 // 답변 작성 취소 시 answer-button 재활성화
@@ -272,6 +276,49 @@
                 error: function() {
                     alert("등록 실패했습니다.")
                 }
+            })
+        })
+
+        $('#more-button').on('click', function () {
+
+            requestURL = '/answer/more'
+
+            let lastAnswerNo = $('.answer-row').last().data('ans_no')
+
+            let param = {ansNo: lastAnswerNo}
+
+            $.ajax({
+                type: 'POST',
+
+                url: requestURL,
+
+                contentType: 'application/json; charset=utf-8',
+
+                data: JSON.stringify(param),
+
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(header, token)
+                },
+
+                dataType: 'json',
+
+                success: function (answers) {
+
+                    for (const answer of answers) {
+                        $('#answer-table').append(
+                            '<tr class="answer-row" data-ans_no="' + answer.ansNo + '">' +
+                                '<td>' + answer.writer + '</td>' +
+                                '<td>' + answer.content + '</td>' +
+                                '<td>' + answer.regDate + '</td>' +
+                                '<td>' + answer.viewCnt + '</td>' +
+                                '<td id="answerReply-button" data-ans_no="' + answer.ansNo + '">Reply</td>' +
+                            '</tr>'
+                        )
+                    }
+                },
+                error: function () {
+                }
+
             })
         })
     </script>

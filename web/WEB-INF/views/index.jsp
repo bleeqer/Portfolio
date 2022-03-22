@@ -46,7 +46,7 @@
                 </tr>
             </c:forEach>
         </div><br/>
-        <span id="more-button">More</span>
+        <tr id="more-button">More</tr>
 
     </table>
 

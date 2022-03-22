@@ -31,5 +31,17 @@ public class AnswerController {
         return answerService.readOne(answerNo);
     }
 
+    @PostMapping("more")
+    @ResponseBody
+    public List<AnswerVO> getMoreAnswers(@RequestBody AnswerVO answer) {
+
+        List<AnswerVO> ansList = answerService.readMoreList(answer.getAnsNo());
+
+        for (AnswerVO ans : ansList) {
+            System.out.println(ans.getAnsNo());
+        }
+        return answerService.readMoreList(answer.getAnsNo());
+    }
+
 
 }

@@ -28,6 +28,10 @@
         SELECT * FROM (SELECT * FROM TB_ANSWER WHERE ques_no=#{quesNo} ORDER BY ans_no DESC) WHERE ROWNUM BETWEEN 0 and 3
     </select>
 
+    <select id="selectMoreList" parameterType="int" resultMap="AnswerResultMap">
+        SELECT * FROM (SELECT * FROM TB_ANSWER WHERE ans_no<![CDATA[<]]>#{ansNo} ORDER BY ans_no DESC) WHERE ROWNUM BETWEEN 0 and 3
+    </select>
+
     <update id="update" parameterType="AnswerVO">
         UPDATE TB_ANSWER SET title = #{title},
                          content = #{content}

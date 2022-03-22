@@ -15,4 +15,5 @@ public interface AnswerMapper {
     void addLikeCnt(int ansNo);
     AnswerVO selectOne(int ansNo);
     List<AnswerVO> selectList(int quesNo);
+    List<AnswerVO> selectMoreList(int quesNo);
 }

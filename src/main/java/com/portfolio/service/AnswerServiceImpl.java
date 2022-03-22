@@ -54,6 +54,11 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
+    public List<AnswerVO> readMoreList(int quesNo) {
+        return answerMapper.selectMoreList(quesNo);
+    }
+
+    @Override
     public void update(AnswerVO answerVO) {
 
         answerMapper.update(answerVO);

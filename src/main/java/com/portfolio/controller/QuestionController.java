@@ -36,7 +36,7 @@ public class QuestionController {
 
     @PostMapping("create")
     @ResponseBody
-    public QuestionVO createPost(QuestionVO questionVO) {
+    public QuestionVO createQuestion(QuestionVO questionVO) {
 
         // 게시글 저장
         questionService.create(questionVO);
@@ -47,7 +47,7 @@ public class QuestionController {
     }
 
     @RequestMapping("/{postNo}")
-    public String viewPost(@PathVariable int postNo, Model model) {
+    public String viewQuestion(@PathVariable int postNo, Model model) {
 
         QuestionVO question = questionService.read(postNo);
 
@@ -62,14 +62,14 @@ public class QuestionController {
 
     @ResponseBody
     @GetMapping(value="edit/{postNo}") //, produces="application/json"
-    public QuestionVO editPost(@PathVariable int postNo) {
+    public QuestionVO editQuestion(@PathVariable int postNo) {
         return questionService.read(postNo);
 
     }
 
     @PostMapping("edit/")
     @ResponseBody
-    public QuestionVO editPost(HttpServletRequest request, QuestionVO question, Principal principal) {
+    public QuestionVO editQuestion(HttpServletRequest request, QuestionVO question, Principal principal) {
 
         List<ImageVO> imgVOList = imageService.readAll(question.getQuesNo());
 
@@ -87,7 +87,7 @@ public class QuestionController {
     }
 
     @RequestMapping("delete/{postNo}")
-    public String deletePost(HttpServletRequest request, @PathVariable int postNo) {
+    public String deleteQuestion(HttpServletRequest request, @PathVariable int postNo) {
 
         questionService.delete(postNo);
 
@@ -107,7 +107,7 @@ public class QuestionController {
 
     @PostMapping("more")
     @ResponseBody
-    public ResponseEntity<List<QuestionVO>> listPosts(@RequestBody QuestionVO question) {
+    public ResponseEntity<List<QuestionVO>> getMoreQuestions(@RequestBody QuestionVO question) {
 
         int startQuesNo = question.getQuesNo() - 1;
 
