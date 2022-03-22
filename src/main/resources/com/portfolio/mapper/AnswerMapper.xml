@@ -20,8 +20,12 @@
         SELECT ques_no, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER WHERE ans_no=#{ansNo}
     </select>
 
+<!--    <select id="selectList" parameterType="int" resultMap="AnswerResultMap">-->
+<!--        SELECT ques_no, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER WHERE ques_no=#{quesNo} ORDER BY ans_no DESC-->
+<!--    </select>-->
+
     <select id="selectList" parameterType="int" resultMap="AnswerResultMap">
-        SELECT ques_no, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER WHERE ques_no=#{quesNo} ORDER BY ans_no DESC
+        SELECT * FROM (SELECT * FROM TB_ANSWER WHERE ques_no=#{quesNo} ORDER BY ans_no DESC) WHERE ROWNUM BETWEEN 0 and 3
     </select>
 
     <update id="update" parameterType="AnswerVO">
