@@ -4,9 +4,9 @@ import com.portfolio.domain.AnswerVO;
 import com.portfolio.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("answer")
@@ -16,12 +16,18 @@ public class AnswerController {
     AnswerService answerService;
 
     @PostMapping("create")
-    public String createAnswer(AnswerVO answer) {
+    @ResponseBody
+    public AnswerVO createAnswer(@RequestBody AnswerVO answer) {
 
         System.out.println(answer.getQuesNo());
+        System.out.println(answer.getContent());
+        System.out.println(answer.getWriter());
 
-//        answerService.create(answer);
+        int answerNo = answerService.create(answer);
 
-        return "";
+        System.out.println("answer number: " + answerNo);
+        System.out.println("answer content: " + answerService.readOne(answerNo).getContent());
+
+        return answerService.readOne(answerNo);
     }
 }

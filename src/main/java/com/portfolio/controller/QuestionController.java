@@ -1,8 +1,10 @@
 package com.portfolio.controller;
 
 import com.portfolio.commons.util.UploadFileUtils;
+import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.QuestionVO;
 import com.portfolio.domain.ImageVO;
+import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionService;
 import com.portfolio.service.QuestionImageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.Response;
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("question")
@@ -24,6 +27,9 @@ public class QuestionController {
 
     @Autowired
     QuestionService questionService;
+
+    @Autowired
+    AnswerService answerService;
 
     @Autowired
     QuestionImageService imageService;
@@ -43,17 +49,12 @@ public class QuestionController {
     @RequestMapping("/{postNo}")
     public String viewPost(@PathVariable int postNo, Model model) {
 
-        QuestionVO post = questionService.read(postNo);
-        List<ImageVO> files = imageService.readAll(postNo);
+        QuestionVO question = questionService.read(postNo);
 
-        if (!files.isEmpty()) {
-            for (ImageVO file : files) {
-                System.out.println(file.getUploadPath());
-            }
+        List<AnswerVO> answers = answerService.readList(postNo);
 
-        }
-
-        model.addAttribute("post", post);
+        model.addAttribute("question", question);
+        model.addAttribute("answers", answers);
 //        model.addAttribute("files", files);
 
         return "viewQuestion";
@@ -61,17 +62,16 @@ public class QuestionController {
 
     @ResponseBody
     @GetMapping(value="edit/{postNo}") //, produces="application/json"
-    public QuestionVO editPost(@PathVariable int postNo, Principal authentication) {
+    public QuestionVO editPost(@PathVariable int postNo) {
         return questionService.read(postNo);
 
     }
 
     @PostMapping("edit/")
     @ResponseBody
-    public QuestionVO editPost(HttpServletRequest request, QuestionVO vo) {
+    public QuestionVO editPost(HttpServletRequest request, QuestionVO question, Principal principal) {
 
-        List<ImageVO> imgVOList = imageService.readAll(vo.getQuesNo());
-
+        List<ImageVO> imgVOList = imageService.readAll(question.getQuesNo());
 
         for (ImageVO imgVO : imgVOList) {
 
@@ -81,9 +81,9 @@ public class QuestionController {
 
         UploadFileUtils.deleteFile(request, imgVOList);
 
-        questionService.update(vo);
+        questionService.update(question);
 
-        return questionService.read(vo.getQuesNo());
+        return questionService.read(question.getQuesNo());
     }
 
     @RequestMapping("delete/{postNo}")

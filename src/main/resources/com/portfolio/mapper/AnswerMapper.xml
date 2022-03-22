@@ -8,16 +8,20 @@
     <insert id="insert" parameterType="AnswerVO">
 
         -- file 테이블의 외래키로 사용될 ques_no를 반환받아 QuestionVO에 담김
-        <selectKey keyProperty="ans_no" resultType="int" order="BEFORE">
+        <selectKey keyProperty="ansNo" resultType="int" order="BEFORE">
             select ANS_SEQUENCE.NEXTVAL from dual
         </selectKey>
 
-        INSERT INTO TB_ANSWER (ans_no, title, content, writer)
-        VALUES (#{ansNo}, #{title}, #{content}, #{writer})
+        INSERT INTO TB_ANSWER (ans_no, ques_no, content, writer)
+        VALUES (#{ansNo}, #{quesNo}, #{content}, #{writer})
     </insert>
 
-    <select id="select" parameterType="int" resultType="AnswerVO">
-        SELECT ques_num, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER where ans_no=#{ansNo}
+    <select id="selectOne" parameterType="int" resultMap="AnswerResultMap">
+        SELECT ques_no, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER WHERE ans_no=#{ansNo}
+    </select>
+
+    <select id="selectList" parameterType="int" resultMap="AnswerResultMap">
+        SELECT ques_no, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER WHERE ques_no=#{quesNo} ORDER BY ans_no DESC
     </select>
 
     <update id="update" parameterType="AnswerVO">
@@ -43,5 +47,13 @@
         UPDATE TB_ANSWER SET like_cnt=like_cnt + 1
         WHERE ans_no=#{ansNo}
     </update>
+
+    <resultMap id="AnswerResultMap" type="AnswerVO">
+        <id column="ans_no" property="ansNo"/>
+        <id column="ques_no" property="quesNo"/>
+        <id column="reg_date" property="regDate"/>
+        <id column="view_cnt" property="viewCnt"/>
+        <id column="like_cnt" property="likeCnt"/>
+    </resultMap>
 
 </mapper>

@@ -22,32 +22,41 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Transactional
     @Override
-    public void create(AnswerVO answerVO) {
+    public int create(AnswerVO answerVO) {
 
         // answerVO 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
         answerMapper.insert(answerVO);
+        System.out.println("여기오난");
 
         // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
-        for (String uploadPath : answerVO.getImageList()) {
-            ImageVO imgVO = new ImageVO();
+//        for (String uploadPath : answerVO.getImageList()) {
+//            ImageVO imgVO = new ImageVO();
+//
+//            imgVO.setPostNo(answerVO.getAnsNo());
+//            imgVO.setUploadPath(uploadPath);
+//
+//            answerImageMapper.insert(imgVO);
+//        }
 
-            imgVO.setPostNo(answerVO.getAnsNo());
-            imgVO.setUploadPath(uploadPath);
-
-            answerImageMapper.insert(imgVO);
-        }
+        return answerVO.getAnsNo();
     }
 
     @Override
-    public AnswerVO read(int postNo) {
-        return answerMapper.select(postNo);
+    public AnswerVO readOne(int ansNo) {
+
+        return answerMapper.selectOne(ansNo);
+    }
+
+    @Override
+    public List<AnswerVO> readList(int quesNo) {
+
+        return answerMapper.selectList(quesNo);
     }
 
     @Override
     public void update(AnswerVO answerVO) {
 
         answerMapper.update(answerVO);
-
     }
 
     @Override

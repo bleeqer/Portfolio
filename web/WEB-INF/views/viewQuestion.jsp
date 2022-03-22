@@ -27,24 +27,38 @@
 <%--    <sec:authentication property="principal.username">--%>
 <sec:authentication property="principal.username" var="currentUserName"/>
 
-    TITLE : <div id="detail-title">${post.title}</div>
+<div id="detail-question">
+    TITLE : <div id="detail-title">${question.title}</div>
     <br>
-    CONTENT : <div id="detail-content">${post.content}</div>
+    CONTENT : <div id="detail-content">${question.content}</div>
     <br>
-    WRITER : <div id="detail-writer">${post.writer}</div>
+    WRITER : <div id="detail-writer">${question.writer}</div>
     <br>
     <br>
-    REGDATE : <div id="detail-writer">${post.regDate}</div>
+    REGDATE : <div id="detail-writer">${question.regDate}</div>
     <br>
-    <c:if test="${currentUserName == post.writer}">
-        <span id="edit-button" data-id="${post.quesNo}">EDIT</span>
-        <span id="delete-button" data-id="${post.quesNo}">DELETE</span>
-    </c:if>
-    <br>
-    <span id="answer-button">ANSWER</span>
-    <div id="answer-container">
+    <c:if test="${currentUserName == question.writer}">
 
-    </div>
+        <span id="edit-button" data-id="${question.quesNo}">EDIT</span>
+        <span id="delete-button" data-id="${question.quesNo}">DELETE</span>
+    </c:if>
+    <span id="replyAnswer-button">Reply</span>
+    <br>
+    <div id="answer-editor"></div>
+</div>
+
+    <span id="answer-button">ANSWER</span>
+    <table id="answer-container">
+        <c:forEach var="answer" items="${answers}">
+            <tr class="question-row">
+                <td>${answer.writer}</td>
+                <td>${answer.content}</td>
+                <td>${answer.regDate}</td>
+                <td>${answer.viewCnt}</td>
+                <td id="answerReply-button" data-ans_no="${answer.ansNo}">Reply</td>
+            </tr>
+        </c:forEach>
+    </table>
 
     <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
 
@@ -77,12 +91,12 @@
             $("#answer-button").css("pointer-events", "none")
             $("#answer-button").css("color", "grey")
 
-            $("#answer-container").append(
+            $("#answer-editor").append(
                 "<div id='answer'>" +
                     "<div id='user-profile'>사용자</div>" +
                     "<form id='answer-form' action='/answer/create'>" +
-                        "<input id=quesNo value=${post.quesNo} type='hidden'>" +
-                        "<input id=writer value=${post.writer} type='hidden'>" +
+                        "<input id=answer-question-number value=${question.quesNo} type='hidden'>" +
+                        "<input id=answer-writer value=${currentUserName} type='hidden'>" +
                         "<textarea id='content'></textarea>" +
                         "<div id='answer-footer'>" +
                             "<span id='upload-button'>IMAGE</span>&nbsp;" +
@@ -94,11 +108,61 @@
                 "</div>"
             )
 
+            initEditor()
+
             $('#answerSubmit-button').on('click', function () {
 
-                $('#answer-form').submit()
-                $('#answer-container').empty()
-                tinymce.remove()
+                // $('#answer-form').submit()
+                tinymce.activeEditor.save()
+                let quesNo = $('#answer-question-number').attr('value')
+                let content = $('#content').val()
+                let writer = $('#answer-writer').attr('value')
+
+                let data = {quesNo: quesNo, content: content, writer: writer}
+
+                $.ajax({
+                    type: 'POST',
+
+                    url: '/answer/create',
+
+                    contentType: 'application/json; charset=utf-8',
+
+                    data: JSON.stringify(data),
+
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader(header, token)
+                    },
+
+                    dataType: 'json',
+
+                    success: function(answer) {
+
+                        tinymce.remove()
+                        $('#answer-editor').empty()
+
+                        // 답변 제출 성공 시 answer-button 재활성화
+                        $("#answer-button").css("pointer-events", "auto")
+                        $("#answer-button").css("color", "black")
+
+
+                            $('#answer-container').prepend(
+                                '<tr class="question-row">' +
+                                '<td>' + answer.writer + '</td>' +
+                                '<td>' + answer.content + '</td>' +
+                                '<td>' + answer.regDate + '</td>' +
+                                '<td>' + answer.viewCnt + '</td>' +
+                                '<td id="answerReply-button" data-ans_no="' + answer.ansNo + '">Reply</td>' +
+                                '</tr>'
+                            )
+                    },
+
+                    error: function() {
+                        alert("등록 실패했습니다.")
+                    }
+                })
+
+
+
             })
 
             $('#postCancel-button').on('click', function () {
@@ -113,7 +177,7 @@
 
             $.getScript('/js/imageUpload.js')
 
-            initEditor()
+
 
         })
 
@@ -195,6 +259,7 @@
                 {
                     xhr.setRequestHeader(header, token)
                 },
+
                 success: function(question) {
 
                     // modal window 닫기
@@ -203,6 +268,7 @@
                     $('#detail-title').html(question.title)
                     $('#detail-content').html(question.content)
                 },
+
                 error: function() {
                     alert("등록 실패했습니다.")
                 }

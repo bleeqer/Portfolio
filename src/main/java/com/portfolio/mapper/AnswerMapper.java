@@ -8,10 +8,11 @@ import java.util.List;
 public interface AnswerMapper {
 
     int insert(AnswerVO answerVO);
-    AnswerVO select(int postNo);
     void update(AnswerVO answerVO);
-    void delete(int postNo);
+    void delete(int ansNo);
     List<AnswerVO> selectAll();
-    void addViewCnt(int postNo);
-    void addLikeCnt(int postNo);
+    void addViewCnt(int ansNo);
+    void addLikeCnt(int ansNo);
+    AnswerVO selectOne(int ansNo);
+    List<AnswerVO> selectList(int quesNo);
 }
