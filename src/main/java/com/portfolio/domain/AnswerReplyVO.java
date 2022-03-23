@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class AnswerReplyVO {
 
-    private int quesNo;
+    private int ansNo;
     private int replyNo;
     private String content;
     private String writer;

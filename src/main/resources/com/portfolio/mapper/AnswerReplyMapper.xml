@@ -11,8 +11,8 @@
             select ANS_REPLY_SEQUENCE.NEXTVAL from dual
         </selectKey>
 
-        INSERT INTO TB_ANS_REPLY (ques_no, reply_no, content, writer)
-        VALUES (#{quesNo}, #{replyNo}, #{content}, #{writer})
+        INSERT INTO TB_ANS_REPLY (ans_no, reply_no, content, writer)
+        VALUES (#{ansNo}, #{replyNo}, #{content}, #{writer})
 
     </insert>
 
@@ -46,7 +46,7 @@
         WHERE reply_no=#{replyNo}
     </update>
 
-    <resultMap id="AnswerResultMap" type="AnswerReplyVO">
+    <resultMap id="AnswerReplyResultMap" type="AnswerReplyVO">
         <id column="ques_no" property="quesNo"/>
         <id column="reply_no" property="replyNo"/>
         <id column="reg_date" property="regDate"/>

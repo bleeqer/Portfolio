@@ -55,7 +55,12 @@
                 <td>${answer.content}</td>
                 <td>${answer.regDate}</td>
                 <td>${answer.viewCnt}</td>
-                <td id="answerReply-button" data-ans_no="${answer.ansNo}">Reply</td>
+                <td class="answerReply-button" data-ans_no="${answer.ansNo}">Reply</td>
+                <td class="reply-section">
+                    <div class="reply-container">
+
+                    </div>
+                </td>
             </tr>
         </c:forEach>
 
@@ -321,6 +326,73 @@
 
             })
         })
+
+        $('.answerReply-button').on('click', function() {
+
+            const ansNo =$('.answerReply-button').data('ans_no')
+
+            $(this).parent().find('.reply-section > .reply-container').append(
+                "<div id='reply'>" +
+                "<div id='user-profile'>사용자</div>" +
+                "<form id='answerReply-form' action='/reply/answer'>" +
+                "<input id=answer-number value=" + ansNo + " type='hidden'>" +
+                "<input id=reply-writer value=${currentUserName} type='hidden'>" +
+                "<input class='answer-reply-input'>" +
+                "<div id='answer-footer'>" +
+                "<span id='answer-reply-submit-button'>POST</span>&nbsp;" +
+                "</div>" +
+                "</form>" +
+                "</div>"
+            )
+
+            $('#answer-reply-submit-button').on('click', function() {
+
+                const requestURL ='/reply/answer/create'
+
+                const ansNo = $('#answer-number').val()
+                const writer = $('#reply-writer').val()
+                const content = $('.answer-reply-input').val()
+
+                const replyForm = {ansNo: ansNo, writer: writer, content: content}
+
+                $.ajax({
+                        type: 'POST',
+
+                        url: requestURL,
+
+                        contentType: 'application/json; charset=utf-8',
+
+                        data: JSON.stringify(replyForm),
+
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader(header, token)
+                        },
+
+                        dataType: 'json',
+
+                        success: function () {
+                            alert('reply added')
+                            // for (const answer of answers) {
+                            //     $('#answer-table').append(
+                            //         '<tr class="answer-row" data-ans_no="' + answer.ansNo + '">' +
+                            //         '<td>' + answer.writer + '</td>' +
+                            //         '<td>' + answer.content + '</td>' +
+                            //         '<td>' + answer.regDate + '</td>' +
+                            //         '<td>' + answer.viewCnt + '</td>' +
+                            //         '<td id="answerReply-button" data-ans_no="' + answer.ansNo + '">Reply</td>' +
+                            //         '</tr>'
+                            //     )
+
+                        },
+                        error: function () {
+                        }
+
+                    }
+                )
+            })
+        })
+
+
     </script>
 
 </body>
