@@ -47,7 +47,7 @@
     </update>
 
     <resultMap id="AnswerReplyResultMap" type="AnswerReplyVO">
-        <id column="ques_no" property="quesNo"/>
+        <id column="ans_no" property="ansNo"/>
         <id column="reply_no" property="replyNo"/>
         <id column="reg_date" property="regDate"/>
         <id column="like_cnt" property="likeCnt"/>

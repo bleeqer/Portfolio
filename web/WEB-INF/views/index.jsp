@@ -46,7 +46,7 @@
                 </tr>
             </c:forEach>
         </div><br/>
-        <tr id="more-button">More</tr>
+        <span id="more-button">More</span>
 
     </table>
 
@@ -216,9 +216,8 @@
     <script>
             $('#more-button').on('click', function () {
 
-                requestURL = '/question/more'
 
-                alert('눌림')
+                requestURL = '/question/more'
                 let lastQuesNo = $('.question-row').last().data('ques_no')
                 let param = {quesNo: lastQuesNo}
                 $.ajax({
@@ -226,9 +225,10 @@
 
                     url: requestURL,
 
-                    contentType: 'application/json; charset=utf-8',
+                    // contentType: 'application/json; charset=utf-8',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8;',
 
-                    data: JSON.stringify(param),
+                    data: param,
 
                     beforeSend: function(xhr){
                         xhr.setRequestHeader(header, token)
@@ -238,7 +238,7 @@
 
                     success: function (questions) {
                         for (const question of questions) {
-                            $('#question-list').append(
+                            $('#question-table').append(
                                 '<tr class="question-row" data-ques_no="' + question.quesNo + '">' +
                                 '<td>' + question.quesNo + '</td>' +
                                 '<td><a href="/question/' + question.quesNo + '" >' + question.title + '</a></td>' +
@@ -254,6 +254,7 @@
 
                 })
             })
+
 
     </script>
 </body>

@@ -1,5 +1,6 @@
 package com.portfolio.controller;
 
+import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate;
 import com.portfolio.commons.util.UploadFileUtils;
 import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.QuestionVO;
@@ -7,6 +8,7 @@ import com.portfolio.domain.ImageVO;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionService;
 import com.portfolio.service.QuestionImageService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -107,9 +109,9 @@ public class QuestionController {
 
     @PostMapping("more")
     @ResponseBody
-    public ResponseEntity<List<QuestionVO>> getMoreQuestions(@RequestBody QuestionVO question) {
+public ResponseEntity<List<QuestionVO>> getMoreQuestions(@RequestParam int quesNo) {
 
-        int startQuesNo = question.getQuesNo() - 1;
+        int startQuesNo = quesNo - 1;
 
         List<QuestionVO> questions = questionService.getMore(startQuesNo);
 

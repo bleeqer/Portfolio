@@ -310,7 +310,7 @@
                 success: function (answers) {
 
                     for (const answer of answers) {
-                        $('#answer-table').append(
+                        $('').append(
                             '<tr class="answer-row" data-ans_no="' + answer.ansNo + '">' +
                                 '<td>' + answer.writer + '</td>' +
                                 '<td>' + answer.content + '</td>' +
@@ -352,8 +352,8 @@
                 const ansNo = $('#answer-number').val()
                 const writer = $('#reply-writer').val()
                 const content = $('.answer-reply-input').val()
-
                 const replyForm = {ansNo: ansNo, writer: writer, content: content}
+
 
                 $.ajax({
                         type: 'POST',
@@ -370,21 +370,20 @@
 
                         dataType: 'json',
 
-                        success: function () {
-                            alert('reply added')
-                            // for (const answer of answers) {
-                            //     $('#answer-table').append(
-                            //         '<tr class="answer-row" data-ans_no="' + answer.ansNo + '">' +
-                            //         '<td>' + answer.writer + '</td>' +
-                            //         '<td>' + answer.content + '</td>' +
-                            //         '<td>' + answer.regDate + '</td>' +
-                            //         '<td>' + answer.viewCnt + '</td>' +
-                            //         '<td id="answerReply-button" data-ans_no="' + answer.ansNo + '">Reply</td>' +
-                            //         '</tr>'
-                            //     )
-
+                        success: function (reply) {
+                            alert(reply.ansNo)
+                            $('.answer-row[data-ans_no="' + reply.ansNo + '"]').append(
+                                '<div class="reply" data-ans_no="' + reply.ansNo + '">' +
+                                '<span>' + reply.writer + '</span>' +
+                                '<span>' + reply.content + '</span>' +
+                                '<span>' + reply.regDate + '</span>' +
+                                '<span>' + reply.likeCnt + '</span>' +
+                                '<span id="answer-reply-reply-button" data-reply_no="' + reply.replyNo + '">Reply</span>' +
+                                '</div>'
+                            )
                         },
                         error: function () {
+                            alert('failed')
                         }
 
                     }
