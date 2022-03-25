@@ -13,4 +13,6 @@ public interface AnswerReplyService {
     void delete(int postNo);
     List<AnswerReplyVO> readAll();
     void addLikeCnt(int postNo);
+    int selectNestedMaxOrder(int parentCommentNo);
+    int selectMaxOrder();
 }

@@ -74,4 +74,15 @@ public class AnswerReplyServiceImpl implements AnswerReplyService {
     public void addLikeCnt(int postNo) {
         answerReplyMapper.addLikeCnt(postNo);
     }
+
+    @Override
+    public int selectNestedMaxOrder(int parentCommentNo) {
+        return answerReplyMapper.selectNestedMaxOrder(parentCommentNo);
+    }
+
+    @Override
+    public int selectMaxOrder() {
+        return answerReplyMapper.selectMaxOrder();
+    }
+
 }

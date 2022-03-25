@@ -109,12 +109,12 @@ public class QuestionController {
 
     @PostMapping("more")
     @ResponseBody
-public ResponseEntity<List<QuestionVO>> getMoreQuestions(@RequestParam int quesNo) {
+    public ResponseEntity<List<QuestionVO>> getMoreQuestions(@RequestParam int quesNo) {
 
-        int startQuesNo = quesNo - 1;
+            int startQuesNo = quesNo - 1;
 
-        List<QuestionVO> questions = questionService.getMore(startQuesNo);
+            List<QuestionVO> questions = questionService.getMore(startQuesNo);
 
-        return new ResponseEntity<>(questions, HttpStatus.OK);
-    }
+            return new ResponseEntity<>(questions, HttpStatus.OK);
+        }
 }

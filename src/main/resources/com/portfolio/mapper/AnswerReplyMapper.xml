@@ -11,44 +11,52 @@
             select ANS_REPLY_SEQUENCE.NEXTVAL from dual
         </selectKey>
 
-        INSERT INTO TB_ANS_REPLY (ans_no, reply_no, content, writer)
-        VALUES (#{ansNo}, #{replyNo}, #{content}, #{writer})
+        INSERT INTO TB_ANS_COMMENT (ans_no, comment_no, content, writer, parent_comment_no, comment_depth, comment_order)
+        VALUES (#{ansNo}, #{replyNo}, #{content}, #{writer}, #{parentCommentNo}, #{depth}, #{order})
 
     </insert>
 
     <select id="selectOne" parameterType="int" resultMap="AnswerReplyResultMap">
-        SELECT * FROM TB_ANS_REPLY WHERE reply_no=#{replyNo}
+        SELECT * FROM TB_ANS_COMMENT WHERE comment_no=#{replyNo}
     </select>
 
     <select id="selectList" parameterType="int" resultMap="AnswerReplyResultMap">
-        SELECT * FROM (SELECT * FROM TB_ANS_REPLY WHERE ques_no=#{quesNo} ORDER BY reply_no DESC) WHERE ROWNUM BETWEEN 0 and 8
+        SELECT * FROM (SELECT * FROM TB_ANS_COMMENT WHERE ques_no=#{quesNo} ORDER BY comment_no DESC) WHERE ROWNUM BETWEEN 0 and 8
     </select>
 
     <select id="selectMoreList" parameterType="int" resultMap="AnswerReplyResultMap">
-        SELECT * FROM (SELECT * FROM TB_ANS_REPLY WHERE reply_no<![CDATA[<]]>#{replyNo} ORDER BY reply_no DESC) WHERE ROWNUM BETWEEN 0 and 8
+        SELECT * FROM (SELECT * FROM TB_ANS_COMMENT WHERE comment_no<![CDATA[<]]>#{replyNo} ORDER BY comment_no DESC) WHERE ROWNUM BETWEEN 0 and 8
+    </select>
+
+    <select id="selectNestedMaxOrder" resultType="int" parameterType="int">
+        SELECT NVL(MAX(comment_order), 0) FROM TB_ANS_COMMENT WHERE parent_comment_no=#{parentCommentNo}
+    </select>
+
+    <select id="selectMaxOrder" resultType="int" parameterType="int">
+        SELECT NVL(MAX(comment_order), 0) FROM TB_ANS_COMMENT
     </select>
 
     <update id="update" parameterType="AnswerReplyVO">
-        UPDATE TB_ANS_REPLY SET content = #{content}
-        WHERE reply_no=#{replyNo}
+        UPDATE TB_ANS_COMMENT SET content = #{content}
+        WHERE comment_no=#{replyNo}
     </update>
 
     <delete id="delete" parameterType="int">
-        DELETE FROM TB_ANS_REPLY WHERE reply_no=#{replyNo}
+        DELETE FROM TB_ANS_COMMENT WHERE comment_no=#{replyNo}
     </delete>
 
     <select id="selectAll" resultType="AnswerReplyVO">
-        SELECT * FROM TB_ANS_REPLY
+        SELECT * FROM TB_ANS_COMMENT
     </select>
 
     <update id="addLike" parameterType="int">
-        UPDATE TB_ANS_REPLY SET like_cnt=like_cnt + 1
-        WHERE reply_no=#{replyNo}
+        UPDATE TB_ANS_COMMENT SET like_cnt=like_cnt + 1
+        WHERE comment_no=#{replyNo}
     </update>
 
     <resultMap id="AnswerReplyResultMap" type="AnswerReplyVO">
         <id column="ans_no" property="ansNo"/>
-        <id column="reply_no" property="replyNo"/>
+        <id column="comment_no" property="replyNo"/>
         <id column="reg_date" property="regDate"/>
         <id column="like_cnt" property="likeCnt"/>
     </resultMap>

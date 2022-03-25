@@ -13,7 +13,9 @@ public class AnswerReplyVO {
     private String writer;
     private String regDate;
     private int likeCnt;
-
+    private int parentCommentNo;
+    private int depth;
+    private int order;
 }
 
 

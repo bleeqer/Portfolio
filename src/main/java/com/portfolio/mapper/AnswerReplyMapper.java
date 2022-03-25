@@ -14,4 +14,6 @@ public interface AnswerReplyMapper {
     AnswerReplyVO selectOne(int replyNo);
     List<AnswerReplyVO> selectList(int ansNo);
     List<AnswerReplyVO> selectMoreList(int ansNo);
+    int selectNestedMaxOrder(int parentCommentNo);
+    int selectMaxOrder();
 }
