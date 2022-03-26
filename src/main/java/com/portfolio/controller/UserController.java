@@ -16,27 +16,27 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
-//    @GetMapping("register")
-//    public String loginUser() {
 //
-//        return "userForm";
+//    @Autowired
+//    PasswordEncoder passwordEncoder;
+//
+////    @GetMapping("register")
+////    public String loginUser() {
+////
+////        return "userForm";
+////    }
+//
+//    @PostMapping("register")
+//    public String register(UserVO userVO) throws Exception {
+//
+//        String hashedPW = passwordEncoder.encode(userVO.getUserPW());
+//
+//        userVO.setUserPW(hashedPW);
+//
+//        userService.create(userVO);
+//
+//        return "redirect:/";
 //    }
-
-    @PostMapping("register")
-    public String register(UserVO userVO) throws Exception {
-
-        String hashedPW = passwordEncoder.encode(userVO.getUserPW());
-
-        userVO.setUserPW(hashedPW);
-
-        userService.create(userVO);
-
-        return "redirect:/";
-    }
 
     @GetMapping("login")
     public String userLogin() {

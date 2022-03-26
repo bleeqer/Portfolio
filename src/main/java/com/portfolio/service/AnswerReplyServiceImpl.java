@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -59,7 +60,7 @@ public class AnswerReplyServiceImpl implements AnswerReplyService {
     }
 
     @Override
-    public void delete(int postNo) {
+    public void delete(HashMap<String, Integer> postNo) {
         answerReplyMapper.delete(postNo);
     }
 

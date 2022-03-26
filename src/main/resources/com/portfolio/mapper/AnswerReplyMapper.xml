@@ -41,8 +41,12 @@
         WHERE comment_no=#{replyNo}
     </update>
 
-    <delete id="delete" parameterType="int">
-        DELETE FROM TB_ANS_COMMENT WHERE comment_no=#{replyNo}
+    <delete id="delete" statementType="CALLABLE" parameterType="hashmap">
+        {
+            CALL PROC_DELETE_COMMENT(
+                #{replyNo}
+            )
+        }
     </delete>
 
     <select id="selectAll" resultType="AnswerReplyVO">
