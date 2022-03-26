@@ -28,6 +28,7 @@
 <sec:authentication property="principal.username" var="currentUserName"/>
 
 <div id="detail-question">
+    <div id="detail-quesNo" style="display: none;" data-ques_no="${question.quesNo}"></div>
     TITLE : <div id="detail-title">${question.title}</div>
     <br>
     CONTENT : <div id="detail-content">${question.content}</div>
@@ -285,12 +286,12 @@
         })
 
         $('#more-button').on('click', function () {
-
             requestURL = '/answer/more'
 
-            let lastAnswerNo = $('.answer-row').last().data('ans_no')
+            const detailQuesNo = $('#detail-quesNo').data('ques_no')
+            const lastAnswerNo = $('.answer-row').last().data('ans_no')
 
-            let param = {ansNo: lastAnswerNo}
+            const param = {quesNo: detailQuesNo, ansNo: lastAnswerNo}
 
             $.ajax({
                 type: 'POST',
@@ -310,7 +311,7 @@
                 success: function (answers) {
 
                     for (const answer of answers) {
-                        $('').append(
+                        $('#answer-table').append(
                             '<tr class="answer-row" data-ans_no="' + answer.ansNo + '">' +
                                 '<td>' + answer.writer + '</td>' +
                                 '<td>' + answer.content + '</td>' +

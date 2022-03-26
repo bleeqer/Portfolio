@@ -26,7 +26,6 @@ public class AnswerServiceImpl implements AnswerService {
 
         // answerVO 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
         answerMapper.insert(answerVO);
-        System.out.println("여기오난");
 
         // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
 //        for (String uploadPath : answerVO.getImageList()) {
@@ -54,8 +53,8 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<AnswerVO> readMoreList(int quesNo) {
-        return answerMapper.selectMoreList(quesNo);
+    public List<AnswerVO> readMoreList(AnswerVO answer) {
+        return answerMapper.selectMoreList(answer);
     }
 
     @Override

@@ -35,11 +35,6 @@ public class AnswerController {
     @ResponseBody
     public List<AnswerVO> getMoreAnswers(@RequestBody AnswerVO answer) {
 
-        List<AnswerVO> answerList = answerService.readMoreList(answer.getAnsNo());
-
-        for (AnswerVO ans : answerList) {
-            System.out.println(ans.getAnsNo());
-        }
-        return answerService.readMoreList(answer.getAnsNo());
+        return answerService.readMoreList(answer);
     }
 }
