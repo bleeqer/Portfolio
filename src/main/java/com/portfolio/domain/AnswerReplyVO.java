@@ -16,6 +16,7 @@ public class AnswerReplyVO {
     private int parentCommentNo;
     private int depth;
     private int order;
+    private int level;
 }
 
 
