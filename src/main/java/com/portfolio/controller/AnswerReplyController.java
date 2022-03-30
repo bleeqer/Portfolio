@@ -2,7 +2,6 @@ package com.portfolio.controller;
 
 import com.portfolio.domain.AnswerReplyVO;
 import com.portfolio.service.AnswerReplyService;
-import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,8 +38,8 @@ public class AnswerReplyController {
 
         System.out.println("parent Comment Number: " + parentCommentNo);
 
-        // 부모 댓글 미존재 시 전체 댓글의 순서 + 1
-        answerReply.setOrder(answerReplyService.selectMaxOrder());
+//        // 부모 댓글 미존재 시 전체 댓글의 순서 + 1
+//        answerReply.setOrder(answerReplyService.selectMaxOrder());
 
         // 부모 댓글 존재 시
         if (parentCommentNo != 0) {
