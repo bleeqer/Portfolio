@@ -25,14 +25,36 @@
 <!--    </select>-->
 
     <select id="selectList" parameterType="int" resultMap="AnswerReplyResultMap">
-        SELECT * FROM TB_ANS_COMMENT
-        START WITH COMMENT_NO IN (SELECT COMMENT_NO FROM TB_ANS_COMMENT WHERE rownum <![CDATA[<]]> 3)
-        CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO AND ANS_NO=#{ansNo} ORDER SIBLINGS BY COMMENT_ORDER ASC
+        SELECT LEVEL, ANS_NO, COMMENT_NO, PARENT_COMMENT_NO, CONTENT, WRITER, LIKE_CNT, REG_DATE FROM TB_ANS_COMMENT
+            START WITH COMMENT_NO IN (
+                                        SELECT COMMENT_NO
+                                        FROM (
+                                                SELECT COMMENT_NO
+                                                FROM TB_ANS_COMMENT
+                                                WHERE ans_no=#{ansNo} AND COMMENT_DEPTH=0
+                                                ORDER BY COMMENT_NO
+                                             )
+                                        WHERE rownum<![CDATA[<=]]>2
+                                     )
+        CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
+        ORDER SIBLINGS BY COMMENT_ORDER ASC
     </select>
 
 
-    <select id="selectMoreList" parameterType="int" resultMap="AnswerReplyResultMap">
-        SELECT * FROM (SELECT * FROM TB_ANS_COMMENT WHERE comment_no<![CDATA[<]]>#{replyNo} ORDER BY comment_no DESC) WHERE ROWNUM BETWEEN 0 and 8
+    <select id="selectMoreList" parameterType="map" resultMap="AnswerReplyResultMap">
+        SELECT LEVEL, ANS_NO, COMMENT_NO, PARENT_COMMENT_NO, CONTENT, WRITER, LIKE_CNT, REG_DATE FROM TB_ANS_COMMENT
+            START WITH COMMENT_NO IN (
+                                        SELECT COMMENT_NO
+                                        FROM (
+                                                SELECT COMMENT_NO
+                                                FROM TB_ANS_COMMENT
+                                                WHERE ans_no=#{ansNo} AND COMMENT_NO<![CDATA[>]]>#{replyNo} AND COMMENT_DEPTH=0
+                                                ORDER BY COMMENT_NO
+                                             )
+                                        WHERE rownum<![CDATA[<=]]>4
+                                        )
+            CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
+            ORDER SIBLINGS BY COMMENT_ORDER ASC
     </select>
 
     <select id="selectNestedMaxOrder" resultType="int" parameterType="int">

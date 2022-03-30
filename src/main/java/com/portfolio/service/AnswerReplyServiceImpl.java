@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -49,8 +50,8 @@ public class AnswerReplyServiceImpl implements AnswerReplyService {
     }
 
     @Override
-    public List<AnswerReplyVO> readMoreList(int ansNo) {
-        return answerReplyMapper.selectMoreList(ansNo);
+    public List<AnswerReplyVO> readMoreList(HashMap<String, Integer> map) {
+        return answerReplyMapper.selectMoreList(map);
     }
 
     @Override

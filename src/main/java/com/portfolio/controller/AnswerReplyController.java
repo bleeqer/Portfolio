@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -71,11 +72,16 @@ public class AnswerReplyController {
     @ResponseBody
     public List<AnswerReplyVO> getMoreAnswerReplies(@RequestBody AnswerReplyVO answerReply) {
 
-        List<AnswerReplyVO> answerReplyVOList = answerReplyService.readMoreList(answerReply.getAnsNo());
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("ansNo", answerReply.getAnsNo());
+        map.put("replyNo", answerReply.getReplyNo());
+
+        List<AnswerReplyVO> answerReplyVOList = answerReplyService.readMoreList(map);
 
         for (AnswerReplyVO ans : answerReplyVOList) {
             System.out.println(ans.getReplyNo());
         }
-        return answerReplyService.readMoreList(answerReply.getAnsNo());
+
+        return answerReplyService.readMoreList(map);
     }
 }

@@ -4,6 +4,7 @@ import com.portfolio.domain.AnswerReplyVO;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface AnswerReplyMapper {
 
@@ -14,7 +15,7 @@ public interface AnswerReplyMapper {
     void addLikeCnt(int replyNo);
     AnswerReplyVO selectOne(int replyNo);
     List<AnswerReplyVO> selectList(int ansNo);
-    List<AnswerReplyVO> selectMoreList(int ansNo);
+    List<AnswerReplyVO> selectMoreList(Map<String, Integer> map);
     int selectNestedMaxOrder(int parentCommentNo);
     int selectMaxOrder();
 }

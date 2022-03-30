@@ -9,7 +9,7 @@ public interface AnswerReplyService {
     int create(AnswerReplyVO answerReply);
     AnswerReplyVO readOne(int ansNo);
     List<AnswerReplyVO> readList(int quesNo);
-    List<AnswerReplyVO> readMoreList(int quesNo);
+    List<AnswerReplyVO> readMoreList(HashMap<String, Integer> map);
     void update(AnswerReplyVO answerReply);
     void delete(HashMap<String, Integer> postNo);
     List<AnswerReplyVO> readAll();
