@@ -47,22 +47,12 @@ public class AnswerReplyController {
 
             AnswerReplyVO parentReply = answerReplyService.readOne(parentCommentNo);
 
-            // 부모 댓글의 깊이 + 1
-            answerReply.setDepth(parentReply.getDepth() + 1);
-
-            // 부모 댓글의 대댓글 중 가장 마지막 순서 + 1
-            answerReply.setOrder(answerReplyService.selectNestedMaxOrder(parentCommentNo) + 1);
         }
-
-        System.out.println("깊이 입니다 ㅎㅎ " + answerReply.getDepth());
-        System.out.println("순서 입니다 ㅎㅎ " + answerReply.getOrder());
 
         int answerReplyNo = answerReplyService.create(answerReply);
 
         AnswerReplyVO answerReplyReturn =answerReplyService.readOne(answerReplyNo);
 
-        System.out.println("depth: " + answerReplyReturn.getDepth());
-        System.out.println("order: " + answerReplyReturn.getOrder());
         System.out.println("parent comment number: " + answerReplyReturn.getParentCommentNo());
 
         return answerReplyService.readOne(answerReplyNo);

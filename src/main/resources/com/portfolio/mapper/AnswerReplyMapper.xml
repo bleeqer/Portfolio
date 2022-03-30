@@ -11,18 +11,14 @@
             select ANS_REPLY_SEQUENCE.NEXTVAL from dual
         </selectKey>
 
-        INSERT INTO TB_ANS_COMMENT (ans_no, comment_no, content, writer, parent_comment_no, comment_depth, comment_order)
-        VALUES (#{ansNo}, #{replyNo}, #{content}, #{writer}, #{parentCommentNo}, #{depth}, #{order})
+        INSERT INTO TB_ANS_COMMENT (ans_no, comment_no, content, writer, parent_comment_no)
+        VALUES (#{ansNo}, #{replyNo}, #{content}, #{writer}, #{parentCommentNo})
 
     </insert>
 
     <select id="selectOne" parameterType="int" resultMap="AnswerReplyResultMap">
-        SELECT * FROM TB_ANS_COMMENT WHERE comment_no=#{replyNo}
+        SELECT * FROM TB_ANS_COMMENT WHERE COMMENT_NO=#{replyNo}
     </select>
-
-<!--    <select id="selectList" parameterType="int" resultMap="AnswerReplyResultMap">-->
-<!--        SELECT * FROM (SELECT * FROM TB_ANS_COMMENT WHERE ques_no=#{quesNo} ORDER BY comment_no DESC) WHERE ROWNUM BETWEEN 0 and 4-->
-<!--    </select>-->
 
     <select id="selectList" parameterType="int" resultMap="AnswerReplyResultMap">
         SELECT LEVEL, ANS_NO, COMMENT_NO, PARENT_COMMENT_NO, CONTENT, WRITER, LIKE_CNT, REG_DATE FROM TB_ANS_COMMENT
@@ -31,15 +27,14 @@
                                         FROM (
                                                 SELECT COMMENT_NO
                                                 FROM TB_ANS_COMMENT
-                                                WHERE ans_no=#{ansNo} AND COMMENT_DEPTH=0
+                                                WHERE ans_no=#{ansNo} AND PARENT_COMMENT_NO=0
                                                 ORDER BY COMMENT_NO
                                              )
                                         WHERE rownum<![CDATA[<=]]>2
                                      )
         CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
-        ORDER SIBLINGS BY COMMENT_ORDER ASC
+        ORDER SIBLINGS BY COMMENT_NO ASC
     </select>
-
 
     <select id="selectMoreList" parameterType="map" resultMap="AnswerReplyResultMap">
         SELECT LEVEL, ANS_NO, COMMENT_NO, PARENT_COMMENT_NO, CONTENT, WRITER, LIKE_CNT, REG_DATE FROM TB_ANS_COMMENT
@@ -48,22 +43,22 @@
                                         FROM (
                                                 SELECT COMMENT_NO
                                                 FROM TB_ANS_COMMENT
-                                                WHERE ans_no=#{ansNo} AND COMMENT_NO<![CDATA[>]]>#{replyNo} AND COMMENT_DEPTH=0
+                                                WHERE ans_no=#{ansNo} AND COMMENT_NO<![CDATA[>]]>#{replyNo} AND PARENT_COMMENT_NO=0
                                                 ORDER BY COMMENT_NO
                                              )
                                         WHERE rownum<![CDATA[<=]]>4
                                         )
             CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
-            ORDER SIBLINGS BY COMMENT_ORDER ASC
+            ORDER SIBLINGS BY COMMENT_NO ASC
     </select>
 
-    <select id="selectNestedMaxOrder" resultType="int" parameterType="int">
-        SELECT NVL(MAX(comment_order), 0) FROM TB_ANS_COMMENT WHERE parent_comment_no=#{parentCommentNo}
-    </select>
+<!--    <select id="selectNestedMaxOrder" resultType="int" parameterType="int">-->
+<!--        SELECT NVL(MAX(comment_order), 0) FROM TB_ANS_COMMENT WHERE parent_comment_no=#{parentCommentNo}-->
+<!--    </select>-->
 
-    <select id="selectMaxOrder" resultType="int" parameterType="int">
-        SELECT NVL(MAX(comment_order), 0) FROM TB_ANS_COMMENT
-    </select>
+<!--    <select id="selectMaxOrder" resultType="int" parameterType="int">-->
+<!--        SELECT NVL(MAX(comment_order), 0) FROM TB_ANS_COMMENT-->
+<!--    </select>-->
 
     <update id="update" parameterType="AnswerReplyVO">
         UPDATE TB_ANS_COMMENT SET content = #{content}
