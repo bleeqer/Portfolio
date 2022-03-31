@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.portfolio.mapper.QuestionCategoryMapper">
+
+    <select id="selectAll" parameterType="int" resultMap="QuestionCategoryResultMap">
+        select CATEGORY_CODE, CATEGORY_NAME, PARENT_CATEGORY_CODE, LEVEL FROM TB_QUESTION_CATEGORY START WITH PARENT_CATEGORY_CODE=0 CONNECT BY PRIOR CATEGORY_CODE = PARENT_CATEGORY_CODE
+    </select>
+
+    <resultMap id="QuestionCategoryResultMap" type="QuestionCategoryVO">
+        <id column="category_code" property="categoryCode"/>
+        <id column="category_name" property="categoryName"/>
+        <id column="parent_category_code" property="parentCategoryCode"/>
+    </resultMap>
+
+</mapper>

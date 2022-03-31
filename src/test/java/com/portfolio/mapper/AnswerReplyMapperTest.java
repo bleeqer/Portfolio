@@ -2,6 +2,7 @@ package com.portfolio.mapper;
 
 import com.portfolio.domain.AnswerReplyVO;
 import com.portfolio.domain.AnswerVO;
+import com.portfolio.domain.QuestionCategoryVO;
 import com.portfolio.service.AnswerReplyService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +21,9 @@ public class AnswerReplyMapperTest {
     @Autowired
     AnswerReplyMapper answerReplyMapper;
 
+    @Autowired
+    QuestionCategoryMapper questionCategoryMapper;
+
 //    @Test
 //    public void test() {
 //        HashMap<String, Integer> map = new HashMap<>();
@@ -29,18 +33,21 @@ public class AnswerReplyMapperTest {
 //    }
 
     @Test
-    public void selectTest() {
-//        List<AnswerReplyVO> answers = answerReplyMapper.selectList(25);
-        Map<String, Integer> requestNums = new HashMap<>();
-        requestNums.put("ansNo", 25);
-        requestNums.put("replyNo", 21);
-        List<AnswerReplyVO> answers = answerReplyMapper.selectMoreList(requestNums);
+    public void test() {
 
-        for (AnswerReplyVO answer : answers) {
-            System.out.println("REPLY NO: " + answer.getReplyNo());
-            System.out.println("CONTENT: " + answer.getContent());
-            System.out.println("LEVEL: " + answer.getLevel());
+        List<QuestionCategoryVO> catList = questionCategoryMapper.selectAll();
 
+        String indentation = "";
+
+        for (QuestionCategoryVO cat : catList) {
+
+
+            for (int i=0; i<cat.getLevel(); i++) {
+                indentation = indentation + "  ";
+            }
+            System.out.println(indentation + cat.getCategoryName());
+
+            indentation = "";
         }
     }
 }
