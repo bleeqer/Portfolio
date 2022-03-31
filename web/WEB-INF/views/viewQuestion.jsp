@@ -169,7 +169,7 @@
                     error: function() {
                         alert("등록 실패했습니다.")
                     }
-                })
+                })z
 
 
 

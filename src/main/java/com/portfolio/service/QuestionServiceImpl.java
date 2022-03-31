@@ -68,6 +68,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public List<QuestionVO> readAllByTopic(String topic) {
+        return questionMapper.selectAllByTopic(topic);
+    }
+
+    @Override
     public void addViewCnt(int postNo) {
         questionMapper.addViewCnt(postNo);
     }
@@ -81,4 +86,5 @@ public class QuestionServiceImpl implements QuestionService {
     public List<QuestionVO> getMore(int startQuesNo) {
         return questionMapper.selectMore(startQuesNo);
     }
+
 }

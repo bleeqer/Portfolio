@@ -33,6 +33,9 @@
 <%--    <sec:authorize access="isAuthenticated()">Logout</sec:authorize>--%>
 <%--    <sec:authorize access="hasRole('ADMIN')"><a href="#">Manage Users</a></sec:authorize>--%>
     <table id="question-table">
+        <c:forEach var="category" items="${categories}">
+            <a href="/topic/${category.categoryName}">${category.categoryName}</a>
+        </c:forEach>
         <span id="ask-button">ASK QUESTION</span>
         <div id="question-list">
             <c:forEach var="question" items="${questions}">
@@ -254,6 +257,7 @@
 
                 })
             })
+
 
 
     </script>

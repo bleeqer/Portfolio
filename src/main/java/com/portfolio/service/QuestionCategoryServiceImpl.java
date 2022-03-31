@@ -18,7 +18,6 @@ public class QuestionCategoryServiceImpl implements QuestionCategoryService {
     @Autowired
     QuestionCategoryMapper questionCategoryMapper;
 
-
     @Override
     public List<QuestionCategoryVO> selectAll() {
         return questionCategoryMapper.selectAll();
