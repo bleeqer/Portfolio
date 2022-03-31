@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -38,9 +39,7 @@ public class QuestionServiceImpl implements QuestionService {
 
                 questionImageMapper.insert(imgVO);
             }
-
         }
-
     }
 
     @Override
@@ -85,6 +84,11 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<QuestionVO> getMore(int startQuesNo) {
         return questionMapper.selectMore(startQuesNo);
+    }
+
+    @Override
+    public List<QuestionVO> getMoreByTopic(HashMap<String, Object> map) {
+        return questionMapper.selectMoreByTopic(map);
     }
 
 }

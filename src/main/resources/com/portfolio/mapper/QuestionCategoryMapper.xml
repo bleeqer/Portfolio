@@ -15,4 +15,5 @@
         <id column="parent_category_code" property="parentCategoryCode"/>
     </resultMap>
 
+
 </mapper>

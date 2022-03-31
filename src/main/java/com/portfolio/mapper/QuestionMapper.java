@@ -1,6 +1,8 @@
 package com.portfolio.mapper;
 
 import com.portfolio.domain.QuestionVO;
+
+import java.util.HashMap;
 import java.util.List;
 
 public interface QuestionMapper {
@@ -14,5 +16,6 @@ public interface QuestionMapper {
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);
     List<QuestionVO> selectMore(int startQuesNo);
+    List<QuestionVO> selectMoreByTopic(HashMap<String, Object> map);
 
 }

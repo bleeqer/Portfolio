@@ -2,6 +2,7 @@ package com.portfolio.service;
 
 import com.portfolio.domain.QuestionVO;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface QuestionService {
@@ -14,5 +15,6 @@ public interface QuestionService {
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);
     List<QuestionVO> getMore(int startQuesNo);
+    List<QuestionVO> getMoreByTopic(HashMap<String, Object> map);
 
 }

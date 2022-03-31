@@ -36,7 +36,7 @@
 <!--    </select>-->
 
     <select id="selectAll" resultMap="QuestionResultMap">
-        SELECT * FROM (SELECT * FROM TB_QUESTION ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 20
+        SELECT * FROM (SELECT * FROM TB_QUESTION ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 10
     </select>
 
     <select id="selectMore" parameterType="int" resultMap="QuestionResultMap">
@@ -44,7 +44,11 @@
     </select>
 
     <select id="selectAllByTopic" resultMap="QuestionResultMap">
-        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE TOPIC=#{topic} ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 20
+        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE TOPIC=#{topic} ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 10
+    </select>
+
+    <select id="selectMoreByTopic" parameterType="map" resultMap="QuestionResultMap">
+        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE ques_no<![CDATA[<]]>#{quesNo} AND TOPIC=#{topic} ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 10
     </select>
 
     <update id="addViewCnt" parameterType="int">

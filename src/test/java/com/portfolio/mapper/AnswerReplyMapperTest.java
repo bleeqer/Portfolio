@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -54,10 +55,15 @@ public class AnswerReplyMapperTest {
     @Test
     public void selectByTopic() {
 
-        List<QuestionVO> categorizedQuestions = questionService.readAllByTopic("JAVA");
+        HashMap<String, Object> map = new HashMap<>();
+
+        map.put("topic", "JAVA");
+        map.put("quesNo", 180);
+
+        List<QuestionVO> categorizedQuestions = questionService.getMoreByTopic(map);
 
         for (QuestionVO question : categorizedQuestions) {
-            System.out.println(question.getContent());
+            System.out.println(question.getQuesNo());
         }
     }
 }
