@@ -63,7 +63,11 @@ public class AnswerReplyMapperTest {
         List<QuestionVO> categorizedQuestions = questionService.getMoreByTopic(map);
 
         for (QuestionVO question : categorizedQuestions) {
+
             System.out.println(question.getQuesNo());
+
         }
+
     }
+
 }

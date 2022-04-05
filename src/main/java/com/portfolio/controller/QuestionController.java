@@ -107,14 +107,5 @@ public class QuestionController {
         return "index";
     }
 
-    @PostMapping("more")
-    @ResponseBody
-    public ResponseEntity<List<QuestionVO>> getMoreQuestions(@RequestParam int quesNo) {
 
-            int startQuesNo = quesNo - 1;
-
-            List<QuestionVO> questions = questionService.getMore(startQuesNo);
-
-            return new ResponseEntity<>(questions, HttpStatus.OK);
-        }
 }

@@ -54,8 +54,14 @@
     </table>
 
     <%@ include file="/WEB-INF/views/modals/questionForm.jsp" %>
+
+    <div id="topic" data-selected-topic="${selectedTopic}" style="display: none;"></div>
 <%--    <%@ include file="/WEB-INF/views/modals/userLoginForm.jsp" %>--%>
 
+    <form id="logout-form" action="/user/logout" method="POST" style="display: none;">
+        <input id="input-csrf" type="text" name="_csrf">
+    </form>
+    <span id="logout-button"><a href="/user/logout">LOG OUT</a></span>
     <script>
         async function initEditor () {
 
@@ -109,6 +115,7 @@
 
     <script>
 
+        const name = $("meta[name='_csrf_parameter']").attr("content")
         const header = $("meta[name='_csrf_header']").attr("content")
         const token = $("meta[name='_csrf']").attr("content")
 
@@ -218,11 +225,12 @@
 
     <script>
             $('#more-button').on('click', function () {
+                // alert($(location).attr('pathname'))
+                const topic = $('#topic').data('selected-topic')
+                const requestURL = '/topic/more/' + topic
+                const lastQuesNo = $('.question-row').last().data('ques_no')
+                const param = {quesNo: lastQuesNo}
 
-
-                requestURL = '/question/more'
-                let lastQuesNo = $('.question-row').last().data('ques_no')
-                let param = {quesNo: lastQuesNo}
                 $.ajax({
                     type: 'POST',
 
@@ -252,10 +260,23 @@
                             )
                         }
                     },
+
                     error: function () {
                     }
 
                 })
+            })
+
+            $('#logout-button').on('click', function(e) {
+
+                e.preventDefault()
+
+                let logoutForm = $('#logout-form')
+
+                logoutForm.find('#input-csrf').val(token)
+
+                logoutForm.submit()
+
             })
 
 

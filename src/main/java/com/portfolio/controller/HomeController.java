@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -33,15 +33,61 @@ public class HomeController {
 
         model.addAttribute("questions", questions);
         model.addAttribute("categories", categories);
+        model.addAttribute("selectedTopic", "All");
 
         return "index";
+    }
+
+//    @PostMapping("more")
+    @GetMapping("more")
+    @ResponseBody
+    public ResponseEntity<List<QuestionVO>> getMoreQuestions(@RequestParam int quesNo) {
+
+        int startQuesNo = quesNo - 1;
+
+        List<QuestionVO> questions = questionService.getMore(startQuesNo);
+
+        return new ResponseEntity<>(questions, HttpStatus.OK);
+    }
+
+    @GetMapping("topic/{topic}")
+    public String getQuestionsByTopic(@PathVariable String topic, Model model) {
+        System.out.println(topic);
+        List<QuestionVO> questions = questionService.readAllByTopic(topic);
+
+        model.addAttribute("questions", questions);
+        model.addAttribute("selectedTopic", topic);
+
+        return "index";
+    }
+
+    @PostMapping("topic/more/{topic}")
+    public ResponseEntity<List<QuestionVO>> getMoreQuestionsByTopic(@PathVariable String topic, @RequestParam int quesNo, Model model) {
+
+        System.out.println("topic: " + topic);
+
+        if (!topic.equals("All")) {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("quesNo", quesNo);
+            map.put("topic", topic);
+            List<QuestionVO> questions = questionService.getMoreByTopic(map);
+
+            model.addAttribute("questions", questions);
+
+            return new ResponseEntity<>(questions, HttpStatus.OK);
+        }
+
+        List<QuestionVO> questions = questionService.getMore(quesNo);
+
+        model.addAttribute("questions", questions);
+
+        return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
 //    @RequestMapping("topic/{topic}")
 //    public String viewQuestion(@PathVariable String topic, Model model) {
 //
 ////        List<QuestionVO> questions = questionService.read();
-//
 //
 //    }
 
