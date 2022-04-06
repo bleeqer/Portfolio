@@ -23,9 +23,53 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
+    <%--  Boostrap  --%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+
+    </style>
 
 </head>
 <body>
+    <div class="container-fluid bg-dark">
+        <nav class="navbar navbar-dark py-0">
+            <a href="#" class="navbar-brand">LOGO</a>
+            <div class="dropdown">
+                <span class="btn btn-secondary my-0" id="user-dropdown" data-bs-toggle="dropdown">User</span>
+                <ul class="dropdown-menu" aria-labelledby="book-dropdown">
+                    <li><a class="dropdown-item" href="#">My Profile</a></li>
+                    <li><a class="dropdown-item" href="#">My Questions</a></li>
+                    <li><a class="dropdown-item" href="#">My Answers</a></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+            </div>
+<%--            <div class="input-group">--%>
+<%--                <div class="form-outline">--%>
+<%--                    <input type="search" id="form1" class="form-control" />--%>
+<%--                    <label class="form-label" for="form1">Search</label>--%>
+<%--                </div>--%>
+<%--                <button type="button" class="btn btn-primary">--%>
+<%--                    <i class="fas fa-search"></i>--%>
+<%--                </button>--%>
+<%--            </div>--%>
+            <a class="btn btn-danger rounded-pill my-0">ASK QUESTION</a>
+        </nav>
+    </div>
+    <style>
+
+        .btn {
+            font-size: 16px;
+        }
+
+        .dropdown-menu {
+            left: 50% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important;
+        }
+    </style>
+
+
     <h2>게시판</h2>
 <%--    <sec:authorize access="!isAuthenticated()"><span id="login-button">Login</span></sec:authorize>--%>
 <%--    <span id="login-button">Login</span>--%>
