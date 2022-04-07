@@ -23,43 +23,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
-    <%--  Boostrap  --%>
+    <%--  Bootstrap  --%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
 
-    </style>
-
-</head>
-<body>
-    <div class="container-fluid bg-dark">
-        <nav class="navbar navbar-dark py-0">
-            <a href="#" class="navbar-brand">LOGO</a>
-            <div class="dropdown">
-                <span class="btn btn-secondary my-0" id="user-dropdown" data-bs-toggle="dropdown">User</span>
-                <ul class="dropdown-menu" aria-labelledby="book-dropdown">
-                    <li><a class="dropdown-item" href="#">My Profile</a></li>
-                    <li><a class="dropdown-item" href="#">My Questions</a></li>
-                    <li><a class="dropdown-item" href="#">My Answers</a></li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
-            </div>
-<%--            <div class="input-group">--%>
-<%--                <div class="form-outline">--%>
-<%--                    <input type="search" id="form1" class="form-control" />--%>
-<%--                    <label class="form-label" for="form1">Search</label>--%>
-<%--                </div>--%>
-<%--                <button type="button" class="btn btn-primary">--%>
-<%--                    <i class="fas fa-search"></i>--%>
-<%--                </button>--%>
-<%--            </div>--%>
-            <a class="btn btn-danger rounded-pill my-0">ASK QUESTION</a>
-        </nav>
-    </div>
+    <%-- Bootstrap Icon --%>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <style>
 
         .btn {
             font-size: 16px;
+        }
+
+        .bg-dark {
+            background-color: #262626;
+        }
+
+        .bg-black {
+            background-color: #181818;
+        }
+
+        html, body {
+            padding: 0;
+            margin: 0;
+            color: #FFFFFF;
+            font-size: 16px;
+            background-color: #181818;
         }
 
         .dropdown-menu {
@@ -68,6 +57,163 @@
             transform: translateX(-50%) !important;
         }
     </style>
+
+</head>
+<body>
+    <div class="container-fluid bg-dark">
+        <nav class="navbar navbar-dark py-0 px-5">
+            <a href="#" class="navbar-brand px-2">LOGO</a>
+            <div class="dropdown ms-auto px-2">
+                <span class="btn btn-secondary" id="user-dropdown" data-bs-toggle="dropdown">User</span>
+                <ul class="dropdown-menu" aria-labelledby="book-dropdown">
+                    <li><a class="dropdown-item" href="#">My Profile</a></li>
+                    <li><a class="dropdown-item" href="#">My Questions</a></li>
+                    <li><a class="dropdown-item" href="#">My Answers</a></li>
+                    <div class="dropdown-divider"></div>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+            </div>
+            <div class="px-2">
+            <a class="btn btn-danger rounded-pill my-3 py-1">Ask question</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container-fluid p-0 m-0">
+        <div class="mx-auto pt-3 px-2" style="max-width: 1100px;">
+
+            <%--카테고리 리스트--%>
+            <div class="mx-auto" style="max-width: 200px;">
+            </div>
+
+            <%--질문글 리스트--%>
+            <div class="mx-auto" style="max-width: 700px;">
+                <div>
+                    <div>
+
+                        <%--질문글--%>
+                        <div class="rounded-1 mb-3 mx-1 border border-light shadow-sm">
+
+                            <%--배경색--%>
+                            <div class="bg-dark">
+                                <div class="px-3 pt-3">
+                                    <div>
+
+                                        <%--질문글--%>
+                                        <div>
+                                            <%--질문글 body--%>
+                                            <div>
+
+                                                <%--프로필--%>
+                                                <div>
+                                                    <div class="mb-3 d-flex">
+                                                        <%--프로필 사진--%>
+                                                        <div class="me-3">
+                                                            <div>
+                                                                <img src="" alt="" width="50" height="50">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <%--프로필 정보--%>
+                                                        <div>
+                                                            <%--이름--%>
+                                                            <div class="">홍길동</div>
+
+                                                            <%--상세--%>
+                                                            <div class="">프로그래머</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <%--질문글 footer--%>
+                                            <div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <%--답변글--%>
+                                        <div>
+                                            <%--답변글 body--%>
+                                            <div>
+
+                                            </div>
+
+                                            <%--답변글 footer--%>
+                                            <div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="dropdown-divider"></div>
+
+                                        <%--Views, Upvotes 표시--%>
+                                        <div class="mt-3 d-flex">
+                                            <div>Views</div>
+                                            <div>Upvotes</div>
+                                        </div>
+
+                                        <%--Upvote/Downvote, Comment, Share, Option 버튼--%>
+                                        <div>
+
+                                            <%--Container--%>
+                                            <div class="d-flex">
+
+                                                <%--div.Upvote/Downvote, Comment 버튼--%>
+                                                <div class="d-flex">
+
+                                                    <%--Upvote/Downvote 버튼--%>
+                                                    <div class="me-1">
+
+                                                        <%--Container--%>
+                                                        <div class="d-flex">
+                                                            <%--Upvote 버튼--%>
+                                                            <div>Upvote</div>
+                                                            <%--Divider--%>
+                                                            <div> | </div>
+                                                            <%--Downvote 버튼--%>
+                                                            <div>Downvote</div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <%--Comment 버튼--%>
+                                                    <div class="">
+
+                                                        <%--Container--%>
+                                                        <div class="d-flex">
+                                                            <div>CO</div>
+<%--                                                            <span><svg width="24" height="24">CO</svg></span>--%>
+                                                            <div>100</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <%--Option 버튼--%>
+                                                <div class="ms-auto">
+
+                                                    <%--Container--%>
+                                                    <div>
+                                                        <span>
+                                                            <img src="/static/img/svg/threeDots.svg"/>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <h2>게시판</h2>
