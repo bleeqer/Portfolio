@@ -43,18 +43,35 @@
             background-color: #181818;
         }
 
+        .highlight-background:hover {
+            opacity: 1;
+        }
+
+        /*highlight-transparent {*/
+        /*    background-color: rgba(24, 24, 24, 0.8);*/
+        /*}*/
+
+        /*.highlight-transparent:hover {*/
+        /*    opacity: 0.5;*/
+        /*}*/
+
         html, body {
             padding: 0;
             margin: 0;
             color: #FFFFFF;
             font-size: 16px;
             background-color: #181818;
+            /*-webkit-tap-highlight-color: rgba(24, 24, 24, 0.6);*/
         }
 
         .dropdown-menu {
             left: 50% !important;
             right: auto !important;
             transform: translateX(-50%) !important;
+        }
+
+        .icon_svg-stroke {
+            stroke: rgb(177, 179, 182);
         }
     </style>
 
@@ -95,8 +112,9 @@
                         <div class="rounded-1 mb-3 mx-1 border border-light shadow-sm">
 
                             <%--배경색--%>
-                            <div class="bg-dark">
-                                <div class="px-3 pt-3">
+                            <div class="bg-dark position-relative" style="height: 500px;">
+
+                                <div class="px-3 pt-3 ">
                                     <div>
 
                                         <%--질문글--%>
@@ -198,16 +216,33 @@
                                                     <%--Container--%>
                                                     <div>
                                                         <span>
-                                                            <img src="/static/img/svg/threeDots.svg"/>
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+
+                                                                <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                                                                      class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
+                                                                </path>
+
+                                                            </svg>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
+                                <div class="highlight-background" style="box-sizing: border-box;
+                                     position: absolute;
+                                     background-color: rgb(51, 51, 51);
+                                     inset: 3px 0;
+                                     z-index: 0;
+                                     transition-property: opacity, transform;
+                                     transition-duration: 180ms;
+                                     transition-timing-function: ease-out;
+                                     opacity: 0;">
+
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
