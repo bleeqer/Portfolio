@@ -36,32 +36,19 @@
         }
 
         .bg-dark {
-            background-color: #262626;
+            background-color: rgb(38, 38, 38)!important;
         }
 
-        .bg-black {
-            background-color: #181818;
+        .bg-hover-whiten:hover {
+            background-color: rgba(255, 255, 255, 0.09)!important;
         }
-
-        .highlight-background:hover {
-            opacity: 1;
-        }
-
-        /*highlight-transparent {*/
-        /*    background-color: rgba(24, 24, 24, 0.8);*/
-        /*}*/
-
-        /*.highlight-transparent:hover {*/
-        /*    opacity: 0.5;*/
-        /*}*/
 
         html, body {
             padding: 0;
             margin: 0;
-            color: #FFFFFF;
             font-size: 16px;
             background-color: #181818;
-            /*-webkit-tap-highlight-color: rgba(24, 24, 24, 0.6);*/
+            color: rgb(213, 214, 214);
         }
 
         .dropdown-menu {
@@ -112,9 +99,8 @@
                         <div class="rounded-1 mb-3 mx-1 border border-light shadow-sm">
 
                             <%--배경색--%>
-                            <div class="bg-dark position-relative" style="height: 500px;">
-
-                                <div class="px-3 pt-3 ">
+                            <div class="bg-dark position-relative bg-hover-whiten" style="height: 500px; z-index: 1;">
+                                <div class="px-3 pt-3">
                                     <div>
 
                                         <%--질문글--%>
@@ -230,18 +216,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="highlight-background" style="box-sizing: border-box;
-                                     position: absolute;
-                                     background-color: rgb(51, 51, 51);
-                                     inset: 3px 0;
-                                     z-index: 0;
-                                     transition-property: opacity, transform;
-                                     transition-duration: 180ms;
-                                     transition-timing-function: ease-out;
-                                     opacity: 0;">
-
                                 </div>
+
                             </div>
+
 
                         </div>
                     </div>
