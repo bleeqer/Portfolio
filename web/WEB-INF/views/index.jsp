@@ -43,6 +43,10 @@
         border-color: rgb(26, 26, 26)!important;
     }
 
+    .border-color-whiten {
+        border-color: rgba(255, 255, 255, 0.06)!important;
+    }
+
     .bg-hover-whiten:hover {
       background-color: rgba(255, 255, 255, 0.09)!important;
     }
@@ -57,6 +61,14 @@
 
     .rounded-right-top-pill {
       border-bottom-right-radius: 1000px;
+    }
+
+    .rounded-5 {
+      border-radius: 0.5rem!important;
+    }
+
+    .rounded-7 {
+      border-radius: 0.7rem!important;
     }
 
     .rounded-right-bottom-pill {
@@ -135,7 +147,7 @@
                             <%--프로필 사진--%>
                             <div class="me-3">
                               <div>
-                                <img src="" alt="" width="50" height="50">
+                                <img class="rounded-7 border border-color-whiten" src="/static/img/flower.jpeg" alt="" width="50" height="50">
                               </div>
                             </div>
 
