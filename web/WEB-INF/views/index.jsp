@@ -44,6 +44,7 @@
         }
 
         html, body {
+            box-sizing: border-box;
             padding: 0;
             margin: 0;
             font-size: 16px;
@@ -161,10 +162,10 @@
                                         </div>
 
                                         <%--Upvote/Downvote, Comment, Share, Option 버튼--%>
-                                        <div>
+                                        <div >
 
                                             <%--Container--%>
-                                            <div class="d-flex">
+                                            <div class="d-flex justify-content-center align-items-center" style="height: 46px;">
 
                                                 <%--div.Upvote/Downvote, Comment 버튼--%>
                                                 <div class="d-flex">
@@ -201,13 +202,11 @@
 
                                                     <%--Container--%>
                                                     <div>
-                                                        <span>
-                                                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-
+                                                        <span class="bg-hover-whiten rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;s">
+                                                            <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
                                                                       class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
                                                                 </path>
-
                                                             </svg>
                                                         </span>
                                                     </div>
