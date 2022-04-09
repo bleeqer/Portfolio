@@ -51,6 +51,10 @@
       background-color: rgba(255, 255, 255, 0.09)!important;
     }
 
+    .bg-hover-darken:hover {
+      background-color: rgba(0, 0, 0, 0.09)!important;
+    }
+
     .rounded-left-top-pill {
       border-bottom-left-radius: 1000px;
     }
@@ -145,9 +149,12 @@
                         <div>
                           <div class="mb-3 d-flex">
                             <%--프로필 사진--%>
-                            <div class="me-3">
+                            <div class="me-3 position-relative">
                               <div>
                                 <img class="rounded-7 border border-color-whiten" src="/static/img/flower.jpeg" alt="" width="50" height="50">
+                              </div>
+                              <div class="bg-hover-darken position-absolute" style="inset: 0;">
+
                               </div>
                             </div>
 
