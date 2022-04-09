@@ -43,6 +43,22 @@
             background-color: rgba(255, 255, 255, 0.09)!important;
         }
 
+        .rounded-left-top-pill {
+            border-bottom-left-radius: 1000px;
+        }
+
+        .rounded-left-bottom-pill {
+            border-top-left-radius: 1000px;
+        }
+
+        .rounded-right-top-pill {
+            border-bottom-right-radius: 1000px;
+        }
+
+        .rounded-right-bottom-pill {
+            border-top-right-radius: 1000px;
+        }
+
         html, body {
             box-sizing: border-box;
             padding: 0;
@@ -165,22 +181,29 @@
                                         <div >
 
                                             <%--Container--%>
-                                            <div class="d-flex justify-content-center align-items-center" style="height: 46px;">
+                                            <div class="d-flex justify-content-center align-items-center py-1" style="height: 46px;">
 
                                                 <%--div.Upvote/Downvote, Comment 버튼--%>
-                                                <div class="d-flex">
+                                                <div class="d-flex justify-content-center align-items-center">
 
                                                     <%--Upvote/Downvote 버튼--%>
-                                                    <div class="me-1">
+                                                    <div class="me-1 d-flex justify-content-center align-items-center">
 
                                                         <%--Container--%>
-                                                        <div class="d-flex">
+                                                        <div class="d-flex rounded-pill" style="background-color: rgba(255, 255, 255, 0.05);">
                                                             <%--Upvote 버튼--%>
-                                                            <div>Upvote</div>
+                                                            <div class="d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" style="height: 38px">
+                                                                <div >
+                                                                    Upvote
+                                                                </div>
+                                                            </div>
                                                             <%--Divider--%>
-                                                            <div> | </div>
                                                             <%--Downvote 버튼--%>
-                                                            <div>Downvote</div>
+                                                            <div class="d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill" style="height: 38px">
+                                                                <div>
+                                                                    Downvote
+                                                                </div>
+                                                            </div>
                                                         </div>
 
                                                     </div>
