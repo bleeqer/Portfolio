@@ -31,6 +31,48 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <style>
 
+    /*test*/
+    .fade-post {
+      max-height: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      /*height: 200px;*/
+      /*background-image: linear-gradient(180deg, rgb(213, 214, 214) 80%, transparent 100%);*/
+      /*color: transparent;*/
+      /*-webkit-background-clip: text;*/
+
+    }
+
+    .overflow-fade {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgb(38, 38, 38) 100%);
+      display: block;
+    }
+
+    /*.fade-post::before:hover {*/
+    /*  background-color: rgba(255, 255, 255, 0.09)!important;*/
+    /*}*/
+
+    .readMore-button {
+      position: absolute;
+      bottom: -5px;
+      right: 50%;
+      transform: translateX(50%);
+    }
+
+    .link-default {
+      color: rgb(213, 214, 214);
+    }
+
+    .hover-underline:hover {
+      text-decoration: underline!important;
+      color: rgb(213, 214, 214);
+    }
+
     .btn {
       font-size: 16px;
     }
@@ -77,6 +119,13 @@
 
     .rounded-right-bottom-pill {
       border-top-right-radius: 1000px;
+    }
+
+    .elipsis {
+      -webkit-line-clamp: 4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     html, body {
@@ -136,7 +185,7 @@
             <div class="mb-3 mx-1" style="">
 
               <%--배경색--%>
-              <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten" style="height: 500px;">
+              <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten">
                 <div class="px-3 pt-3" style="height: 100%;">
                   <div>
 
@@ -167,6 +216,27 @@
                               <div class="">프로그래머</div>
                             </div>
                           </div>
+                          <%--질문글 제목--%>
+                          <div>
+                            <div>
+                              <h3><a class="text-decoration-none link-default hover-underline" href="#"><b>This is the title of the question!</b></a></h3>
+                            </div>
+                          </div>
+
+                          <%--질문글 내용--%>
+                          <div>
+                            <div class="fade-post">
+                              <div class="">
+                                Suspendisse nisi lorem, pellentesque tempor consequat a, viverra vitae velit. Phasellus non est tincidunt felis dictum viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ornare, massa et efficitur dignissim, ligula mauris rutrum lectus, at elementum justo ex in dui. Mauris ut mattis libero, et iaculis magna. Maecenas in malesuada nisi, a scelerisque lectus. Suspendisse leo lacus, ornare eu felis non, hendrerit suscipit risus. Etiam elementum risus nec nisi blandit, non bibendum velit vulputate. Donec felis nunc, tempor eget placerat a, fringilla quis sapien. In vel bibendum erat. Maecenas egestas finibus ex, eu vulputate eros condimentum non. Donec eu sodales neque. Nullam lobortis, dolor non dapibus interdum, purus dui efficitur eros, quis aliquam neque lacus sed ex.
+
+                                Nulla vel imperdiet justo, eget aliquet ex. Etiam pharetra ex tristique tortor interdum, nec pellentesque elit pharetra. Integer et est elementum, blandit leo et, accumsan magna. Cras cursus mi vitae lacus convallis ultricies. Nulla sollicitudin risus eget erat suscipit, sit amet pellentesque massa condimentum. Duis viverra non arcu id feugiat. Pellentesque vitae molestie diam, id laoreet dui. Sed ut rhoncus magna. Mauris luctus egestas nunc, eu lacinia dolor hendrerit vel. Donec eros magna, accumsan non ante quis.
+                                <img src="/static/img/flower.jpeg" alt="" width="100%">
+                              </div>
+                              <div class="overflow-fade"></div>
+                              <span class="readMore-button">More</span>
+                            </div>
+
+                          </div>
                         </div>
                       </div>
 
@@ -176,7 +246,6 @@
                       </div>
                     </div>
 
-                    <div class="dropdown-divider"></div>
 
                     <%--답변글--%>
                     <div>
@@ -191,7 +260,6 @@
                       </div>
                     </div>
 
-                    <div class="dropdown-divider"></div>
 
                     <%--Views, Upvotes 표시--%>
                     <div class="mt-3 d-flex">
@@ -291,6 +359,184 @@
                 </div>
               </div>
             </div>
+
+          <%--질문글--%>
+          <div class="mb-3 mx-1" style="">
+
+            <%--배경색--%>
+            <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten">
+              <div class="px-3 pt-3" style="height: 100%;">
+                <div>
+
+                  <%--질문글--%>
+                  <div>
+                    <%--질문글 body--%>
+                    <div>
+
+                      <%--프로필--%>
+                      <div>
+                        <div class="mb-3 d-flex">
+                          <%--프로필 사진--%>
+                          <div class="me-3 position-relative">
+                            <div>
+                              <img class="rounded-7 border border-color-whiten" src="/static/img/flower.jpeg" alt="" width="50" height="50">
+                            </div>
+                            <div class="bg-hover-darken position-absolute" style="inset: 0;">
+
+                            </div>
+                          </div>
+
+                          <%--프로필 정보--%>
+                          <div>
+                            <%--이름--%>
+                            <div class="">홍길동</div>
+
+                            <%--상세--%>
+                            <div class="">프로그래머</div>
+                          </div>
+                        </div>
+                        <%--질문글 제목--%>
+                        <div>
+                          <div>
+                            <h3><b>This is the title of the question!</b></h3>
+                          </div>
+                        </div>
+
+                        <%--질문글 내용--%>
+                        <div>
+                          <div class="fade-post">
+                            <div class="">
+                              Suspendisse nisi lorem, pellentesque tempor consequat a, viverra vitae velit. Phasellus non est tincidunt felis dictum viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ornare, massa et efficitur dignissim, ligula mauris rutrum lectus, at elementum justo ex in dui. Mauris ut mattis libero, et iaculis magna. Maecenas in malesuada nisi, a scelerisque lectus. Suspendisse leo lacus, ornare eu felis non, hendrerit suscipit risus. Etiam elementum risus nec nisi blandit, non bibendum velit vulputate. Donec felis nunc, tempor eget placerat a, fringilla quis sapien. In vel bibendum erat. Maecenas egestas finibus ex, eu vulputate eros condimentum non. Donec eu sodales neque. Nullam lobortis, dolor non dapibus interdum, purus dui efficitur eros, quis aliquam neque lacus sed ex.
+
+                              Nulla vel imperdiet justo, eget aliquet ex. Etiam pharetra ex tristique tortor interdum, nec pellentesque elit pharetra. Integer et est elementum, blandit leo et, accumsan magna. Cras cursus mi vitae lacus convallis ultricies. Nulla sollicitudin risus eget erat suscipit, sit amet pellentesque massa condimentum. Duis viverra non arcu id feugiat. Pellentesque vitae molestie diam, id laoreet dui. Sed ut rhoncus magna. Mauris luctus egestas nunc, eu lacinia dolor hendrerit vel. Donec eros magna, accumsan non ante quis.
+                              <img src="/static/img/flower.jpeg" alt="" width="100%" height="100%">
+                            </div>
+                            <div class="overflow-fade"></div>
+                            <span class="readMore-button">More</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <%--질문글 footer--%>
+                    <div>
+
+                    </div>
+                  </div>
+
+
+                  <%--답변글--%>
+                  <div>
+                    <%--답변글 body--%>
+                    <div>
+
+                    </div>
+
+                    <%--답변글 footer--%>
+                    <div>
+
+                    </div>
+                  </div>
+
+
+                  <%--Views, Upvotes 표시--%>
+                  <div class="mt-3 d-flex">
+                    <div>Views</div>
+                    <div>Upvotes</div>
+                  </div>
+
+                  <%--Upvote/Downvote, Comment, Share, Option 버튼--%>
+                  <div class="px-1">
+
+                    <%--Container--%>
+                    <div class="d-flex justify-content-center align-items-center py-1" style="height: 46px;">
+
+                      <%--div.Upvote/Downvote, Comment 버튼--%>
+                      <div class="d-flex justify-content-center align-items-center">
+
+                        <%--Upvote/Downvote 버튼--%>
+                        <div class="me-1 d-flex justify-content-center align-items-center">
+
+                          <%--Container--%>
+                          <div class="d-flex rounded-pill" role="button" style="background-color: rgba(255, 255, 255, 0.05);">
+                            <%--Upvote 버튼--%>
+                            <div class="d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" style="height: 38px">
+                              <div class="d-flex">
+                                <div>
+                                    <span class="d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 4 3 15h6v5h6v-5h6z" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#666" fill="none" stroke-linejoin="round"></path>
+                                      </svg>
+                                    </span>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                  Upvote Count
+                                </div>
+                              </div>
+                            </div>
+                            <%--Divider--%>
+                            <%--Downvote 버튼--%>
+                            <div class=" d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill" style="height: 38px">
+                              <div>
+                                  <span class="d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;s">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
+                                    </svg>
+                                  </span>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <%--Comment 버튼--%>
+                        <div role="button">
+
+                          <%--Container--%>
+                          <div>
+
+                            <%--Comment button--%>
+                            <div class="d-flex rounded-pill px-2 bg-hover-whiten">
+
+                              <%--Comment icon--%>
+                              <span class="d-inline-block d-flex align-items-center justify-content-center" style="height: 38px;">
+                                  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z" class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="1.5" fill="none"></path>
+                                  </svg>
+                                </span>
+
+                              <%--Comment count--%>
+                              <div class="d-flex align-items-center justify-content-center">
+                                100
+                              </div>
+                            </div>
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <%--Option 버튼--%>
+                      <div class="ms-auto">
+
+                        <%--Container--%>
+                        <div>
+                            <span class="bg-hover-whiten rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;s">
+                              <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                                      class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
+                                </path>
+                              </svg>
+                            </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>
@@ -551,8 +797,29 @@
 
             })
 
+    $('.readMore-button').on('click', function() {
+      $(this).parent().css('overflow', 'visible')
+      $(this).parent().css('max-height', '100%')
+      $(this).hide()
+      $(this).parent().find('.overflow-fade').css('display', 'none')
 
+    })
 
     </script>
+  <script>
+  function isOverflown(element) {
+    return element.prop('scrollHeight') > element.height()
+  }
+
+  $(document).ready(function() {
+
+      $('.fade-post').each(function() {
+        if (isOverflown($('.fade-post'))) {
+          $(this).find('.overflow-fade').css('display', 'block')
+        }
+      })
+
+    })
+  </script>
 </body>
 </html>
