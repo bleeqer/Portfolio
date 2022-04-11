@@ -53,15 +53,20 @@
       display: block;
     }
 
+
+
+
     /*.fade-post::before:hover {*/
     /*  background-color: rgba(255, 255, 255, 0.09)!important;*/
     /*}*/
 
     .readMore-button {
       position: absolute;
-      bottom: -5px;
+      bottom: 50%;
       right: 50%;
-      transform: translateX(50%);
+      transform: translate(50%, 50%);
+      opacity: 0.9;
+
     }
 
     .link-default {
@@ -91,6 +96,10 @@
 
     .bg-hover-whiten:hover {
       background-color: rgba(255, 255, 255, 0.09)!important;
+    }
+
+    .bg-hover-whiten:hover .overflow-fade {
+      background: linear-gradient(to bottom, transparent 60%, rgb(46, 46, 46) 100%);
     }
 
     .bg-hover-darken:hover {
@@ -224,7 +233,7 @@
                           </div>
 
                           <%--질문글 내용--%>
-                          <div>
+                          <div class="position-relative">
                             <div class="fade-post">
                               <div class="">
                                 Suspendisse nisi lorem, pellentesque tempor consequat a, viverra vitae velit. Phasellus non est tincidunt felis dictum viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ornare, massa et efficitur dignissim, ligula mauris rutrum lectus, at elementum justo ex in dui. Mauris ut mattis libero, et iaculis magna. Maecenas in malesuada nisi, a scelerisque lectus. Suspendisse leo lacus, ornare eu felis non, hendrerit suscipit risus. Etiam elementum risus nec nisi blandit, non bibendum velit vulputate. Donec felis nunc, tempor eget placerat a, fringilla quis sapien. In vel bibendum erat. Maecenas egestas finibus ex, eu vulputate eros condimentum non. Donec eu sodales neque. Nullam lobortis, dolor non dapibus interdum, purus dui efficitur eros, quis aliquam neque lacus sed ex.
@@ -233,9 +242,8 @@
                                 <img src="/static/img/flower.jpeg" alt="" width="100%">
                               </div>
                               <div class="overflow-fade"></div>
-                              <span class="readMore-button">More</span>
                             </div>
-
+                            <span class="readMore-button btn btn-primary rounded-pill">More</span>
                           </div>
                         </div>
                       </div>
@@ -280,12 +288,12 @@
                           <div class="me-1 d-flex justify-content-center align-items-center">
 
                             <%--Container--%>
-                            <div class="d-flex rounded-pill" role="button" style="background-color: rgba(255, 255, 255, 0.05);">
+                            <div class="d-flex rounded-pill" role="button" style="background-color: rgba(255, 255, 255, 0.05); height: 30px;">
                               <%--Upvote 버튼--%>
-                              <div class="d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" style="height: 38px">
+                              <div class="d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" >
                                 <div class="d-flex">
                                   <div>
-                                    <span class="d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                    <span class="d-inline-block d-flex align-items-center justify-content-center">
                                       <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12 4 3 15h6v5h6v-5h6z" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#666" fill="none" stroke-linejoin="round"></path>
                                       </svg>
@@ -296,19 +304,19 @@
                                   </div>
                                 </div>
                               </div>
-                              <%--Divider--%>
-                              <%--Downvote 버튼--%>
-                              <div class=" d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill" style="height: 38px">
-                                <div>
-                                  <span class="d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;s">
+                                <%--Upvote 버튼--%>
+                              <div class="d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill" >
+                                <div class="d-flex">
+                                  <div>
+                                  <span class="d-inline-block d-flex align-items-center justify-content-center">
                                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                       <path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
                                     </svg>
                                   </span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-
                           </div>
 
                           <%--Comment 버튼--%>
@@ -321,7 +329,7 @@
                               <div class="d-flex rounded-pill px-2 bg-hover-whiten">
 
                                 <%--Comment icon--%>
-                                <span class="d-inline-block d-flex align-items-center justify-content-center" style="height: 38px;">
+                                <span class="d-inline-block d-flex align-items-center justify-content-center" style="height: 30px;">
                                   <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z" class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="1.5" fill="none"></path>
                                   </svg>
@@ -798,8 +806,8 @@
             })
 
     $('.readMore-button').on('click', function() {
-      $(this).parent().css('overflow', 'visible')
-      $(this).parent().css('max-height', '100%')
+      $(this).parent().find('.fade-post').css('overflow', 'visible')
+      $(this).parent().find('.fade-post').css('max-height', '100%')
       $(this).hide()
       $(this).parent().find('.overflow-fade').css('display', 'none')
 
