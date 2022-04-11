@@ -130,13 +130,6 @@
       border-top-right-radius: 1000px;
     }
 
-    .elipsis {
-      -webkit-line-clamp: 4;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
     html, body {
       box-sizing: border-box;
       padding: 0;
@@ -154,6 +147,14 @@
 
     .icon_svg-stroke {
       stroke: rgb(177, 179, 182);
+    }
+
+    .color-grey {
+      color: #b1b3b6;
+    }
+
+    .font-size-2 {
+      font-size: 0.75rem;
     }
   </style>
 
@@ -217,12 +218,14 @@
                             </div>
 
                             <%--프로필 정보--%>
-                            <div>
+                            <div class="d-flex flex-column">
+
                               <%--이름--%>
-                              <div class="">홍길동</div>
+                              <div class="my-auto font-size-2"><b>홍길동</b></div>
 
                               <%--상세--%>
-                              <div class="">프로그래머</div>
+                              <div class="my-auto color-grey font-size-2">프로그래머</div>
+
                             </div>
                           </div>
                           <%--질문글 제목--%>
@@ -270,16 +273,16 @@
 
 
                     <%--Views, Upvotes 표시--%>
-                    <div class="mt-3 d-flex">
-                      <div>Views</div>
-                      <div>Upvotes</div>
-                    </div>
+<%--                    <div class="mt-3 d-flex">--%>
+<%--                      <div>Views</div>--%>
+<%--                      <div>Upvotes</div>--%>
+<%--                    </div>--%>
 
                     <%--Upvote/Downvote, Comment, Share, Option 버튼--%>
                     <div class="px-1">
 
                       <%--Container--%>
-                      <div class="d-flex justify-content-center align-items-center py-1" style="height: 46px;">
+                      <div class="d-flex justify-content-center align-items-center my-1" style="height: 46px;">
 
                         <%--div.Upvote/Downvote, Comment 버튼--%>
                         <div class="d-flex justify-content-center align-items-center">
@@ -397,10 +400,10 @@
                           <%--프로필 정보--%>
                           <div>
                             <%--이름--%>
-                            <div class="">홍길동</div>
+                            <div class=""><b>홍길동</b></div>
 
                             <%--상세--%>
-                            <div class="">프로그래머</div>
+                            <div class="text-center">프로그래머</div>
                           </div>
                         </div>
                         <%--질문글 제목--%>
