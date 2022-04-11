@@ -211,8 +211,8 @@
         </div>
         <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>
       </a>
-      <div class="dropdown ms-auto px-2">
-        <img class="cursor-pointer hover-opacity" id="user-dropdown" data-bs-toggle="dropdown" src="/static/img/user.png" style="width: 30px; height: 30px;"/>
+      <div class="dropdown ms-auto px-2 position-relative d-flex justify-content-center align-items-center" style="height: 50px; width: 60px;">
+        <img class="cursor-pointer" id="user-dropdown" data-bs-toggle="dropdown" src="/static/img/user.png" style="width: 30px; height: 30px;"/>
         <ul class="dropdown-menu" aria-labelledby="book-dropdown">
           <li><a class="dropdown-item" href="#">My Profile</a></li>
           <li><a class="dropdown-item" href="#">My Questions</a></li>
@@ -220,6 +220,7 @@
           <div class="dropdown-divider"></div>
           <li><a class="dropdown-item" href="#">Logout</a></li>
         </ul>
+        <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>
       </div>
       <div class="px-2">
       <a class="btn btn-danger rounded-pill py-1">Ask question</a>
