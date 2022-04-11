@@ -33,7 +33,7 @@
 
     /*test*/
     .fade-post {
-      max-height: 100px;
+      max-height: 200px;
       overflow: hidden;
       text-overflow: ellipsis;
       position: relative;
@@ -69,13 +69,16 @@
 
     }
 
-    .link-default {
+    .link-default-color {
+      color: rgb(213, 214, 214);
+    }
+
+    .link-default-color:hover {
       color: rgb(213, 214, 214);
     }
 
     .hover-underline:hover {
       text-decoration: underline!important;
-      color: rgb(213, 214, 214);
     }
 
     .btn {
@@ -107,28 +110,26 @@
     }
 
     .rounded-left-top-pill {
-      border-bottom-left-radius: 1000px;
-    }
-
-    .rounded-left-bottom-pill {
       border-top-left-radius: 1000px;
     }
 
-    .rounded-right-top-pill {
-      border-bottom-right-radius: 1000px;
+    .rounded-left-bottom-pill {
+      border-bottom-left-radius: 1000px;
     }
 
-    .rounded-5 {
-      border-radius: 0.5rem!important;
+    .rounded-right-top-pill {
+      border-top-right-radius: 1000px;
+    }
+
+    .rounded-right-bottom-pill {
+      border-bottom-right-radius: 1000px;
     }
 
     .rounded-7 {
       border-radius: 0.7rem!important;
     }
 
-    .rounded-right-bottom-pill {
-      border-top-right-radius: 1000px;
-    }
+
 
     html, body {
       box-sizing: border-box;
@@ -156,15 +157,36 @@
     .font-size-2 {
       font-size: 0.75rem;
     }
+
+    .cursor-pointer {
+      cursor: pointer;
+    }
+
+    .hover-opacity:hover {
+      opacity: 0.8;
+    }
+
+
   </style>
 
 </head>
 <body>
   <div class="container-fluid bg-dark border-bottom border-color-dark shadow">
-    <nav class="navbar navbar-dark py-0 px-5">
+    <nav class="navbar navbar-dark py-0 px-5 mx-auto" style="max-width: 1200px; height: 50px;">
       <a href="#" class="navbar-brand px-2">LOGO</a>
+      <a href="#" class="d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px;">
+        <div>
+          <span class="d-inline-block">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.5 17.5a2.5 2.5 0 1 0-5 0v5a.625.625 0 0 1-.533.618l-.092.007H4.5a.625.625 0 0 1-.618-.533l-.007-.092v-9.375H.75a.625.625 0 0 1-.505-.995l.063-.072L11.558.808a.625.625 0 0 1 .797-.072l.087.072 11.25 11.25c.37.37.145.989-.347 1.06l-.095.007h-3.125V22.5a.625.625 0 0 1-.533.618l-.092.007h-4.375a.625.625 0 0 1-.625-.625v-5Z" class="icon_svg-fill_as_stroke" fill="rgb(220, 53, 69)"></path>
+            </svg>
+          </span>
+        </div>
+        <div class="bg-hover-whiten position-absolute rounded-2" style="height: 40px; min-width: 60px;"></div>
+        <div class="rounded-left-top-pill rounded-right-top-pill bg-danger position-absolute" style="height: 3px; width: 44px; left: 50%; bottom: 0; transform: translateX(-50%);"></div>
+      </a>
       <div class="dropdown ms-auto px-2">
-        <span class="btn btn-secondary" id="user-dropdown" data-bs-toggle="dropdown">User</span>
+        <img class="cursor-pointer hover-opacity" id="user-dropdown" data-bs-toggle="dropdown" src="/static/img/user.png" style="width: 30px; height: 30px;"/>
         <ul class="dropdown-menu" aria-labelledby="book-dropdown">
           <li><a class="dropdown-item" href="#">My Profile</a></li>
           <li><a class="dropdown-item" href="#">My Questions</a></li>
@@ -174,13 +196,13 @@
         </ul>
       </div>
       <div class="px-2">
-      <a class="btn btn-danger rounded-pill my-3 py-1">Ask question</a>
+      <a class="btn btn-danger rounded-pill py-1">Ask question</a>
       </div>
     </nav>
   </div>
 
   <div class="container-fluid p-0 m-0">
-    <div class="mx-auto pt-3 px-2" style="max-width: 1100px;">
+    <div class="mx-auto pt-3 px-2" style="max-width: 1200px;">
 
       <%--카테고리 리스트--%>
       <div class="mx-auto" style="max-width: 200px;">
@@ -196,24 +218,24 @@
 
               <%--배경색--%>
               <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten">
-                <div class="px-3 pt-3" style="height: 100%;">
+                <div class="px-4 pt-3" style="height: 100%;">
                   <div>
 
                     <%--질문글--%>
                     <div>
+
                       <%--질문글 body--%>
                       <div>
 
-                        <%--프로필--%>
+                        <%--질문자 프로필--%>
                         <div>
-                          <div class="mb-3 d-flex">
+                          <div class="mb-2 d-flex">
                             <%--프로필 사진--%>
                             <div class="me-3 position-relative">
                               <div>
                                 <img class="rounded-7 border border-color-whiten" src="/static/img/flower.jpeg" alt="" width="50" height="50">
                               </div>
                               <div class="bg-hover-darken position-absolute" style="inset: 0;">
-
                               </div>
                             </div>
 
@@ -221,7 +243,7 @@
                             <div class="d-flex flex-column">
 
                               <%--이름--%>
-                              <div class="my-auto font-size-2"><b>홍길동</b></div>
+                              <div class="my-auto font-size-2"><a class="text-decoration-none link-default-color hover-underline h6" href=""><b>홍길동</b></a></div>
 
                               <%--상세--%>
                               <div class="my-auto color-grey font-size-2">프로그래머</div>
@@ -231,14 +253,14 @@
                           <%--질문글 제목--%>
                           <div>
                             <div>
-                              <h3><a class="text-decoration-none link-default hover-underline" href="#"><b>This is the title of the question!</b></a></h3>
+                              <h3><a class="text-decoration-none link-default-color hover-underline" href="#"><b>This is the title of the question!</b></a></h3>
                             </div>
                           </div>
 
                           <%--질문글 내용--%>
                           <div class="position-relative">
                             <div class="fade-post">
-                              <div class="">
+                              <div class="" style="line-height: 1.5rem;">
                                 Suspendisse nisi lorem, pellentesque tempor consequat a, viverra vitae velit. Phasellus non est tincidunt felis dictum viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ornare, massa et efficitur dignissim, ligula mauris rutrum lectus, at elementum justo ex in dui. Mauris ut mattis libero, et iaculis magna. Maecenas in malesuada nisi, a scelerisque lectus. Suspendisse leo lacus, ornare eu felis non, hendrerit suscipit risus. Etiam elementum risus nec nisi blandit, non bibendum velit vulputate. Donec felis nunc, tempor eget placerat a, fringilla quis sapien. In vel bibendum erat. Maecenas egestas finibus ex, eu vulputate eros condimentum non. Donec eu sodales neque. Nullam lobortis, dolor non dapibus interdum, purus dui efficitur eros, quis aliquam neque lacus sed ex.
 
                                 Nulla vel imperdiet justo, eget aliquet ex. Etiam pharetra ex tristique tortor interdum, nec pellentesque elit pharetra. Integer et est elementum, blandit leo et, accumsan magna. Cras cursus mi vitae lacus convallis ultricies. Nulla sollicitudin risus eget erat suscipit, sit amet pellentesque massa condimentum. Duis viverra non arcu id feugiat. Pellentesque vitae molestie diam, id laoreet dui. Sed ut rhoncus magna. Mauris luctus egestas nunc, eu lacinia dolor hendrerit vel. Donec eros magna, accumsan non ante quis.
@@ -257,19 +279,8 @@
                       </div>
                     </div>
 
+                    <div class="my-3"></div>
 
-                    <%--답변글--%>
-                    <div>
-                      <%--답변글 body--%>
-                      <div>
-
-                      </div>
-
-                      <%--답변글 footer--%>
-                      <div>
-
-                      </div>
-                    </div>
 
 
                     <%--Views, Upvotes 표시--%>
@@ -343,8 +354,6 @@
                                     100
                                 </div>
                               </div>
-
-
                             </div>
                           </div>
                         </div>
@@ -376,7 +385,7 @@
 
             <%--배경색--%>
             <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten">
-              <div class="px-3 pt-3" style="height: 100%;">
+              <div class="px-4 pt-3" style="height: 100%;">
                 <div>
 
                   <%--질문글--%>
@@ -400,7 +409,7 @@
                           <%--프로필 정보--%>
                           <div>
                             <%--이름--%>
-                            <div class=""><b>홍길동</b></div>
+                            <div class=""><a href=""><b>홍길동</b></a></div>
 
                             <%--상세--%>
                             <div class="text-center">프로그래머</div>
