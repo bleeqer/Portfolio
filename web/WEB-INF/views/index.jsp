@@ -64,8 +64,33 @@
       right: 50%;
       transform: translate(50%, 50%);
       opacity: 0.9;
-
     }
+
+    .search-overlay {
+      top: 50px;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 299;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 250ms, visibility 250ms;
+    }
+
+    input.search-input:focus + .search-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .search-overlay:target {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /*.search-input:focus .search-overlay {*/
+    /*  visibility: visible;*/
+    /*  opacity: 1;*/
+    /*}*/
 
     .link-default-color {
       color: rgb(213, 214, 214);
@@ -89,6 +114,10 @@
 
     .bg-black {
       background-color: rgb(18, 18, 18)!important;
+    }
+
+    .bg-transparent-dark {
+      background-color: rgba(36, 36, 36, 0.9);
     }
 
     .border-color-dark {
@@ -178,7 +207,8 @@
 
 </head>
 <body>
-  <div class="container-fluid bg-dark border-bottom border-color-dark shadow">
+  <div class="position-fixed container-fluid bg-dark border-bottom border-color-dark shadow" style="z-index: 1;">
+    <div class="bg-dark"></div>
     <nav class="navbar navbar-dark py-0 mx-auto" style="max-width: 1002px; height: 50px;">
 
       <%--Logo--%>
@@ -193,7 +223,7 @@
             </svg>
           </span>
         </div>
-        <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>
+        <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition: background-color 250ms;"></div>
         <div class="rounded-left-top-pill rounded-right-top-pill bg-danger position-absolute" style="height: 3px; width: 44px; left: 50%; bottom: 0; transform: translateX(-50%);"></div>
       </a>
 
@@ -206,7 +236,7 @@
             </svg>
           </span>
         </div>
-        <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>
+        <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition: background-color 250ms;"></div>
       </a>
 
       <%--Notif button--%>
@@ -218,13 +248,13 @@
           </svg>
         </span>
         </div>
-        <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>
+        <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition: background-color 250ms;"></div>
       </a>
 
       <%--Search box--%>
       <div class="ms-auto me-2 bg-black">
         <form action="">
-          <div class="d-flex py-1 px-2 rounded-1 border border-color-grey hover-border-color-blue" style="transition-property: border-color; transition-duration: 250ms;">
+          <div class="d-flex py-1 px-2 rounded-1 border border-color-grey hover-border-color-blue" style="transition: background-color 250ms;">
 
             <%--Magnifying glass--%>
             <span>
@@ -235,7 +265,9 @@
 
             <%--Search bar--%>
             <div>
-              <input type="text" style="background-color: transparent; border: none; min-height: 26px; font-size=13px; outline: none;" placeholder="Search...">
+              <input class="search-input" type="text" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search...">
+              <%--Search focus overlay--%>
+              <div class="position-fixed bg-transparent-dark search-overlay"></div>
             </div>
           </div>
         </form>
@@ -258,7 +290,10 @@
     </nav>
   </div>
 
-  <div class="container-fluid p-0 m-0">
+  <%--Search focus overlay--%>
+  <div class="position-fixed bg-transparent-dark search-overlay"></div>
+
+  <div class="container-fluid m-0" style="padding-top: 50px;">
     <div class="mx-auto pt-3 px-2" style="max-width: 1002px;">
 
       <%--카테고리 리스트--%>
@@ -896,6 +931,9 @@
         }
       })
 
+      // $('.search-overlay').on('click', function() {
+      //   $(this).css('visibility', 'hidden')
+      // })
     })
   </script>
 </body>
