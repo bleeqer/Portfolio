@@ -87,6 +87,10 @@
       background-color: rgb(38, 38, 38)!important;
     }
 
+    .bg-black {
+      background-color: rgb(18, 18, 18)!important;
+    }
+
     .border-color-dark {
         border-color: rgb(26, 26, 26)!important;
     }
@@ -136,8 +140,6 @@
       border-radius: 0.7rem!important;
     }
 
-
-
     html, body {
       box-sizing: border-box;
       padding: 0;
@@ -177,7 +179,7 @@
 </head>
 <body>
   <div class="container-fluid bg-dark border-bottom border-color-dark shadow">
-    <nav class="navbar navbar-dark py-0 px-5 mx-auto" style="max-width: 1002px; height: 50px;">
+    <nav class="navbar navbar-dark py-0 mx-auto" style="max-width: 1002px; height: 50px;">
 
       <%--Logo--%>
       <a href="#" class="navbar-brand px-2">LOGO</a>
@@ -220,7 +222,7 @@
       </a>
 
       <%--Search box--%>
-      <div class="ms-auto me-2">
+      <div class="ms-auto me-2 bg-black">
         <form action="">
           <div class="d-flex py-1 px-2 rounded-1 border border-color-grey hover-border-color-blue" style="transition-property: border-color; transition-duration: 250ms;">
 
