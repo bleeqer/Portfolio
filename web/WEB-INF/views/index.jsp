@@ -44,6 +44,11 @@
 
     }
 
+    input, textarea, button {
+      color: rgb(213, 214, 214);
+      background-color: transparent;
+    }
+
     .overflow-fade {
       width: 100%;
       height: 100%;
@@ -52,13 +57,6 @@
       background: linear-gradient(to bottom, transparent 60%, rgb(38, 38, 38) 100%);
       display: block;
     }
-
-
-
-
-    /*.fade-post::before:hover {*/
-    /*  background-color: rgba(255, 255, 255, 0.09)!important;*/
-    /*}*/
 
     .readMore-button {
       position: absolute;
@@ -91,6 +89,15 @@
 
     .border-color-dark {
         border-color: rgb(26, 26, 26)!important;
+    }
+
+    .border-color-grey {
+      border-color: rgb(57, 56, 57)!important;
+    }
+
+    .hover-border-color-blue:hover {
+      border-color: rgb(46, 105, 255)!important;
+      /*border-color: white!important;*/
     }
 
     .border-color-whiten {
@@ -170,7 +177,7 @@
 </head>
 <body>
   <div class="container-fluid bg-dark border-bottom border-color-dark shadow">
-    <nav class="navbar navbar-dark py-0 px-5 mx-auto" style="max-width: 1200px; height: 50px;">
+    <nav class="navbar navbar-dark py-0 px-5 mx-auto" style="max-width: 1002px; height: 50px;">
 
       <%--Logo--%>
       <a href="#" class="navbar-brand px-2">LOGO</a>
@@ -211,7 +218,28 @@
         </div>
         <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>
       </a>
-      <div class="dropdown ms-auto px-2 position-relative d-flex justify-content-center align-items-center" style="height: 50px; width: 60px;">
+
+      <%--Search box--%>
+      <div class="ms-auto me-2">
+        <form action="">
+          <div class="d-flex py-1 px-2 rounded-1 border border-color-grey hover-border-color-blue" style="transition-property: border-color; transition-duration: 250ms;">
+
+            <%--Magnifying glass--%>
+            <span>
+              <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10.45 2.95L16 16l4.95 4.95Z" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </span>
+
+            <%--Search bar--%>
+            <div>
+              <input type="text" style="background-color: transparent; border: none; min-height: 26px; font-size=13px; outline: none;" placeholder="Search...">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="dropdown px-2 position-relative d-flex justify-content-center align-items-center" style="height: 50px; width: 60px;">
         <img class="cursor-pointer" id="user-dropdown" data-bs-toggle="dropdown" src="/static/img/user.png" style="width: 30px; height: 30px;"/>
         <ul class="dropdown-menu" aria-labelledby="book-dropdown">
           <li><a class="dropdown-item" href="#">My Profile</a></li>
@@ -229,7 +257,7 @@
   </div>
 
   <div class="container-fluid p-0 m-0">
-    <div class="mx-auto pt-3 px-2" style="max-width: 1200px;">
+    <div class="mx-auto pt-3 px-2" style="max-width: 1002px;">
 
       <%--카테고리 리스트--%>
       <div class="mx-auto" style="max-width: 200px;">
