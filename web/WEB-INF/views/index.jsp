@@ -196,13 +196,10 @@
       cursor: pointer;
     }
 
-    .hover-opacity:hover {
-      opacity: 0.8;
-    }
-
     .hidden {
       display: none!important;
     }
+
   </style>
 
 </head>
@@ -256,47 +253,51 @@
 
       </div>
       <%--Search box--%>
-      <div class="ms-3 me-2 bg-black position-relative" style="height: 40px;">
-        <form action="/search" method="get">
-          <div class="d-flex py-1 px-2 rounded-1 border border-color-grey hover-border-color-blue" style="transition: background-color 250ms;">
+      <div class="ms-3 me-2 bg-black rounded-pill border border-color-grey hover-border-color-blue position-relative">
+        <form id="search-form" action="/search" method="get">
+          <div class="d-flex py-1 px-2" style="transition: background-color 250ms; height: 40px;">
 
-            <%--Magnifying glass--%>
-            <span>
-              <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10.45 2.95L16 16l4.95 4.95Z" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </span>
+            <div class="d-flex justify-content-center">
+              <%--Search bar--%>
+              <div class="d-flex">
+                <input class="search-input justify-content-center" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
 
-            <%--Search bar--%>
-            <div>
-              <input class="search-input" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search...">
-
-              <%--Search focus overlay--%>
-              <div class="position-fixed bg-transparent-dark search-overlay hidden"></div>
+                <%--Search focus overlay--%>
+                <div class="position-fixed bg-transparent-dark search-overlay hidden"></div>
+              </div>
             </div>
-          </div>
-
-          <%--keyword display--%>
-          <div class="position-absolute bg-dark px-3 d-flex align-items-center search-display border border-color-grey hidden" style="top: 100%; right: 0; height: 100%; width: 100%; overflow: hidden;">
-            <%--Magnifying glass--%>
-            <div class="me-2">
-              <span>
-                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <div class="d-flex">
+              <%--Magnifying glass--%>
+              <span class="d-flex justify-content-center">
+                <svg class="my-auto me-1 search-button cursor-pointer" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10.45 2.95L16 16l4.95 4.95Z" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
               </span>
-            </div>
-
-            <%--keyword display--%>
-            <div style="width: 100%;">
-              <div class="d-flex align-items-center">
-                <p class="my-auto">Search:&nbsp;</p><b><p class="display-keyword my-auto"></p></b>
-              </div>
             </div>
           </div>
         </form>
 
 
+
+          <%--keyword display--%>
+<%--          <div class="position-absolute bg-dark px-3 d-flex align-items-center search-display border border-color-grey hidden" style="top: 100%; right: 0; height: 100%; width: 100%; overflow: hidden; cursor: pointer;">--%>
+<%--            &lt;%&ndash;Magnifying glass&ndash;%&gt;--%>
+<%--            <div class="me-2">--%>
+<%--              <span>--%>
+<%--                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">--%>
+<%--                  <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10.45 2.95L16 16l4.95 4.95Z" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>--%>
+<%--                </svg>--%>
+<%--              </span>--%>
+<%--            </div>--%>
+
+<%--            &lt;%&ndash;keyword&ndash;%&gt;--%>
+<%--            <div style="width: 100%;">--%>
+<%--              <div class="d-flex align-items-center">--%>
+<%--                <p class="my-auto">Search:&nbsp;</p><b><p class="display-keyword my-auto"></p></b>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+        </form>
       </div>
 
       <div class="dropdown px-2 position-relative d-flex justify-content-center align-items-center user-profile" style="height: 50px; width: 60px;">
@@ -970,6 +971,7 @@
 
       if (keyword.length > 0) {
         $('.search-display').removeClass('hidden')
+
       } else {
         $('.search-display').addClass('hidden')
       }
@@ -977,19 +979,17 @@
 
     $('.search-input').focus(function () {
       $('.search-overlay').addClass('show-search-overlay')
-      $('.user-profile').addClass('hidden')
+
     })
 
     $('.search-input').focusout(function () {
-      $('.search-display').addClass('hidden')
       $('.search-overlay').removeClass('show-search-overlay')
     })
 
-    // $('.search-overlay').
+    $('.search-button').click(function () {
+      $('#search-form').submit()
+    })
 
-    // $('.display-keyword').html().on('change', function () {
-    //   alert('gg')
-    // })
 
   })
   </script>
