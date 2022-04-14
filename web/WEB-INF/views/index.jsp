@@ -251,9 +251,13 @@
         <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition: background-color 250ms;"></div>
       </a>
 
+      <%--Spacer--%>
+      <div style="min-width: 200px; height: 1px;">
+
+      </div>
       <%--Search box--%>
-      <div class="ms-auto me-2 bg-black position-relative">
-        <form action="">
+      <div class="ms-3 me-2 bg-black position-relative" style="height: 40px;">
+        <form action="/search" method="get">
           <div class="d-flex py-1 px-2 rounded-1 border border-color-grey hover-border-color-blue" style="transition: background-color 250ms;">
 
             <%--Magnifying glass--%>
@@ -265,7 +269,7 @@
 
             <%--Search bar--%>
             <div>
-              <input class="search-input" type="text" value="" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search...">
+              <input class="search-input" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search...">
 
               <%--Search focus overlay--%>
               <div class="position-fixed bg-transparent-dark search-overlay hidden"></div>
@@ -273,7 +277,7 @@
           </div>
 
           <%--keyword display--%>
-          <div class="position-absolute px-4 d-flex align-items-center search-display hidden" style="top: 100%; right: 0; height: 100%; width: 100%;">
+          <div class="position-absolute bg-dark px-3 d-flex align-items-center search-display border border-color-grey hidden" style="top: 100%; right: 0; height: 100%; width: 100%; overflow: hidden;">
             <%--Magnifying glass--%>
             <div class="me-2">
               <span>
@@ -286,7 +290,7 @@
             <%--keyword display--%>
             <div style="width: 100%;">
               <div class="d-flex align-items-center">
-                <p class="my-auto">Search:&nbsp;</p> <p class="display-keyword my-auto"></p>
+                <p class="my-auto">Search:&nbsp;</p><b><p class="display-keyword my-auto"></p></b>
               </div>
             </div>
           </div>
@@ -295,7 +299,7 @@
 
       </div>
 
-      <div class="dropdown px-2 position-relative d-flex justify-content-center align-items-center" style="height: 50px; width: 60px;">
+      <div class="dropdown px-2 position-relative d-flex justify-content-center align-items-center user-profile" style="height: 50px; width: 60px;">
         <img class="cursor-pointer" id="user-dropdown" data-bs-toggle="dropdown" src="/static/img/user.png" style="width: 30px; height: 30px;"/>
         <ul class="dropdown-menu" aria-labelledby="book-dropdown">
           <li><a class="dropdown-item" href="#">My Profile</a></li>
@@ -973,6 +977,7 @@
 
     $('.search-input').focus(function () {
       $('.search-overlay').addClass('show-search-overlay')
+      $('.user-profile').addClass('hidden')
     })
 
     $('.search-input').focusout(function () {

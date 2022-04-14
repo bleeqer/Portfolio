@@ -24,6 +24,12 @@ public class HomeController {
     @Autowired
     QuestionCategoryService questionCategoryService;
 
+    @GetMapping("/search")
+    public String getSearchResults(@RequestParam String keyword, Model model) {
+
+        return "index";
+    }
+
     @RequestMapping("")
     public String listPosts(Model model) {
 
@@ -84,11 +90,6 @@ public class HomeController {
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
-//    @RequestMapping("topic/{topic}")
-//    public String viewQuestion(@PathVariable String topic, Model model) {
-//
-////        List<QuestionVO> questions = questionService.read();
-//
-//    }
+
 
 }
