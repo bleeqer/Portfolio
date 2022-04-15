@@ -31,22 +31,20 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <style>
 
-    /*test*/
     .fade-post {
       max-height: 200px;
       overflow: hidden;
       text-overflow: ellipsis;
       position: relative;
-      /*height: 200px;*/
-      /*background-image: linear-gradient(180deg, rgb(213, 214, 214) 80%, transparent 100%);*/
-      /*color: transparent;*/
-      /*-webkit-background-clip: text;*/
-
     }
 
-    input, textarea, button {
+    input, textarea, button, a {
       color: rgb(213, 214, 214);
       background-color: transparent;
+    }
+
+    a:hover {
+      color: rgb(213, 214, 214);
     }
 
     .overflow-fade {
@@ -137,6 +135,10 @@
       background-color: rgba(255, 255, 255, 0.09)!important;
     }
 
+    .bg-hover-whiten-light:hover {
+      background-color: rgba(255, 255, 255, 0.04)!important;
+    }
+
     .bg-hover-whiten:hover .overflow-fade {
       background: linear-gradient(to bottom, transparent 60%, rgb(46, 46, 46) 100%);
     }
@@ -188,8 +190,8 @@
       color: #b1b3b6;
     }
 
-    .font-size-2 {
-      font-size: 0.75rem;
+    .font-size-1 {
+      font-size: 13px;
     }
 
     .cursor-pointer {
@@ -199,6 +201,11 @@
     .hidden {
       display: none!important;
     }
+
+    a {
+      text-decoration: none;
+    }
+
 
   </style>
 
@@ -259,7 +266,7 @@
 
             <div class="d-flex justify-content-center">
               <%--Search bar--%>
-              <div class="d-flex">
+              <div class="d-flex ms-1">
                 <input class="search-input justify-content-center" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
 
                 <%--Search focus overlay--%>
@@ -276,9 +283,6 @@
             </div>
           </div>
         </form>
-
-
-
           <%--keyword display--%>
 <%--          <div class="position-absolute bg-dark px-3 d-flex align-items-center search-display border border-color-grey hidden" style="top: 100%; right: 0; height: 100%; width: 100%; overflow: hidden; cursor: pointer;">--%>
 <%--            &lt;%&ndash;Magnifying glass&ndash;%&gt;--%>
@@ -321,14 +325,38 @@
   <div class="position-fixed bg-transparent-dark search-overlay"></div>
 
   <div class="container-fluid m-0" style="padding-top: 50px;">
-    <div class="mx-auto pt-3 px-2" style="max-width: 1002px;">
+    <div class="d-flex mx-auto pt-3 px-2" style="max-width: 1002px;">
 
       <%--카테고리 리스트--%>
-      <div class="mx-auto" style="max-width: 200px;">
-      </div>
+        <div class="pb-5" style="width: 166px;">
+          <div>
+
+            <%--개별 카테고리 컨테이너--%>
+            <div class="mb-1 rounded-1 bg-hover-whiten-light">
+              <a class="text-decoration-none" href="">
+                <div class="p-2 d-flex" style="height: auto;">
+                  <%--카테고리 아이콘--%>
+                  <div class="me-2">
+                    <div class="d-flex rounded-1 overflow-hidden">
+                      <img width="18" height="18" src="/static/img/python.jpeg" alt="IMG">
+                    </div>
+                  </div>
+
+                  <%--카테고리 이름--%>
+                  <div class="d-flex">
+                    <div class="d-flex font-size-1">
+                      <div class="text-center d-flex align-items-center">Python</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
 
       <%--질문글 리스트--%>
-      <div class="mx-auto" style="max-width: 700px;">
+      <div style="width: 572px; margin-left:6px;">
         <div>
           <div>
 
@@ -362,10 +390,10 @@
                             <div class="d-flex flex-column">
 
                               <%--이름--%>
-                              <div class="my-auto font-size-2"><a class="text-decoration-none link-default-color hover-underline h6" href=""><b>홍길동</b></a></div>
+                              <div class="my-auto font-size-1"><a class="text-decoration-none link-default-color hover-underline h6" href=""><b>홍길동</b></a></div>
 
                               <%--상세--%>
-                              <div class="my-auto color-grey font-size-2">프로그래머</div>
+                              <div class="my-auto color-grey font-size-1">프로그래머</div>
 
                             </div>
                           </div>
@@ -398,7 +426,7 @@
                       </div>
                     </div>
 
-                    <div class="my-3"></div>
+<%--                    <div class="my-3"></div>--%>
 
 
 
