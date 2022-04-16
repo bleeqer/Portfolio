@@ -3,17 +3,40 @@
 <div id="question-modal" tabindex="-1" class="modal fade" aria-hidden="true" aria-labelledby="modal-title">
     <%--    style="left: 50%; top: 50%; transform: translate(-50%, -50%); min-height: 350px; max-height: 70vh; min-width: 680px; max-width: 90vw; width: 730px;" role="dialog"--%>
     <div class="modal-dialog border-grey rounded-3" style="top: calc(50% - 25px); transform: translateY(-50%); background-color: rgb(24, 24, 24) !important; min-height: 350px; max-height: 70vh; min-width: 680px; max-width: 90vw; width: 730px;">
-        <div class="modal-content" style="background-color: transparent; height: 100%;">
-            <div class="modal-header border-bottom-blue-3">
-                <h4 class="modal-title mx-auto" id="modal-title">Add question</h4>
+        <div class="modal-content px-3" style="background-color: transparent; height: 100%;">
+            <div class="modal-header border-bottom-blue-3 mb-3" style="margin-left: -16px; margin-right: -16px;">
+                <h4 class="modal-title mx-auto" id="modal-title">Ask</h4>
             </div>
-            <div style="height: 450px;">
-                <div class="d-flex justify-content-center align-items-center modal-body border-bottom-grey hover-border-bottom-color-blue border-top-0" style="width: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
-                    <textarea class="py-2 px-1" style="all: unset; min-height: 26px; height: 26px; overflow: hidden; overflow-wrap: break-word; width: 100%;" placeholder="질문을 입력해주세요.">
+            <div class="border-bottom-grey"  style="height: 450px;">
+                <%--Tips--%>
+                <div class="p-3 color-blue bg-blue rounded-2">
+                    <div>
+                        <div class="mb-1"><b>Tips</b></div>
+                        <ul style="font-size: 14px;">
+                            <li class="mb-1">이미 존재하는 질문이 아닌지 확인해주세요.</li>
+                            <li class="mb-1">질문 내용은 간결하고 정확히 해주세요.</li>
+                            <li class="mb-1">맞춤법과 철자를 확인해주세요.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <%--Category--%>
+                <div>
+                    <div>
+
+                    </div>
+                </div>
+
+                <%--Question textarea--%>
+                <div>
+                    <div class="d-flex justify-content-center align-items-center modal-body border-bottom-grey hover-border-bottom-color-blue border-top-0" style="width: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
+                    <textarea class="pt-3 pb-2 px-2" style="all: unset; min-height: 26px; height: 26px; overflow: hidden; overflow-wrap: break-word; width: 100%;" placeholder="질문을 입력해주세요.">
 
                     </textarea>
+                    </div>
                 </div>
             </div>
+
 
             <div class="modal-footer ms-auto border-top-0 mt-auto">
                 <div class="d-flex align-items-center" style="width: 100%;">
@@ -29,10 +52,10 @@
 
                     <div class="d-flex justify-content-center align-items-center">
                         <%--Cancel--%>
-                        <button class="px-3 rounded-pill bg-hover-whiten" style="all: unset; transition: background-color 250ms; height: 38px;">Cancel</button>
+                        <button class="px-3 rounded-pill bg-hover-whiten me-1" style="all: unset; transition: background-color 250ms; height: 38px;">Cancel</button>
 
                         <%--Post--%>
-                        <button class="btn btn-primary rounded-pill">Add question</button>
+                        <button class="btn btn-primary rounded-pill hover-opacity-9">Add question</button>
                     </div>
                 </div>
             </div>

@@ -187,7 +187,15 @@
     }
 
     .color-grey {
-      color: #b1b3b6;
+      color: #b1b3b6 !important;
+    }
+
+    .color-blue {
+      color: #4894fd !important;
+    }
+
+    .bg-blue {
+      background-color: #282D41 !important;
     }
 
     .font-size-1 {
@@ -239,7 +247,9 @@
       background-color: rgb(38, 38, 38)!important;
     }
 
-
+    .hover-opacity-9:hover {
+      opacity: 0.9;
+    }
 
     /*body:not(.modal-open){*/
     /*  padding-right: 0 !important;*/
