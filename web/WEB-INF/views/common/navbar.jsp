@@ -1,4 +1,4 @@
-<div class="position-fixed container-fluid bg-dark border-bottom border-color-dark shadow" style="z-index: 3;">
+<div class="navbar-container position-fixed container-fluid bg-dark border-bottom border-color-dark shadow" style="z-index: 3;">
     <div class="bg-dark"></div>
     <nav class="navbar navbar-dark py-0 mx-auto" style="max-width: 1002px; height: 50px;">
 
@@ -103,7 +103,9 @@
             <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>
         </div>
         <div class="px-2">
-            <a class="btn btn-danger rounded-pill py-1">Ask question</a>
+            <a class="btn btn-danger rounded-pill py-1" data-bs-toggle="modal" data-bs-target="#question-modal">Ask question</a>
         </div>
     </nav>
 </div>
+
+<%@ include file="/WEB-INF/views/modals/question-modal.jsp" %>
