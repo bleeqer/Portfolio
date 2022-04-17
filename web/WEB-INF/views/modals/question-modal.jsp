@@ -31,11 +31,11 @@
 
                 <%--Question textarea--%>
                 <div>
-                    <div class="d-flex justify-content-center align-items-center modal-body border-bottom-grey hover-border-bottom-color-blue border-top-0" style="width: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
-                    <textarea id="question-textarea" class="mt-3 mb-2 px-2" style="all: unset; line-height: 1.4; font-size: 14px; min-height: 28px; height: 28px; overflow: hidden; overflow-wrap: break-word; width: 100%;" placeholder="질문을 입력해주세요.">
-
-                    </textarea>
-                    </div>
+                    <form action="">
+                        <div class="d-flex justify-content-center align-items-center modal-body border-bottom-grey hover-border-bottom-color-blue border-top-0" style="width: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
+                            <textarea id="question-textarea" class="mt-3 mb-1 px-2" style="all: unset; line-height: 1.4; font-size: 14px; min-height: 28px; height: 28px; overflow: hidden; overflow-wrap: break-word; width: 100%; resize: none; max-height: 250px;" placeholder="질문을 입력해주세요."></textarea>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -64,6 +64,12 @@
         </div>
     </div>
 </div>
+
+<style>
+    textarea {
+        resize: none;
+    }
+</style>
 
 
 
@@ -111,14 +117,16 @@
             return element.prop('scrollHeight') > element.height()
         }
 
-        $('#question-textarea').on('input', function () {
+        // 질문 Modal Window textarea 자동 높이 조절
+        $('#question-textarea').on('keyup', function () {
+            $(this).height('26')
+            let scHeight = $(this).prop('scrollHeight')
+            $(this).height(scHeight)
+        })
 
-            if (isOverflown($('#question-textarea'))) {
-                let trueHeight = $('#question-textarea').prop('scrollHeight')
-                $('#question-textarea').height(trueHeight)
-            }
-
-
+        // 질문 Modal Window close 시 form 내용 초기화
+        $('#question-modal').on('hidden.bs.modal', function () {
+            $(this).find('form').trigger('reset')
         })
     })
 
