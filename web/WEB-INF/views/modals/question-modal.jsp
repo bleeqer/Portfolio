@@ -9,14 +9,16 @@
             </div>
             <div class="border-bottom-grey"  style="height: 450px;">
                 <%--Tips--%>
-                <div class="p-3 color-blue bg-blue rounded-2">
-                    <div>
-                        <div class="mb-1"><b>Tips</b></div>
-                        <ul style="font-size: 14px;">
-                            <li class="mb-1">이미 존재하는 질문이 아닌지 확인해주세요.</li>
-                            <li class="mb-1">질문 내용은 간결하고 정확히 해주세요.</li>
-                            <li class="mb-1">맞춤법과 철자를 확인해주세요.</li>
-                        </ul>
+                <div class="p-3 color-blue bg-blue rounded-2 d-flex align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div style="margin-bottom: -14px;">
+                            <div class="mb-1"><b>Tips</b></div>
+                            <ul style="font-size: 14px;">
+                                <li class="mb-1">이미 존재하는 질문이 아닌지 확인해주세요.</li>
+                                <li class="mb-1">질문 내용은 간결하고 정확히 해주세요.</li>
+                                <li class="mb-1">맞춤법과 철자를 확인해주세요.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -30,7 +32,7 @@
                 <%--Question textarea--%>
                 <div>
                     <div class="d-flex justify-content-center align-items-center modal-body border-bottom-grey hover-border-bottom-color-blue border-top-0" style="width: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
-                    <textarea class="pt-3 pb-2 px-2" style="all: unset; min-height: 26px; height: 26px; overflow: hidden; overflow-wrap: break-word; width: 100%;" placeholder="질문을 입력해주세요.">
+                    <textarea id="question-textarea" class="mt-3 mb-2 px-2" style="all: unset; line-height: 1.4; font-size: 14px; min-height: 28px; height: 28px; overflow: hidden; overflow-wrap: break-word; width: 100%;" placeholder="질문을 입력해주세요.">
 
                     </textarea>
                     </div>
@@ -52,7 +54,7 @@
 
                     <div class="d-flex justify-content-center align-items-center">
                         <%--Cancel--%>
-                        <button class="px-3 rounded-pill bg-hover-whiten me-1" style="all: unset; transition: background-color 250ms; height: 38px;">Cancel</button>
+                        <button class="px-3 rounded-pill bg-hover-whiten me-1" data-bs-dismiss="modal" style="all: unset; transition: background-color 250ms; height: 38px;">Cancel</button>
 
                         <%--Post--%>
                         <button class="btn btn-primary rounded-pill hover-opacity-9">Add question</button>
@@ -104,7 +106,21 @@
 </script>
 
 <script>
+    $( document ).ready(function() {
+        function isOverflown(element) {
+            return element.prop('scrollHeight') > element.height()
+        }
 
+        $('#question-textarea').on('input', function () {
+
+            if (isOverflown($('#question-textarea'))) {
+                let trueHeight = $('#question-textarea').prop('scrollHeight')
+                $('#question-textarea').height(trueHeight)
+            }
+
+
+        })
+    })
 
 
 </script>
