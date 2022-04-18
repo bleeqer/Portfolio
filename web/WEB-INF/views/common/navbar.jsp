@@ -107,5 +107,3 @@
         </div>
     </nav>
 </div>
-
-<%@ include file="/WEB-INF/views/modals/question-modal.jsp" %>

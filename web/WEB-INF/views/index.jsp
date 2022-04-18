@@ -29,6 +29,7 @@
 
   <%-- Bootstrap Icon --%>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
   <style>
 
     .fade-post {
@@ -257,6 +258,10 @@
 
     body.modal-open .navbar-container {
       padding-right: 27px;
+    }
+
+    select:focus {
+      outline: none;
     }
 
   </style>
@@ -959,7 +964,7 @@
   <script>
 
 
-    $(document).ready(function() {
+    // $(document).ready(function() {
 
       $('.readMore-button').on('click', function() {
         $(this).parent().find('.fade-post').css('overflow', 'visible')
@@ -1016,7 +1021,8 @@
 
   $('.best-title:last-child').removeClass('border-bottom-grey')
 
-    })
+
+    // })
   </script>
 </body>
 

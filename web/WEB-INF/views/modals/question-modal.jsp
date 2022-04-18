@@ -23,17 +23,38 @@
                 </div>
 
                 <%--Category--%>
-                <div>
-                    <div>
-
+                <div class="d-flex">
+                    <div class="pt-3 me-2">
+<%--                        <select class="rounded-1 py-0" aria-label="select" style="width: 160px; height: 30px; border: none !important; color: rgb(225, 225, 225);--%>
+                        <select id="first-category" class="rounded-1 py-0" aria-label="select" style="width: 185px; height: 30px; border: none !important; color: rgb(213, 214, 214);
+                         background-color: #2e69ff !important;">
+                            <option selected hidden>Choose category</option>
+                            <option value="100">Programming Language</option>
+                            <option value="200">Computer Science</option>
+                            <option value="300">Web Development</option>
+                        </select>
+                    </div>
+                    <div class="pt-3">
+                        <select id="second-category" class="rounded-1 py-0" aria-label="select" style="width: 185px; height: 30px; border: none !important; color: rgb(213, 214, 214);
+                         background-color: #4475fd !important;">
+                            <option selected hidden>Choose category</option>
+                            <option value="100">Java</option>
+                            <option value="100">C</option>
+                            <option value="100">Python</option>
+                            <option value="200">Operating Systems</option>
+                            <option value="200">Computer Architecture</option>
+                            <option value="200">Database</option>
+                            <option value="300">Frontend</option>
+                            <option value="300">Backend</option>
+                        </select>
                     </div>
                 </div>
 
                 <%--Question textarea--%>
                 <div>
-                    <form action="">
+                    <form id="question-form" action="">
                         <div class="d-flex justify-content-center align-items-center modal-body border-bottom-grey hover-border-bottom-color-blue border-top-0" style="width: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
-                            <textarea id="question-textarea" class="mt-3 mb-1 px-2" style="all: unset; line-height: 1.4; font-size: 14px; min-height: 28px; height: 28px; overflow: hidden; overflow-wrap: break-word; width: 100%; resize: none; max-height: 250px;" placeholder="질문을 입력해주세요."></textarea>
+                            <textarea id="question-textarea" name="content" class="mt-3 mb-1 px-2" style="all: unset; line-height: 1.4; font-size: 14px; min-height: 28px; height: 28px; overflow: hidden; overflow-wrap: break-word; width: 100%; resize: none; max-height: 250px;" placeholder="질문을 입력해주세요."></textarea>
                         </div>
                     </form>
                 </div>
@@ -57,7 +78,7 @@
                         <button class="px-3 rounded-pill bg-hover-whiten me-1" data-bs-dismiss="modal" style="all: unset; transition: background-color 250ms; height: 38px;">Cancel</button>
 
                         <%--Post--%>
-                        <button class="btn btn-primary rounded-pill hover-opacity-9">Add question</button>
+                        <button id="add-question-button" class="btn btn-primary rounded-pill hover-opacity-9">Add question</button>
                     </div>
                 </div>
             </div>
@@ -112,7 +133,7 @@
 </script>
 
 <script>
-    $( document ).ready(function() {
+    // $( document ).ready(function() {
         function isOverflown(element) {
             return element.prop('scrollHeight') > element.height()
         }
@@ -128,7 +149,26 @@
         $('#question-modal').on('hidden.bs.modal', function () {
             $(this).find('form').trigger('reset')
         })
-    })
+
+        // // add question button 클릭 시 form submit
+        // $('#add-question-button').click(function () {
+        //     $('#question-form')
+        // })
+
+        $('#first-category').change(function () {
+            const parentCatCode = $(this).find('option:selected').val()
+            console.log(parentCatCode)
+            $('#second-category').html($('#second-category option').filter('[value="' + parentCatCode + '"]'))
+        })
+        //     const firstCat = getFirstCategory()
+        //     console.log(firstCat)
+        //     const a = $('#second-category').filter('[value="' + firstCat + '"]')
+        //     a.forEach(
+        //         console.log($(this).text())
+        //     )
+        //     $('#second-category').html($('#second-category').filter('[value="' + firstCat + '"]'))
+        // })
+    // })
 
 
 </script>
