@@ -5,6 +5,7 @@
   Time: 8:16 PM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -19,10 +20,6 @@
 
   <sec:csrfMetaTags/>
 
-  <!-- jQuery Modal -->
-<%--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>--%>
-<%--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />--%>
-
   <%--  Bootstrap  --%>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -30,142 +27,14 @@
   <%-- Bootstrap Icon --%>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
+  <%--CSS--%>
+  <link rel="stylesheet" type="text/css" href="/static/css/utils.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+
   <style>
-
-    .fade-post {
-      max-height: 200px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      position: relative;
-    }
-
     input, textarea, button, a {
       color: rgb(213, 214, 214);
       background-color: transparent;
-    }
-
-    a:hover {
-      color: rgb(213, 214, 214);
-    }
-
-    .overflow-fade {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, transparent 60%, rgb(38, 38, 38) 100%);
-      display: block;
-    }
-
-    .readMore-button {
-      position: absolute;
-      bottom: 50%;
-      right: 50%;
-      transform: translate(50%, 50%);
-      opacity: 0.9;
-    }
-
-    .search-overlay {
-      top: 50px;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      opacity: 0;
-      z-index: 2;
-      visibility: hidden;
-      transition: opacity 250ms, visibility 250ms;
-    }
-
-
-    input.search-input:focus + .search-overlay {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .show-search-overlay {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .link-default-color {
-      color: rgb(213, 214, 214);
-    }
-
-    .link-default-color:hover {
-      color: rgb(213, 214, 214);
-    }
-
-    .hover-underline:hover {
-      text-decoration: underline!important;
-    }
-
-    .btn {
-      font-size: 16px;
-    }
-
-    .bg-dark {
-      background-color: rgb(38, 38, 38)!important;
-    }
-
-    .bg-black {
-      background-color: rgb(18, 18, 18)!important;
-    }
-
-    .bg-transparent-dark {
-      background-color: rgba(36, 36, 36, 0.9);
-    }
-
-    .border-color-dark {
-        border-color: rgb(26, 26, 26)!important;
-    }
-
-    .border-color-grey {
-      border-color: rgb(57, 56, 57)!important;
-    }
-
-    .hover-border-color-blue:hover {
-      border-color: rgb(46, 105, 255)!important;
-      /*border-color: white!important;*/
-    }
-
-    .border-color-whiten {
-        border-color: rgba(255, 255, 255, 0.06)!important;
-    }
-
-    .bg-hover-whiten:hover {
-      background-color: rgba(255, 255, 255, 0.09)!important;
-    }
-
-    .bg-hover-whiten-light:hover {
-      background-color: rgba(255, 255, 255, 0.04)!important;
-    }
-
-    .bg-hover-whiten:hover .overflow-fade {
-      background: linear-gradient(to bottom, transparent 60%, rgb(46, 46, 46) 100%);
-    }
-
-    .bg-hover-darken:hover {
-      background-color: rgba(0, 0, 0, 0.09)!important;
-    }
-
-    .rounded-left-top-pill {
-      border-top-left-radius: 1000px;
-    }
-
-    .rounded-left-bottom-pill {
-      border-bottom-left-radius: 1000px;
-    }
-
-    .rounded-right-top-pill {
-      border-top-right-radius: 1000px;
-    }
-
-    .rounded-right-bottom-pill {
-      border-bottom-right-radius: 1000px;
-    }
-
-    .rounded-7 {
-      border-radius: 0.7rem!important;
     }
 
     html, body {
@@ -173,97 +42,23 @@
       padding: 0;
       margin: 0;
       font-size: 16px;
+      border: none;
       background-color: #181818;
       color: rgb(213, 214, 214);
-    }
-
-    .dropdown-menu {
-      left: 50% !important;
-      right: auto !important;
-      transform: translateX(-50%) !important;
     }
 
     .icon_svg-stroke {
       stroke: rgb(177, 179, 182);
     }
 
-    .color-grey {
-      color: #b1b3b6 !important;
-    }
-
-    .color-blue {
-      color: #4894fd !important;
-    }
-
-    .bg-blue {
-      background-color: #282D41 !important;
-    }
-
-    .font-size-1 {
-      font-size: 13px;
-    }
-
-    .cursor-pointer {
-      cursor: pointer;
-    }
-
-    .hidden {
-      display: none!important;
-    }
-
     a {
       text-decoration: none;
+      color: inherit;
     }
 
-    .best-title:hover div {
-      overflow: visible !important;
-      white-space: normal !important;
+    a:hover {
+      color: inherit;
     }
-
-    .border-bottom-grey {
-      border-bottom-style: solid !important;
-      border-width: 1px !important;
-      border-color: #393839 !important;
-    }
-
-    .border-bottom-blue-3 {
-      border-bottom-style: solid !important;
-      border-width: 3px !important;
-      border-color: #2e69ff !important;
-    }
-
-    .hover-border-color-blue:hover {
-      border: 1px solid #2e69ff !important;
-    }
-
-    .hover-border-bottom-color-blue:hover {
-      border-bottom-color: #2e69ff !important;
-    }
-
-    .border-grey {
-      border: 1px solid #393839 !important;
-    }
-
-    .modal-backdrop {
-      background-color: rgb(38, 38, 38)!important;
-    }
-
-    .hover-opacity-9:hover {
-      opacity: 0.9;
-    }
-
-    /*body:not(.modal-open){*/
-    /*  padding-right: 0 !important;*/
-    /*}*/
-
-    body.modal-open .navbar-container {
-      padding-right: 27px;
-    }
-
-    select:focus {
-      outline: none;
-    }
-
   </style>
 
 </head>

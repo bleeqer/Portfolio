@@ -1,0 +1,131 @@
+.link-default-color {
+    color: rgb(213, 214, 214);
+}
+
+.link-default-color:hover {
+    color: rgb(213, 214, 214);
+}
+
+.hover-underline:hover {
+    text-decoration: underline!important;
+}
+
+.bg-dark {
+    background-color: rgb(38, 38, 38) !important;
+}
+
+.bg-black {
+    background-color: rgb(18, 18, 18) !important;
+}
+
+.bg-transparent-dark {
+    background-color: rgba(36, 36, 36, 0.9);
+}
+
+.border-color-dark {
+    border-color: rgb(26, 26, 26) !important;
+}
+
+.border-color-grey {
+    border-color: rgb(57, 56, 57) !important;
+}
+
+.hover-border-color-blue:hover {
+    border-color: rgb(46, 105, 255) !important;
+}
+
+.border-color-whiten {
+    border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.bg-hover-whiten:hover {
+    background-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+.bg-hover-whiten-light:hover {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+.bg-hover-darken:hover {
+    background-color: rgba(0, 0, 0, 0.09) !important;
+}
+
+.rounded-left-top-pill {
+    border-top-left-radius: 1000px;
+}
+
+.rounded-left-bottom-pill {
+    border-bottom-left-radius: 1000px;
+}
+
+.rounded-right-top-pill {
+    border-top-right-radius: 1000px;
+}
+
+.rounded-right-bottom-pill {
+    border-bottom-right-radius: 1000px;
+}
+
+.rounded-7 {
+    border-radius: 0.7rem!important;
+}
+
+.color-blue {
+    color: #4894fd !important;
+}
+
+.color-grey {
+    color: #b1b3b6 !important;
+}
+
+.bg-blue {
+    background-color: #282D41 !important;
+}
+
+.font-size-1 {
+    font-size: 13px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.border-bottom-grey {
+    border-bottom-style: solid !important;
+    border-width: 1px !important;
+    border-color: #393839 !important;
+}
+
+.border-bottom-blue-3 {
+    border-bottom-style: solid !important;
+    border-width: 3px !important;
+    border-color: #2e69ff !important;
+}
+
+.hover-border-color-blue:hover {
+    border: 1px solid #2e69ff !important;
+}
+
+.hover-border-bottom-color-blue:hover {
+    border-bottom-color: #2e69ff !important;
+}
+
+.border-grey {
+    border: 1px solid #393839 !important;
+}
+
+.modal-backdrop {
+    background-color: rgb(38, 38, 38) !important;
+}
+
+.hover-opacity-9:hover {
+    opacity: 0.9;
+}
+
+select:focus {
+    outline: none;
+}

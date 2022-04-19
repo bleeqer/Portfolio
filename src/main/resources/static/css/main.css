@@ -1,0 +1,57 @@
+.fade-post {
+    max-height: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+.overflow-fade {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgb(38, 38, 38) 100%);
+    display: block;
+}
+
+.readMore-button {
+    position: absolute;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
+    opacity: 0.9;
+}
+
+.search-overlay {
+    top: 50px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    z-index: 2;
+    visibility: hidden;
+    transition: opacity 250ms, visibility 250ms;
+}
+
+input.search-input:focus + .search-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.show-search-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+.bg-hover-whiten:hover .overflow-fade {
+    background: linear-gradient(to bottom, transparent 60%, rgb(46, 46, 46) 100%);
+}
+
+.best-title:hover div {
+    overflow: visible !important;
+    white-space: normal !important;
+}
+
+body.modal-open .navbar-container {
+    padding-right: 27px;
+}
