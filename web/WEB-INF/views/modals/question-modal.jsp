@@ -26,26 +26,26 @@
                 <div class="d-flex">
                     <div class="pt-3 me-2">
 <%--                        <select class="rounded-1 py-0" aria-label="select" style="width: 160px; height: 30px; border: none !important; color: rgb(225, 225, 225);--%>
-                        <select id="first-category" class="rounded-1 py-0" aria-label="select" style="width: 185px; height: 30px; border: none !important; color: rgb(213, 214, 214);
-                         background-color: #2e69ff !important;">
-                            <option selected hidden>Choose category</option>
+                        <select id="first-category" class="rounded-1 py-0 px-1" aria-label="select" style="width: 185px; height: 30px; border: none !important; color: rgb(213, 214, 214);
+                         background-color: #1658ff !important;">
+                            <option selected hidden value="1">Choose category</option>
                             <option value="100">Programming Language</option>
                             <option value="200">Computer Science</option>
                             <option value="300">Web Development</option>
                         </select>
                     </div>
                     <div class="pt-3">
-                        <select id="second-category" class="rounded-1 py-0" aria-label="select" style="width: 185px; height: 30px; border: none !important; color: rgb(213, 214, 214);
-                         background-color: #4475fd !important;">
-                            <option selected hidden>Choose category</option>
-                            <option value="100">Java</option>
-                            <option value="100">C</option>
-                            <option value="100">Python</option>
-                            <option value="200">Operating Systems</option>
-                            <option value="200">Computer Architecture</option>
-                            <option value="200">Database</option>
-                            <option value="300">Frontend</option>
-                            <option value="300">Backend</option>
+                        <select id="second-category" class="rounded-1 py-0 px-1" aria-label="select" style="width: 185px; height: 30px; border: none !important; color: rgb(213, 214, 214);
+                         background-color: #2860ff !important;">
+                            <option selected hidden value="1">Choose category</option>
+                            <option hidden value="100">Java</option>
+                            <option hidden value="100">C</option>
+                            <option hidden value="100">Python</option>
+                            <option hidden value="200">Operating Systems</option>
+                            <option hidden value="200">Computer Architecture</option>
+                            <option hidden value="200">Database</option>
+                            <option hidden value="300">Frontend</option>
+                            <option hidden value="300">Backend</option>
                         </select>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
 </script>
 
 <script>
-    // $( document ).ready(function() {
+    $( document ).ready(function() {
         function isOverflown(element) {
             return element.prop('scrollHeight') > element.height()
         }
@@ -155,20 +155,14 @@
         //     $('#question-form')
         // })
 
+        // 대분류 카테고리 선택 시 소분류 카테고리 설정
         $('#first-category').change(function () {
             const parentCatCode = $(this).find('option:selected').val()
-            console.log(parentCatCode)
-            $('#second-category').html($('#second-category option').filter('[value="' + parentCatCode + '"]'))
+            $('#second-category').val('1')
+            $('#second-category option').attr('hidden', 'hidden')
+            $('#second-category option').filter('[value="' + parentCatCode + '"]').removeAttr('hidden')
         })
-        //     const firstCat = getFirstCategory()
-        //     console.log(firstCat)
-        //     const a = $('#second-category').filter('[value="' + firstCat + '"]')
-        //     a.forEach(
-        //         console.log($(this).text())
-        //     )
-        //     $('#second-category').html($('#second-category').filter('[value="' + firstCat + '"]'))
-        // })
-    // })
+    })
 
 
 </script>
