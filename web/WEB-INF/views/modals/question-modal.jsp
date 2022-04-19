@@ -26,7 +26,7 @@
                 <div class="d-flex">
                     <div class="pt-3 me-2">
 <%--                        <select class="rounded-1 py-0" aria-label="select" style="width: 160px; height: 30px; border: none !important; color: rgb(225, 225, 225);--%>
-                        <select id="first-category" class="rounded-1 py-0 px-1" aria-label="select" style="width: 185px; height: 30px; border: none !important; color: rgb(213, 214, 214);
+                        <select id="first-category" class="rounded-1 py-0 px-1" aria-label="select" style="height: 30px; border: none !important; color: rgb(213, 214, 214);
                          background-color: #1658ff !important;">
                             <option selected hidden value="1">Choose category</option>
                             <option value="100">Programming Language</option>
@@ -35,7 +35,7 @@
                         </select>
                     </div>
                     <div class="pt-3">
-                        <select id="second-category" class="rounded-1 py-0 px-1" aria-label="select" style="width: 185px; height: 30px; border: none !important; color: rgb(213, 214, 214);
+                        <select id="second-category" class="rounded-1 py-0 px-1" aria-label="select" style="height: 30px; border: none !important; color: rgb(213, 214, 214);
                          background-color: #2860ff !important;">
                             <option selected hidden value="1">Choose category</option>
                             <option hidden value="100">Java</option>
