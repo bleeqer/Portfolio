@@ -145,9 +145,15 @@
             $(this).height(scHeight)
         })
 
-        // 질문 Modal Window close 시 form 내용 초기화
+        // 질문 Modal Window close 시
         $('#question-modal').on('hidden.bs.modal', function () {
+
+            // form 내용 초기화
             $(this).find('form').trigger('reset')
+
+            // 카테고리 초기화
+            $('#first-category').val('1')
+            $('#second-category').val('1')
         })
 
         // // add question button 클릭 시 form submit
