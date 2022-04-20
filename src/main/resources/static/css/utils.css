@@ -82,6 +82,10 @@
     background-color: #282D41 !important;
 }
 
+.bg-red {
+    background-color: #f52936 !important;
+}
+
 .font-size-1 {
     font-size: 13px;
 }

@@ -145,6 +145,11 @@
             $(this).height(scHeight)
         })
 
+        // // 질문 Modal Window open 시
+        // $('#question-modal').on('shown.bs.modal', function () {
+        //     initEditor()
+        // })
+
         // 질문 Modal Window close 시
         $('#question-modal').on('hidden.bs.modal', function () {
 
@@ -168,6 +173,23 @@
             $('#second-category option').attr('hidden', 'hidden')
             $('#second-category option').filter('[value="' + parentCatCode + '"]').removeAttr('hidden')
         })
+
+        async function initEditor () {
+
+          await tinymce.init({
+            selector: '#question-textarea',
+            menubar: false,
+            statusbar: false,
+            toolbar: false,
+            height: $("#modal-question").height() - $('title').height(),
+            setup: function (editor) {
+              editor.on('change', function () {
+                editor.save()
+              })
+            },
+            relative_urls: false,
+          })
+        }
     })
 
 
