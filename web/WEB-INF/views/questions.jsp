@@ -31,6 +31,8 @@
   <link rel="stylesheet" type="text/css" href="/static/css/utils.css">
   <link rel="stylesheet" type="text/css" href="/static/css/main.css">
 
+
+
   <style>
     input, textarea, button, a {
       color: rgb(213, 214, 214);
@@ -104,12 +106,11 @@
         <div style="width: 572px; margin-left:172px;">
           <div>
             <div>
-
               <%--질문글--%>
-              <div class="mb-3 mx-1" style="">
+              <div class="mb-3 mx-1">
 
                 <%--배경색--%>
-                <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten">
+                <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative">
 
                   <%--Questions for you--%>
                   <div class="px-3 py-2 border-bottom-grey">
@@ -134,16 +135,119 @@
                   </div>
 
                   <div class="" style="height: 100%;">
-
-
                     <div>
-
                       <%--질문글--%>
                       <div>
-                        <div class="pt-4 px-4">
+                        <div class="unanswered-question pt-3 px-3 border-bottom-grey">
+                          <div>
+                            <div>
+                              <%--title and close--%>
+                              <div>
+                                <div class="d-flex justify-content-between position-relative">
+                                  <%--Question title--%>
+                                  <div class="pe-2">
+                                    <a class="hover-underline" href=""><b>Is this the content of the questions?</b></a>
+                                  </div>
+                                  <%--Question close--%>
+                                  <div class="position-absolute" style="top: -12px; right: -12px;">
+                                    <div>
+                                        <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m16.243 7.757-8.486 8.486m8.486 0L7.757 7.757" class="icon_svg-stroke" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke="#666" stroke-width="1.5"></path>
+                                          </svg>
+                                        </span>
+                                    </div>
+                                  </div>
 
+<%--                                  <div class="" style="top: -12px; right: -12px;">--%>
+<%--                                    <div class="d-flex justify-content-center align-items-center position-absolute rounded-circle bg-hover-whiten-light" style="height: 38px; min-width: 38px;">--%>
+<%--                                      <div class="" style="width: 24px; height: 24px;">--%>
+<%--                                        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">--%>
+<%--                                          <path d="m16.243 7.757-8.486 8.486m8.486 0L7.757 7.757" class="icon_svg-stroke" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke="#666" stroke-width="1.5"></path>--%>
+<%--                                        </svg>--%>
+<%--                                      </div>--%>
+<%--                                    </div>--%>
+<%--                                  </div>--%>
+                                </div>
+                              </div>
+
+                              <%--Posted date--%>
+                              <div class="mt-2 color-grey" style="font-size: 13px;">
+                                <div>
+                                  <div>
+                                    questioned by 02/10/15
+                                  </div>
+                                </div>
+                              </div>
+
+                              <%--Question footer--%>
+                              <div class="mt-1">
+                                <div style="padding-top: 1px; padding-bottom: 1px;">
+                                  <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                      <%--Answer button--%>
+                                      <button class="px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                          <%--Answer icon--%>
+                                          <div>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                              <g stroke-width="1.5" fill="none" fill-rule="evenodd">
+                                                <path d="M18.571 5.429h0a2 2 0 0 1 0 2.828l-9.9 9.9-4.24 1.416 1.412-4.245 9.9-9.9h0a2 2 0 0 1 2.828 0Z" stroke="rgb(72, 148, 253)" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path fill="#666" d="m4.429 19.571 2.652-.884-1.768-1.768z"></path>
+                                                <path d="M14.5 19.5h5v-5m-10-10h-5v5"  stroke="rgb(72, 148, 253)" stroke-linecap="round" stroke-linejoin="round"></path>
+                                              </g>
+                                            </svg>
+                                          </div>
+                                          <%--Answer text--%>
+                                          <div class="color-grey ms-1" style="font-size: 14px;">
+                                            <div>Answer</div>
+                                          </div>
+                                        </div>
+                                      </button>
+                                      <%--Pass button--%>
+                                      <button class="px-2 rounded-pill bg-hover-whiten-light" style="height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                          <%--Answer icon--%>
+                                          <div>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                              <g fill="none" fill-rule="evenodd">
+                                                <path d="m11.828 9.314 3.9-3.9a2 2 0 1 1 2.828 2.829l-3.9 3.9m-3.535 3.535-2.464 2.464-4.241 1.416 1.412-4.244 2.465-2.465" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"></path>
+                                                <path class="icon_svg-fill_as_stroke" fill="#666" d="m4.414 19.556 2.652-.884-1.768-1.767z"></path>
+                                                <path d="M4.636 5.636 18.5 19.5" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" stroke-linecap="round"></path>
+                                              </g>
+                                            </svg>
+                                          </div>
+                                          <%--Answer text--%>
+                                          <div class="color-grey ms-1" style="font-size: 14px;">
+                                            <div>Pass</div>
+                                          </div>
+                                        </div>
+                                      </button>
+                                    </div>
+
+                                    <%--right side of footer--%>
+                                    <div>
+
+                                      <%--Share button--%>
+                                      <div>
+                                        <div style="margin-right: -6px;">
+                                          <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
+                                            </svg>
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
+
                     </div>
                   </div>
                 </div>
@@ -520,6 +624,9 @@
 
     // })
   </script>
+
+  <%--JS--%>
+  <script type="text/javascript" src="/static/js/questions.js"></script>
 </body>
 
 

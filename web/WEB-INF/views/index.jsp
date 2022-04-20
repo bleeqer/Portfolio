@@ -181,7 +181,7 @@
   <%--                    </div>--%>
 
                       <%--Upvote/Downvote, Comment, Share, Option 버튼--%>
-                      <div class="px-1">
+                      <div class="pe-1">
 
                         <%--Container--%>
                         <div class="d-flex justify-content-center align-items-center my-1" style="height: 46px;">
@@ -254,7 +254,7 @@
 
                             <%--Container--%>
                             <div>
-                              <span class="bg-hover-whiten rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;s">
+                              <span class="bg-hover-whiten rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
                                 <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
                                       class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
