@@ -14,7 +14,12 @@
 <html>
 <head>
   <title>Title</title>
+
+  <%--Jquery--%>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <%--Tinymce--%>
+  <script src="https://cdn.tiny.cloud/1/gus813frvbl3fe4mc223cqoe7nmtzbc5kbk3xc2dzvawxe52/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
   <sec:csrfMetaTags/>
 
@@ -172,7 +177,7 @@
                                   <div class="d-flex justify-content-between align-items-center">
                                     <div>
                                       <%--Answer button--%>
-                                      <button class="px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;">
+                                      <button class="px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal">
                                         <div class="d-flex justify-content-center align-items-center">
                                           <%--Answer icon--%>
                                           <div>
@@ -303,6 +308,7 @@
     </div>
   </div>
   <%@ include file="/WEB-INF/views/modals/question-modal.jsp" %>
+  <%@ include file="/WEB-INF/views/modals/answer-modal.jsp" %>
 
   <%--JS--%>
   <script type="text/javascript" src="/static/js/questions.js"></script>

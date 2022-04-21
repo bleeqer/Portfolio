@@ -116,8 +116,9 @@
                         <%--질문글 body--%>
                         <div>
 
-                          <%--질문자 프로필--%>
+
                           <div>
+                            <%--질문자 프로필--%>
                             <div class="mb-2 d-flex">
                               <%--프로필 사진--%>
                               <div class="me-3 position-relative">
@@ -754,26 +755,11 @@
 
 <%--    </script>--%>
   <script>
-
-
     // $(document).ready(function() {
-
-
-
-
-
-
-
         // $('.search-overlay').on('click', function() {
         //   $(this).css('visibility', 'hidden')
         // })
-
-
-
     // })
   </script>
 </body>
-
-
-
 </html>
