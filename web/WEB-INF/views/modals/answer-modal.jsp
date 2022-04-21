@@ -172,6 +172,7 @@
             menubar: false,
             statusbar: false,
             toolbar: false,
+            browser_spellcheck: true,
             // height: $("#modal-question").height() - $('title').height(),
             setup: function (editor) {
                 editor.getBody().style.backgroundColor = '#E5FFCC';

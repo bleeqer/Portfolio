@@ -175,7 +175,7 @@
                               <div class="mt-1">
                                 <div style="padding-top: 1px; padding-bottom: 1px;">
                                   <div class="d-flex justify-content-between align-items-center">
-                                    <div>
+                                    <div class="d-flex">
                                       <%--Answer button--%>
                                       <button class="px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal">
                                         <div class="d-flex justify-content-center align-items-center">
@@ -195,6 +195,31 @@
                                           </div>
                                         </div>
                                       </button>
+
+                                      <%--Comment 버튼--%>
+                                      <div role="button">
+
+                                        <%--Container--%>
+                                        <div class="d-inline">
+
+                                          <%--Comment button--%>
+                                          <div class="d-flex rounded-pill px-2 bg-hover-whiten-light">
+
+                                            <%--Comment icon--%>
+                                            <span class="d-inline-block d-flex align-items-center justify-content-center" style="height: 38px;">
+                                              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z" class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="1.5" fill="none"></path>
+                                              </svg>
+                                            </span>
+
+                                            <%--Comment count--%>
+                                            <div class="d-flex align-items-center justify-content-center">
+                                            100
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
                                       <%--Pass button--%>
                                       <button class="px-2 rounded-pill bg-hover-whiten-light" style="height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;">
                                         <div class="d-flex justify-content-center align-items-center">
