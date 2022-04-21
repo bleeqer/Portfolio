@@ -15,8 +15,6 @@
 <head>
   <title>Title</title>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="/js/tinymce/tinymce.min.js"></script>
-  <script src="/js/tinymce/jquery.tinymce.min.js"></script>
 
   <sec:csrfMetaTags/>
 
@@ -760,60 +758,16 @@
 
     // $(document).ready(function() {
 
-      $('.readMore-button').on('click', function() {
-        $(this).parent().find('.fade-post').css('overflow', 'visible')
-        $(this).parent().find('.fade-post').css('max-height', '100%')
-        $(this).hide()
-        $(this).parent().find('.overflow-fade').css('display', 'none')
-      })
 
-      function isOverflown(element) {
-        return element.prop('scrollHeight') > element.height()
-      }
 
-      $('.fade-post').each(function() {
-        if (isOverflown($('.fade-post'))) {
-          $(this).find('.overflow-fade').css('display', 'block')
-        }
-      })
+
+
+
 
         // $('.search-overlay').on('click', function() {
         //   $(this).css('visibility', 'hidden')
         // })
 
-      $('.search-input').on('keyup', (function () {
-        const keyword = $(this).val()
-        console.log($(this).val())
-        const keywordDisplay = $('.display-keyword')
-
-        keywordDisplay.html(keyword)
-
-        if (keyword.length > 0) {
-          $('.search-display').removeClass('hidden')
-
-        } else {
-          $('.search-display').addClass('hidden')
-        }
-      }))
-
-      $('.search-input').focus(function () {
-        $('.search-overlay').addClass('show-search-overlay')
-
-      })
-
-      $('.search-input').focusout(function () {
-        $('.search-overlay').removeClass('show-search-overlay')
-      })
-
-      $('.search-button').click(function () {
-        $('#search-form').submit()
-      })
-
-      $(function () {
-        $('[data-toggle="popover"]').popover({trigger: "hover"})
-      })
-
-  $('.best-title:last-child').removeClass('border-bottom-grey')
 
 
     // })
