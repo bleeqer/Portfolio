@@ -1,4 +1,4 @@
-<div class="navbar-container position-fixed container-fluid bg-dark border-bottom border-color-dark shadow" style="z-index: 3;">
+<div class="navbar-container position-fixed container-fluid bg-dark border-bottom border-color-dark shadow" style="z-index: 3; top: 0;">
     <div class="bg-dark"></div>
     <nav class="navbar navbar-dark py-0 mx-auto" style="max-width: 1002px; height: 50px;">
 
@@ -10,12 +10,12 @@
             <div>
           <span class="d-inline-block">
             <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M14.5 17.5a2.5 2.5 0 1 0-5 0v5a.625.625 0 0 1-.533.618l-.092.007H4.5a.625.625 0 0 1-.618-.533l-.007-.092v-9.375H.75a.625.625 0 0 1-.505-.995l.063-.072L11.558.808a.625.625 0 0 1 .797-.072l.087.072 11.25 11.25c.37.37.145.989-.347 1.06l-.095.007h-3.125V22.5a.625.625 0 0 1-.533.618l-.092.007h-4.375a.625.625 0 0 1-.625-.625v-5Z" class="icon_svg-fill_as_stroke" fill="rgb(220, 53, 69)"></path>
+              <path d="M14.5 17.5a2.5 2.5 0 1 0-5 0v5a.625.625 0 0 1-.533.618l-.092.007H4.5a.625.625 0 0 1-.618-.533l-.007-.092v-9.375H.75a.625.625 0 0 1-.505-.995l.063-.072L11.558.808a.625.625 0 0 1 .797-.072l.087.072 11.25 11.25c.37.37.145.989-.347 1.06l-.095.007h-3.125V22.5a.625.625 0 0 1-.533.618l-.092.007h-4.375a.625.625 0 0 1-.625-.625v-5Z" class="icon_svg-fill_as_stroke" fill="rgb(245, 41, 54)"></path>
             </svg>
           </span>
             </div>
             <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition: background-color 250ms;"></div>
-            <div class="rounded-left-top-pill rounded-right-top-pill bg-danger position-absolute" style="height: 3px; width: 44px; left: 50%; bottom: 0; transform: translateX(-50%);"></div>
+            <div class="rounded-left-top-pill rounded-right-top-pill bg-red position-absolute" style="height: 3px; width: 44px; left: 50%; bottom: 0; transform: translateX(-50%);"></div>
         </a>
 
         <%--Answer button--%>
@@ -47,7 +47,7 @@
 
         </div>
         <%--Search box--%>
-        <div class="ms-3 me-2 bg-black rounded-pill border border-color-grey hover-border-color-blue position-relative">
+        <div class="ms-3 me-2 bg-black rounded-pill border border-color-gray hover-border-color-blue position-relative">
             <form id="search-form" action="/search" method="get">
                 <div class="d-flex py-1 px-2" style="transition: background-color 250ms; height: 40px;">
 
@@ -71,7 +71,7 @@
                 </div>
             </form>
             <%--keyword display--%>
-            <%--          <div class="position-absolute bg-dark px-3 d-flex align-items-center search-display border border-color-grey hidden" style="top: 100%; right: 0; height: 100%; width: 100%; overflow: hidden; cursor: pointer;">--%>
+            <%--          <div class="position-absolute bg-dark px-3 d-flex align-items-center search-display border border-color-gray hidden" style="top: 100%; right: 0; height: 100%; width: 100%; overflow: hidden; cursor: pointer;">--%>
             <%--            &lt;%&ndash;Magnifying glass&ndash;%&gt;--%>
             <%--            <div class="me-2">--%>
             <%--              <span>--%>

@@ -1,9 +1,17 @@
 .link-default-color {
-    color: rgb(213, 214, 214);
+    color: rgb(213, 214, 214) !important;
 }
 
 .link-default-color:hover {
-    color: rgb(213, 214, 214);
+    color: rgb(213, 214, 214) !important;
+}
+
+.color-dark-gray {
+    color: rgb(142, 144, 146) !important;
+}
+
+.color-red {
+    color: rgb(245, 41, 54) !important;
 }
 
 .hover-underline:hover {
@@ -26,7 +34,7 @@
     border-color: rgb(26, 26, 26) !important;
 }
 
-.border-color-grey {
+.border-color-gray {
     border-color: rgb(57, 56, 57) !important;
 }
 
@@ -74,7 +82,7 @@
     color: #4894fd !important;
 }
 
-.color-grey {
+.color-gray {
     color: #b1b3b6 !important;
 }
 
@@ -83,7 +91,7 @@
 }
 
 .bg-red {
-    background-color: #f52936 !important;
+    background-color: rgb(245, 41, 54) !important;
 }
 
 .font-size-1 {
@@ -98,7 +106,7 @@
     display: none!important;
 }
 
-.border-bottom-grey {
+.border-bottom-gray {
     border-bottom-style: solid !important;
     border-width: 1px !important;
     border-color: #393839 !important;
@@ -118,7 +126,7 @@
     border-bottom-color: #2e69ff !important;
 }
 
-.border-grey {
+.border-gray {
     border: 1px solid #393839 !important;
 }
 
