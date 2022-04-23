@@ -143,7 +143,7 @@
                                   <div class="my-auto font-size-1"><a class="text-decoration-none link-default-color hover-underline h6" href=""><b>홍길동</b></a></div>
 
                                   <%--상세--%>
-                                  <div class="my-auto color-gray font-size-1">프로그래머</div>
+                                  <div class="my-auto color-gray font-size-1">프로그래머 <span> · </span> answered 00 ago</div>
 
                                 </div>
                               </div>
@@ -204,11 +204,11 @@
                                   <div class="d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" >
                                     <div class="d-flex">
                                       <div>
-                                    <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 4 3 15h6v5h6v-5h6z" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#666" fill="none" stroke-linejoin="round"></path>
-                                      </svg>
-                                    </span>
+                                        <span class="d-inline-block d-flex align-items-center justify-content-center">
+                                          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 4 3 15h6v5h6v-5h6z" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#666" fill="none" stroke-linejoin="round"></path>
+                                          </svg>
+                                        </span>
                                       </div>
                                       <div class="d-flex align-items-center justify-content-center">
                                         Upvote Count
@@ -247,7 +247,7 @@
                                 </span>
 
                                     <%--Comment count--%>
-                                    <div class="d-flex align-items-center justify-content-center">
+                                    <div class="d-flex align-items-center justify-content-center color-gray">
                                       100
                                     </div>
                                   </div>
@@ -255,20 +255,32 @@
                               </div>
                             </div>
 
-                            <%--Option 버튼--%>
-                            <div class="ms-auto">
+                            <%--Options--%>
+                            <div class="ms-auto d-flex">
 
-                              <%--Container--%>
+                              <%--Share button--%>
                               <div>
-                            <span class="bg-hover-whiten rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                              <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                      class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
-                                </path>
-                              </svg>
-                            </span>
+                                <div>
+                                                            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                                              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
+                                                              </svg>
+                                                            </span>
+                                </div>
+                              </div>
+
+                              <%--Three dots--%>
+                              <div>
+                                                          <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                                            <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                              <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                                                                    class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
+                                                              </path>
+                                                            </svg>
+                                                          </span>
                               </div>
                             </div>
+
                           </div>
                         </div>
                       </div>
@@ -309,7 +321,7 @@
                                 <div class=""><a href=""><b>홍길동</b></a></div>
 
                                 <%--상세--%>
-                                <div class="text-center">프로그래머</div>
+                                <div class="text-center">프로그래머 <span> · </span> answered 00 ago</div>
                               </div>
                             </div>
                             <%--질문글 제목--%>
@@ -761,17 +773,8 @@
 
 <%--            })--%>
 
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/utils.js"></script>
 
-
-<%--    })--%>
-
-<%--    </script>--%>
-  <script>
-    // $(document).ready(function() {
-        // $('.search-overlay').on('click', function() {
-        //   $(this).css('visibility', 'hidden')
-        // })
-    // })
-  </script>
 </body>
 </html>
