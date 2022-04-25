@@ -57,6 +57,10 @@
         a:hover {
             color: inherit;
         }
+
+        select:focus {
+            outline: none;
+        }
     </style>
 </head>
 <body>
@@ -202,7 +206,7 @@
                                                         </div>
                                                         <div class="overflow-fade" style="background: linear-gradient(to bottom, transparent 60%, rgb(24, 24, 24) 100%) !important;"></div>
                                                     </div>
-                                                    <span class="readMore-button btn btn-primary rounded-pill">More</span>
+                                                    <span class="readMore-button btn btn-primary rounded-pill hidden">More</span>
                                                 </div>
                                             </div>
 
@@ -563,8 +567,8 @@
 
 <%--        </div>--%>
 <%--    </div>--%>
-<script src="/static/js/questions.js"></script>
 <script src="/static/js/main.js"></script>
 <script src="/static/js/utils.js"></script>
+<script src="/static/js/questions.js"></script>
 </body>
 </html>

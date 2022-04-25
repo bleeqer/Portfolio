@@ -58,6 +58,10 @@
     background-color: rgba(0, 0, 0, 0.09) !important;
 }
 
+.bg-hover-darken-light:hover {
+    background-color: rgba(0, 0, 0, 0.045) !important;
+}
+
 .rounded-left-top-pill {
     border-top-left-radius: 1000px;
 }
@@ -86,6 +90,18 @@
     color: #b1b3b6 !important;
 }
 
+.color-black-light {
+    color: #636466 !important;
+}
+
+.color-gray-light {
+    color: #939598 !important;
+}
+
+.color-gray-dark {
+    color: #282829 !important;
+}
+
 .bg-blue {
     background-color: #282D41 !important;
 }
@@ -112,6 +128,18 @@
     border-color: #393839 !important;
 }
 
+.border-bottom-gray-light {
+    border-bottom-style: solid !important;
+    border-width: 1px !important;
+    border-color: #dee0e1 !important;
+}
+
+.border-right-gray-light {
+    border-right-style: solid !important;
+    border-width: 1px !important;
+    border-color: #dee0e1 !important;
+}
+
 .border-bottom-blue-3 {
     border-bottom-style: solid !important;
     border-width: 3px !important;
@@ -126,8 +154,12 @@
     border-bottom-color: #2e69ff !important;
 }
 
-.border-gray {
+.border-color-gray {
     border: 1px solid #393839 !important;
+}
+
+.border-color-gray-light {
+    border-color: #dee0e1 !important;
 }
 
 .modal-backdrop {
@@ -138,6 +170,3 @@
     opacity: 0.9;
 }
 
-select:focus {
-    outline: none;
-}

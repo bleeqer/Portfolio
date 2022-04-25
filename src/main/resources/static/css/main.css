@@ -1,8 +1,10 @@
 .fade-post {
     max-height: 200px;
     overflow: hidden;
+    height: 100%;
     text-overflow: ellipsis;
     position: relative;
+    transition: height 800ms ease-in-out;
 }
 
 .overflow-fade {

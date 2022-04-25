@@ -107,3 +107,5 @@
         </div>
     </nav>
 </div>
+
+<script src="/static/js/navbar.js"></script>

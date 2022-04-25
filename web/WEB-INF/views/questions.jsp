@@ -50,6 +50,10 @@
       color: rgb(213, 214, 214);
     }
 
+    select:focus {
+      outline: none;
+    }
+
     .icon_svg-stroke {
       stroke: rgb(177, 179, 182);
     }
