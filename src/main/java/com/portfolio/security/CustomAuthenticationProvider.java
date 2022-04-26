@@ -32,11 +32,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         String userId = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
-
+        System.out.println(userId);
+        System.out.println(password);
         CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(userId);
 
         if (!matchPassword(password, user.getPassword())) {
-            System.out.println("bad credentials exception");
             throw new BadCredentialsException(userId);
         }
 

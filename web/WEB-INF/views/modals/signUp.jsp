@@ -37,7 +37,7 @@
                                     </div>
 
                                     <%--Input--%>
-                                    <div class="d-flex align-items-center color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                    <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
                                         <input class="input-focus" type="text" id="register-name" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your name" autocomplete="off">
                                     </div>
 
@@ -54,7 +54,7 @@
                                     </div>
 
                                     <%--Input--%>
-                                    <div class="d-flex align-items-center color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                    <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
                                         <input class="input-focus" type="text" id="register-email" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your email" autocomplete="off">
                                     </div>
 
@@ -86,7 +86,7 @@
                 <div class="px-3 py-2">
                     <div class="d-flex justify-content-end align-items-center">
                         <button id="register-button" class="btn btn-primary rounded-pill" style="height: 38px; font-size: 14px; padding: 0 20px;">
-                            <div>Next</div>
+                            <div>Register</div>
                         </button>
                     </div>
                 </div>

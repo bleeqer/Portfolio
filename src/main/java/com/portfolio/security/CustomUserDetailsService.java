@@ -17,9 +17,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         CustomUserDetails user = userAuthDAO.getUserById(userId);
 
-
         if (user == null) {
-            System.out.println("봐랑");
             throw new InternalAuthenticationServiceException(userId);
         }
 

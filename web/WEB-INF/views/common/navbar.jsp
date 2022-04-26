@@ -47,14 +47,14 @@
 
         </div>
         <%--Search box--%>
-        <div class="ms-3 me-2 bg-black rounded-pill border border-color-gray hover-border-color-blue position-relative">
+        <div class="ms-3 me-2 bg-black rounded-pill border border-color-gray hover-border-color-blue input-container position-relative">
             <form id="search-form" action="/search" method="get">
                 <div class="d-flex py-1 px-2" style="transition: background-color 250ms; height: 40px;">
 
                     <div class="d-flex justify-content-center">
                         <%--Search bar--%>
                         <div class="d-flex ms-1">
-                            <input class="search-input justify-content-center" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
+                            <input class="search-input input-focus justify-content-center" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
 
                             <%--Search focus overlay--%>
                             <div class="position-fixed bg-transparent-dark search-overlay hidden"></div>
@@ -109,3 +109,4 @@
 </div>
 
 <script src="/static/js/navbar.js"></script>
+<script src="/static/js/main.js"></script>

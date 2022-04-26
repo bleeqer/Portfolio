@@ -119,7 +119,9 @@
                                 </div>
                             </div>
 
-                            <form id="login-form" action="" method="POST">
+                            <form id="login-form" action="/user/login" method="POST">
+
+                                <sec:csrfInput/>
 
                                 <%--Email--%>
                                 <div class="mb-3">
@@ -132,8 +134,8 @@
 
                                     <%--Email input--%>
                                     <div>
-                                        <div class="d-flex align-items-center color-gray-dark rounded-1 p-2 border-color-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                            <input class="input-focus" type="text" id="login-email" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your ID" autocomplete="off">
+                                        <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                            <input class="input-focus"name="username" type="text" id="login-email" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your ID" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -150,8 +152,8 @@
 
                                     <%--Password input--%>
                                     <div>
-                                        <div class="d-flex align-items-center color-gray-dark rounded-1 p-2 border-color-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                            <input class="input-focus" type="password" id="login-password" style="width: 100%; outline: none; border: none; font-size: 15px;" placeholder="Password" autocomplete="off">
+                                        <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                            <input class="input-focus" name="password" type="password" id="login-password" style="width: 100%; outline: none; border: none; font-size: 15px;" placeholder="Password" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +165,7 @@
                                         <%--Forgot password--%>
                                         <div>
                                             <div>
-                                                <a class="hover-underline color-gray-light" href="" style="font-size: 13px;">Forgot password?</a>
+                                                <a class="hover-underline color-gray-light" data-bs-toggle="modal" data-bs-target="#findPW-modal" style="font-size: 13px;">Forgot password?</a>
                                             </div>
                                         </div>
 
@@ -187,6 +189,7 @@
     </div>
 </div>
 <%@ include file="/WEB-INF/views/modals/signUp.jsp" %>
+<%@ include file="/WEB-INF/views/modals/findPW.jsp" %>
 
 <script src="/static/js/login.js"></script>
 <script src="/static/js/main.js"></script>

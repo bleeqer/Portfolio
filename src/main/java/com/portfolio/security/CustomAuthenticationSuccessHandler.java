@@ -40,9 +40,11 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
 
-        if (jsonConverter.canWrite(map.getClass(), MediaType.APPLICATION_JSON)) {
-            jsonConverter.write(map, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response));
-        }
+//        if (jsonConverter.canWrite(map.getClass(), MediaType.APPLICATION_JSON)) {
+//            jsonConverter.write(map, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response));
+//        }
+
+        resultRedirectStrategy(request, response, authentication);
 
     }
 
