@@ -519,7 +519,7 @@
 
 <%--    </div>--%>
 <%--  </div>--%>
-  <%@ include file="/WEB-INF/views/modals/question-modal.jsp" %>
+  <%@ include file="/WEB-INF/views/modals/question.jsp" %>
 <%--  <div id="ex" class="modal">gg--%>
 <%--    <a href="#" rel="modal:close">Close</a>--%>
 <%--  </div>--%>

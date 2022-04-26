@@ -1,3 +1,11 @@
+//
+// $('#register-button').click(function (e) {
+//
+//     e.preventDefault()
+//
+//     $('#signUp-form').
+// })
+
 // <script>
 //     $(document).ready(function() {
 //

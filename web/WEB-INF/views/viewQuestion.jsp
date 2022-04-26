@@ -70,7 +70,7 @@
 <span id="more-button">More</span>
 
 
-    <%@ include file="/WEB-INF/views/modals/question-modal.jsp" %>
+    <%@ include file="/WEB-INF/views/modals/question.jsp" %>
 
     <script>
         async function initEditor () {

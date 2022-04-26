@@ -12,7 +12,7 @@
 <head>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <%--<sec:csrfMetaTags/>--%>
+    <sec:csrfMetaTags/>
 
     <%--  Bootstrap  --%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -101,7 +101,7 @@
                         <%--Left side--%>
                         <div class="px-4 border-right-gray-light" style="width: 50%;">
                             <div class="border-bottom-gray-light" style="padding-bottom: 8px;">
-                                <div class="rounded-pill bg-hover-darken-light">
+                                <div class="rounded-pill bg-hover-darken-light" data-bs-toggle="modal" data-bs-target="#signUp-modal">
                                     <div class="d-flex justify-content-center">
                                         <span class="text-center color-gray-dark" style="line-height: 30px; font-size: 13px;">Sign up</span>
                                     </div>
@@ -121,21 +121,19 @@
 
                             <form id="login-form" action="" method="POST">
 
-                                <sec:csrfInput/>
-
-                                <%--ID--%>
+                                <%--Email--%>
                                 <div class="mb-3">
-                                    <%--ID label--%>
+                                    <%--Email label--%>
                                     <div class="mb-1">
                                         <div class="color-gray-dark">
-                                            <label for="userId" style="font-size: 13px;">ID</label>
+                                            <label for="login-email" style="font-size: 13px;">Email</label>
                                         </div>
                                     </div>
 
-                                    <%--ID input--%>
+                                    <%--Email input--%>
                                     <div>
                                         <div class="d-flex align-items-center color-gray-dark rounded-1 p-2 border-color-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                            <input type="text" id="userId" name="userId" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your ID" autocomplete="off">
+                                            <input class="input-focus" type="text" id="login-email" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your ID" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -146,14 +144,14 @@
                                     <%--Password label--%>
                                     <div class="mb-1">
                                         <div class="color-gray-dark">
-                                            <label for="password" style="font-size: 13px;">Password</label>
+                                            <label for="login-password" style="font-size: 13px;">Password</label>
                                         </div>
                                     </div>
 
                                     <%--Password input--%>
                                     <div>
                                         <div class="d-flex align-items-center color-gray-dark rounded-1 p-2 border-color-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                            <input type="password" id="password" name="password" style="width: 100%; outline: none; border: none; font-size: 15px;" placeholder="Password" autocomplete="off">
+                                            <input class="input-focus" type="password" id="login-password" style="width: 100%; outline: none; border: none; font-size: 15px;" placeholder="Password" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -176,7 +174,6 @@
                                     </div>
                                 </div>
                             </form>
-
                         </div>
                     </div>
 
@@ -187,20 +184,12 @@
                 </div>
             </div>
         </div>
-<%--        <form id="userLogin-form" action="/user/loginAJAX" method="POST">--%>
-<%--            <label for="id">ID</label>--%>
-<%--            <input type="text" name="username" id="id">--%>
-<%--            <br>--%>
-<%--            <label for="userPW">PASSWORD</label>--%>
-<%--            <input type="password" name="password" id="userPW">--%>
-<%--            <button id="userLogin-submit" type="submit">login</button>--%>
-<%--            <span id="register-button">Register</span>--%>
-<%--            <sec:csrfInput/>--%>
-<%--        </form>--%>
     </div>
 </div>
+<%@ include file="/WEB-INF/views/modals/signUp.jsp" %>
 
 <script src="/static/js/login.js"></script>
+<script src="/static/js/main.js"></script>
 
 </body>
 </html>

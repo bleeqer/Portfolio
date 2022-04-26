@@ -15,6 +15,7 @@ $('.search-input').on('keyup', (function () {
 $('.search-input').focus(function () {
     $('.search-overlay').addClass('show-search-overlay')
 
+
 })
 
 $('.search-input').focusout(function () {
