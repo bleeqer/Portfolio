@@ -360,7 +360,4 @@
   <%--JS--%>
   <script type="text/javascript" src="/static/js/questions.js"></script>
 </body>
-
-
-
 </html>

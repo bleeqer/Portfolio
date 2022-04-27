@@ -11,6 +11,7 @@
     <mvc:view-controller path="/questions" view-name="questions" />
     <mvc:view-controller path="/profile" view-name="profile" />
     <mvc:view-controller path="/login" view-name="login" />
+    <mvc:view-controller path="/question" view-name="detailQuestion" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
