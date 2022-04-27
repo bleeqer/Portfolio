@@ -224,7 +224,7 @@
                             </div>
 
                             <%--Sorting option--%>
-                            <div class="d-flex cursor-pointer rounded-pill bg-hover-whiten-light px-3 py-1" data-bs-toggle="popover">
+                            <div class="d-flex cursor-pointer rounded-pill bg-hover-whiten-light px-3 py-1 position-relative">
                                 <div class="d-flex me-1" style="font-size: 15px;">
                                     Sort
                                 </div>
@@ -233,6 +233,8 @@
                                         <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" fill="none" stroke-linecap="round"></path>
                                     </svg>
                                 </div>
+
+                                <div id="sort-button" class="position-absolute" data-bs-toggle="popover" style="inset: 0; height: 100%; width: 100%; z-index: 2;"></div>
                             </div>
                         </div>
                     </div>
@@ -274,14 +276,10 @@
 <script src="/static/js/questions.js"></script>
 
 <script>
-    $(function () {
-        $('[data-bs-toggle="popover"]').popover({
-            html: true,
-            content: function() {
-                return $('#popover-content').html();
-            }
-        })
-    })
+
+
+
+
 </script>
 </body>
 </html>
