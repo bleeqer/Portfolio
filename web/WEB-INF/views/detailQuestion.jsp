@@ -81,7 +81,7 @@
         <div class="d-flex justify-content-center mx-auto" style="width: 1002px; padding-top: 30px; padding-left: 24px; padding-right: 24px;">
 
             <%--Main content container--%>
-            <div style="width: 572px;">
+            <div style="width: 636px;">
 
                 <%--Question--%>
                 <div class="border-bottom-gray">
@@ -245,7 +245,6 @@
 
                             <%--Content--%>
                             <div>
-
                                 <div>
 
                                     <%--Profile and content--%>
@@ -435,12 +434,13 @@
                                                 <%--Comment node--%>
                                                 <div class="d-flex flex-column">
 
-                                                    <%--Root comment--%>
-                                                    <div class="d-flex">
+                                                    <%--Comment--%> <%--레벨이 0인 댓글은 프로필 사진 크기 조절--%>
+                                                    <div class="comment d-flex" data-comment="1" data-parent-comment="0" data-comment-level="1">
+
                                                         <%--Profile pic--%>
                                                         <div>
                                                             <div>
-                                                                <img src="/static/img/user.png" alt="" width="36" height="36">
+                                                                <img src="/static/img/user.png" alt="" width="24" height="24">
                                                             </div>
                                                         </div>
 
@@ -453,13 +453,13 @@
 
                                                                     <%--Name--%>
                                                                     <span class="font-bold" style="font-size: 13px;">
-                                                                        <a href="">Name · </a>
-                                                                    </span>
+                                                                <a href="">Name · </a>
+                                                            </span>
 
                                                                     <%--Date--%>
                                                                     <span class="color-gray-light" style="font-size: 13px;">
-                                                                        0 ago
-                                                                    </span>
+                                                                0 ago
+                                                            </span>
                                                                 </div>
                                                             </div>
 
@@ -490,12 +490,13 @@
                                                                                 <div class="d-flex justify-content-center align-items-center bg-hover-whiten-light rounded-left-top-pill rounded-left-bottom-pill" style="height: 30px; padding: 0px 10px;">
                                                                                     <div class="d-flex">
                                                                                         <div>
-                                                                                            <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                                                                              <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                                <path d="M12 4 3 15h6v5h6v-5h6z" stroke-width="1.5" stroke="rgb(72, 148, 253)" fill="none" stroke-linejoin="round"></path>
-                                                                                              </svg>
-                                                                                            </span>
+                                                                                    <span class="d-inline-block d-flex align-items-center justify-content-center">
+                                                                                      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path d="M12 4 3 15h6v5h6v-5h6z" stroke-width="1.5" stroke="rgb(72, 148, 253)" fill="none" stroke-linejoin="round"></path>
+                                                                                      </svg>
+                                                                                    </span>
                                                                                         </div>
+
                                                                                         <div class="d-flex align-items-center justify-content-center" style="font-size: 13px; margin-left: 2px;">
                                                                                             Upvote Count
                                                                                         </div>
@@ -505,18 +506,18 @@
                                                                                 <%--Downvote 버튼--%>
                                                                                 <div class=" d-flex justify-content-center align-items-center bg-hover-whiten-light px-2 rounded-right-top-pill rounded-right-bottom-pill" style="height: 30px; padding: 0px 10px;">
                                                                                     <div>
-                                                                                      <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                                                                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                          <path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
-                                                                                        </svg>
-                                                                                      </span>
+                                                                      <span class="d-inline-block d-flex align-items-center justify-content-center">
+                                                                        <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                          <path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
+                                                                        </svg>
+                                                                      </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
 
                                                                         <%--Comment 버튼--%>
-                                                                        <div class="view-reply-button" role="button" data-comment="1" data-parent-comment="0" data-comment-level="1">
+                                                                        <div class="view-reply-button" role="button">
 
                                                                             <%--Container--%>
                                                                             <div>
@@ -526,10 +527,10 @@
 
                                                                                     <%--Comment icon--%>
                                                                                     <span class="d-inline-block d-flex align-items-center justify-content-center" style="height: 30px;">
-                                                                                      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                        <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z" class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="1.5" fill="none"></path>
-                                                                                      </svg>
-                                                                                    </span>
+                                                                      <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z" class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="1.5" fill="none"></path>
+                                                                      </svg>
+                                                                    </span>
 
                                                                                     <%--Comment count--%>
                                                                                     <div class="d-flex align-items-center justify-content-center color-gray">
@@ -546,310 +547,182 @@
                                                                         <%--Share button--%>
                                                                         <div>
                                                                             <div>
-                                                                              <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                                                                                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                  <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
-                                                                                </svg>
-                                                                              </span>
+                                                              <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                                                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                  <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
+                                                                </svg>
+                                                              </span>
                                                                             </div>
                                                                         </div>
 
                                                                         <%--Three dots--%>
                                                                         <div>
-                                                                            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                                                                              <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                                                                      class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
-                                                                                </path>
-                                                                              </svg>
-                                                                            </span>
+                                                            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                                              <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                                                                      class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
+                                                                </path>
+                                                              </svg>
+                                                            </span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+
+                                                            <div class="reply-input-container mx-1 hidden">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="rounded-pill bg-black px-3 py-2 border-gray" style="width: 100%;">
+                                                                        <form action="" style="line-height: 0;">
+                                                                            <input type="text" placeholder="Add a reply..." style="height: 22px; border: none; outline: none; width: 100%; font-size: 15px; line-height: 22px;">
+                                                                            </form>
+                                                                        </div>
+                                                                    <button class="rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;">
+                                                                    Reply
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
+
                                                     </div>
 
-                                                    <%--Child comments--%>
-                                                    <div class="child-comment-container" style="margin-left: 44px;" data-parent-comment="1">
+                                                    <%--Comment--%> <%--레벨이 0보다 큰 댓글은 class에 hidden, 레벨xpadding--%>
+                                                    <div class="comment d-flex hidden" style="padding-left: 30px;" data-comment="2" data-parent-comment="1" data-comment-level="2">
 
-                                                        <div class="child-comment-list">
+                                                        <%--Profile pic--%>
+                                                        <div>
+                                                            <div>
+                                                                <img src="/static/img/user.png" alt="" width="24" height="24">
+                                                            </div>
+                                                        </div>
 
-                                                            <%--Child comment--%>
-                                                            <div class="child-comment d-flex hidden" data-comment="2" data-parent-comment="1" data-comment-level="2">
+                                                        <%--Comment content--%>
+                                                        <div class="ms-2">
 
-                                                                <%--Profile pic--%>
+                                                            <%--Name and date--%>
+                                                            <div>
                                                                 <div>
-                                                                    <div>
-                                                                        <img src="/static/img/user.png" alt="" width="20" height="20">
-                                                                    </div>
+
+                                                                    <%--Name--%>
+                                                                    <span class="font-bold" style="font-size: 13px;">
+                                                            <a href="">Name · </a>
+                                                        </span>
+
+                                                                    <%--Date--%>
+                                                                    <span class="color-gray-light" style="font-size: 13px;">
+                                                            0 ago
+                                                        </span>
                                                                 </div>
+                                                            </div>
 
-                                                                <%--Comment content--%>
-                                                                <div class="ms-2 ">
+                                                            <%--Comment content--%>
+                                                            <div>
+                                                                <div>
+                                                                    <p class="m-0" style="font-size: 15px;">
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat elit vitae interdum pellentesque. Mauris vulputate leo urna, in sagittis ante laoreet ut. Curabitur eu volutpat arcu. Vestibulum nisi quam.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
 
-                                                                    <%--Name and date--%>
-                                                                    <div>
-                                                                        <div>
+                                                            <%--Footer--%>
+                                                            <div>
 
-                                                                            <%--Name--%>
-                                                                            <span class="font-bold" style="font-size: 13px;">
-                                                                    <a href="">Name · </a>
-                                                                </span>
+                                                                <%--Container--%>
+                                                                <div class="d-flex justify-content-center align-items-center py-1" style="height: 46px;">
 
-                                                                            <%--Date--%>
-                                                                            <span class="color-gray-light" style="font-size: 13px;">
-                                                                    0 ago
-                                                                </span>
-                                                                        </div>
-                                                                    </div>
+                                                                    <%--div.Upvote/Downvote, Comment 버튼--%>
+                                                                    <div class="d-flex justify-content-center align-items-center">
 
-                                                                    <%--Comment content--%>
-                                                                    <div>
-                                                                        <div>
-                                                                            <p class="m-0" style="font-size: 15px;">
-                                                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat elit vitae interdum pellentesque. Mauris vulputate leo urna, in sagittis ante laoreet ut. Curabitur eu volutpat arcu. Vestibulum nisi quam.
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
+                                                                        <%--Upvote/Downvote 버튼--%>
+                                                                        <div class="me-1 d-flex justify-content-center align-items-center">
 
-                                                                    <%--Footer--%>
-                                                                    <div>
-
-                                                                        <%--Container--%>
-                                                                        <div class="d-flex justify-content-center align-items-center py-1" style="height: 46px;">
-
-                                                                            <%--div.Upvote/Downvote, Comment 버튼--%>
-                                                                            <div class="d-flex justify-content-center align-items-center">
-
-                                                                                <%--Upvote/Downvote 버튼--%>
-                                                                                <div class="me-1 d-flex justify-content-center align-items-center">
-
-                                                                                    <%--Container--%>
-                                                                                    <div class="d-flex rounded-pill" role="button" style="background-color: rgba(255, 255, 255, 0.05);">
-                                                                                        <%--Upvote 버튼--%>
-                                                                                        <div class="d-flex justify-content-center align-items-center bg-hover-whiten-light rounded-left-top-pill rounded-left-bottom-pill" style="height: 30px; padding: 0px 10px;">
-                                                                                            <div class="d-flex">
-                                                                                                <div>
-                                                                                        <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                                                                          <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                            <path d="M12 4 3 15h6v5h6v-5h6z" stroke-width="1.5" stroke="rgb(72, 148, 253)" fill="none" stroke-linejoin="round"></path>
-                                                                                          </svg>
-                                                                                        </span>
-                                                                                                </div>
-
-                                                                                                <div class="d-flex align-items-center justify-content-center" style="font-size: 13px; margin-left: 2px;">
-                                                                                                    Upvote Count
-                                                                                                </div>
-                                                                                            </div>
+                                                                            <%--Container--%>
+                                                                            <div class="d-flex rounded-pill" role="button" style="background-color: rgba(255, 255, 255, 0.05);">
+                                                                                <%--Upvote 버튼--%>
+                                                                                <div class="d-flex justify-content-center align-items-center bg-hover-whiten-light rounded-left-top-pill rounded-left-bottom-pill" style="height: 30px; padding: 0px 10px;">
+                                                                                    <div class="d-flex">
+                                                                                        <div>
+                                                                                <span class="d-inline-block d-flex align-items-center justify-content-center">
+                                                                                  <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path d="M12 4 3 15h6v5h6v-5h6z" stroke-width="1.5" stroke="rgb(72, 148, 253)" fill="none" stroke-linejoin="round"></path>
+                                                                                  </svg>
+                                                                                </span>
                                                                                         </div>
 
-                                                                                        <%--Downvote 버튼--%>
-                                                                                        <div class=" d-flex justify-content-center align-items-center bg-hover-whiten-light px-2 rounded-right-top-pill rounded-right-bottom-pill" style="height: 30px; padding: 0px 10px;">
-                                                                                            <div>
-                                                                          <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                                                            <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                              <path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
-                                                                            </svg>
-                                                                          </span>
-                                                                                            </div>
+                                                                                        <div class="d-flex align-items-center justify-content-center" style="font-size: 13px; margin-left: 2px;">
+                                                                                            Upvote Count
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
 
-                                                                                <%--Comment 버튼--%>
-                                                                                <div class="view-reply-button" role="button" data-comment="2" data-parent-comment="1" data-comment-level="2">
-
-                                                                                    <%--Container--%>
+                                                                                <%--Downvote 버튼--%>
+                                                                                <div class=" d-flex justify-content-center align-items-center bg-hover-whiten-light px-2 rounded-right-top-pill rounded-right-bottom-pill" style="height: 30px; padding: 0px 10px;">
                                                                                     <div>
-
-                                                                                        <%--Comment button--%>
-                                                                                        <div class="d-flex rounded-pill px-2 bg-hover-whiten-light" style="padding: 0 10px;">
-
-                                                                                            <%--Comment icon--%>
-                                                                                            <span class="d-inline-block d-flex align-items-center justify-content-center" style="height: 30px;">
-                                                                          <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                            <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z" class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="1.5" fill="none"></path>
-                                                                          </svg>
-                                                                        </span>
-
-                                                                                            <%--Comment count--%>
-                                                                                            <div class="d-flex align-items-center justify-content-center color-gray">
-                                                                                                100
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <%--Options--%>
-                                                                            <div class="ms-auto d-flex">
-
-                                                                                <%--Share button--%>
-                                                                                <div>
-                                                                                    <div>
-                                                                  <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                                                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                      <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
+                                                                  <span class="d-inline-block d-flex align-items-center justify-content-center">
+                                                                    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                      <path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
                                                                     </svg>
                                                                   </span>
                                                                                     </div>
                                                                                 </div>
+                                                                            </div>
+                                                                        </div>
 
-                                                                                <%--Three dots--%>
-                                                                                <div>
-                                                                <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                                                                  <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                                                          class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
-                                                                    </path>
+                                                                        <%--Comment 버튼--%>
+                                                                        <div class="view-reply-button" role="button">
+
+                                                                            <%--Container--%>
+                                                                            <div>
+
+                                                                                <%--Comment button--%>
+                                                                                <div class="d-flex rounded-pill px-2 bg-hover-whiten-light" style="padding: 0 10px;">
+
+                                                                                    <%--Comment icon--%>
+                                                                                    <span class="d-inline-block d-flex align-items-center justify-content-center" style="height: 30px;">
+                                                                  <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z" class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="1.5" fill="none"></path>
                                                                   </svg>
                                                                 </span>
+
+                                                                                    <%--Comment count--%>
+                                                                                    <div class="d-flex align-items-center justify-content-center color-gray">
+                                                                                        100
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <%--Options--%>
+                                                                    <div class="ms-auto d-flex">
+
+                                                                        <%--Share button--%>
+                                                                        <div>
+                                                                            <div>
+                                                          <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                              <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
+                                                            </svg>
+                                                          </span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <%--Three dots--%>
+                                                                        <div>
+                                                        <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                                          <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                                                                  class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
+                                                            </path>
+                                                          </svg>
+                                                        </span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
 
-                                                            <%--Child comment--%>
-                                                            <div class="child-comment d-flex hidden" data-comment="3" data-parent-comment="2" data-comment-level="3">
-
-                                                                    <%--Profile pic--%>
-                                                                    <div>
-                                                                        <div>
-                                                                            <img src="/static/img/user.png" alt="" width="20" height="20">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <%--Comment content--%>
-                                                                    <div class="ms-2 ">
-
-                                                                        <%--Name and date--%>
-                                                                        <div>
-                                                                            <div>
-
-                                                                                <%--Name--%>
-                                                                                <span class="font-bold" style="font-size: 13px;">
-                                                                    <a href="">Name · </a>
-                                                                </span>
-
-                                                                                <%--Date--%>
-                                                                                <span class="color-gray-light" style="font-size: 13px;">
-                                                                    0 ago
-                                                                </span>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <%--Comment content--%>
-                                                                        <div>
-                                                                            <div>
-                                                                                <p class="m-0" style="font-size: 15px;">
-                                                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat elit vitae interdum pellentesque. Mauris vulputate leo urna, in sagittis ante laoreet ut. Curabitur eu volutpat arcu. Vestibulum nisi quam.
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <%--Footer--%>
-                                                                        <div>
-
-                                                                            <%--Container--%>
-                                                                            <div class="d-flex justify-content-center align-items-center py-1" style="height: 46px;">
-
-                                                                                <%--div.Upvote/Downvote, Comment 버튼--%>
-                                                                                <div class="d-flex justify-content-center align-items-center">
-
-                                                                                    <%--Upvote/Downvote 버튼--%>
-                                                                                    <div class="me-1 d-flex justify-content-center align-items-center">
-
-                                                                                        <%--Container--%>
-                                                                                        <div class="d-flex rounded-pill" role="button" style="background-color: rgba(255, 255, 255, 0.05);">
-                                                                                            <%--Upvote 버튼--%>
-                                                                                            <div class="d-flex justify-content-center align-items-center bg-hover-whiten-light rounded-left-top-pill rounded-left-bottom-pill" style="height: 30px; padding: 0px 10px;">
-                                                                                                <div class="d-flex">
-                                                                                                    <div>
-                                                                                        <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                                                                          <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                            <path d="M12 4 3 15h6v5h6v-5h6z" stroke-width="1.5" stroke="rgb(72, 148, 253)" fill="none" stroke-linejoin="round"></path>
-                                                                                          </svg>
-                                                                                        </span>
-                                                                                                    </div>
-
-                                                                                                    <div class="d-flex align-items-center justify-content-center" style="font-size: 13px; margin-left: 2px;">
-                                                                                                        Upvote Count
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-
-                                                                                            <%--Downvote 버튼--%>
-                                                                                            <div class=" d-flex justify-content-center align-items-center bg-hover-whiten-light px-2 rounded-right-top-pill rounded-right-bottom-pill" style="height: 30px; padding: 0px 10px;">
-                                                                                                <div>
-                                                                          <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                                                            <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                              <path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
-                                                                            </svg>
-                                                                          </span>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <%--Comment 버튼--%>
-                                                                                    <div class="view-reply-button" role="button" data-comment="2" data-parent-comment="1" data-comment-level="2">
-
-                                                                                        <%--Container--%>
-                                                                                        <div>
-
-                                                                                            <%--Comment button--%>
-                                                                                            <div class="d-flex rounded-pill px-2 bg-hover-whiten-light" style="padding: 0 10px;">
-
-                                                                                                <%--Comment icon--%>
-                                                                                                <span class="d-inline-block d-flex align-items-center justify-content-center" style="height: 30px;">
-                                                                          <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                            <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z" class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="1.5" fill="none"></path>
-                                                                          </svg>
-                                                                        </span>
-
-                                                                                                <%--Comment count--%>
-                                                                                                <div class="d-flex align-items-center justify-content-center color-gray">
-                                                                                                    100
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <%--Options--%>
-                                                                                <div class="ms-auto d-flex">
-
-                                                                                    <%--Share button--%>
-                                                                                    <div>
-                                                                                        <div>
-                                                                  <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                                                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                      <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
-                                                                    </svg>
-                                                                  </span>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <%--Three dots--%>
-                                                                                    <div>
-                                                                <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                                                                  <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                                                          class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
-                                                                    </path>
-                                                                  </svg>
-                                                                </span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -881,8 +754,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
 

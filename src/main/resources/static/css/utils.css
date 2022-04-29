@@ -30,6 +30,10 @@
     background-color: rgb(18, 18, 18) !important;
 }
 
+.bg-black {
+    background-color: #181818 !important;
+}
+
 .bg-black-light {
     background-color: #202020 !important;
 }
