@@ -1,12 +1,12 @@
 <div class="navbar-container position-fixed container-fluid bg-dark border-bottom border-color-dark shadow" style="z-index: 3; top: 0;">
     <div class="bg-dark"></div>
-    <nav class="navbar navbar-dark py-0 mx-auto" style="max-width: 1002px; height: 50px;">
+    <nav class="navbar navbar-dark py-0 mx-auto flex-nowrap" style="max-width: 1002px; height: 50px;">
 
         <%--Logo--%>
         <a href="#" class="navbar-brand px-2">LOGO</a>
 
         <%--Home button--%>
-        <a href="#" class="d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px;">
+        <a href="#" class="d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px; min-width: 60px;">
             <div>
           <span class="d-inline-block">
             <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +19,7 @@
         </a>
 
         <%--Answer button--%>
-        <a href="#" class="d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px;">
+        <a href="#" class="d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px; min-width: 60px;">
             <div>
           <span class="d-inline-block">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -31,7 +31,7 @@
         </a>
 
         <%--Notif button--%>
-        <a href="#" class="d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px;">
+        <a href="#" class="d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px; min-width: 60px;">
             <div>
         <span class="d-inline-block">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -42,19 +42,16 @@
             <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition: background-color 250ms;"></div>
         </a>
 
-        <%--Spacer--%>
-        <div style="min-width: 200px; height: 1px;">
 
-        </div>
         <%--Search box--%>
-        <div class="ms-3 me-2 bg-black rounded-pill border border-color-gray hover-border-color-blue input-container position-relative">
+        <div class="ms-auto me-2 bg-black rounded-pill border border-color-gray hover-border-color-blue input-container position-relative" style="min-width: 150px;">
             <form id="search-form" action="/search" method="get">
                 <div class="d-flex py-1 px-2" style="transition: background-color 250ms; height: 40px;">
 
                     <div class="d-flex justify-content-center">
                         <%--Search bar--%>
                         <div class="d-flex ms-1">
-                            <input class="search-input input-focus justify-content-center" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
+                            <input class="search-input input-focus justify-content-center" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; width: 100%; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
 
                             <%--Search focus overlay--%>
                             <div class="position-fixed bg-transparent-dark search-overlay hidden"></div>
@@ -91,7 +88,7 @@
             </form>
         </div>
 
-        <div class="dropdown px-2 position-relative d-flex justify-content-center align-items-center user-profile" style="height: 50px; width: 60px;">
+        <div class="dropdown px-2 position-relative d-flex justify-content-center align-items-center user-profile" style="height: 50px; width: 60px; min-width: 60px;">
             <img class="cursor-pointer" id="user-dropdown" data-bs-toggle="dropdown" src="/static/img/user.png" style="width: 30px; height: 30px;"/>
             <ul class="dropdown-menu" aria-labelledby="book-dropdown">
                 <li><a class="dropdown-item" href="#">My Profile</a></li>
@@ -103,7 +100,7 @@
             <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>
         </div>
         <div class="px-2">
-            <a class="btn btn-danger rounded-pill py-1" data-bs-toggle="modal" data-bs-target="#question-modal">Ask question</a>
+            <a class="btn btn-danger rounded-pill py-1 font-bold" style="font-size: 15px; min-width: 120px;" data-bs-toggle="modal" data-bs-target="#question-modal">Ask question</a>
         </div>
     </nav>
 </div>
