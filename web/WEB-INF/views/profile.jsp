@@ -230,11 +230,11 @@
                                                                         <div>
                                                                             <span class="d-inline-block d-flex align-items-center justify-content-center">
                                                                               <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                <path d="M12 4 3 15h6v5h6v-5h6z" class="icon_svg-stroke icon_svg-fill" stroke-width="1.5" stroke="#666" fill="none" stroke-linejoin="round"></path>
+                                                                                <path d="M12 4 3 15h6v5h6v-5h6z" stroke-width="1.5" stroke="rgb(72, 148, 253)" fill="none" stroke-linejoin="round"></path>
                                                                               </svg>
                                                                             </span>
                                                                         </div>
-                                                                        <div class="d-flex align-items-center justify-content-center" style="font-size: 13px;">
+                                                                        <div class="d-flex align-items-center justify-content-center" style="font-size: 13px; margin-left: 2px;">
                                                                             Upvote Count
                                                                         </div>
                                                                     </div>

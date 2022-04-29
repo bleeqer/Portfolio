@@ -2,13 +2,12 @@
 .popover {
     padding: 0 !important;
     background-color: #262626 !important;
-    border: 1px solid #393839 !important
+    border: 1px solid #393839 !important;
 }
 
 .popover-body {
     padding: 0 !important;
     color: rgb(213, 214, 214) !important;
-
 }
 
 .popover-arrow::after{
