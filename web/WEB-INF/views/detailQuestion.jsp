@@ -87,6 +87,14 @@
                 <div class="border-bottom-gray">
                     <div>
 
+                        <%--Category--%>
+                        <div>
+                            <div class="d-flex mb-1">
+                                <div class="rounded-pill px-3 text-center font-bold me-1" style="font-size: 13px; height: 23px; line-height: 23px;">Programing language</div>
+                                <div class="rounded-pill px-3 text-center font-bold" style="font-size: 13px; height: 23px; line-height: 23px;">JAVA</div>
+                            </div>
+                        </div>
+
                         <%--Question--%>
                         <div>
                             <div>
@@ -250,10 +258,10 @@
                                     <%--Profile and content--%>
                                     <div>
 
-                                        <%--질문자 프로필--%>
+                                        <%--Profile--%>
                                         <div class="mb-2 d-flex">
 
-                                            <%--프로필 사진--%>
+                                            <%--Profile pic--%>
                                             <div class="me-3 position-relative">
                                                 <div>
                                                     <img class="rounded-circle border border-color-whiten" src="/static/img/flower.jpeg" alt="" width="36" height="36">
@@ -274,7 +282,7 @@
                                             </div>
                                         </div>
 
-                                        <%--질문글 내용--%>
+                                        <%--Answer content--%>
                                         <div class="position-relative">
                                             <div class="fade-post" style="max-height: 80px;">
                                                 <div class="" style="font-size: 15px; line-height: 1.5rem;">

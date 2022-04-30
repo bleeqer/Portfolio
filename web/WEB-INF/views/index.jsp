@@ -779,6 +779,7 @@
 
   <script src="/static/js/main.js"></script>
   <script src="/static/js/utils.js"></script>
+  <script src="/static/js/questions.js"></script>
 
 </body>
 </html>

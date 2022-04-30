@@ -54,6 +54,3 @@ input.search-input:focus + .search-overlay {
     white-space: normal !important;
 }
 
-body.modal-open .navbar-container {
-    padding-right: 27px;
-}
