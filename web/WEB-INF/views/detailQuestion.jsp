@@ -90,8 +90,8 @@
                         <%--Category--%>
                         <div>
                             <div class="d-flex mb-1">
-                                <div class="rounded-pill px-3 text-center font-bold me-1" style="font-size: 13px; height: 23px; line-height: 23px;">Programing language</div>
-                                <div class="rounded-pill px-3 text-center font-bold" style="font-size: 13px; height: 23px; line-height: 23px;">JAVA</div>
+                                <div class="rounded-pill px-3 text-center font-bold me-1" style="font-size: 13px; height: 23px; line-height: 23px; background-color: rgb(13,110,253);">Programing language</div>
+                                <div class="rounded-pill px-3 text-center font-bold" style="font-size: 13px; height: 23px; line-height: 23px; background-color: rgb(79,151,255);">JAVA</div>
                             </div>
                         </div>
 

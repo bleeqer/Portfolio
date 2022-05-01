@@ -11,6 +11,7 @@ import java.util.List;
 public class QuestionVO {
 
     private int quesNo;
+    private String catPath;
     private String title;
     private String content;
     private String writer;

@@ -17,8 +17,15 @@
 
     </insert>
 
+<!--    <select id="select" parameterType="int" resultMap="QuestionResultMap">-->
+<!--        SELECT * FROM TB_QUESTION where ques_no=#{quesNo}-->
+<!--    </select>-->
     <select id="select" parameterType="int" resultMap="QuestionResultMap">
-        SELECT * FROM TB_QUESTION where ques_no=#{quesNo}
+        SELECT A.content, CONCAT(CONCAT(C.CATEGORY_NAME, '/'), B.CATEGORY_NAME) AS CATEGORY_PATH
+        FROM tb_question A
+                 JOIN TB_QUESTION_CATEGORY B ON B.CATEGORY_CODE = A.CATEGORY
+                 JOIN TB_QUESTION_CATEGORY C ON C.CATEGORY_CODE = B.PARENT_CATEGORY_CODE
+        WHERE A.QUES_NO = #{quesNo}
     </select>
 
     <update id="update" parameterType="QuestionVO">
@@ -64,6 +71,7 @@
     <!--QuestionVO Mapper-->
     <resultMap id="QuestionResultMap" type="QuestionVO">
         <id column="ques_no" property="quesNo"/>
+        <id column="category_path" property="catPath"/>
         <id column="reg_date" property="regDate"/>
         <id column="view_cnt" property="viewCnt"/>
         <id column="like_cnt" property="likeCnt"/>

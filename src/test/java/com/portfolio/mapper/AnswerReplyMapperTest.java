@@ -70,4 +70,12 @@ public class AnswerReplyMapperTest {
 
     }
 
+    @Test
+    public void selectQuestion () {
+
+        QuestionVO ques = questionService.read(157);
+
+        System.out.println(ques.getCatPath());
+
+    }
 }
