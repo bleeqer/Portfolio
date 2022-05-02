@@ -8,8 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 public interface UserMapper {
 
     void insert(UserVO userVO);
-    CustomUserDetails select(String userId);
+    CustomUserDetails selectForAuth(String username);
+    UserVO select(int userNo);
     void update(UserVO userVO);
-    void delete(String userId);
+    void delete(String userNo);
 
 }

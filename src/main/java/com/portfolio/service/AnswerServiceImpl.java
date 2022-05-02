@@ -2,8 +2,10 @@ package com.portfolio.service;
 
 import com.portfolio.domain.ImageVO;
 import com.portfolio.domain.AnswerVO;
+import com.portfolio.domain.UserVO;
 import com.portfolio.mapper.AnswerImageMapper;
 import com.portfolio.mapper.AnswerMapper;
+import com.portfolio.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,9 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Autowired
     AnswerMapper answerMapper;
+
+    @Autowired
+    UserMapper userMapper;
 
     @Autowired
     AnswerImageMapper answerImageMapper;
@@ -49,7 +54,20 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public List<AnswerVO> selectAnswers(int quesNo) {
 
-        return answerMapper.selectAnswers(quesNo);
+        // 답변글 리스트 조회
+        List<AnswerVO> answers = answerMapper.selectAnswers(quesNo);
+
+        // 답변글 순회하며 유저 정보 담기
+        for (AnswerVO answer : answers) {
+
+            UserVO user = userMapper.select(answer.getUserNo());
+            answer.setUserEmail(user.getEmail());
+            answer.setUserName(user.getName());
+            answer.setUserPhoto(user.getPhoto());
+
+        }
+
+        return answers;
     }
 
     @Override

@@ -12,7 +12,6 @@ public interface QuestionMapper {
     void update(QuestionVO  questionVO);
     void delete(int postNo);
     List<QuestionVO> selectNotAnswered(int count);
-
     List<QuestionVO> selectAnswered(int count);
     List<QuestionVO> selectAllByTopic(String topic);
     void addViewCnt(int postNo);

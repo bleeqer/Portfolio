@@ -32,15 +32,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         String userId = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
-        System.out.println(userId);
-        System.out.println(password);
+
         CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(userId);
 
         if (!matchPassword(password, user.getPassword())) {
             throw new BadCredentialsException(userId);
         }
 
-        List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
+        List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(user.getAuthority()));
 
         return new UsernamePasswordAuthenticationToken(user, user, roles);

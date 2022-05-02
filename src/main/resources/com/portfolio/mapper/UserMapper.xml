@@ -10,13 +10,17 @@
         VALUES (#{userId}, #{userPW})
     </insert>
 
-    <select id="select" parameterType="String" resultType="CustomUserDetails">
+    <select id="selectForAuth" parameterType="String" resultType="CustomUserDetails">
         SELECT email as username, password, authority FROM TB_USER where email=#{username}
+    </select>
+
+    <select id="select" parameterType="int" resultType="UserVO">
+        SELECT user_no AS userNo, email, name, password, photo FROM TB_USER where user_no=#{userNo}
     </select>
 
     <update id="update" parameterType="UserVO">
         UPDATE TB_USER SET password = #{userPW}
-        WHERE user_id=#{userId}
+        WHERE user_id=#{userNo}
     </update>
 
     <delete id="delete" parameterType="int">
@@ -24,11 +28,9 @@
     </delete>
 
     <!--ResultMap-->
-    <resultMap id="UserDetailsMap" type="com.portfolio.security.CustomUserDetails">
-        <result column="user_id" property="userId"/>
-<!--        <result column="authority" property="authorities" typeHandler="com.portfolio.config.AuthorityTypeHandler" javaType="java.util.ArrayList"/>-->
-<!--        <result column="reg_date" property="regDate"/>-->
-    </resultMap>
+<!--    <resultMap id="" type="">-->
+<!--        <result column="" property=""/>-->
+<!--    </resultMap>-->
 
 
 </mapper>

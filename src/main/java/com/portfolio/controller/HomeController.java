@@ -1,11 +1,10 @@
 package com.portfolio.controller;
 
-import com.portfolio.domain.AnswerVO;
-import com.portfolio.domain.QuestionCategoryVO;
-import com.portfolio.domain.QuestionVO;
+import com.portfolio.domain.*;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionCategoryService;
 import com.portfolio.service.QuestionService;
+import com.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +27,9 @@ public class HomeController {
     AnswerService answerService;
 
     @Autowired
+    UserService userService;
+
+    @Autowired
     QuestionCategoryService questionCategoryService;
 
     @GetMapping("/search")
@@ -39,23 +41,7 @@ public class HomeController {
     @GetMapping("")
     public String listPosts(Model model) {
 
-        List<QuestionVO> questions = questionService.selectAnswered(10);
-
-        List<AnswerVO> answers = new ArrayList<>();
-
-        // 좋아요 많은 순, 등록순으로 정렬된 답변글 중 첫번째 글 answers 리스트에 추가
-        for (QuestionVO question : questions) {
-            answers.add(answerService.selectAnswers(question.getQuesNo()).get(0));
-        }
-//        List<QuestionVO> questions = questionService.readAll();
-
-//        List<QuestionCategoryVO> categories = questionCategoryService.selectAll();
-//
-//        model.addAttribute("questions", questions);
-//        model.addAttribute("categories", categories);
-//        model.addAttribute("selectedTopic", "All");
-        model.addAttribute("questions", questions);
-        model.addAttribute("answers", answers);
+        model.addAttribute("pairs", questionService.selectAnsweredPair(10));
 
         return "index";
     }

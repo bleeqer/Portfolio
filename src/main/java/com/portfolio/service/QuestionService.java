@@ -1,5 +1,6 @@
 package com.portfolio.service;
 
+import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.QuestionVO;
 
 import java.util.HashMap;
@@ -10,11 +11,8 @@ public interface QuestionService {
     QuestionVO read(int postNo);
     void update(QuestionVO questionVO);
     void delete(int postNo);
-
     List<QuestionVO> selectNotAnswered(int count);
-
-    List<QuestionVO> selectAnswered(int count);
-
+    List<QAPairVO> selectAnsweredPair(int count);
     List<QuestionVO> readAllByTopic(String topic);
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);

@@ -16,9 +16,7 @@ public class QuestionVO {
     private String content;
     private String writer;
     private String regDate;
-    private int viewCnt;
     private int likeCnt;
-    private List<String> imageList;
 
 }
 

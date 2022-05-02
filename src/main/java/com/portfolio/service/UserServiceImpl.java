@@ -20,9 +20,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public CustomUserDetails read(String userId) {
-        System.out.println("도착?");
-        return userMapper.select(userId);
+    public CustomUserDetails selectForAuth(String username) {
+        return userMapper.selectForAuth(username);
+
+    }
+
+    @Override
+    public UserVO select(int userNo) {
+        return userMapper.select(userNo);
 
     }
 
@@ -34,9 +39,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(String userId) {
+    public void delete(String userNo) {
 
-        userMapper.delete(userId);
+        userMapper.delete(userNo);
 
     }
 
