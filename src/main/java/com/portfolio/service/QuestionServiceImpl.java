@@ -61,8 +61,13 @@ public class QuestionServiceImpl implements QuestionService {
 
 
     @Override
-    public List<QuestionVO> selectAnswered(String answered) {
-        return questionMapper.selectAnswered(answered);
+    public List<QuestionVO> selectNotAnswered(int count) {
+        return questionMapper.selectNotAnswered(count);
+    };
+
+    @Override
+    public List<QuestionVO> selectAnswered(int count) {
+        return questionMapper.selectAnswered(count);
     };
 
     @Override

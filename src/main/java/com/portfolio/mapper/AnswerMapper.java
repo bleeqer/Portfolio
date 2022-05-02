@@ -10,7 +10,8 @@ public interface AnswerMapper {
     int insert(AnswerVO answerVO);
     void update(AnswerVO answerVO);
     void delete(int ansNo);
-    List<AnswerVO> selectAll();
+
+    List<AnswerVO> selectAnswers(int quesNo);
     void addViewCnt(int ansNo);
     void addLikeCnt(int ansNo);
     AnswerVO selectOne(int ansNo);

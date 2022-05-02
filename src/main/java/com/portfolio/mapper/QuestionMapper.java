@@ -11,7 +11,9 @@ public interface QuestionMapper {
     QuestionVO select(int postNo);
     void update(QuestionVO  questionVO);
     void delete(int postNo);
-    List<QuestionVO> selectAnswered(String answered);
+    List<QuestionVO> selectNotAnswered(int count);
+
+    List<QuestionVO> selectAnswered(int count);
     List<QuestionVO> selectAllByTopic(String topic);
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);

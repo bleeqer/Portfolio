@@ -12,12 +12,10 @@ public class AnswerVO {
 
     private int quesNo;
     private int ansNo;
-    private String content;
-    private String writer;
+    private String answer;
+    private String user_no;
     private String regDate;
-    private int viewCnt;
     private int likeCnt;
-    private List<String> imageList;
 
 }
 

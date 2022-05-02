@@ -1,7 +1,9 @@
 package com.portfolio.controller;
 
+import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.QuestionCategoryVO;
 import com.portfolio.domain.QuestionVO;
+import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionCategoryService;
 import com.portfolio.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +23,9 @@ public class HomeController {
 
     @Autowired
     QuestionService questionService;
+
+    @Autowired
+    AnswerService answerService;
 
     @Autowired
     QuestionCategoryService questionCategoryService;
@@ -33,6 +39,14 @@ public class HomeController {
     @GetMapping("")
     public String listPosts(Model model) {
 
+        List<QuestionVO> questions = questionService.selectAnswered(10);
+
+        List<AnswerVO> answers = new ArrayList<>();
+
+        // 좋아요 많은 순, 등록순으로 정렬된 답변글 중 첫번째 글 answers 리스트에 추가
+        for (QuestionVO question : questions) {
+            answers.add(answerService.selectAnswers(question.getQuesNo()).get(0));
+        }
 //        List<QuestionVO> questions = questionService.readAll();
 
 //        List<QuestionCategoryVO> categories = questionCategoryService.selectAll();
@@ -40,6 +54,8 @@ public class HomeController {
 //        model.addAttribute("questions", questions);
 //        model.addAttribute("categories", categories);
 //        model.addAttribute("selectedTopic", "All");
+        model.addAttribute("questions", questions);
+        model.addAttribute("answers", answers);
 
         return "index";
     }
@@ -49,12 +65,13 @@ public class HomeController {
 
         System.out.println("questions");
 
-        List<QuestionVO> questions = questionService.selectAnswered("N");
+        List<QuestionVO> questions = questionService.selectNotAnswered(10);
 
         model.addAttribute("questions", questions);
 
         return "questions";
     }
+
 
 //    @PostMapping("more")
     @GetMapping("more")

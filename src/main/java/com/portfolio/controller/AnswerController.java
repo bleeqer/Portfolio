@@ -20,13 +20,11 @@ public class AnswerController {
     public AnswerVO createAnswer(@RequestBody AnswerVO answer) {
 
         System.out.println(answer.getQuesNo());
-        System.out.println(answer.getContent());
-        System.out.println(answer.getWriter());
+
 
         int answerNo = answerService.create(answer);
 
         System.out.println("answer number: " + answerNo);
-        System.out.println("answer content: " + answerService.readOne(answerNo).getContent());
 
         return answerService.readOne(answerNo);
     }

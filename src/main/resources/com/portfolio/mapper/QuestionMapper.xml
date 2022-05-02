@@ -42,8 +42,12 @@
 <!--        SELECT ques.* FROM (SELECT * FROM TB_QUESTION ORDER BY ques_no DESC) ques WHERE ROWNUM BETWEEN 0 and 10-->
 <!--    </select>-->
 
-    <select id="selectAnswered" parameterType="string" resultMap="QuestionResultMap">
-        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE answered=#{answered} ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 10
+    <select id="selectNotAnswered" parameterType="int" resultMap="QuestionResultMap">
+        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE answered='N' ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and #{count}
+    </select>
+
+    <select id="selectAnswered" parameterType="int" resultMap="QuestionResultMap">
+        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE answered='Y' ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and #{count}
     </select>
 
     <select id="selectMore" parameterType="int" resultMap="QuestionResultMap">

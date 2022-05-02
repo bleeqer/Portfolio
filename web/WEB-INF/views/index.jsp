@@ -76,6 +76,10 @@
     <%--Search focus overlay--%>
     <div class="position-fixed bg-transparent-dark search-overlay"></div>
 
+  <c:forEach var="answer" items="${answers}">
+    ${answer.answer}
+  </c:forEach>
+
     <%--Main content--%>
     <div>
       <div class="container-fluid m-0" style="padding-top: 30px; padding-left: 24px; padding-right: 24px;">

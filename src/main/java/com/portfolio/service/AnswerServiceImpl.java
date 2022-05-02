@@ -47,9 +47,9 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<AnswerVO> readList(int quesNo) {
+    public List<AnswerVO> selectAnswers(int quesNo) {
 
-        return answerMapper.selectList(quesNo);
+        return answerMapper.selectAnswers(quesNo);
     }
 
     @Override
@@ -66,13 +66,6 @@ public class AnswerServiceImpl implements AnswerService {
     @Override
     public void delete(int postNo) {
         answerMapper.delete(postNo);
-    }
-
-    @Override
-    public List<AnswerVO> readAll() {
-
-        return answerMapper.selectAll();
-
     }
 
     @Override

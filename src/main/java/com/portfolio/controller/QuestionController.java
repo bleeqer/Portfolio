@@ -48,19 +48,19 @@ public class QuestionController {
         return questionService.read(questionVO.getQuesNo());
     }
 
-    @RequestMapping("/{postNo}")
-    public String viewQuestion(@PathVariable int postNo, Model model) {
-
-        QuestionVO question = questionService.read(postNo);
-
-        List<AnswerVO> answers = answerService.readList(postNo);
-
-        model.addAttribute("question", question);
-        model.addAttribute("answers", answers);
-//        model.addAttribute("files", files);
-
-        return "viewQuestion";
-    }
+//    @RequestMapping("/{postNo}")
+//    public String viewQuestion(@PathVariable int postNo, Model model) {
+//
+//        QuestionVO question = questionService.read(postNo);
+//
+//        List<AnswerVO> answers = answerService.readList(postNo);
+//
+//        model.addAttribute("question", question);
+//        model.addAttribute("answers", answers);
+////        model.addAttribute("files", files);
+//
+//        return "viewQuestion";
+//    }
 
     @ResponseBody
     @GetMapping(value="edit/{postNo}") //, produces="application/json"
