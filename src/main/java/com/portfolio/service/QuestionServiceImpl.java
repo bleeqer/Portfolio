@@ -59,12 +59,11 @@ public class QuestionServiceImpl implements QuestionService {
         questionMapper.delete(postNo);
     }
 
+
     @Override
-    public List<QuestionVO> readAll() {
-
-        return questionMapper.selectAll();
-
-    }
+    public List<QuestionVO> selectAnswered(String answered) {
+        return questionMapper.selectAnswered(answered);
+    };
 
     @Override
     public List<QuestionVO> readAllByTopic(String topic) {

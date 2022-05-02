@@ -11,11 +11,12 @@ public interface QuestionMapper {
     QuestionVO select(int postNo);
     void update(QuestionVO  questionVO);
     void delete(int postNo);
-    List<QuestionVO> selectAll();
+    List<QuestionVO> selectAnswered(String answered);
     List<QuestionVO> selectAllByTopic(String topic);
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);
     List<QuestionVO> selectMore(int startQuesNo);
     List<QuestionVO> selectMoreByTopic(HashMap<String, Object> map);
+
 
 }

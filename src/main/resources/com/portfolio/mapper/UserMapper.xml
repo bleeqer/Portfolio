@@ -11,7 +11,7 @@
     </insert>
 
     <select id="select" parameterType="String" resultType="CustomUserDetails">
-        SELECT user_id as username, password, authority FROM TB_USER where user_id=#{username}
+        SELECT email as username, password, authority FROM TB_USER where email=#{username}
     </select>
 
     <update id="update" parameterType="UserVO">

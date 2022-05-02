@@ -10,7 +10,9 @@ public interface QuestionService {
     QuestionVO read(int postNo);
     void update(QuestionVO questionVO);
     void delete(int postNo);
-    List<QuestionVO> readAll();
+
+    List<QuestionVO> selectAnswered(String answered);
+
     List<QuestionVO> readAllByTopic(String topic);
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);

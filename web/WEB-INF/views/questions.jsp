@@ -81,6 +81,11 @@
     <%--Search focus overlay--%>
     <div class="position-fixed bg-transparent-dark search-overlay"></div>
 
+
+
+
+
+
     <%--Main content--%>
     <div>
       <div class="container-fluid m-0" style="padding-top: 30px; padding-left: 24px; padding-right: 24px;">
@@ -118,6 +123,8 @@
           <div style="width: 572px; margin-left:172px;">
             <div>
               <div>
+
+
                 <%--질문글--%>
                 <div class="mb-3 mx-1">
 
@@ -148,7 +155,10 @@
 
                     <div class="" style="height: 100%;">
                       <div>
-                        <%--질문글--%>
+
+                      <c:forEach var="question" items="${questions}">
+
+                      <%--질문글--%>
                         <div>
                           <div class="unanswered-question pt-3 px-3 border-bottom-gray">
                             <div>
@@ -158,7 +168,7 @@
                                   <div class="d-flex justify-content-between position-relative">
                                     <%--Question title--%>
                                     <div class="pe-2">
-                                      <a class="hover-underline" href=""><b>Is this the content of the questions?</b></a>
+                                      <a class="hover-underline" href=""><b>${question.question}</b></a>
                                     </div>
                                     <%--Question close--%>
                                     <div class="position-absolute" style="top: -12px; right: -12px;">
@@ -284,6 +294,9 @@
                             </div>
                           </div>
                         </div>
+
+                      </c:forEach>
+
                       </div>
                     </div>
                   </div>

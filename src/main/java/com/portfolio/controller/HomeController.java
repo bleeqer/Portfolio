@@ -30,18 +30,30 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("")
+    @GetMapping("")
     public String listPosts(Model model) {
 
-        List<QuestionVO> questions = questionService.readAll();
+//        List<QuestionVO> questions = questionService.readAll();
 
-        List<QuestionCategoryVO> categories = questionCategoryService.selectAll();
-
-        model.addAttribute("questions", questions);
-        model.addAttribute("categories", categories);
-        model.addAttribute("selectedTopic", "All");
+//        List<QuestionCategoryVO> categories = questionCategoryService.selectAll();
+//
+//        model.addAttribute("questions", questions);
+//        model.addAttribute("categories", categories);
+//        model.addAttribute("selectedTopic", "All");
 
         return "index";
+    }
+
+    @GetMapping("questions")
+    public String getQuestions(Model model) {
+
+        System.out.println("questions");
+
+        List<QuestionVO> questions = questionService.selectAnswered("N");
+
+        model.addAttribute("questions", questions);
+
+        return "questions";
     }
 
 //    @PostMapping("more")

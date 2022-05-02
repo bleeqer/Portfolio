@@ -19,8 +19,8 @@
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
         <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-        <property name="username" value="portfolio"/>
-        <property name="password" value="portfolio"/>
+        <property name="username" value="system"/>
+        <property name="password" value="458512"/>
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
