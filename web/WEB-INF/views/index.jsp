@@ -168,9 +168,9 @@
                   <div class="" style="line-height: 1.5rem;">
                       ${pair.answer}
                   </div>
-                  <div class="overflow-fade"></div>
+                  <div class="overflow-fade hidden"></div>
                   </div>
-                  <span class="readMore-button btn btn-primary rounded-pill">More</span>
+                  <span class="readMore-button btn btn-primary rounded-pill hidden">More</span>
                   </div>
                   </div>
                   </div>

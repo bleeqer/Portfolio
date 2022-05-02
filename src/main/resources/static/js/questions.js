@@ -11,7 +11,7 @@ $('.readMore-button').on('click', function() {
 $('.fade-post').each(function() {
 
     if (isOverflown($('.fade-post'))) {
-        $(this).find('.overflow-fade').css('display', 'block')
+        $(this).find('.overflow-fade').removeClass('hidden')
         $(this).parent().find('.readMore-button').removeClass('hidden')
         $(this).css('height', '80')
     } else {

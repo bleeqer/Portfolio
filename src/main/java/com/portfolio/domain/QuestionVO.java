@@ -17,6 +17,7 @@ public class QuestionVO {
     private String writer;
     private String regDate;
     private int likeCnt;
+    private int viewCnt;
 
 }
 

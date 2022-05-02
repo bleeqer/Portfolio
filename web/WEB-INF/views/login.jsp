@@ -32,7 +32,8 @@
 
         html, body {
             box-sizing: border-box;
-            height: 100vh;
+            height: 100%;
+            width: 100%;
             padding: 0;
             margin: 0;
             font-size: 16px;
@@ -65,8 +66,8 @@
 <%--<%@ include file="/WEB-INF/views/modals/userRegisterForm.jsp" %>--%>
 <body>
 <div>
-    <div class="color-light-black" style="height: 100vh; width: 100%; background-image: url('/static/img/login-background.png'); background-repeat: no-repeat; background-size: cover;">
-        <div class="d-flex justify-content-center align-items-center" style="padding: 237px 0;">
+    <div class="color-light-black" style="height: 100%; width: 100%; background-image: url('/static/img/login-background.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+        <div class="d-flex justify-content-center align-items-center" style="padding: 237px 0; height: 100%; width: 100%;">
             <div class="rounded-1" style="box-shadow: 0 1px 1px rgb(0 0 0 / 4%);">
 
                 <div class="rounded-1" style="background-color: #fff;">
@@ -170,8 +171,8 @@
                                         </div>
 
                                         <%--Login button--%>
-                                        <button class="rounded-pill btn btn-primary py-1 px-3" style="height: 38px; transition: background-color 250ms;">
-                                            <div>Login</div>
+                                        <button class="d-flex justify-content-center align-items-center rounded-pill btn btn-primary py-1 px-3" style="height: 38px; transition: background-color 250ms;">
+                                            <div style="line-height: 100%; font-size: 15px;">Login</div>
                                         </button>
                                     </div>
                                 </div>
