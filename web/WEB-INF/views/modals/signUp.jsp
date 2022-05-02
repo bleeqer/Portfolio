@@ -77,6 +77,23 @@
 
                                 </div>
 
+                                <%--Occupation--%>
+                                <div class="mb-3">
+
+                                    <%--Label--%>
+                                    <div class="mb-1">
+                                        <div>
+                                            <label class="font-bold color-gray-dark" for="register-occupation" style="font-size: 13px;">Occupation</label>
+                                        </div>
+                                    </div>
+
+                                    <%--Input--%>
+                                    <div class="d-flex align-items-center color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                        <input class="input-focus" type="text" id="register-occupation" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="describe your occupation concisely" autocomplete="off">
+                                    </div>
+
+                                </div>
+
                             </form>
                         </div>
                     </div>

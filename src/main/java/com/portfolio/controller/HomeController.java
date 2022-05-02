@@ -41,6 +41,7 @@ public class HomeController {
     @GetMapping("")
     public String listPosts(Model model) {
 
+        // 질문글 + 답변글 1:1 페어 정해진 갯수만큼 model에 담기
         model.addAttribute("pairs", questionService.selectAnsweredPair(10));
 
         return "index";
@@ -48,8 +49,6 @@ public class HomeController {
 
     @GetMapping("questions")
     public String getQuestions(Model model) {
-
-        System.out.println("questions");
 
         List<QuestionVO> questions = questionService.selectNotAnswered(10);
 
