@@ -67,6 +67,10 @@ public class QuestionServiceImpl implements QuestionService {
         questionMapper.delete(postNo);
     }
 
+    @Override
+    public List<QuestionVO> selectList(int userNo) {
+        return questionMapper.selectList(userNo);
+    }
 
     @Override
     public List<QuestionVO> selectNotAnswered(int count) {

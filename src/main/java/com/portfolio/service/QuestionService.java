@@ -11,6 +11,7 @@ public interface QuestionService {
     QuestionVO read(int postNo);
     void update(QuestionVO questionVO);
     void delete(int postNo);
+    List<QuestionVO> selectList(int userNo);
     List<QuestionVO> selectNotAnswered(int count);
     List<QAPairVO> selectAnsweredPair(int count);
     List<QuestionVO> readAllByTopic(String topic);
