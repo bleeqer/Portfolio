@@ -8,6 +8,7 @@ public interface AnswerService {
     int create(AnswerVO answerVO);
     AnswerVO readOne(int ansNo);
     List<AnswerVO> selectAnswers(int quesNo);
+    List<AnswerVO> selectAnsweredPairByUser(int userNo);
     List<AnswerVO> readMoreList(AnswerVO answer);
     void update(AnswerVO answerVO);
     void delete(int postNo);

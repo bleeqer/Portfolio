@@ -62,8 +62,8 @@ public class QuestionController {
 //        return "viewQuestion";
 //    }
 
-    @ResponseBody
     @GetMapping(value="edit/{postNo}") //, produces="application/json"
+    @ResponseBody
     public QuestionVO editQuestion(@PathVariable int postNo) {
         return questionService.read(postNo);
 

@@ -25,11 +25,15 @@
 <!--    </select>-->
 
     <select id="selectAnswers" parameterType="int" resultMap="AnswerResultMap">
-        SELECT * FROM (SELECT * FROM TB_ANSWER WHERE ques_no=#{quesNo} ORDER BY like_cnt DESC, ans_no ASC) WHERE ROWNUM BETWEEN 0 and 3
+        SELECT * FROM (SELECT * FROM TB_ANSWER WHERE ques_no=#{quesNo} ORDER BY like_cnt DESC, ans_no ASC) WHERE ROWNUM BETWEEN 0 AND 3
+    </select>
+
+    <select id="selectAnsweredPairByUser" parameterType="int" resultMap="AnswerResultMap">
+        SELECT B.ques_no, B.question, A.answer, a.ans_no, A.reg_date, c.user_no, c.email, c.name, c.occupation, c.photo FROM tb_answer A, tb_question B, tb_user C WHERE A.ques_no = B.ques_no AND A.user_no = C.user_no AND ROWNUM <![CDATA[<=]]> 5 ORDER BY A.reg_date DESC
     </select>
 
     <select id="selectMoreList" parameterType="int" resultMap="AnswerResultMap">
-        SELECT * FROM (SELECT * FROM TB_ANSWER WHERE ques_no=#{quesNo} and ans_no<![CDATA[<]]>#{ansNo} ORDER BY ans_no DESC) WHERE ROWNUM BETWEEN 0 and 3
+        SELECT * FROM (SELECT * FROM TB_ANSWER WHERE ques_no=#{quesNo} AND ans_no<![CDATA[<]]>#{ansNo} ORDER BY ans_no DESC) WHERE ROWNUM BETWEEN 0 AND 3
     </select>
 
     <update id="update" parameterType="AnswerVO">

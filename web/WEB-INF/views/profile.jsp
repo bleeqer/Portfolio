@@ -96,14 +96,14 @@
                             <%--User name--%>
                             <div>
                                 <div>
-                                    <h1 class="m-0">유동근</h1>
+                                    <h1 class="m-0">${user.name}</h1>
                                 </div>
                             </div>
 
                             <%--User credential--%>
                             <div class="mt-2 color-dark-gray">
                                 <div>
-                                    Credential
+                                    ${user.occupation}
                                 </div>
                             </div>
                         </div>
