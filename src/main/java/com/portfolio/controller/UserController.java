@@ -39,9 +39,15 @@ public class UserController {
     }
 
     @GetMapping("profile/{userNo}/answers")
-    public List<QAPairVO> userAnswer(@PathVariable int userNo) {
+    public String userAnswer(@PathVariable int userNo, Model model) {
 
-        return answerService.selectAnsweredPairByUser(userNo);
+        // 유저 정보 가져오기
+        model.addAttribute("user", userService.select(userNo));
+
+        // 유저가 작성한 답변-질문 페어 3개 가져오기
+        model.addAttribute("answerPairs", answerService.selectAnsweredPairByUser(userNo));
+
+        return "profile";
     }
 
 }
