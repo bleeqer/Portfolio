@@ -91,11 +91,10 @@ public class QuestionServiceImpl implements QuestionService {
             // PairVO 생성
             QAPairVO pair = new QAPairVO();
 
-            System.out.println(answer.getUserName());
-
             // 답변글 데이터
             pair.setAnswer(answer.getAnswer());
             pair.setAnswerEmail(answer.getUserEmail());
+            pair.setAnswerUserNo(answer.getUserNo());
             pair.setAnswerUserName(answer.getUserName());
             pair.setAnswerUserPhoto(answer.getUserPhoto());
             pair.setAnswerRegDate(answer.getRegDate());

@@ -19,7 +19,7 @@
         </a>
 
         <%--Answer button--%>
-        <a href="#" class="d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px; min-width: 60px;">
+        <a href="/questions" class="d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px; min-width: 60px;">
             <div>
           <span class="d-inline-block">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

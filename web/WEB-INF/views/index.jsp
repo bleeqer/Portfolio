@@ -148,7 +148,7 @@
                   <div class="d-flex flex-column">
 
                   <%--이름--%>
-                  <div class="my-auto font-size-1"><a class="text-decoration-none link-default-color hover-underline h6" href=""><b>${pair.answerUserName}</b></a></div>
+                  <div class="my-auto font-size-1"><a class="text-decoration-none link-default-color hover-underline h6" href="/user/profile/${pair.answerUserNo}"><strong>${pair.answerUserName}</strong></a></div>
 
                   <%--상세--%>
                   <div class="my-auto color-gray font-size-1">프로그래머 <span> · </span> ${pair.questionRegDate} </div>

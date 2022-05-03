@@ -63,6 +63,7 @@ public class AnswerServiceImpl implements AnswerService {
             UserVO user = userMapper.select(answer.getUserNo());
             answer.setUserEmail(user.getEmail());
             answer.setUserName(user.getName());
+            answer.setUserNo(user.getUserNo());
             answer.setUserPhoto(user.getPhoto());
 
         }
