@@ -28,8 +28,8 @@
         SELECT * FROM (SELECT * FROM TB_ANSWER WHERE ques_no=#{quesNo} ORDER BY like_cnt DESC, ans_no ASC) WHERE ROWNUM BETWEEN 0 AND 3
     </select>
 
-    <select id="selectAnsweredPairByUser" parameterType="int" resultMap="AnswerResultMap">
-        SELECT B.ques_no, B.question, A.answer, a.ans_no, A.reg_date, c.user_no, c.email, c.name, c.occupation, c.photo FROM tb_answer A, tb_question B, tb_user C WHERE A.ques_no = B.ques_no AND A.user_no = C.user_no AND ROWNUM <![CDATA[<=]]> 5 ORDER BY A.reg_date DESC
+    <select id="selectAnsweredPairByUser" parameterType="int" resultMap="QAPairResultMap">
+        SELECT B.ques_no, B.question, A.answer, a.ans_no, A.reg_date, c.user_no, c.email, c.name, c.occupation, c.photo FROM tb_answer A, tb_question B, tb_user C WHERE A.ques_no = B.ques_no AND A.user_no = #{userNo} AND ROWNUM <![CDATA[<=]]> 5 ORDER BY A.reg_date DESC
     </select>
 
     <select id="selectMoreList" parameterType="int" resultMap="AnswerResultMap">
@@ -69,4 +69,15 @@
         <id column="like_cnt" property="likeCnt"/>
     </resultMap>
 
+    <resultMap id="QAPairResultMap" type="QAPairVO">
+        <id column="ans_no" property="ansNo"/>
+        <id column="question" property="question"/>
+        <id column="answer" property="answer"/>
+        <id column="ans_no" property="ansNo"/>
+        <id column="reg_date" property="answerRegDate"/>
+        <id column="user_no" property="answerUserNo"/>
+        <id column="email" property="answerEmail"/>
+        <id column="name" property="answerUserName"/>
+        <id column="occupation" property="answerUserOccupation"/>
+    </resultMap>
 </mapper>

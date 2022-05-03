@@ -2,6 +2,7 @@ package com.portfolio.service;
 
 import com.portfolio.domain.ImageVO;
 import com.portfolio.domain.AnswerVO;
+import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.UserVO;
 import com.portfolio.mapper.AnswerImageMapper;
 import com.portfolio.mapper.AnswerMapper;
@@ -72,23 +73,9 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<AnswerVO> selectAnsweredPairByUser(int userNo) {
+    public List<QAPairVO> selectAnsweredPairByUser(int userNo) {
 
-//        // 답변글 리스트 조회
-//        List<AnswerVO> answers = answerMapper.selectAnswers(quesNo);
-//
-//        // 답변글 순회하며 유저 정보 담기
-//        for (AnswerVO answer : answers) {
-//
-//            UserVO user = userMapper.select(answer.getUserNo());
-//            answer.setUserEmail(user.getEmail());
-//            answer.setUserName(user.getName());
-//            answer.setUserNo(user.getUserNo());
-//            answer.setUserPhoto(user.getPhoto());
-//
-//        }
-
-        return answers;
+        return answerMapper.selectAnsweredPairByUser(userNo);
     }
 
     @Override

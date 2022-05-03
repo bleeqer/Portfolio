@@ -1,11 +1,15 @@
 package com.portfolio.controller;
 
+import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.UserVO;
+import com.portfolio.service.AnswerService;
 import com.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Controller
@@ -14,6 +18,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    AnswerService answerService;
 
     @GetMapping("login")
     public String userLogin() {
@@ -33,11 +39,9 @@ public class UserController {
     }
 
     @GetMapping("profile/{userNo}/answers")
-    public String userAnswer(@PathVariable int userNo) {
+    public List<QAPairVO> userAnswer(@PathVariable int userNo) {
 
-
-
-        return "profile";
+        return answerService.selectAnsweredPairByUser(userNo);
     }
 
 }
