@@ -84,29 +84,33 @@
         <div class="d-flex mx-auto" style="max-width: 1002px;">
 
           <%--카테고리 리스트--%>
-          <div class="pb-5 position-fixed" style="width: 166px;">
+          <div class="pb-5 position-fixed kuttDS" style="height: calc(100vh - 80px); width: 166px; overflow-y:scroll !important;">
             <div>
+                <%--개별 카테고리 컨테이너--%>
 
-              <%--개별 카테고리 컨테이너--%>
-              <div class="mb-1 rounded-1 bg-hover-whiten-light">
-                <a class="text-decoration-none" href="">
-                  <div class="p-2 d-flex" style="height: auto;">
-                    <%--카테고리 아이콘--%>
-                    <div class="me-2">
-                      <div class="d-flex rounded-1 overflow-hidden">
-                        <img width="18" height="18" src="/static/img/python.jpeg" alt="IMG">
-                      </div>
-                    </div>
+                <c:forEach var="category" items="${categories}">
+                  <div class="d-flex mb-1 rounded-1 bg-hover-whiten-light">
+                      <span>${category.space}</span>
+                      <a class="text-decoration-none" href="">
+                          <div class="p-2 d-flex align-items-center" style="height: auto;">
+                                  <%--카테고리 아이콘--%>
+                              <div class="me-2">
+                                  <div class="d-flex rounded-1 overflow-hidden">
+                                      <img width="18" height="18" src="${category.categoryPhoto}" alt="IMG">
+                                  </div>
+                              </div>
 
-                    <%--카테고리 이름--%>
-                    <div class="d-flex">
-                      <div class="d-flex font-size-1">
-                        <div class="text-center d-flex align-items-center">Python</div>
-                      </div>
-                    </div>
+                                  <%--카테고리 이름--%>
+                              <div class="d-flex">
+                                  <div class="d-flex font-size-1">
+                                      <div class="d-flex align-items-center justify-content-start">${category.categoryName}</div>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
                   </div>
-                </a>
-              </div>
+                </c:forEach>
+
             </div>
           </div>
 
@@ -275,9 +279,9 @@
                   </span>
                   </div>
                   </div>
-
                   <%--Three dots--%>
-                  <div>
+                  <c:if test="${pageContext.request.userPrincipal.name == answerPair.answerUserEmail}">
+                    <div>
                   <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
                   <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
@@ -286,6 +290,8 @@
                   </svg>
                   </span>
                   </div>
+                  </c:if>
+
                   </div>
 
                   </div>

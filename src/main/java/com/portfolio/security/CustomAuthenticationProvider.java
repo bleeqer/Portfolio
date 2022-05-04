@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Component
@@ -35,7 +36,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(userId);
 
-        if (!matchPassword(password, user.getPassword())) {
+//        if (!matchPassword(password, user.getPassword())) {
+//            throw new BadCredentialsException(userId);
+//        }
+
+        // 임시 로그인
+        if (!Objects.equals(password, "458512")) {
             throw new BadCredentialsException(userId);
         }
 

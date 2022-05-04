@@ -101,7 +101,7 @@
         <id column="reg_date" property="answerRegDate"/>
         <id column="like_cnt" property="answerLikeCnt"/>
         <id column="user_no" property="answerUserNo"/>
-        <id column="email" property="answerEmail"/>
+        <id column="email" property="answerUserEmail"/>
         <id column="name" property="answerUserName"/>
         <id column="photo" property="answerUserPhoto"/>
         <id column="occupation" property="answerUserOccupation"/>

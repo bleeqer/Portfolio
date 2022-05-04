@@ -6,13 +6,14 @@
 <mapper namespace="com.portfolio.mapper.QuestionCategoryMapper">
 
     <select id="selectAll" parameterType="int" resultMap="QuestionCategoryResultMap">
-        select CATEGORY_CODE, CATEGORY_NAME, PARENT_CATEGORY_CODE, LEVEL FROM TB_QUESTION_CATEGORY START WITH PARENT_CATEGORY_CODE=0 CONNECT BY PRIOR CATEGORY_CODE = PARENT_CATEGORY_CODE
+        SELECT LEVEL - 1 AS space, category_code, category_name, parent_category_code, category_photo FROM tb_category START WITH parent_category_code = 0 CONNECT BY PRIOR category_code = parent_category_code ORDER SIBLINGS BY category_code
     </select>
 
     <resultMap id="QuestionCategoryResultMap" type="QuestionCategoryVO">
         <id column="category_code" property="categoryCode"/>
         <id column="category_name" property="categoryName"/>
         <id column="parent_category_code" property="parentCategoryCode"/>
+        <id column="category_photo" property="categoryPhoto"/>
     </resultMap>
 
 
