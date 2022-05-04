@@ -219,3 +219,7 @@
 .kuttDS::-webkit-scrollbar-track {
     background-color: transparent;
 }
+
+.svg-fill {
+   fill: rgb(245, 41, 54);
+}

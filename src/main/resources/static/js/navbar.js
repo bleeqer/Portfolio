@@ -25,3 +25,4 @@ $('.search-input').focusout(function () {
 $('.search-button').click(function () {
     $('#search-form').submit()
 })
+
