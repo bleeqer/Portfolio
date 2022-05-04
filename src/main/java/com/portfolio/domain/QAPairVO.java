@@ -20,8 +20,6 @@ public class QAPairVO {
     private String answer;
     private int answerUserNo;
     private String answerRegDate;
-//    private Date answerRegDate;
-//    private String answerTimeDiff;
     private int answerLikeCnt;
     private String answerEmail;
     private String answerUserName;

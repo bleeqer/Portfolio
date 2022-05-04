@@ -1,5 +1,6 @@
 package com.portfolio.domain;
 
+import com.portfolio.commons.util.TimeDiff;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,13 @@ public class AnswerVO {
     private String userEmail;
     private String userName;
     private String userPhoto;
+
+    public String getRegDate() {
+        return regDate;
+    }
+    public void setRegDate(Date date) {
+        this.regDate = TimeDiff.calculateTime(date);
+    }
 
 }
 
