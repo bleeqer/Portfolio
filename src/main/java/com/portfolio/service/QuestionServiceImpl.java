@@ -78,43 +78,9 @@ public class QuestionServiceImpl implements QuestionService {
     };
 
     @Override
-    public List<QAPairVO> selectAnsweredPair(int count) {
+    public List<QAPairVO> selectAnsweredPair(int quesNo) {
 
-        // 원하는 갯수만큼 질문글 가져오기
-        List<QuestionVO> questions = questionMapper.selectAnswered(count);
-
-        // 질문글 + 답변글 Pair 담을 리스트 생성
-        List<QAPairVO> pairs = new ArrayList<>();
-
-        // 질문글 순회하며 답변글 조회해서 PairVO 셋팅하고 pairs 리스트에 담기
-        for (QuestionVO question : questions) {
-
-            // 한개의 답변글만 가져오기
-            AnswerVO answer = answerService.selectAnswers(question.getQuesNo()).get(0);
-
-            // PairVO 생성
-            QAPairVO pair = new QAPairVO();
-
-            // 답변글 데이터
-            pair.setAnswer(answer.getAnswer());
-            pair.setAnswerEmail(answer.getUserEmail());
-            pair.setAnswerUserNo(answer.getUserNo());
-            pair.setAnswerUserName(answer.getUserName());
-            pair.setAnswerUserPhoto(answer.getUserPhoto());
-            pair.setAnswerRegDate(answer.getRegDate());
-
-            // 질문글 데이터
-            pair.setQuesNo(question.getQuesNo());
-            pair.setQuestion(question.getQuestion());
-            pair.setCatPath(question.getCatPath());
-            pair.setQuestionRegDate(question.getRegDate());
-
-            // pairs 리스트에 담기
-            pairs.add(pair);
-
-        }
-
-        return pairs;
+        return questionMapper.selectAnsweredPair(quesNo);
     };
 
     @Override

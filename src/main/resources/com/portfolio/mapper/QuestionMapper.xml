@@ -50,8 +50,16 @@
         SELECT * FROM (SELECT * FROM TB_QUESTION WHERE answered='N' ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and #{count}
     </select>
 
-    <select id="selectAnswered" parameterType="int" resultMap="QuestionResultMap">
-        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE answered='Y' ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and #{count}
+<!--    <select id="selectAnswered" parameterType="int" resultMap="QuestionResultMap">-->
+<!--        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE answered='Y' ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and #{count}-->
+<!--    </select>-->
+
+<!--    <select id="selectAnsweredPair" parameterType="int" resultMap="QuestionResultMap">-->
+<!--        SELECT B.ques_no, B.question, A.answer, A.ans_no, A.reg_date, A.like_cnt, C.user_no, C.email, C.name, C.occupation, C.photo FROM tb_answer A, tb_question B, tb_user C WHERE A.ques_no = B.ques_no AND A.user_no = #{userNo} AND ROWNUM <![CDATA[<=]]> 5 ORDER BY A.ans_no DESC-->
+<!--    </select>-->
+
+    <select id="selectAnsweredPair" parameterType="int" resultMap="QAPairResultMap">
+        select B.ques_no, B.question, A.answer, a.ans_no, A.reg_date, c.user_no, c.email, c.name, c.occupation, c.photo from tb_answer A, (select ROWNUM AS RN, ques_no, question from tb_question where ques_no <![CDATA[>]]> #{quesNo}) B, tb_user C where B.RN <![CDATA[<=]]> 5
     </select>
 
     <select id="selectMore" parameterType="int" resultMap="QuestionResultMap">
@@ -83,6 +91,20 @@
         <id column="reg_date" property="regDate"/>
         <id column="view_cnt" property="viewCnt"/>
         <id column="like_cnt" property="likeCnt"/>
+    </resultMap>
+
+    <resultMap id="QAPairResultMap" type="QAPairVO">
+        <id column="ans_no" property="ansNo"/>
+        <id column="question" property="question"/>
+        <id column="answer" property="answer"/>
+        <id column="ans_no" property="ansNo"/>
+        <id column="reg_date" property="answerRegDate"/>
+        <id column="like_cnt" property="answerLikeCnt"/>
+        <id column="user_no" property="answerUserNo"/>
+        <id column="email" property="answerEmail"/>
+        <id column="name" property="answerUserName"/>
+        <id column="photo" property="answerUserPhoto"/>
+        <id column="occupation" property="answerUserOccupation"/>
     </resultMap>
 
 </mapper>

@@ -42,7 +42,12 @@ public class HomeController {
     public String listPosts(Model model) {
 
         // 질문글 + 답변글 1:1 페어 정해진 갯수만큼 model에 담기
-        model.addAttribute("pairs", questionService.selectAnsweredPair(10));
+        model.addAttribute("answerPairs", questionService.selectAnsweredPair(0));
+        List<QAPairVO> gg = questionService.selectAnsweredPair(0);
+
+        for (QAPairVO q : gg) {
+            System.out.println(q.getAnswer());
+        }
 
         return "index";
     }

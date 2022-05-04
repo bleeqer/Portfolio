@@ -13,7 +13,7 @@ public interface QuestionService {
     void delete(int postNo);
     List<QuestionVO> selectList(int userNo);
     List<QuestionVO> selectNotAnswered(int count);
-    List<QAPairVO> selectAnsweredPair(int count);
+    List<QAPairVO> selectAnsweredPair(int quesNo);
     List<QuestionVO> readAllByTopic(String topic);
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);

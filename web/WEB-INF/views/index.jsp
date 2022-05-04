@@ -115,7 +115,7 @@
             <div>
               <div>
 
-                  <c:forEach var="pair" items="${pairs}">
+                  <c:forEach var="answerPair" items="${answerPairs}">
 
                   <%--질문글--%>
                   <div class="mb-3 mx-1" style="">
@@ -148,17 +148,17 @@
                   <div class="d-flex flex-column">
 
                   <%--이름--%>
-                  <div class="my-auto font-size-1"><a class="text-decoration-none link-default-color hover-underline h6" href="/user/profile/${pair.answerUserNo}"><strong>${pair.answerUserName}</strong></a></div>
+                  <div class="my-auto font-size-1"><a class="text-decoration-none link-default-color hover-underline h6" href="/user/profile/${answerPair.answerUserNo}"><strong>${answerPair.answerUserName}</strong></a></div>
 
                   <%--상세--%>
-                  <div class="my-auto color-gray font-size-1">프로그래머 <span> · </span> ${pair.questionRegDate} </div>
+                  <div class="my-auto color-gray font-size-1">${answerPair.answerUserOccupation}<span> · </span>${answerPair.answerRegDate}</div>
 
                   </div>
                   </div>
                   <%--질문글 내용--%>
                   <div>
                   <div>
-                  <h3><a class="text-decoration-none link-default-color hover-underline" href="#"><b>${pair.question}</b></a></h3>
+                  <h3><a class="text-decoration-none link-default-color hover-underline" href="#"><b>${answerPair.question}</b></a></h3>
                   </div>
                   </div>
 
@@ -166,7 +166,7 @@
                   <div class="position-relative">
                   <div class="fade-post">
                   <div class="" style="line-height: 1.5rem;">
-                      ${pair.answer}
+                      ${answerPair.answer}
                   </div>
                   <div class="overflow-fade hidden"></div>
                   </div>
@@ -216,16 +216,18 @@
                   </span>
                   </div>
                   <div class="d-flex align-items-center justify-content-center" style="font-size: 13px; margin-left: 2px;">
-                  Upvote Count
+                      <c:if test="${answerPair.answerLikeCnt > 0}">
+                          ${answerPair.answerLikeCnt}
+                      </c:if>
                   </div>
                   </div>
                   </div>
-                  <%--Upvote 버튼--%>
+                  <%--Downvote 버튼--%>
                   <div class="d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill" >
                   <div class="d-flex">
                   <div>
                   <span class="d-inline-block d-flex align-items-center justify-content-center">
-                  <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
                   </svg>
                   </span>

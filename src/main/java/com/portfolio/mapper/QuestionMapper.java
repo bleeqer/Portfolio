@@ -1,5 +1,6 @@
 package com.portfolio.mapper;
 
+import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.QuestionVO;
 
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public interface QuestionMapper {
     void delete(int postNo);
     List<QuestionVO> selectList(int userNo);
     List<QuestionVO> selectNotAnswered(int count);
-    List<QuestionVO> selectAnswered(int count);
+    List<QAPairVO> selectAnsweredPair(int quesNo);
     List<QuestionVO> selectAllByTopic(String topic);
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);

@@ -326,13 +326,13 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <%--Divider--%>
+
                                                         <%--Downvote 버튼--%>
                                                         <div class=" d-flex justify-content-center align-items-center bg-hover-whiten-light px-2 rounded-right-top-pill rounded-right-bottom-pill" style="height: 30px; padding: 0px 10px;">
                                                             <div>
                                                               <span class="d-inline-block d-flex align-items-center justify-content-center">
                                                                 <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                  <path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke icon_svg-fill" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
+                                                                  <path d="m12 20 9-11h-6V4H9v5H3z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
                                                                 </svg>
                                                               </span>
                                                             </div>
