@@ -1,5 +1,6 @@
 package com.portfolio.service;
 
+import com.portfolio.commons.util.TimeDiff;
 import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.QuestionVO;
@@ -80,8 +81,12 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public List<QAPairVO> selectAnsweredPair(int quesNo) {
 
+//        for (QAPairVO pair : pairList) {
+//            pair.setAnswerTimeDiff(TimeDiff.calculateTime(pair.getAnswerRegDate()));
+//        }
+
         return questionMapper.selectAnsweredPair(quesNo);
-    };
+    }
 
     @Override
     public List<QuestionVO> readAllByTopic(String topic) {
