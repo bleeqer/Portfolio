@@ -227,3 +227,11 @@
 .svg-fill {
    fill: rgb(245, 41, 54);
 }
+
+.dropdown-menu-center {
+    padding: 0 !important;
+    left: 0;
+    top: 50px !important;
+    -webkit-transform: translate(-30%, 0);
+    -o-transform: translate(-30%, 0);
+    transform: translate(-30%, 0);}

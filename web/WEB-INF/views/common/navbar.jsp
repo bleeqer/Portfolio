@@ -72,16 +72,16 @@
         </div>
 
         <%--User dropdown--%>
-        <div class="dropdown px-2 position-relative d-flex justify-content-center align-items-center user-profile" style="height: 50px; width: 60px; min-width: 60px;">
-            <img class="cursor-pointer" id="user-dropdown" data-bs-toggle="dropdown" src="/static/img/user.png" style="width: 30px; height: 30px;"/>
-            <ul class="dropdown-menu" aria-labelledby="book-dropdown">
-                <li><a class="dropdown-item" href="#">My Profile</a></li>
-                <li><a class="dropdown-item" href="#">My Questions</a></li>
-                <li><a class="dropdown-item" href="#">My Answers</a></li>
-                <div class="dropdown-divider"></div>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
+        <div class="dropdown cursor-pointer bg-hover-whiten rounded-2 position-relative d-flex justify-content-center align-items-center user-profile" style="height: 45px; width: 60px; min-width: 60px; transition: background-color 250ms;">
+            <div id="user-dropdown" class="d-flex justify-content-center align-items-center" data-bs-toggle="dropdown" style="width: 100%; height: 100%;">
+                <img src="/static/img/user.png" alt="" style="width: 30px; height: 30px;"/>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-center bg-dark border-gray" style="overflow: hidden; background-color: black;">
+                <li><a class="dropdown-item color-gray-light bg-hover-whiten-light d-flex justify-content-start align-items-center py-3" href="/user/profile/" style="line-height: 100%; font-size: 14px;">My Page</a></li>
+                <div class="border-bottom-gray"></div>
+                <li><a class="dropdown-item color-gray-light bg-hover-whiten-light justify-content-start align-items-center py-2 font-bold" href="/user/logout" style="line-height: 100%; font-size: 11px;">Log out</a></li>
             </ul>
-            <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>
+<%--            <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>--%>
         </div>
 
         <%--Ask question button--%>
@@ -90,6 +90,24 @@
         </div>
 
     </nav>
+</div>
+
+<%--Popover--%>
+<div id="user-popover-content" style="display: none;">
+
+    <div class="d-flex user-popover-item">
+        <div class="py-1 px-3">My Page</div>
+        <div class="position-relative">
+            <div class="user-mini-checker hidden"></div>
+        </div>
+    </div>
+    <div class="border-bottom-gray"></div>
+    <div class="d-flex user-popover-item">
+        <div class="py-1 px-3">Log out</div>
+        <div class="position-relative">
+            <div class="user-mini-checker hidden"></div>
+        </div>
+    </div>
 </div>
 
 <script src="/static/js/navbar.js"></script>

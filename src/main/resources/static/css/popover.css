@@ -14,17 +14,17 @@
     border-right-color: #262626 !important;
 }
 
-.popover-item {
+.sort-popover-item {
     padding: 5px 12px 5px 5px;
     transition: background-color 250ms ease-in-out;
     font-size: 13px;
 }
 
-.popover-item:hover {
+.sort-popover-item:hover {
     background-color: rgba(255, 255, 255, 0.04) !important;
 }
 
-.mini-checker {
+.sort-mini-checker {
     border-bottom: 2px solid #1E90FF;
     border-right: 2px solid #1E90FF;
     transform: rotate(0.125turn);

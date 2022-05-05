@@ -33,6 +33,7 @@
   <%--CSS--%>
   <link rel="stylesheet" type="text/css" href="/static/css/utils.css">
   <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/popover.css">
 
   <style>
     input, textarea, button, a {

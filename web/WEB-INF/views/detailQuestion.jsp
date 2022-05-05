@@ -21,7 +21,6 @@
     <%--  Bootstrap  --%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <%-- Bootstrap Icon --%>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
@@ -772,18 +771,18 @@
 </div>
 
 <%--Popover--%>
-<div id="popover-content" style="display: none;">
+<div id="sort-popover-content" style="display: none;">
 
-    <div class="d-flex popover-item">
+    <div class="d-flex sort-popover-item">
         <div class="py-1 px-3">Most recent</div>
         <div class="position-relative">
-            <div class="mini-checker hidden"></div>
+            <div class="sort-mini-checker hidden"></div>
         </div>
     </div>
-    <div class="d-flex popover-item">
+    <div class="d-flex sort-popover-item">
         <div class="py-1 px-3">Most Liked</div>
         <div class="position-relative">
-            <div class="mini-checker hidden"></div>
+            <div class="sort-mini-checker hidden"></div>
         </div>
     </div>
 </div>

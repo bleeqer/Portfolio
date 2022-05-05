@@ -2,7 +2,7 @@ $(function () {
     $('[data-bs-toggle="popover"]').popover({
         html: true,
         content: function() {
-            return $('#popover-content').html();
+            return $('#sort-popover-content').html();
         }
     })
 })
@@ -10,11 +10,15 @@ $(function () {
 
 $('html').click(function (e) {
 
-    $('.popover-item').click(function () {
-        $('.popover-item .mini-checker').addClass('hidden')
-        $('.popover-item').removeClass('bg-whiten-light')
+    // popover 아이템 클릭 시
+    $('.sort-popover-item').click(function () {
 
-        $(this).find('.mini-checker').removeClass('hidden')
+        // mini-checker, highlighting 초기화
+        $('.sort-popover-item .sort-mini-checker').addClass('hidden')
+        $('.sort-popover-item').removeClass('bg-whiten-light')
+
+        // 클릭된 popover item만 mini-checker, highlighting 표시
+        $(this).find('.sort-mini-checker').removeClass('hidden')
         $(this).addClass('bg-whiten-light')
 
     })
