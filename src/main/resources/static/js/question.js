@@ -10,10 +10,20 @@ $(function () {
 
 $('html').click(function (e) {
 
+    $('.popover-item').click(function () {
+        $('.popover-item .mini-checker').addClass('hidden')
+        $('.popover-item').removeClass('bg-whiten-light')
+
+        $(this).find('.mini-checker').removeClass('hidden')
+        $(this).addClass('bg-whiten-light')
+
+    })
+
     if (e.target.id !== 'sort-button') {
         $('[data-bs-toggle="popover"]').popover('hide')
     }
 })
+
 
 // 답댓글 보기 버튼 클릭
 $('.view-reply-button').click(function () {

@@ -777,13 +777,13 @@
     <div class="d-flex popover-item">
         <div class="py-1 px-3">Most recent</div>
         <div class="position-relative">
-            <div class="mini-checker"></div>
+            <div class="mini-checker hidden"></div>
         </div>
     </div>
     <div class="d-flex popover-item">
         <div class="py-1 px-3">Most Liked</div>
         <div class="position-relative">
-            <div class="mini-checker"></div>
+            <div class="mini-checker hidden"></div>
         </div>
     </div>
 </div>

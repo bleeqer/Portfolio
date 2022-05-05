@@ -17,5 +17,6 @@ $('a').each(function () {
 
     if ($(this).attr('href') === currentURL) {
         $(this).find('path').addClass('svg-fill')
+        $(this).find('.under-red').removeClass('hidden')
     }
 })

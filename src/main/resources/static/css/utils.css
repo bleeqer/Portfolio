@@ -142,6 +142,10 @@
     background-color: rgb(245, 41, 54) !important;
 }
 
+.bg-whiten-light {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
 .font-size-1 {
     font-size: 13px;
 }
