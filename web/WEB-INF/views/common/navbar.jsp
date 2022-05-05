@@ -45,14 +45,14 @@
         </a>
 
         <%--Search box--%>
-        <div class="nav-item ms-auto me-2 bg-black rounded-pill border border-color-gray hover-border-color-blue input-container position-relative" style="min-width: 150px;">
+        <div class="nav-item ms-auto me-2 bg-black rounded-pill border border-color-gray hover-border-color-blue input-container position-relative" style="min-width: 150px; transition: min-width 250ms;">
             <form id="search-form" action="/search" method="get">
-                <div class="d-flex py-1 px-2" style="transition: background-color 250ms; height: 40px;">
+                <div class="d-flex justify-content-between py-1 px-2" style="transition: background-color 250ms; height: 36px;">
 
-                    <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center" style="width: 100%;">
                         <%--Search bar--%>
-                        <div class="d-flex ms-1">
-                            <input class="search-input input-focus justify-content-center" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size:13px; width: 100%; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
+                        <div class="d-flex ms-1" style="width: 100%;">
+                            <input class="search-input input-focus justify-content-center" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size: 13px; width: 100%; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
 
                             <%--Search focus overlay--%>
                             <div class="position-fixed bg-transparent-dark search-overlay hidden"></div>
