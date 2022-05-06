@@ -20,12 +20,20 @@
 <!--    <select id="select" parameterType="int" resultMap="QuestionResultMap">-->
 <!--        SELECT * FROM TB_QUESTION where ques_no=#{quesNo}-->
 <!--    </select>-->
+<!--    <select id="select" parameterType="int" resultMap="QuestionResultMap">-->
+<!--        SELECT A.content, CONCAT(CONCAT(C.CATEGORY_NAME, '/'), B.CATEGORY_NAME) AS CATEGORY_PATH-->
+<!--        FROM tb_question A-->
+<!--                 JOIN TB_QUESTION_CATEGORY B ON B.CATEGORY_CODE = A.CATEGORY-->
+<!--                 JOIN TB_QUESTION_CATEGORY C ON C.CATEGORY_CODE = B.PARENT_CATEGORY_CODE-->
+<!--        WHERE A.QUES_NO = #{quesNo}-->
+<!--    </select>-->
+
     <select id="select" parameterType="int" resultMap="QuestionResultMap">
-        SELECT A.content, CONCAT(CONCAT(C.CATEGORY_NAME, '/'), B.CATEGORY_NAME) AS CATEGORY_PATH
-        FROM tb_question A
-                 JOIN TB_QUESTION_CATEGORY B ON B.CATEGORY_CODE = A.CATEGORY
-                 JOIN TB_QUESTION_CATEGORY C ON C.CATEGORY_CODE = B.PARENT_CATEGORY_CODE
-        WHERE A.QUES_NO = #{quesNo}
+        SELECT B.question, B.reg_date, reverse(sys_connect_by_path(reverse(A.category_name), '/')) AS category_path
+        FROM tb_category A, tb_question B
+        WHERE connect_by_isleaf = 1 AND B.ques_no = #{quesNo}
+            START WITH A.category_code = B.category_code
+        CONNECT BY PRIOR A.parent_category_code = A.category_code
     </select>
 
     <update id="update" parameterType="QuestionVO">

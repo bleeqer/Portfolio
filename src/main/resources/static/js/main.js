@@ -20,3 +20,12 @@ $('a').each(function () {
         $(this).find('.under-red').removeClass('hidden')
     }
 })
+
+
+
+$('.best-title').mouseenter(function () {
+        $(this).css('height', $(this).prop('scrollHeight'))
+    })
+    .mouseleave(function () {
+        $(this).css('height', 32)
+    });

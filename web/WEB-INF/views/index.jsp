@@ -320,7 +320,7 @@
                 </div>
               </div>
 
-              <div class="best-title px-3 bg-hover-whiten-light py-1 dark border-bottom-gray">
+              <div class="best-title px-3 bg-hover-whiten-light py-1 dark border-bottom-gray" style="transition: height 250ms; height: 32px; overflow: hidden;">
                 <div>
                   <div>
                     <div style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 206px;">hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기</div>
@@ -338,7 +338,7 @@
                 </div>
               </div>
 
-              <div class="best-title px-3 bg-hover-whiten-light py-1 dark border-bottom-gray">
+              <div class="best-title px-3 bg-hover-whiten-light py-1 dark border-bottom-gray" style="transition: height 250ms; height: 32px; overflow: hidden;">
                 <div>
                   <div>
                     <div style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 206px;">hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기</div>
