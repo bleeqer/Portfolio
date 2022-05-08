@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface QuestionCategoryMapper {
 
-    List<QuestionCategoryVO> selectAll();
+    List<QuestionCategoryVO> selectList();
+    String selectFullPath(int catCode);
 }

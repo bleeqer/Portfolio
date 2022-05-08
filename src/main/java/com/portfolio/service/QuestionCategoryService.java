@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface QuestionCategoryService {
     List<QuestionCategoryVO> selectAll();
+    String selectFullPath(int catCode);
 }

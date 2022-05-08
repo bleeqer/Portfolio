@@ -20,6 +20,11 @@ public class QuestionCategoryServiceImpl implements QuestionCategoryService {
 
     @Override
     public List<QuestionCategoryVO> selectAll() {
-        return questionCategoryMapper.selectAll();
+        return questionCategoryMapper.selectList();
+    }
+
+    @Override
+    public String selectFullPath(int catCode) {
+        return questionCategoryMapper.selectFullPath(catCode);
     }
 }
