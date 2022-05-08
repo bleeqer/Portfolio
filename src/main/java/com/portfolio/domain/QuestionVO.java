@@ -13,11 +13,12 @@ public class QuestionVO {
 
     private int quesNo;
     private String question;
-    private String category;
+    private String categoryFullPath;
+    private int categoryCode;
     private String content;
     private String writer;
     private String regDate;
-    private int likeCnt;
+    private String answered;
     private int viewCnt;
 
     public String getRegDate() {

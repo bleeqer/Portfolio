@@ -6,6 +6,7 @@ import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.QuestionVO;
 import com.portfolio.domain.ImageVO;
 import com.portfolio.mapper.AnswerMapper;
+import com.portfolio.mapper.QuestionCategoryMapper;
 import com.portfolio.mapper.QuestionMapper;
 import com.portfolio.mapper.QuestionImageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     QuestionImageMapper questionImageMapper;
+
+    @Autowired
+    QuestionCategoryMapper questionCategoryMapper;
 
     @Transactional
     @Override
@@ -69,13 +73,22 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionVO> selectList(int userNo) {
-        return questionMapper.selectList(userNo);
+    public List<QuestionVO> selectListByUser(QuestionVO questionVO) {
+
+
+        List<QuestionVO> questions = questionMapper.selectListByUser(questionVO);
+
+        for (QuestionVO question : questions) {
+            question.setCategoryFullPath(questionCategoryMapper.selectFullPath(question.getCategoryCode()));
+        }
+
+        return questions;
     }
 
     @Override
-    public List<QuestionVO> selectNotAnswered(int count) {
-        return questionMapper.selectNotAnswered(count);
+    public List<QuestionVO> selectListByAnswered(QuestionVO questionVO) {
+
+        return questionMapper.selectNotAnswered(questionVO);
     };
 
     @Override

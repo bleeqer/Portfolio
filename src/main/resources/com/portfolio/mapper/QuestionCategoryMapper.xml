@@ -6,16 +6,19 @@
 <mapper namespace="com.portfolio.mapper.QuestionCategoryMapper">
 
     <select id="selectList" parameterType="int" resultMap="QuestionCategoryResultMap">
-        SELECT LEVEL - 1 AS space, category_code, category_name, parent_category_code, category_photo FROM tb_category START WITH parent_category_code = 0 CONNECT BY PRIOR category_code = parent_category_code ORDER SIBLINGS BY category_code
+        SELECT LEVEL - 1 AS space, category_code, category_name, parent_category_code, category_photo
+        FROM tb_category
+        START WITH parent_category_code = 0
+        CONNECT BY PRIOR category_code = parent_category_code
+        ORDER SIBLINGS BY category_code
     </select>
 
     <select id="selectFullPath" parameterType="int" resultType="string">
-        SELECT
-            sys_connect_by_path(category_name, '/') category
+        SELECT sys_connect_by_path(category_name, '/') category
         FROM tb_category
-        where connect_by_isleaf = 1 and category_code = #{catCode}
-            start with parent_category_code = 0
-        connect by prior category_code = parent_category_code;
+        WHERE connect_by_isleaf = 1 AND category_code = #{catCode}
+        START WITH parent_category_code = 0
+        CONNECT BY PRIOR category_code = parent_category_code
     </select>
 
 <!--    <select id="selectFullPath" parameterType="int" resultMap=""-->

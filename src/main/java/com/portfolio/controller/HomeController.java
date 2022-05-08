@@ -50,19 +50,23 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("questions")
+    @GetMapping("questions") // 미답변 질문글 목록
     public String getQuestions(Model model) {
 
-        List<QuestionVO> questions = questionService.selectNotAnswered(10);
+        QuestionVO questionVO = new QuestionVO();
+
+        // 첫번째 미답변 질문글부터 가져오기
+        questionVO.setQuesNo(0);
+        questionVO.setAnswered("N");
+
+        List<QuestionVO> questions = questionService.selectListByAnswered(questionVO);
 
         model.addAttribute("questions", questions);
 
         return "questions";
     }
 
-
-//    @PostMapping("more")
-    @GetMapping("more")
+    @GetMapping("questions/more")
     @ResponseBody
     public ResponseEntity<List<QuestionVO>> getMoreQuestions(@RequestParam int quesNo) {
 

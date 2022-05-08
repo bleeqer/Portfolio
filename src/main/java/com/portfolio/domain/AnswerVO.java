@@ -14,9 +14,9 @@ public class AnswerVO {
     private int quesNo;
     private int ansNo;
     private String answer;
-    private int userNo;
     private String regDate;
     private int likeCnt;
+    private int userNo;
     private String userEmail;
     private String userName;
     private String userPhoto;

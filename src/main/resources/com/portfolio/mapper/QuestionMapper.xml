@@ -54,19 +54,22 @@
 <!--        SELECT ques.* FROM (SELECT * FROM TB_QUESTION ORDER BY ques_no DESC) ques WHERE ROWNUM BETWEEN 0 and 10-->
 <!--    </select>-->
 
-    <select id="selectListByUser" parameterType="int" resultMap="QuestionResultMap">
+    <select id="selectListByUser" parameterType="QuestionVO" resultMap="QuestionResultMap">
         SELECT *
         FROM (SELECT *
-              FROM TB_QUESTION WHERE user_no = #{userNo} AND ques_no >= #{quesNo} AND category_code = #{category} OR #{category} IS NULL)
+              FROM TB_QUESTION
+              WHERE user_no = #{userNo}
+                    AND ques_no > #{quesNo}
+                    AND category_code = #{category} OR #{category} IS NULL)
         WHERE ROWNUM BETWEEN 0 AND 10
     </select>
 
-    <select id="selectListByAnswered" parameterType="int" resultMap="QuestionResultMap">
+    <select id="selectListByAnswered" parameterType="QuestionVO" resultMap="QuestionResultMap">
         SELECT *
         FROM (SELECT *
               FROM TB_QUESTION
               WHERE answered = #{answered}
-                AND ques_no >= #{quesNo}
+                AND ques_no > #{quesNo}
                 AND (category_code = #{category} OR #{category} IS NULL)
               ORDER BY ques_no DESC)
         WHERE ROWNUM BETWEEN 0 AND 10
