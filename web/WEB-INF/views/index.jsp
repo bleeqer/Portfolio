@@ -210,8 +210,8 @@
 
                   <%--Container--%>
                   <div class="d-flex rounded-pill" role="button" style="background-color: rgba(255, 255, 255, 0.05); height: 30px;">
-                  <%--Upvote 버튼--%>
-                  <div class="d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" >
+                  <%--Like 버튼--%>
+                  <div class="like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" >
                   <div class="d-flex">
                   <div>
                   <span class="d-inline-block d-flex align-items-center justify-content-center">
@@ -227,8 +227,8 @@
                   </div>
                   </div>
                   </div>
-                  <%--Downvote 버튼--%>
-                  <div class="d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill" >
+                  <%--Unlike 버튼--%>
+                  <div class="unlike-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill" >
                   <div class="d-flex">
                   <div>
                   <span class="d-inline-block d-flex align-items-center justify-content-center">

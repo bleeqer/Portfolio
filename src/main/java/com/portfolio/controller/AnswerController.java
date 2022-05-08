@@ -35,4 +35,13 @@ public class AnswerController {
 
         return answerService.readMoreList(answer);
     }
+
+//    @GetMapping("like")
+//    @ResponseBody
+//    public String likeAnswer(int ansNo) {
+//
+//        int likeCnt = answerService.addLikeCnt(ansNo);
+//
+//        return
+//    }
 }

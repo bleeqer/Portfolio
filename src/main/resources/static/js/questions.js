@@ -14,8 +14,6 @@ $('.fade-post').each(function() {
         $(this).find('.overflow-fade').removeClass('hidden')
         $(this).parent().find('.readMore-button').removeClass('hidden')
         $(this).css('height', '100')
-    } else {
-        $(this).css('height', 'scrollHeight')
     }
 
 })

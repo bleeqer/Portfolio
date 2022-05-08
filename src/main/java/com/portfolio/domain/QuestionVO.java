@@ -13,7 +13,7 @@ public class QuestionVO {
 
     private int quesNo;
     private String question;
-    private String catPath;
+    private String category;
     private String content;
     private String writer;
     private String regDate;
