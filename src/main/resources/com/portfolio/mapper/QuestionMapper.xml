@@ -7,7 +7,6 @@
 
     <insert id="insert" parameterType="QuestionVO">
 
-        -- file 테이블의 외래키로 사용될 ques_no를 반환받아 QuestionVO에 담김
         <selectKey keyProperty="quesNo" resultType="int" order="BEFORE">
             select ques_sequence.NEXTVAL from dual
         </selectKey>
@@ -16,25 +15,6 @@
         VALUES (#{quesNo}, #{title}, #{content}, #{writer})
 
     </insert>
-
-<!--    <select id="select" parameterType="int" resultMap="QuestionResultMap">-->
-<!--        SELECT * FROM TB_QUESTION where ques_no=#{quesNo}-->
-<!--    </select>-->
-<!--    <select id="select" parameterType="int" resultMap="QuestionResultMap">-->
-<!--        SELECT A.content, CONCAT(CONCAT(C.CATEGORY_NAME, '/'), B.CATEGORY_NAME) AS CATEGORY_PATH-->
-<!--        FROM tb_question A-->
-<!--                 JOIN TB_QUESTION_CATEGORY B ON B.CATEGORY_CODE = A.CATEGORY-->
-<!--                 JOIN TB_QUESTION_CATEGORY C ON C.CATEGORY_CODE = B.PARENT_CATEGORY_CODE-->
-<!--        WHERE A.QUES_NO = #{quesNo}-->
-<!--    </select>-->
-
-<!--    <select id="select" parameterType="int" resultMap="QuestionResultMap">-->
-<!--        SELECT B.question, B.reg_date, reverse(sys_connect_by_path(reverse(A.category_name), '/')) AS category_path-->
-<!--        FROM tb_category A, tb_question B-->
-<!--        WHERE connect_by_isleaf = 1 AND B.ques_no = #{quesNo}-->
-<!--            START WITH A.category_code = B.category_code-->
-<!--        CONNECT BY PRIOR A.parent_category_code = A.category_code-->
-<!--    </select>-->
 
     <select id="select">
         SELECT * FROM tb_question WHERE ques_no = #{quesNo} ORDER BY ques_no ASC
@@ -50,81 +30,34 @@
         DELETE FROM TB_QUESTION WHERE ques_no=#{quesNo}
     </delete>
 
-<!--    <select id="selectAll" resultMap="QuestionResultMap">-->
-<!--        SELECT ques.* FROM (SELECT * FROM TB_QUESTION ORDER BY ques_no DESC) ques WHERE ROWNUM BETWEEN 0 and 10-->
-<!--    </select>-->
+    <select id="selectList" parameterType="QuestionVO" resultMap="QuestionResultMap">
 
-    <select id="selectListByUser" parameterType="QuestionVO" resultMap="QuestionResultMap">
         SELECT *
-        FROM (SELECT *
-              FROM TB_QUESTION
-              WHERE user_no = #{userNo}
-                AND ques_no > #{quesNo}
-                AND (category_code = #{categoryCode} OR #{categoryCode} IS NULL)) QUES,
-
-             (SELECT sys_connect_by_path(category_name, '/') catFullPath
-              FROM tb_category
-              WHERE connect_by_isleaf = 1
-                AND (category_code = #{categoryCode} OR #{categoryCode} IS NULL)
-              START WITH parent_category_code = 0
-              CONNECT BY PRIOR category_code = parent_category_code) CAT
-        WHERE ROWNUM BETWEEN 0 AND 10
+        FROM tb_question QUES,
+             tb_category CAT
+        WHERE QUES.ques_no > #{quesNo}
+        <if test="answered != null and answered != ''">
+          AND QUES.answered = #{answered}
+        </if>
+        <if test="categoryCode != null and categoryCode != ''">
+          AND QUES.category_code = #{categoryCode}
+        </if>
+          AND CAT.category_code = QUES.category_code
+          AND ROWNUM BETWEEN 0 AND 10
 
     </select>
 
-    <select id="selectListByAnswered" parameterType="QuestionVO" resultMap="QuestionResultMap">
-        SELECT QUES.question, CAT.categoryFullPath
-        FROM (SELECT *
-              FROM TB_QUESTION
-              WHERE answered = #{answered}
-                AND ques_no > #{quesNo}
-                <if test="categoryCode != null and categoryCode != ''">
-                    AND category_code = #{categoryCode}
-                </if>) QUES,
-             (SELECT sys_connect_by_path(category_name, '/') categoryFullPath
-              FROM tb_category
-              WHERE connect_by_isleaf = 1
-                  AND category_code = QUES.category_code
-              START WITH parent_category_code = 0
-              CONNECT BY PRIOR category_code = parent_category_code) CAT
-        WHERE ROWNUM BETWEEN 0 AND 10
-    </select>
-
-
-<!--    <select id="selectAnsweredPair" parameterType="int" resultMap="QuestionResultMap">-->
-<!--        SELECT B.ques_no, B.question, A.answer, A.ans_no, A.reg_date, A.like_cnt, C.user_no, C.email, C.name, C.occupation, C.photo FROM tb_answer A, tb_question B, tb_user C WHERE A.ques_no = B.ques_no AND A.user_no = #{userNo} AND ROWNUM <![CDATA[<=]]> 5 ORDER BY A.ans_no DESC-->
-<!--    </select>-->
-
-<!--    <select id="selectAnsweredPair" parameterType="int" resultMap="QAPairResultMap">-->
-<!--        select B.ques_no, B.question, A.answer, a.ans_no, A.reg_date, c.user_no, c.email, c.name, c.occupation, c.photo from tb_answer A, (select ROWNUM AS RN, ques_no, question from tb_question where ques_no <![CDATA[>]]> #{quesNo}) B, tb_user C where B.RN <![CDATA[<=]]> 5-->
-<!--    </select>-->
-
-<!--    <select id="selectMore" parameterType="int" resultMap="QuestionResultMap">-->
-<!--        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE ques_no<![CDATA[<]]>#{quesNo} ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 10-->
-<!--    </select>-->
-
-<!--    <select id="selectAllByTopic" resultMap="QuestionResultMap">-->
-<!--        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE TOPIC=#{topic} ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 1-->
-<!--    </select>-->
-
-<!--    <select id="selectMoreByTopic" parameterType="map" resultMap="QuestionResultMap">-->
-<!--        SELECT * FROM (SELECT * FROM TB_QUESTION WHERE ques_no<![CDATA[<]]>#{quesNo} AND TOPIC=#{topic} ORDER BY ques_no DESC) WHERE ROWNUM BETWEEN 0 and 1-->
-<!--    </select>-->
 
     <update id="addViewCnt" parameterType="int">
         UPDATE TB_QUESTION SET view_cnt=view_cnt + 1
         WHERE ques_no=#{quesNo}
     </update>
 
-<!--    <update id="addLike" parameterType="int">-->
-<!--        UPDATE TB_QUESTION SET like_cnt=like_cnt + 1-->
-<!--        WHERE ques_no=#{quesNo}-->
-<!--    </update>-->
-
     <!--QuestionVO Mapper-->
     <resultMap id="QuestionResultMap" type="QuestionVO">
         <id column="ques_no" property="quesNo"/>
-        <id column="category_path" property="catPath"/>
+        <id column="question" property="question"/>
+        <id column="category_name" property="categoryName"/>
         <id column="reg_date" property="regDate"/>
         <id column="view_cnt" property="viewCnt"/>
         <id column="like_cnt" property="likeCnt"/>

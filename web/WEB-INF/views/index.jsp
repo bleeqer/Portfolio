@@ -97,7 +97,7 @@
                                   <%--카테고리 아이콘--%>
                               <div class="me-2">
                                   <div class="d-flex rounded-1 overflow-hidden">
-                                      <img width="18" height="18" src="${category.categoryPhoto}" alt="IMG">
+                                      <img class="m-0" src="${category.categoryPhoto}" alt="IMG" width="18" height="18">
                                   </div>
                               </div>
 

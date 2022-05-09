@@ -59,11 +59,7 @@ public class HomeController {
         questionVO.setQuesNo(0);
         questionVO.setAnswered("N");
 
-        List<QuestionVO> questions = questionService.selectListByAnswered(questionVO);
-
-        for (QuestionVO question : questions) {
-            System.out.println(question.getCategoryFullPath());
-        }
+        List<QuestionVO> questions = questionService.selectList(questionVO);
 
         model.addAttribute("questions", questions);
 
@@ -79,7 +75,7 @@ public class HomeController {
         questionVO.setQuesNo(quesNo);
         questionVO.setAnswered("N");
 
-        return questionService.selectListByUser(questionVO);
+        return questionService.selectList(questionVO);
     }
 
     @GetMapping("topic/{topic}")
@@ -93,6 +89,7 @@ public class HomeController {
         return "index";
     }
 
+/*
     @PostMapping("topic/more/{topic}")
     public ResponseEntity<List<QuestionVO>> getMoreQuestionsByTopic(@PathVariable String topic, @RequestParam int quesNo, Model model) {
 
@@ -115,6 +112,7 @@ public class HomeController {
 
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
+*/
 
 
 

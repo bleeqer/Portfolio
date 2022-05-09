@@ -11,13 +11,10 @@ public interface QuestionService {
     QuestionVO read(int postNo);
     void update(QuestionVO questionVO);
     void delete(int postNo);
-    List<QuestionVO> selectListByUser(QuestionVO questionVO);
-    List<QuestionVO> selectListByAnswered(QuestionVO questionVO);
-    List<QAPairVO> selectAnsweredPair(int quesNo);
-    List<QuestionVO> readAllByTopic(String topic);
+    List<QuestionVO> selectList(QuestionVO questionVO);
+    List<QAPairVO> selectQnAPairList(QuestionVO questionVO);
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);
-    List<QuestionVO> getMore(int startQuesNo);
-    List<QuestionVO> getMoreByTopic(HashMap<String, Object> map);
+
 
 }

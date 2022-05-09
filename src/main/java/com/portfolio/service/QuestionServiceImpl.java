@@ -73,38 +73,12 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionVO> selectListByUser(QuestionVO questionVO) {
+    public List<QuestionVO> selectList(QuestionVO questionVO) {
 
-
-//        List<QuestionVO> questions = questionMapper.selectListByUser(questionVO);
-//
-//        for (QuestionVO question : questions) {
-//            question.setCategoryFullPath(questionCategoryMapper.selectFullPath(question.getCategoryCode()));
-//        }
-
-        return questionMapper.selectListByUser(questionVO);
+        return questionMapper.selectList(questionVO);
     }
 
-    @Override
-    public List<QuestionVO> selectListByAnswered(QuestionVO questionVO) {
 
-        return questionMapper.selectListByAnswered(questionVO);
-    };
-
-    @Override
-    public List<QAPairVO> selectAnsweredPair(int quesNo) {
-
-//        for (QAPairVO pair : pairList) {
-//            pair.setAnswerTimeDiff(TimeDiff.calculateTime(pair.getAnswerRegDate()));
-//        }
-
-        return questionMapper.selectAnsweredPair(quesNo);
-    }
-
-    @Override
-    public List<QuestionVO> readAllByTopic(String topic) {
-        return questionMapper.selectAllByTopic(topic);
-    }
 
     @Override
     public void addViewCnt(int postNo) {
@@ -116,14 +90,5 @@ public class QuestionServiceImpl implements QuestionService {
         questionMapper.addLikeCnt(postNo);
     }
 
-    @Override
-    public List<QuestionVO> getMore(int startQuesNo) {
-        return questionMapper.selectMore(startQuesNo);
-    }
-
-    @Override
-    public List<QuestionVO> getMoreByTopic(HashMap<String, Object> map) {
-        return questionMapper.selectMoreByTopic(map);
-    }
 
 }
