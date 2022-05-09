@@ -5,28 +5,13 @@
 
 <mapper namespace="com.portfolio.mapper.QuestionCategoryMapper">
 
-    <select id="selectList" parameterType="int" resultMap="QuestionCategoryResultMap">
-        SELECT LEVEL - 1 AS space, category_code, category_name, parent_category_code, category_photo
-        FROM tb_category
-        START WITH parent_category_code = 0
-        CONNECT BY PRIOR category_code = parent_category_code
-        ORDER SIBLINGS BY category_code
+    <select id="selectAll" resultMap="QuestionCategoryResultMap">
+        SELECT * FROM tb_category ORDER BY category_code
     </select>
-
-    <select id="selectFullPath" parameterType="int" resultType="string">
-        SELECT sys_connect_by_path(category_name, '/') category
-        FROM tb_category
-        WHERE connect_by_isleaf = 1 AND category_code = #{catCode}
-        START WITH parent_category_code = 0
-        CONNECT BY PRIOR category_code = parent_category_code
-    </select>
-
-<!--    <select id="selectFullPath" parameterType="int" resultMap=""-->
 
     <resultMap id="QuestionCategoryResultMap" type="QuestionCategoryVO">
         <id column="category_code" property="categoryCode"/>
         <id column="category_name" property="categoryName"/>
-        <id column="parent_category_code" property="parentCategoryCode"/>
         <id column="category_photo" property="categoryPhoto"/>
     </resultMap>
 

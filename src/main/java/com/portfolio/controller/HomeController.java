@@ -41,10 +41,10 @@ public class HomeController {
     @GetMapping("")
     public String getQnAPairs(Model model) {
 
-        // 질문글 + 답변글 1:1 페어 리스트 model에 담기
-        model.addAttribute("answerPairs", questionService.selectAnsweredPair(0));
-
-        // 카테고리 목록 model에 담기
+//        // 질문글 + 답변글 1:1 페어 리스트 model에 담기
+//        model.addAttribute("answerPairs", questionService.selectAnsweredPair(0));
+//
+//        // 카테고리 목록 model에 담기
         model.addAttribute("categories", questionCategoryService.selectAll());
 
         return "index";
