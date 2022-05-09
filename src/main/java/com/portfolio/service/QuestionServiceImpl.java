@@ -76,19 +76,19 @@ public class QuestionServiceImpl implements QuestionService {
     public List<QuestionVO> selectListByUser(QuestionVO questionVO) {
 
 
-        List<QuestionVO> questions = questionMapper.selectListByUser(questionVO);
+//        List<QuestionVO> questions = questionMapper.selectListByUser(questionVO);
+//
+//        for (QuestionVO question : questions) {
+//            question.setCategoryFullPath(questionCategoryMapper.selectFullPath(question.getCategoryCode()));
+//        }
 
-        for (QuestionVO question : questions) {
-            question.setCategoryFullPath(questionCategoryMapper.selectFullPath(question.getCategoryCode()));
-        }
-
-        return questions;
+        return questionMapper.selectListByUser(questionVO);
     }
 
     @Override
     public List<QuestionVO> selectListByAnswered(QuestionVO questionVO) {
 
-        return questionMapper.selectNotAnswered(questionVO);
+        return questionMapper.selectListByAnswered(questionVO);
     };
 
     @Override

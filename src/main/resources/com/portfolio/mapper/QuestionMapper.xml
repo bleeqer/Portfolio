@@ -59,19 +59,33 @@
         FROM (SELECT *
               FROM TB_QUESTION
               WHERE user_no = #{userNo}
-                    AND ques_no > #{quesNo}
-                    AND category_code = #{category} OR #{category} IS NULL)
+                AND ques_no > #{quesNo}
+                AND (category_code = #{categoryCode} OR #{categoryCode} IS NULL)) QUES,
+             (SELECT sys_connect_by_path(category_name, '/') catFullPath
+              FROM tb_category
+              WHERE connect_by_isleaf = 1
+                AND (category_code = #{categoryCode} OR #{categoryCode} IS NULL)
+              START WITH parent_category_code = 0
+              CONNECT BY PRIOR category_code = parent_category_code) CAT
         WHERE ROWNUM BETWEEN 0 AND 10
+
     </select>
 
     <select id="selectListByAnswered" parameterType="QuestionVO" resultMap="QuestionResultMap">
-        SELECT *
+        SELECT CAT.categoryFullPath
         FROM (SELECT *
               FROM TB_QUESTION
               WHERE answered = #{answered}
                 AND ques_no > #{quesNo}
-                AND (category_code = #{category} OR #{category} IS NULL)
-              ORDER BY ques_no DESC)
+              ) QUES,
+             (SELECT sys_connect_by_path(category_name, '/') categoryFullPath
+              FROM tb_category
+              WHERE connect_by_isleaf = 1
+                 <if test="categoryCode != null and categoryCode != ''">
+                     AND category_code = #{categoryCode}
+                 </if>
+              START WITH parent_category_code = 0
+              CONNECT BY PRIOR category_code = parent_category_code) CAT
         WHERE ROWNUM BETWEEN 0 AND 10
     </select>
 

@@ -9,7 +9,7 @@
     </Appenders>
 
     <loggers>
-        <Logger name="com.portfolio.mapper" level="error" additivity="false">
+        <Logger name="com.portfolio.mapper" level="trace" additivity="false">
             <AppenderRef ref="console"/>
         </Logger>
         <Logger name="com.portfolio.persistence" level="trace" additivity="false">

@@ -39,7 +39,7 @@ public class HomeController {
     }
 
     @GetMapping("")
-    public String listPosts(Model model) {
+    public String getQnAPairs(Model model) {
 
         // 질문글 + 답변글 1:1 페어 리스트 model에 담기
         model.addAttribute("answerPairs", questionService.selectAnsweredPair(0));
@@ -61,28 +61,33 @@ public class HomeController {
 
         List<QuestionVO> questions = questionService.selectListByAnswered(questionVO);
 
+        for (QuestionVO question : questions) {
+            System.out.println(question.getCategoryFullPath());
+        }
+
         model.addAttribute("questions", questions);
 
         return "questions";
     }
 
-    @GetMapping("questions/more")
+    @GetMapping("questions/more") // 미답변 질문글 목록 더보기
     @ResponseBody
-    public ResponseEntity<List<QuestionVO>> getMoreQuestions(@RequestParam int quesNo) {
+    public List<QuestionVO> getMoreQuestions(@RequestParam int quesNo) {
 
-        int startQuesNo = quesNo - 1;
+        QuestionVO questionVO = new QuestionVO();
 
-        List<QuestionVO> questions = questionService.getMore(startQuesNo);
+        questionVO.setQuesNo(quesNo);
+        questionVO.setAnswered("N");
 
-        return new ResponseEntity<>(questions, HttpStatus.OK);
+        return questionService.selectListByUser(questionVO);
     }
 
     @GetMapping("topic/{topic}")
     public String getQuestionsByTopic(@PathVariable String topic, Model model) {
-        System.out.println(topic);
-        List<QuestionVO> questions = questionService.readAllByTopic(topic);
 
-        model.addAttribute("questions", questions);
+//        List<QuestionVO> questions = questionService.;
+//
+//        model.addAttribute("questions", questions);
         model.addAttribute("selectedTopic", topic);
 
         return "index";

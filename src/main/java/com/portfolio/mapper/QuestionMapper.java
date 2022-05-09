@@ -13,7 +13,7 @@ public interface QuestionMapper {
     void update(QuestionVO  questionVO);
     void delete(int postNo);
     List<QuestionVO> selectListByUser(QuestionVO questionVO);
-    List<QuestionVO> selectNotAnswered(QuestionVO questionVO);
+    List<QuestionVO> selectListByAnswered(QuestionVO questionVO);
     List<QAPairVO> selectAnsweredPair(int quesNo);
     List<QuestionVO> selectAllByTopic(String topic);
     void addViewCnt(int postNo);

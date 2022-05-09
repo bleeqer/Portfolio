@@ -60,7 +60,7 @@ public class UserController {
         model.addAttribute("user", userService.select(userNo));
 
         // 유저가 작성한 질문 리스트 가져오기
-        model.addAttribute("questions", questionService.selectList(userNo));
+//        model.addAttribute("questions", questionService.selectList(userNo));
 
         return "profile";
     }

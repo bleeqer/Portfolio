@@ -75,7 +75,7 @@ public class AnswerReplyMapperTest {
 
         QuestionVO ques = questionService.read(157);
 
-        System.out.println(ques.getCatPath());
+//        System.out.println(ques.getCatPath());
 
     }
 }
