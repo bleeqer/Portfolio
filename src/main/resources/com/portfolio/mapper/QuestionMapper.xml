@@ -47,13 +47,31 @@
 
     </select>
 
+    <select id="selectPairList" parameterType="QuestionVO" resultMap="QAPairResultMap">
+
+        SELECT *
+        FROM tb_question QUES,
+             tb_category CAT,
+             (SELECT rownum AS RN, answer, reg_date,
+             FROM tb_answer
+             ORDER BY like_cnt DESC, ans_no ASC) ANS,
+             tb_user U
+        WHERE QUES.ques_no > #{quesNo}
+        <if test="categoryCode != null and categoryCode != ''">
+            AND QUES.category_code = #{categoryCode}
+        </if>
+        AND CAT.category_code = QUES.category_code
+        AND ROWNUM BETWEEN 0 AND 10
+        AND ANS.ques_no = QUES.ques_no
+        AND ANS.RN = 1
+
+    </select>
 
     <update id="addViewCnt" parameterType="int">
         UPDATE TB_QUESTION SET view_cnt=view_cnt + 1
         WHERE ques_no=#{quesNo}
     </update>
 
-    <!--QuestionVO Mapper-->
     <resultMap id="QuestionResultMap" type="QuestionVO">
         <id column="ques_no" property="quesNo"/>
         <id column="question" property="question"/>
@@ -64,10 +82,11 @@
     </resultMap>
 
     <resultMap id="QAPairResultMap" type="QAPairVO">
-        <id column="ans_no" property="ansNo"/>
+        <id column="ques_no" property="quesNo"/>
         <id column="question" property="question"/>
-        <id column="answer" property="answer"/>
+        <id column="category_name" property="categoryName"/>
         <id column="ans_no" property="ansNo"/>
+        <id column="answer" property="answer"/>
         <id column="reg_date" property="answerRegDate"/>
         <id column="like_cnt" property="answerLikeCnt"/>
         <id column="user_no" property="answerUserNo"/>

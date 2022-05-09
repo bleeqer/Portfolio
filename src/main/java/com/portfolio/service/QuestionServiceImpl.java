@@ -78,7 +78,36 @@ public class QuestionServiceImpl implements QuestionService {
         return questionMapper.selectList(questionVO);
     }
 
+    @Override
+    public List<QAPairVO> selectQnAPairList(QuestionVO questionVO) {
 
+        List<QuestionVO> questions = questionMapper.selectList(questionVO);
+
+        List<QAPairVO> pairs = new ArrayList<>();
+
+        for (QuestionVO question : questions) {
+
+            QAPairVO pair = new QAPairVO();
+
+            AnswerVO answer = answerService.selectBestAnswer(question.getQuesNo());
+
+            pair.setQuesNo(question.getQuesNo());
+            pair.setQuestion(question.getQuestion());
+            pair.setCategoryName(question.getCategoryName());
+            pair.setAnsNo(answer.getAnsNo());
+            pair.setAnswer(answer.getAnswer());
+            pair.setAnswerRegDate(answer.getRegDate());
+            pair.setAnswerLikeCnt(answer.getLikeCnt());
+            pair.setAnswerUserNo(answer.getUserNo());
+            pair.setAnswerUserEmail(answer.getUserEmail());
+            pair.setAnswerUserName(answer.getUserName());
+            pair.setAnswerUserPhoto(answer.getUserPhoto());
+            pair.setAnswerUserOccupation(answer.getUserOccupation());
+
+        }
+
+        return null;
+    }
 
     @Override
     public void addViewCnt(int postNo) {

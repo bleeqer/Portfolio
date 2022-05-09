@@ -20,6 +20,7 @@ public class AnswerVO {
     private String userEmail;
     private String userName;
     private String userPhoto;
+    private String userOccupation;
 
     public String getRegDate() {
         return regDate;

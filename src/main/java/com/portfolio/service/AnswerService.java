@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface AnswerService {
     int create(AnswerVO answerVO);
-    AnswerVO readOne(int ansNo);
+    AnswerVO select(int ansNo);
+    AnswerVO selectBestAnswer(int quesNo);
     List<AnswerVO> selectAnswers(int quesNo);
     List<QAPairVO> selectAnsweredPairByUser(int userNo);
     List<AnswerVO> readMoreList(AnswerVO answer);

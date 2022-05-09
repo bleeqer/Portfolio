@@ -10,27 +10,24 @@ import java.util.Date;
 @Setter
 public class QAPairVO {
 
-    private String question;
-    private String catPath;
-//    private String questionRegDate;
-//    private int questionLikeCnt;
-
     private int quesNo;
+    private String question;
+    private String categoryName;
     private int ansNo;
     private String answer;
-    private int answerUserNo;
     private String answerRegDate;
     private int answerLikeCnt;
+    private int answerUserNo;
     private String answerUserEmail;
     private String answerUserName;
     private String answerUserPhoto;
     private String answerUserOccupation;
 
-    public String getAnswerRegDate() {
-        return answerRegDate;
-    }
-    public void setAnswerRegDate(Date date) {
-        this.answerRegDate = TimeDiff.calculateTime(date);
-    }
+//    public String getAnswerRegDate() {
+//        return answerRegDate;
+//    }
+//    public void setAnswerRegDate(Date date) {
+//        this.answerRegDate = TimeDiff.calculateTime(date);
+//    }
 
 }

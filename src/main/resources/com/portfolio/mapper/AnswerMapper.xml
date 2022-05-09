@@ -16,7 +16,7 @@
         VALUES (#{ansNo}, #{quesNo}, #{content}, #{writer})
     </insert>
 
-    <select id="selectOne" parameterType="int" resultMap="AnswerResultMap">
+    <select id="select" parameterType="int" resultMap="AnswerResultMap">
         SELECT ques_no, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER WHERE ans_no=#{ansNo}
     </select>
 
@@ -24,14 +24,29 @@
 <!--        SELECT ques_no, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER WHERE ques_no=#{quesNo} ORDER BY ans_no DESC-->
 <!--    </select>-->
 
+    <select id="selectBestAnswer" parameterType="int" resultMap="AnswerResultMap">
+
+        SELECT *
+            (SELECT *
+            FROM TB_ANSWER ANS,
+                 TB_USER U
+            WHERE ques_no = #{quesNo}
+              AND U.user_no = ANS.user_no
+            ORDER BY like_cnt DESC, ans_no ASC)
+        WHERE ROWNUM = 1
+
+    </select>
+
     <select id="selectAnswers" parameterType="AnswerVO" resultMap="AnswerResultMap">
         SELECT *
-        FROM (SELECT *
-              FROM TB_ANSWER
-              WHERE ques_no = #{quesNo} AND ans_no > #{ansNo}
-              ORDER BY like_cnt DESC, ans_no ASC) ANS,
-             TB_USER USER
+              (SELECT *
+              FROM TB_ANSWER ANS,
+                   TB_USER U
+              WHERE ques_no = #{quesNo}
+                AND ans_no > #{ansNo}
+              ORDER BY like_cnt DESC, ans_no ASC)
         WHERE ROWNUM BETWEEN 0 AND 10
+
     </select>
 
     <select id="selectAnsweredPairByUser" parameterType="int" resultMap="QAPairResultMap">
@@ -67,15 +82,20 @@
     </update>
 
     <resultMap id="AnswerResultMap" type="AnswerVO">
-        <id column="ans_no" property="ansNo"/>
         <id column="ques_no" property="quesNo"/>
+        <id column="ans_no" property="ansNo"/>
         <id column="answer" property="answer"/>
-        <id column="user_no" property="userNo"/>
         <id column="reg_date" property="regDate"/>
         <id column="like_cnt" property="likeCnt"/>
+        <id column="user_no" property="userNo"/>
+        <id column="email" property="userEmail"/>
+        <id column="name" property="userName"/>
+        <id column="photo" property="userPhoto"/>
+        <id column="occupation" property="userOccupation"/>
     </resultMap>
 
-    <resultMap id="QAPairResultMap" type="QAPairVO">
+
+<!--    <resultMap id="QAPairResultMap" type="QAPairVO">
         <id column="ans_no" property="ansNo"/>
         <id column="question" property="question"/>
         <id column="answer" property="answer"/>
@@ -87,5 +107,5 @@
         <id column="name" property="answerUserName"/>
         <id column="photo" property="answerUserPhoto"/>
         <id column="occupation" property="answerUserOccupation"/>
-    </resultMap>
+    </resultMap>-->
 </mapper>

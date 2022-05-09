@@ -47,9 +47,13 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public AnswerVO readOne(int ansNo) {
+    public AnswerVO select(int ansNo) {
+        return answerMapper.select(ansNo);
+    }
 
-        return answerMapper.selectOne(ansNo);
+    @Override
+    public AnswerVO selectBestAnswer(int quesNo) {
+        return answerMapper.selectBestAnswer(quesNo);
     }
 
     @Override
