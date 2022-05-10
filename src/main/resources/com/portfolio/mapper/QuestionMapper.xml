@@ -46,33 +46,30 @@
     </select>
 
     <select id="selectPairList" parameterType="QuestionVO" resultMap="QAPairResultMap">
+
         SELECT *
         FROM
-            (SELECT QUES.ques_no,
-                QUES.question,
-                QUES.category_name,
-                ANS.ans_no,
-                ANS.answer,
-                ANS.reg_date,
-                ANS.like_cnt,
-                U.user_no,
-                U.email,
-                U.name,
-                U.photo,
-                U.occupation
-            FROM tb_question QUES,
-                (SELECT rownum AS RN, ans_no, ques_no, answer, user_no, reg_date, like_cnt
-                 FROM tb_answer
-                 ORDER BY like_cnt DESC, ans_no ASC) ANS,
-                tb_user U
-            WHERE QUES.ques_no > #{quesNo}
-            <if test="categoryName != null and categoryName != ''">
-                AND QUES.category_name = #{categoryName}
-            </if>
-                AND U.user_no = ANS.user_no
-                AND ANS.ques_no = QUES.ques_no
-                AND ANS.RN = 1)
-        WHERE ROWNUM BETWEEN 0 AND 10
+            (SELECT ROW_NUMBER() OVER(PARTITION BY ANS.ques_no ORDER BY like_cnt DESC, ans_no ASC) ANS_RN,
+            QUES.ques_no,
+            QUES.question,
+            QUES.category_name,
+            ANS.ans_no,
+            ANS.answer,
+            ANS.reg_date,
+            ANS.like_cnt,
+            U.user_no,
+            U.email,
+            U.name,
+            U.photo,
+            U.occupation
+            FROM tb_answer ANS, tb_question QUES, tb_user U
+            WHERE ANS.ques_no = QUES.ques_no
+              AND QUES.ques_no > #{quesNo}
+              AND U.user_no = ANS.user_no
+              <if test="categoryName != null and categoryName != ''">
+                  AND QUES.category_name = #{categoryName}
+              </if>)
+        WHERE ANS_RN = 1 AND ROWNUM BETWEEN 0 AND 10
 
     </select>
 
