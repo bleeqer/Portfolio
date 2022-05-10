@@ -48,22 +48,33 @@
     </select>
 
     <select id="selectPairList" parameterType="QuestionVO" resultMap="QAPairResultMap">
-
-        SELECT *
+        SELECT QUES.ques_no,
+            QUES.question,
+            CAT.category_name,
+            ANS.ans_no,
+            ANS.answer,
+            ANS.reg_date,
+            ANS.like_cnt,
+            U.user_no,
+            U.email,
+            U.name,
+            U.photo,
+            U.occupation
         FROM tb_question QUES,
-             tb_category CAT,
-             (SELECT rownum AS RN, answer, reg_date,
+            tb_category CAT,
+            (SELECT rownum AS RN, ans_no, ques_no, answer, user_no, reg_date, like_cnt
              FROM tb_answer
              ORDER BY like_cnt DESC, ans_no ASC) ANS,
-             tb_user U
+            tb_user U
         WHERE QUES.ques_no > #{quesNo}
         <if test="categoryCode != null and categoryCode != ''">
             AND QUES.category_code = #{categoryCode}
         </if>
-        AND CAT.category_code = QUES.category_code
-        AND ROWNUM BETWEEN 0 AND 10
-        AND ANS.ques_no = QUES.ques_no
-        AND ANS.RN = 1
+            AND CAT.category_code = QUES.category_code
+            AND U.user_no = ANS.user_no
+            AND ROWNUM BETWEEN 0 AND 10
+            AND ANS.ques_no = QUES.ques_no
+            AND ANS.RN = 1
 
     </select>
 
@@ -95,5 +106,6 @@
         <id column="photo" property="answerUserPhoto"/>
         <id column="occupation" property="answerUserOccupation"/>
     </resultMap>
+
 
 </mapper>

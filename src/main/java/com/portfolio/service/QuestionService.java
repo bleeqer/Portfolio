@@ -12,7 +12,7 @@ public interface QuestionService {
     void update(QuestionVO questionVO);
     void delete(int postNo);
     List<QuestionVO> selectList(QuestionVO questionVO);
-    List<QAPairVO> selectQnAPairList(QuestionVO questionVO);
+    List<QAPairVO> selectPairList(QuestionVO questionVO);
     void addViewCnt(int postNo);
     void addLikeCnt(int postNo);
 

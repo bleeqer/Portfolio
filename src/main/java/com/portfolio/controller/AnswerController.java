@@ -26,7 +26,7 @@ public class AnswerController {
 
         System.out.println("answer number: " + answerNo);
 
-        return answerService.readOne(answerNo);
+        return answerService.select(answerNo);
     }
 
     @PostMapping("more")

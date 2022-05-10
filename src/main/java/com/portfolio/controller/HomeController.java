@@ -39,12 +39,16 @@ public class HomeController {
     }
 
     @GetMapping("")
-    public String getQnAPairs(Model model) {
+    public String getQAPairs(Model model) {
 
-//        // 질문글 + 답변글 1:1 페어 리스트 model에 담기
-//        model.addAttribute("answerPairs", questionService.selectAnsweredPair(0));
-//
-//        // 카테고리 목록 model에 담기
+        QuestionVO questionVO = new QuestionVO();
+
+        // 첫번째 질문글부터 조회
+        questionVO.setQuesNo(0);
+
+        // 질문글 + 답변글 1:1 페어 리스트 model에 담기
+        model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
+
         model.addAttribute("categories", questionCategoryService.selectAll());
 
         return "index";
