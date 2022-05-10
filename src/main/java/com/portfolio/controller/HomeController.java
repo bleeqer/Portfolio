@@ -49,6 +49,7 @@ public class HomeController {
         // 질문글 + 답변글 1:1 페어 리스트 model에 담기
         model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
 
+        // 카테고리 리스트 담기
         model.addAttribute("categories", questionCategoryService.selectAll());
 
         return "index";
@@ -85,9 +86,17 @@ public class HomeController {
     @GetMapping("topic/{topic}")
     public String getQuestionsByTopic(@PathVariable String topic, Model model) {
 
-//        List<QuestionVO> questions = questionService.;
-//
-//        model.addAttribute("questions", questions);
+        QuestionVO questionVO = new QuestionVO();
+
+        // 카테고리의 첫번째 질문글부터 조회
+        questionVO.setQuesNo(0);
+        questionVO.setCategoryName(topic);
+
+        model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
+
+        // 카테고리 리스트 담기
+        model.addAttribute("categories", questionCategoryService.selectAll());
+
         model.addAttribute("selectedTopic", topic);
 
         return "index";

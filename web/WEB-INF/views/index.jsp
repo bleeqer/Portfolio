@@ -91,8 +91,7 @@
 
                 <c:forEach var="category" items="${categories}">
                   <div class="d-flex mb-1 rounded-1 bg-hover-whiten-light">
-                      <span>${category.space}</span>
-                      <a class="text-decoration-none" href="">
+                      <a class="text-decoration-none" href="/topic/${category.categoryName}">
                           <div class="p-2 d-flex align-items-center" style="height: auto;">
                                   <%--카테고리 아이콘--%>
                               <div class="me-2">
