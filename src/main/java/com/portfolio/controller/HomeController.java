@@ -97,7 +97,7 @@ public class HomeController {
         // 카테고리 리스트 담기
         model.addAttribute("categories", questionCategoryService.selectAll());
 
-        model.addAttribute("selectedTopic", topic);
+        model.addAttribute("topic", topic);
 
         return "index";
     }

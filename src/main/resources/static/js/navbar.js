@@ -29,11 +29,10 @@ $('.search-button').click(function () {
 $('a').each(function () {
     let currentURL = '/' + $(location).attr('pathname').split('/')[1]
 
+    // 토픽 검색 시에도 홈메뉴 하이라이트 유지
     if (currentURL === '/topic') {
         currentURL = '/'
     }
-
-    console.log(currentURL)
 
     if ($(this).attr('href') === currentURL) {
         $(this).find('path').addClass('svg-fill')

@@ -84,16 +84,28 @@
       <div class="container-fluid m-0" style="padding-top: 30px; padding-left: 24px; padding-right: 24px;">
         <div class="d-flex mx-auto" style="max-width: 1002px;">
 
-          <%--카테고리 리스트--%>
+          <%--토픽 리스트--%>
           <div class="pb-5 position-fixed kuttDS" style="height: calc(100vh - 80px); width: 166px; overflow-y:scroll !important;">
             <div>
-                <%--개별 카테고리 컨테이너--%>
+                <%--개별 토픽 컨테이너--%>
 
                 <c:forEach var="category" items="${categories}">
-                  <div class="d-flex mb-1 rounded-1 bg-hover-whiten-light">
-                      <a class="text-decoration-none" href="/topic/${category.categoryName}">
+
+                  <%--선택한 topic 하이라이트--%>
+                  <c:choose>
+                    <c:when test="${category.categoryName eq topic}">
+                        <div class="d-flex mb-1 rounded-1 bg-whiten">
+                    </c:when>
+
+                    <c:otherwise>
+                        <div class="d-flex mb-1 rounded-1 bg-hover-whiten-light">
+                    </c:otherwise>
+                  </c:choose>
+
+                      <a class="topic-item text-decoration-none" href="/topic/${category.categoryName}">
                           <div class="p-2 d-flex align-items-center" style="height: auto;">
-                                  <%--카테고리 아이콘--%>
+
+                              <%--토픽 아이콘--%>
                               <div class="me-2">
                                   <div class="d-flex rounded-1 overflow-hidden">
                                       <img class="m-0" src="${category.categoryPhoto}" alt="IMG" width="18" height="18">
@@ -111,6 +123,10 @@
                   </div>
                 </c:forEach>
 
+                <%--토픽 form--%>
+<%--                <form id="topic-form" method="get" action="">--%>
+<%--                    <input id="topic-input" type="hidden" name="topic" value="">--%>
+<%--                </form>--%>
             </div>
           </div>
 
@@ -349,8 +365,6 @@
         </div>
       </div>
     </div>
-
-
   </div>
 
 <%--    </div>--%>
