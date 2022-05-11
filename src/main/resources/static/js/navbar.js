@@ -24,3 +24,19 @@ $('.search-input').focusout(function () {
 $('.search-button').click(function () {
     $('#search-form').submit()
 })
+
+// navbar 버튼 클릭 시 버튼 활성화
+$('a').each(function () {
+    let currentURL = '/' + $(location).attr('pathname').split('/')[1]
+
+    if (currentURL === '/topic') {
+        currentURL = '/'
+    }
+
+    console.log(currentURL)
+
+    if ($(this).attr('href') === currentURL) {
+        $(this).find('path').addClass('svg-fill')
+        $(this).find('.under-red').removeClass('hidden')
+    }
+})

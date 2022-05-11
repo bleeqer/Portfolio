@@ -14,7 +14,7 @@ public class QuestionVO {
     private int quesNo;
     private String question;
     private String categoryName;
-    private String writer;
+    private String userNo;
     private String regDate;
     private String answered;
     private int viewCnt;

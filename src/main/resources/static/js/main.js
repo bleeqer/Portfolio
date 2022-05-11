@@ -11,18 +11,6 @@ $('.input-focus').focusout(function () {
     $(this).parents('.input-container').css('min-width', 150)
 })
 
-// navbar 버튼 클릭 시 버튼 활성화
-$('a').each(function () {
-    const currentURL = $(location).attr('pathname')
-
-    if ($(this).attr('href') === currentURL) {
-        $(this).find('path').addClass('svg-fill')
-        $(this).find('.under-red').removeClass('hidden')
-    }
-})
-
-
-
 $('.best-title').mouseenter(function () {
         $(this).css('height', $(this).prop('scrollHeight'))
     })

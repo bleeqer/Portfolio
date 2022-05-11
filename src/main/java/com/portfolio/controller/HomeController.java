@@ -43,7 +43,6 @@ public class HomeController {
 
         QuestionVO questionVO = new QuestionVO();
 
-        // 첫번째 질문글부터 조회
         questionVO.setQuesNo(0);
 
         // 질문글 + 답변글 1:1 페어 리스트 model에 담기
@@ -60,8 +59,9 @@ public class HomeController {
 
         QuestionVO questionVO = new QuestionVO();
 
-        // 첫번째 미답변 질문글부터 가져오기
         questionVO.setQuesNo(0);
+
+        // 답변 여부
         questionVO.setAnswered("N");
 
         List<QuestionVO> questions = questionService.selectList(questionVO);

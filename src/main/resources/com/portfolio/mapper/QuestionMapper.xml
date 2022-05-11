@@ -33,15 +33,24 @@
     <select id="selectList" parameterType="QuestionVO" resultMap="QuestionResultMap">
 
         SELECT *
-        FROM tb_question QUES,
-        WHERE QUES.ques_no > #{quesNo}
-        <if test="answered != null and answered != ''">
-          AND QUES.answered = #{answered}
-        </if>
-        <if test="categoryName != null and categoryName != ''">
-          AND QUES.category_name = #{categoryName}
-        </if>
-          AND ROWNUM BETWEEN 0 AND 10
+        FROM
+            (SELECT QUES.ques_no,
+                    QUES.question,
+                    QUES.category_name
+            FROM tb_question QUES, tb_user U
+            WHERE QUES.ques_no > #{quesNo}
+            <if test="answered != null and answered != ''">
+              AND QUES.answered = #{answered}
+            </if>
+            <if test="userNo != null and userNo != ''">
+              AND QUES.user_no = #{userNo}
+              AND U.user_no = QUES.user_no
+            </if>
+            <if test="categoryName != null and categoryName != ''">
+              AND QUES.category_name = #{categoryName}
+            </if>
+            ORDER BY QUES.ques_no DESC, QUES.view_cnt DESC)
+        WHERE ROWNUM BETWEEN 0 AND 10
 
     </select>
 
@@ -66,9 +75,11 @@
             WHERE ANS.ques_no = QUES.ques_no
               AND QUES.ques_no > #{quesNo}
               AND U.user_no = ANS.user_no
+              AND QUES.answered = 'Y'
               <if test="categoryName != null and categoryName != ''">
                   AND QUES.category_name = #{categoryName}
-              </if>)
+              </if>
+            ORDER BY QUES.ques_no DESC, QUES.view_cnt DESC)
         WHERE ANS_RN = 1 AND ROWNUM BETWEEN 0 AND 10
 
     </select>
