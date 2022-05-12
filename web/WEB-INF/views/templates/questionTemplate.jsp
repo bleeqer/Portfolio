@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authentication property="principal" var="user"/>
 <c:forEach var="question" items="${questions}">
 
     <%--질문글--%>
@@ -7,7 +10,7 @@
         <div class="unanswered-question pt-3 px-3 border-bottom-gray">
             <div>
                 <div>
-                        <%--title and close--%>
+                    <%--title and close--%>
                     <div>
                         <div class="d-flex justify-content-between position-relative">
                                 <%--Question title--%>
@@ -119,17 +122,19 @@
                                             </span>
                                         </div>
                                     </div>
-
-                                        <%--Three dots--%>
-                                    <div>
-                                          <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                                            <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                              <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                                    class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
-                                              </path>
-                                            </svg>
-                                          </span>
-                                    </div>
+                                    <%--Three dots--%>
+                                    <sec:authorize access="isAuthenticated()">
+                                        <c:if test="${user.username == question.userEmail}">
+                                            <div>
+                            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
+                                  style="width: 38px; height: 38px;">
+                                <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                                                                                                                                         class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none"></path>
+                                </svg>
+                            </span>
+                                            </div>
+                                        </c:if>
+                                    </sec:authorize>
                                 </div>
                             </div>
                         </div>

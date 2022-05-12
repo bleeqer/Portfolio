@@ -393,20 +393,9 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <%--                                        &lt;%&ndash;Question&ndash;%&gt;--%>
-                                <%--                                        <div>--%>
-
-                                <%--                                        </div>--%>
-
-                                <%--                                        &lt;%&ndash;Answer&ndash;%&gt;--%>
-                                <%--                                        <div>--%>
-
-                                <%--                                        </div>--%>
-
                             </div>
 
-                            <%--Footer and comment--%>
+                            <%--comment--%>
                             <div>
                                 <div class="d-flex justify-content-between align-items-center px-3 py-2" style="width: 100%; background-color: #202020;">
 
@@ -419,7 +408,12 @@
 
                                     <%--Comment input--%>
                                     <div class="rounded-3 bg-black ms-2 py-1 px-3" style="width: 100%;">
-                                        <input class="" type="text" style="width: auto; outline: none; border: none;" placeholder="Add a comment...">
+                                        <form action="">
+                                            <input class="" type="text" style="width: auto; outline: none; border: none;" placeholder="Add a comment...">
+                                            <input type="hidden" name="ansNo" value="ans">
+                                            <input type="hidden" name="">
+                                            <input type="hidden">
+                                        </form>
                                     </div>
 
                                     <%--Add button--%>

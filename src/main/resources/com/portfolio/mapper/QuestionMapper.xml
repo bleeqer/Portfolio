@@ -99,6 +99,7 @@
         <id column="ques_no" property="quesNo"/>
         <id column="question" property="question"/>
         <id column="category_name" property="categoryName"/>
+        <id column="email" property="userEmail"/>
         <id column="reg_date" property="regDate"/>
         <id column="view_cnt" property="viewCnt"/>
         <id column="like_cnt" property="likeCnt"/>

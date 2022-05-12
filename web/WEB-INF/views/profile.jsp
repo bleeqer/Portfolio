@@ -241,7 +241,7 @@
                                                         <div class="d-flex justify-content-center align-items-center py-1"
                                                              style="height: 46px;">
 
-                                                                <%--div.Upvote/Downvote, Comment 버튼--%>
+                                                                <%--Upvote/Downvote, Comment 버튼--%>
                                                             <div class="d-flex justify-content-center align-items-center">
 
                                                                     <%--Upvote/Downvote 버튼--%>

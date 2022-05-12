@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authentication property="principal" var="user"/>
+
 <c:forEach var="answerPair" items="${answerPairs}">
     <div class="question-container mb-3 mx-1" data-ques-no="${answerPair.quesNo}">
 
@@ -126,7 +130,7 @@
                             </div>
 
                             <%--Comment 버튼--%>
-                            <div role="button">
+                            <div class="comment-button" data-ans-no="${answerPair.ansNo}" role="button">
 
                                 <%--Container--%>
                                 <div>
@@ -168,16 +172,18 @@
                                 </div>
                             </div>
                             <%--Three dots--%>
-                            <c:if test="${pageContext.request.userPrincipal.name == answerPair.answerUserEmail}">
-                                <div>
+                            <sec:authorize access="isAuthenticated()">
+                                <c:if test="${user.username == answerPair.answerUserEmail}">
+                                    <div>
                                     <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
                                           style="width: 38px; height: 38px;">
                                         <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
                                                                                                                                                  class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none"></path>
                                         </svg>
                                     </span>
-                                </div>
-                            </c:if>
+                                    </div>
+                                </c:if>
+                            </sec:authorize>
                         </div>
                     </div>
                 </div>
