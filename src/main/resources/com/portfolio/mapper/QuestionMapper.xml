@@ -38,17 +38,21 @@
                     QUES.question,
                     QUES.category_name
             FROM tb_question QUES, tb_user U
-            WHERE QUES.ques_no > #{quesNo}
-            <if test="answered != null and answered != ''">
-              AND QUES.answered = #{answered}
-            </if>
-            <if test="userNo != null and userNo != ''">
-              AND QUES.user_no = #{userNo}
-              AND U.user_no = QUES.user_no
-            </if>
-            <if test="categoryName != null and categoryName != ''">
-              AND QUES.category_name = #{categoryName}
-            </if>
+            <where>
+                <if test="quesNo != null and quesNo != ''">
+                    QUES.ques_no <![CDATA[<]]> #{quesNo}
+                </if>
+                <if test="answered != null and answered != ''">
+                    AND QUES.answered = #{answered}
+                </if>
+                <if test="userNo != null and userNo != ''">
+                    AND QUES.user_no = #{userNo}
+                    AND U.user_no = QUES.user_no
+                </if>
+                <if test="categoryName != null and categoryName != ''">
+                    AND QUES.category_name = #{categoryName}
+                </if>
+            </where>
             ORDER BY QUES.ques_no DESC, QUES.view_cnt DESC)
         WHERE ROWNUM BETWEEN 0 AND 10
 
@@ -73,7 +77,9 @@
             U.occupation
             FROM tb_answer ANS, tb_question QUES, tb_user U
             WHERE ANS.ques_no = QUES.ques_no
-              AND QUES.ques_no > #{quesNo}
+              <if test="quesNo != null and quesNo != ''">
+              AND QUES.ques_no <![CDATA[<]]> #{quesNo}
+              </if>
               AND U.user_no = ANS.user_no
               AND QUES.answered = 'Y'
               <if test="categoryName != null and categoryName != ''">

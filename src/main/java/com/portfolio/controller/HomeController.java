@@ -6,14 +6,10 @@ import com.portfolio.service.QuestionCategoryService;
 import com.portfolio.service.QuestionService;
 import com.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -39,7 +35,7 @@ public class HomeController {
     }
 
     @GetMapping("")
-    public String getQAPairs(Model model) {
+    public String getPairs(Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -54,33 +50,49 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("more")
+    public String getMorePairs(@RequestParam int quesNo, Model model) {
+
+        QuestionVO questionVO = new QuestionVO();
+
+        questionVO.setQuesNo(quesNo);
+
+        // 질문글 + 답변글 1:1 페어 리스트 model에 담기
+        model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
+
+        return "templates/pairTemplate";
+    }
+
     @GetMapping("questions") // 미답변 질문글 목록
     public String getQuestions(Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
-        questionVO.setQuesNo(0);
-
         // 답변 여부
         questionVO.setAnswered("N");
 
-        List<QuestionVO> questions = questionService.selectList(questionVO);
-
-        model.addAttribute("questions", questions);
+        model.addAttribute("questions", questionService.selectList(questionVO));
 
         return "questions";
     }
 
     @GetMapping("questions/more") // 미답변 질문글 목록 더보기
-    @ResponseBody
-    public List<QuestionVO> getMoreQuestions(@RequestParam int quesNo) {
+    public String getMoreQuestions(@RequestParam int quesNo, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
         questionVO.setQuesNo(quesNo);
         questionVO.setAnswered("N");
 
-        return questionService.selectList(questionVO);
+        List<QuestionVO> questions = questionService.selectList(questionVO);
+
+        model.addAttribute("questions", questions);
+
+        for (QuestionVO question : questions) {
+            System.out.println(question.getQuestion());
+        }
+
+        return "templates/questionTemplate";
     }
 
     @GetMapping("topic/{topic}")
@@ -88,8 +100,6 @@ public class HomeController {
 
         QuestionVO questionVO = new QuestionVO();
 
-        // 카테고리의 첫번째 질문글부터 조회
-        questionVO.setQuesNo(0);
         questionVO.setCategoryName(topic);
 
         model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
@@ -102,31 +112,19 @@ public class HomeController {
         return "index";
     }
 
-/*
-    @PostMapping("topic/more/{topic}")
-    public ResponseEntity<List<QuestionVO>> getMoreQuestionsByTopic(@PathVariable String topic, @RequestParam int quesNo, Model model) {
+    @GetMapping("topic/{topic}/more")
+    public String getMoreQuestionsByTopic(@PathVariable String topic, @RequestParam int quesNo, Model model) {
 
-        System.out.println("topic: " + topic);
+        QuestionVO questionVO = new QuestionVO();
 
-        if (!topic.equals("All")) {
-            HashMap<String, Object> map = new HashMap<>();
-            map.put("quesNo", quesNo);
-            map.put("topic", topic);
-            List<QuestionVO> questions = questionService.getMoreByTopic(map);
+        questionVO.setQuesNo(quesNo);
+        questionVO.setCategoryName(topic);
 
-            model.addAttribute("questions", questions);
+        List<QAPairVO> pairs = questionService.selectPairList(questionVO);
 
-            return new ResponseEntity<>(questions, HttpStatus.OK);
-        }
+        model.addAttribute("answerPairs", pairs);
 
-        List<QuestionVO> questions = questionService.getMore(quesNo);
-
-        model.addAttribute("questions", questions);
-
-        return new ResponseEntity<>(questions, HttpStatus.OK);
+        return "templates/pairTemplate";
     }
-*/
-
-
 
 }

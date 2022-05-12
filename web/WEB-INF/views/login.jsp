@@ -193,7 +193,6 @@
 <%@ include file="/WEB-INF/views/modals/findPW.jsp" %>
 
 <script src="/static/js/login.js"></script>
-<script src="/static/js/main.js"></script>
 
 </body>
 </html>

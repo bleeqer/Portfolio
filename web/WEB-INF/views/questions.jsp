@@ -160,7 +160,7 @@
                       <c:forEach var="question" items="${questions}">
 
                       <%--질문글--%>
-                        <div>
+                        <div class="question-container" data-ques-no="${question.quesNo}">
                           <div class="unanswered-question pt-3 px-3 border-bottom-gray">
                             <div>
                               <div>
@@ -373,5 +373,6 @@
 
   <%--JS--%>
   <script type="text/javascript" src="/static/js/questions.js"></script>
+  <script src="/static/js/getMore.js"></script>
 </body>
 </html>

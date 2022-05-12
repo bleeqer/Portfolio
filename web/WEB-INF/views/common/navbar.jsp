@@ -111,4 +111,3 @@
 </div>
 
 <script src="/static/js/navbar.js"></script>
-<script src="/static/js/main.js"></script>

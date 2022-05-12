@@ -16,4 +16,5 @@ $('.best-title').mouseenter(function () {
     })
     .mouseleave(function () {
         $(this).css('height', 32)
-    });
+    })
+

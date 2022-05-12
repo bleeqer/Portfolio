@@ -38,4 +38,5 @@ $('a').each(function () {
         $(this).find('path').addClass('svg-fill')
         $(this).find('.under-red').removeClass('hidden')
     }
+
 })
