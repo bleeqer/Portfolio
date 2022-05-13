@@ -88,10 +88,6 @@ public class HomeController {
 
         model.addAttribute("questions", questions);
 
-        for (QuestionVO question : questions) {
-            System.out.println(question.getQuestion());
-        }
-
         return "templates/questionTemplate";
     }
 

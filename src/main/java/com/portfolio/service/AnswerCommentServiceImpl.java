@@ -1,28 +1,27 @@
 package com.portfolio.service;
 
-import com.portfolio.domain.AnswerReplyVO;
-import com.portfolio.mapper.AnswerReplyMapper;
+import com.portfolio.domain.CommentVO;
+import com.portfolio.mapper.AnswerCommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Service
-public class AnswerReplyServiceImpl implements AnswerReplyService {
+public class AnswerCommentServiceImpl implements AnswerCommentService {
 
     @Autowired
-    AnswerReplyMapper answerReplyMapper;
+    AnswerCommentMapper answerCommentMapper;
 
     @Transactional
     @Override
-    public int create(AnswerReplyVO answerReply) {
+    public int create(CommentVO answerReply) {
 
         // answerReply 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
-        answerReplyMapper.insert(answerReply);
+        answerCommentMapper.insert(answerReply);
 
         // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
 //        for (String uploadPath : answerReply.getImageList()) {
@@ -34,57 +33,57 @@ public class AnswerReplyServiceImpl implements AnswerReplyService {
 //            answerImageMapper.insert(imgVO);
 //        }
 
-        return answerReply.getReplyNo();
+        return 1;
     }
 
     @Override
-    public AnswerReplyVO readOne(int ansNo) {
+    public CommentVO readOne(int ansNo) {
 
-        return answerReplyMapper.selectOne(ansNo);
+        return answerCommentMapper.selectOne(ansNo);
     }
 
     @Override
-    public List<AnswerReplyVO> readList(int ansNo) {
+    public List<CommentVO> selectList(CommentVO commentVO) {
 
-        return answerReplyMapper.selectList(ansNo);
+        return answerCommentMapper.selectList(commentVO);
     }
 
     @Override
-    public List<AnswerReplyVO> readMoreList(HashMap<String, Integer> map) {
-        return answerReplyMapper.selectMoreList(map);
+    public List<CommentVO> readMoreList(HashMap<String, Integer> map) {
+        return answerCommentMapper.selectMoreList(map);
     }
 
     @Override
-    public void update(AnswerReplyVO answerReply) {
+    public void update(CommentVO answerReply) {
 
-        answerReplyMapper.update(answerReply);
+        answerCommentMapper.update(answerReply);
     }
 
     @Override
     public void delete(HashMap<String, Integer> postNo) {
-        answerReplyMapper.delete(postNo);
+        answerCommentMapper.delete(postNo);
     }
 
     @Override
-    public List<AnswerReplyVO> readAll() {
+    public List<CommentVO> readAll() {
 
-        return answerReplyMapper.selectAll();
+        return answerCommentMapper.selectAll();
 
     }
 
     @Override
     public void addLikeCnt(int postNo) {
-        answerReplyMapper.addLikeCnt(postNo);
+        answerCommentMapper.addLikeCnt(postNo);
     }
 
     @Override
     public int selectNestedMaxOrder(int parentCommentNo) {
-        return answerReplyMapper.selectNestedMaxOrder(parentCommentNo);
+        return answerCommentMapper.selectNestedMaxOrder(parentCommentNo);
     }
 
     @Override
     public int selectMaxOrder() {
-        return answerReplyMapper.selectMaxOrder();
+        return answerCommentMapper.selectMaxOrder();
     }
 
 }
