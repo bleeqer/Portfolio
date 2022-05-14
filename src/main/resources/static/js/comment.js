@@ -14,8 +14,6 @@ $('.comment-button').click(function () {
             data : {'lastCommentNo': lastCommentNo},
             success: function (result) {
                 commentSection.find('.comment-list').html(result)
-                alert(result)
-
             },
             error: function () {
                 console.log('error occurred')
@@ -28,7 +26,6 @@ $('.comment-section').on('click', 'div.reply-button', function () {
 
     const parentNo = $(this).parents('.comment').data('co-no')
 
-    alert(parentNo)
-
     $('.comment[data-parent-co-no="' + parentNo + '"]').toggle()
+    $('.comment[data-co-no="' + parentNo + '"] .reply-input-container').toggle()
 })

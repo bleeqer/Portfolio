@@ -15,8 +15,8 @@
          padding-left: calc(${comment.level - 1} * <c:choose>
                                                         <c:when test="${comment.level == 2}">42px</c:when>
                                                         <c:when test="${comment.level > 2}">28px</c:when>
-                                                   </c:choose>);"
-    >
+                                                   </c:choose>);">
+
             <%--Comment node--%>
         <div class="d-flex flex-column">
 
@@ -385,6 +385,19 @@
 
                 </div>
 
+            </div>
+        </div>
+
+        <div class="reply-input-container mx-1" style="padding-left: 42px; display: none;" data-co-no="${comment.coNo}">
+            <div class="d-flex align-items-center">
+                <div class="rounded-pill bg-black px-3 border-gray" style="width: 100%; padding-top: 7px; padding-bottom: 7px;">
+                    <form action="" style="line-height: 0;">
+                        <input type="text" placeholder="Add a reply..." style="height: 22px; border: none; outline: none; width: 100%; font-size: 15px; line-height: 22px;">
+                    </form>
+                </div>
+                <button class="rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;">
+                    Reply
+                </button>
             </div>
         </div>
     </div>

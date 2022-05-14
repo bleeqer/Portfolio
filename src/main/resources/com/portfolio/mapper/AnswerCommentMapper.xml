@@ -37,6 +37,7 @@
                                 FROM (SELECT ROWNUM AS RN, co_no
                                       FROM tb_answer_comment
                                       WHERE parent_co_no = 0
+                                            AND ans_no = #{ansNo}
                                         <if test="coNo != null and coNo != ''">
                                             AND CO.co_no <![CDATA[<]]> #{coNo}
                                         </if>
