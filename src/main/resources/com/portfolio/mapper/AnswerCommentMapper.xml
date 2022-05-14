@@ -22,32 +22,29 @@
 
     <select id="selectList" parameterType="CommentVO" resultMap="AnswerCommentResultMap">
 
---         SELECT level, co_no, ans_no, answer_comment, parent_co_no, reg_date, like_cnt, email, name, photo, occupation
-        SELECT *
-        FROM
-            (SELECT level,
-                    CO.co_no,
-                    CO.ans_no,
-                    CO.answer_comment,
-                    CO.parent_co_no,
-                    CO.reg_date,
-                    U.email,
-                    U.name,
-                    U.photo,
-                    U.occupation
-            FROM tb_answer_comment CO, tb_user U
-            <where>
-                CO.ans_no = #{ansNo}
-                AND CO.user_no = U.user_no
-                <if test="coNo != null and coNo != ''">
-                    CO.co_no <![CDATA[<]]> #{coNo}
-                </if>
+        SELECT level,
+               CO.co_no,
+               CO.ans_no,
+               CO.answer_comment,
+               CO.parent_co_no,
+               CO.reg_date,
+               U.email,
+               U.name,
+               U.photo,
+               U.occupation
+        FROM tb_answer_comment CO, tb_user U
+        START WITH CO.co_no IN (SELECT co_no
+                                FROM (SELECT ROWNUM AS RN, co_no
+                                      FROM tb_answer_comment
+                                      WHERE parent_co_no = 0
+                                        <if test="coNo != null and coNo != ''">
+                                            AND CO.co_no <![CDATA[<]]> #{coNo}
+                                        </if>
+                                      ORDER BY co_no)
+                                WHERE RN <![CDATA[<=]]> 3)
+        CONNECT BY PRIOR CO.co_no = CO.parent_co_no
+        ORDER SIBLINGS BY CO.co_no
 
-            </where>
-            START WITH CO.parent_co_no = 0
-            CONNECT BY PRIOR co_no = parent_co_no
-            ORDER BY CO.co_no ASC)
-        WHERE ROWNUM BETWEEN 0 AND 3
     </select>
 
 <!--    <select id="selectMoreList" parameterType="map" resultMap="AnswerReplyResultMap">-->
