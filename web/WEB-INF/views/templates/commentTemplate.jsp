@@ -388,11 +388,16 @@
             </div>
         </div>
 
-        <div class="reply-input-container mx-1" style="padding-left: 42px; display: none;" data-co-no="${comment.coNo}">
+        <div class="reply-input-container mx-1" style="padding-left: 42px; display: none;">
             <div class="d-flex align-items-center">
                 <div class="rounded-pill bg-black px-3 border-gray" style="width: 100%; padding-top: 7px; padding-bottom: 7px;">
-                    <form action="" style="line-height: 0;">
-                        <input type="text" placeholder="Add a reply..." style="height: 22px; border: none; outline: none; width: 100%; font-size: 15px; line-height: 22px;">
+                    <form id="comment-form" action="" style="line-height: 0;">
+                        <input type="text" name="answerComment" placeholder="Add a reply..." style="height: 22px; border: none; outline: none; width: 100%; font-size: 15px; line-height: 22px;">
+                        <input type="hidden" name="ansNo" value="${comment.ansNo}">
+                        <input type="hidden" name="parentCoNo" value="${comment.coNo}">
+                        <sec:authorize access="isAuthenticated()">
+                            <input type="hidden" name="userEmail" value="${user.username}">
+                        </sec:authorize>
                     </form>
                 </div>
                 <button class="rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;">
