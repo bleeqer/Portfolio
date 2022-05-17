@@ -29,3 +29,7 @@ $('.comment-section').on('click', 'div.reply-button', function () {
     $('.comment[data-parent-co-no="' + parentNo + '"]').toggle()
     $('.comment[data-co-no="' + parentNo + '"] .reply-input-container').toggle()
 })
+
+$('.comment-submit-button').on('click', 'div.reply-button', function () {
+    alert($(this).parent().find('.comment-form').html())
+})

@@ -47,7 +47,7 @@
                 </if>
                 <if test="userNo != null and userNo != ''">
                     AND QUES.user_no = #{userNo}
-                    AND U.user_no = QUES.user_no
+                    AND U.email = QUES.user_email
                 </if>
                 <if test="categoryName != null and categoryName != ''">
                     AND QUES.category_name = #{categoryName}
@@ -70,7 +70,7 @@
             ANS.answer,
             ANS.reg_date,
             ANS.like_cnt,
-            U.user_no,
+--             U.user_no,
             U.email,
             U.name,
             U.photo,
@@ -80,7 +80,7 @@
               <if test="quesNo != null and quesNo != ''">
               AND QUES.ques_no <![CDATA[<]]> #{quesNo}
               </if>
-              AND U.user_no = ANS.user_no
+              AND U.email = ANS.user_email
               AND QUES.answered = 'Y'
               <if test="categoryName != null and categoryName != ''">
                   AND QUES.category_name = #{categoryName}
