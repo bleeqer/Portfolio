@@ -18,22 +18,10 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
 
     @Transactional
     @Override
-    public int create(CommentVO answerReply) {
+    public void insert(CommentVO commentVO) {
 
-        // answerReply 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
-        answerCommentMapper.insert(answerReply);
+        answerCommentMapper.insert(commentVO);
 
-        // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
-//        for (String uploadPath : answerReply.getImageList()) {
-//            ImageVO imgVO = new ImageVO();
-//
-//            imgVO.setPostNo(answerReply.getAnsNo());
-//            imgVO.setUploadPath(uploadPath);
-//
-//            answerImageMapper.insert(imgVO);
-//        }
-
-        return 1;
     }
 
     @Override

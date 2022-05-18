@@ -15,6 +15,18 @@ public class CommentController {
     @Autowired
     AnswerCommentService answerCommentService;
 
+    @PostMapping("create")
+    public void createComment(CommentVO commentVO) {
+
+        System.out.println(commentVO.getAnsNo());
+        System.out.println(commentVO.getParentCoNo());
+        System.out.println(commentVO.getAnswerComment());
+        System.out.println(commentVO.getUserEmail());
+
+        answerCommentService.insert(commentVO);
+
+    }
+
     @GetMapping("{ansNo}")
     public String getComments(@PathVariable int ansNo, Model model) {
         CommentVO commentVO = new CommentVO();

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface AnswerCommentService {
-    int create(CommentVO answerReply);
+    void insert(CommentVO commentVO);
     CommentVO readOne(int ansNo);
     List<CommentVO> selectList(CommentVO commentVO);
     List<CommentVO> readMoreList(HashMap<String, Integer> map);

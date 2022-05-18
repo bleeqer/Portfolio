@@ -5,16 +5,16 @@
 
 <mapper namespace="com.portfolio.mapper.AnswerCommentMapper">
 
-<!--    <insert id="insert" parameterType="AnswerReplyVO">-->
+    <insert id="insert" parameterType="CommentVO">
 
-<!--        <selectKey keyProperty="replyNo" resultType="int" order="BEFORE">-->
-<!--            select ANS_REPLY_SEQUENCE.NEXTVAL from dual-->
-<!--        </selectKey>-->
+        <selectKey keyProperty="coNo" resultType="int" order="BEFORE">
+            select COMMENT_SEQ.NEXTVAL from dual
+        </selectKey>
 
-<!--        INSERT INTO TB_ANS_COMMENT (ans_no, comment_no, content, writer, parent_comment_no)-->
-<!--        VALUES (#{ansNo}, #{replyNo}, #{content}, #{writer}, #{parentCommentNo})-->
+        INSERT INTO TB_ANSWER_COMMENT (co_no, ans_no, answer_comment, user_email, parent_co_no)
+        VALUES (#{coNo}, #{ansNo}, #{answerComment}, #{userEmail}, #{parentCoNo})
 
-<!--    </insert>-->
+    </insert>
 
 <!--    <select id="selectOne" parameterType="int" resultMap="AnswerReplyResultMap">-->
 <!--        SELECT * FROM TB_ANS_COMMENT WHERE COMMENT_NO=#{replyNo}-->

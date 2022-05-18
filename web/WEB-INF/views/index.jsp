@@ -14,12 +14,18 @@
 <html>
 <head>
     <title>Title</title>
+
+    <sec:authentication property="principal" var="user"/>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <sec:csrfMetaTags/>
-    <sec:authentication property="principal" var="user"/>
+    <script>
+        const token = $("meta[name='_csrf']").attr("content");
+        const header = $("meta[name='_csrf_header']").attr("content");
+    </script>
 
-    <%--  Bootstrap  --%>
+<%--  Bootstrap  --%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -347,25 +353,24 @@
                                                     <%--Comment input--%>
                                                 <div class="rounded-3 bg-black ms-2 py-1 px-3"
                                                      style="width: 100%;">
-                                                    <form action="">
+                                                    <form class="comment-form" action="">
                                                         <input class="" type="text"
-                                                               style="width: auto; outline: none; border: none;"
+                                                               name="answerComment"
+                                                               style="width: 100%; outline: none; border: none;"
                                                                placeholder="Add a comment...">
-                                                        <input type="hidden" name="ansNo" value="ans">
-                                                        <input type="hidden" name="">
-                                                        <input type="hidden">
+                                                        <input type="hidden" name="ansNo" value="${answerPair.ansNo}">
+                                                        <sec:authorize access="isAuthenticated()">
+                                                            <input type="hidden" name="userEmail" value="${user.username}">
+                                                        </sec:authorize>
                                                     </form>
                                                 </div>
 
-                                                    <%--Add button--%>
-                                                <div>
-                                                    <button id="add-comment-button"
-                                                            class="btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
-                                                            style="font-size: 13px; height: 30px; margin-left: 4px;">
-                                                        <div style="white-space: nowrap;">Add comment
-                                                        </div>
-                                                    </button>
-                                                </div>
+                                                <%--Add button--%>
+                                                <button class="comment-submit-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
+                                                        style="font-size: 13px; height: 30px; margin-left: 4px;">
+                                                    <div style="white-space: nowrap;">Add comment
+                                                    </div>
+                                                </button>
                                             </div>
 
                                                 <%--Comments--%>

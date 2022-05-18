@@ -24,12 +24,32 @@ $('.comment-button').click(function () {
 
 $('.comment-section').on('click', 'div.reply-button', function () {
 
-    const parentNo = $(this).parents('.comment').data('co-no')
+                            const parentNo = $(this).parents('.comment').data('co-no')
 
-    $('.comment[data-parent-co-no="' + parentNo + '"]').toggle()
-    $('.comment[data-co-no="' + parentNo + '"] .reply-input-container').toggle()
-})
+                            $('.comment[data-parent-co-no="' + parentNo + '"]').toggle()
+                            $('.comment[data-co-no="' + parentNo + '"] .reply-input-container').toggle()
+                        })
+                     // .on
 
-$('.comment-submit-button').on('click', 'div.reply-button', function () {
-    alert($(this).parent().find('.comment-form').html())
+$('.comment-section').on('click', '.comment-submit-button', function () {
+    alert('clicked')
+    const formData = new FormData($(this).parent().find('.comment-form')[0])
+
+    $.ajax({
+        url: '/comment/create',
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        data : formData,
+        beforeSend : function(xhr){
+            xhr.setRequestHeader(header, token);
+        },
+        success: function () {
+            alert('댓글 등록 성공')
+
+        },
+        error: function () {
+            console.log('error occurred')
+        }
+    })
 })
