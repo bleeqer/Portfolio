@@ -52,11 +52,6 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public AnswerVO selectBestAnswer(int quesNo) {
-        return answerMapper.selectBestAnswer(quesNo);
-    }
-
-    @Override
     public List<AnswerVO> selectAnswers(int quesNo) {
 
         // 답변글 리스트 조회
@@ -83,11 +78,6 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<AnswerVO> readMoreList(AnswerVO answer) {
-        return answerMapper.selectMoreList(answer);
-    }
-
-    @Override
     public void update(AnswerVO answerVO) {
 
         answerMapper.update(answerVO);
@@ -107,4 +97,5 @@ public class AnswerServiceImpl implements AnswerService {
     public void addLikeCnt(int postNo) {
         answerMapper.addLikeCnt(postNo);
     }
+
 }

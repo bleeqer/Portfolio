@@ -12,12 +12,10 @@ public interface AnswerMapper {
     int insert(AnswerVO answerVO);
     void update(AnswerVO answerVO);
     void delete(int ansNo);
-    AnswerVO selectBestAnswer(int quesNo);
     List<AnswerVO> selectAnswers(int quesNo);
     List<QAPairVO> selectAnsweredPairByUser(int userNo);
     void addViewCnt(int ansNo);
     void addLikeCnt(int ansNo);
-    AnswerVO selectOne(int ansNo);
-    List<AnswerVO> selectList(int quesNo);
-    List<AnswerVO> selectMoreList(AnswerVO answer);
+    void addCommentCnt(int ansNo);
+
 }

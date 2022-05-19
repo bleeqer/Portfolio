@@ -2,6 +2,7 @@ package com.portfolio.service;
 
 import com.portfolio.domain.CommentVO;
 import com.portfolio.mapper.AnswerCommentMapper;
+import com.portfolio.mapper.AnswerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,10 +17,14 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     @Autowired
     AnswerCommentMapper answerCommentMapper;
 
+    @Autowired
+    AnswerMapper answerMapper;
+
     @Transactional
     @Override
     public void insert(CommentVO commentVO) {
 
+        answerMapper.addCommentCnt(commentVO.getAnsNo());
         answerCommentMapper.insert(commentVO);
 
     }

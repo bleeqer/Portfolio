@@ -17,6 +17,7 @@ public class QAPairVO {
     private String answer;
     private String answerRegDate;
     private int answerLikeCnt;
+    private int answerCommentCnt;
     private int answerUserNo;
     private String answerUserEmail;
     private String answerUserName;

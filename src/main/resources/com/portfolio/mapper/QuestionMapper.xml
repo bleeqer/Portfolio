@@ -70,6 +70,7 @@
             ANS.answer,
             ANS.reg_date,
             ANS.like_cnt,
+            ANS.comment_cnt,
             U.email,
             U.name,
             U.photo,
@@ -112,6 +113,7 @@
         <id column="answer" property="answer"/>
         <id column="reg_date" property="answerRegDate"/>
         <id column="like_cnt" property="answerLikeCnt"/>
+        <id column="comment_cnt" property="answerCommentCnt"/>
         <id column="user_no" property="answerUserNo"/>
         <id column="email" property="answerUserEmail"/>
         <id column="name" property="answerUserName"/>

@@ -29,12 +29,12 @@ public class AnswerController {
         return answerService.select(answerNo);
     }
 
-    @PostMapping("more")
-    @ResponseBody
-    public List<AnswerVO> getMoreAnswers(@RequestBody AnswerVO answer) {
-
-        return answerService.readMoreList(answer);
-    }
+//    @PostMapping("more")
+//    @ResponseBody
+//    public List<AnswerVO> getMoreAnswers(@RequestBody AnswerVO answer) {
+//
+//        return answerService.readMoreList(answer);
+//    }
 
 //    @GetMapping("like")
 //    @ResponseBody
