@@ -24,7 +24,17 @@ public class CommentController {
         System.out.println(commentVO.getUserEmail());
 
         answerCommentService.insert(commentVO);
+    }
 
+    @PostMapping("delete")
+    public void deleteComment(CommentVO commentVO) {
+
+        System.out.println(commentVO.getAnsNo());
+        System.out.println(commentVO.getParentCoNo());
+        System.out.println(commentVO.getAnswerComment());
+        System.out.println(commentVO.getUserEmail());
+
+        answerCommentService.delete(commentVO.getCoNo());
     }
 
     @GetMapping("{ansNo}")

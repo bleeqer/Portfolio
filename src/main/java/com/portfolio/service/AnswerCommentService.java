@@ -10,9 +10,8 @@ public interface AnswerCommentService {
     void insert(CommentVO commentVO);
     CommentVO readOne(int ansNo);
     List<CommentVO> selectList(CommentVO commentVO);
-    List<CommentVO> readMoreList(HashMap<String, Integer> map);
     void update(CommentVO answerReply);
-    void delete(HashMap<String, Integer> postNo);
+    void delete(int coNo);
     List<CommentVO> readAll();
     void addLikeCnt(int postNo);
     int selectNestedMaxOrder(int parentCommentNo);

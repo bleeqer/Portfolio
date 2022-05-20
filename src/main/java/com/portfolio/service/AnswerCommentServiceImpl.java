@@ -41,10 +41,6 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
         return answerCommentMapper.selectList(commentVO);
     }
 
-    @Override
-    public List<CommentVO> readMoreList(HashMap<String, Integer> map) {
-        return answerCommentMapper.selectMoreList(map);
-    }
 
     @Override
     public void update(CommentVO answerReply) {
@@ -53,8 +49,8 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     }
 
     @Override
-    public void delete(HashMap<String, Integer> postNo) {
-        answerCommentMapper.delete(postNo);
+    public void delete(int coNo) {
+        answerCommentMapper.delete(coNo);
     }
 
     @Override

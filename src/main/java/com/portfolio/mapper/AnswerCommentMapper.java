@@ -10,12 +10,11 @@ public interface AnswerCommentMapper {
 
     int insert(CommentVO answerReply);
     void update(CommentVO answerReply);
-    void delete(HashMap<String, Integer> replyNo);
+    void delete(int coNo);
     List<CommentVO> selectAll();
     void addLikeCnt(int replyNo);
     CommentVO selectOne(int replyNo);
     List<CommentVO> selectList(CommentVO commentVO);
-    List<CommentVO> selectMoreList(Map<String, Integer> map);
     int selectNestedMaxOrder(int parentCommentNo);
     int selectMaxOrder();
 }
