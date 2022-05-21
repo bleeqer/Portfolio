@@ -16,7 +16,11 @@ public interface AnswerMapper {
     List<AnswerVO> selectAnswers(int quesNo);
     List<QAPairVO> selectAnsweredPairByUser(int userNo);
     void addViewCnt(int ansNo);
-    void addLikeCnt(LikeVO likeVO);
+    int addLike(LikeVO likeVO);
+    int subtractLike(LikeVO likeVO);
+    LikeVO findLike(LikeVO likeVO);
+    int countLike(LikeVO likeVO);
+
     void addCommentCnt(int ansNo);
 
 }

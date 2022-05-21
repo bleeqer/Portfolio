@@ -14,5 +14,5 @@ public interface AnswerService {
     void update(AnswerVO answerVO);
     void delete(int postNo);
     void addViewCnt(int postNo);
-    void addLikeCnt(LikeVO likeVO);
+    int addLike(LikeVO likeVO);
 }

@@ -91,8 +91,21 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public void addLikeCnt(LikeVO likeVO) {
-        answerMapper.addLikeCnt(likeVO);
+    public int addLike(LikeVO likeVO) {
+
+        if (answerMapper.findLike(likeVO) == null) {
+
+            answerMapper.addLike(likeVO);
+
+        } else {
+
+            // 이미 upvote 했다면 upvote 취소
+            answerMapper.subtractLike(likeVO);
+
+        }
+
+        return answerMapper.countLike(likeVO);
+
     }
 
 }

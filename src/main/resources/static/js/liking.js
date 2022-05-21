@@ -6,11 +6,20 @@ $('.like-button').click(function () {
         data: {
             ansNo: $(this).data('ans-no')
         },
-        success: function () {
-            alert('gg')
+        context: this,
+        success: function (likeCnt) {
+
+            if (likeCnt > 0) {
+
+                $(this).find('.like-cnt').html(likeCnt)
+            } else {
+
+                $(this).find('.like-cnt').html('')
+            }
+
         },
         error: function () {
-            alert('ㅡㅡ')
+            alert('오류가 발생했습니다.')
         }
 
     })

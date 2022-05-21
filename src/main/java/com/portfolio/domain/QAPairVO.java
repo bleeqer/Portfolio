@@ -24,5 +24,11 @@ public class QAPairVO {
     private String answerUserPhoto;
     private String answerUserOccupation;
 
+    public String getAnswerRegDate() {
+        return answerRegDate;
+    }
+    public void setAnswerRegDate(Date date) {
+        this.answerRegDate = TimeDiff.calculateTime(date);
+    }
 
 }

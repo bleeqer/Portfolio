@@ -71,15 +71,26 @@
         DELETE FROM TB_ANSWER WHERE ans_no=#{ansNo}
     </delete>
 
-    <insert id="addLikeCnt" parameterType="LikeVO">
+    <insert id="addLike" parameterType="LikeVO">
         <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
             SELECT LIKE_SEQ.NEXTVAL FROM DUAL
         </selectKey>
 
         INSERT INTO TB_LIKE_REC (like_no, ans_no, user_email)
         VALUES (#{likeNo}, #{ansNo}, #{userEmail})
-
     </insert>
+
+    <delete id="subtractLike" parameterType="LikeVO">
+        DELETE FROM TB_LIKE_REC WHERE ans_no=#{ansNo} AND user_email=#{userEmail}
+    </delete>
+
+    <select id="findLike" parameterType="LikeVO" resultMap="likeResultMap">
+        SELECT * FROM TB_LIKE_REC WHERE ans_no=#{ansNo} AND user_email=#{userEmail}
+    </select>
+
+    <select id="countLike" parameterType="LikeVO" resultType="int">
+        SELECT COUNT(*) FROM TB_LIKE_REC WHERE ans_no=#{ansNo}
+    </select>
 
     <update id="addCommentCnt" parameterType="int">
         UPDATE TB_ANSWER SET comment_cnt=comment_cnt + 1
@@ -99,18 +110,25 @@
         <id column="occupation" property="userOccupation"/>
     </resultMap>
 
+    <resultMap id="likeResultMap" type="LikeVO">
+        <id column="ans_no" property="ansNo"/>
+        <id column="user_email" property="userEmail"/>
 
-<!--    <resultMap id="QAPairResultMap" type="QAPairVO">
-        <id column="ans_no" property="ansNo"/>
-        <id column="question" property="question"/>
-        <id column="answer" property="answer"/>
-        <id column="ans_no" property="ansNo"/>
-        <id column="reg_date" property="answerRegDate"/>
-        <id column="like_cnt" property="answerLikeCnt"/>
-        <id column="user_no" property="answerUserNo"/>
-        <id column="email" property="answerUserEmail"/>
-        <id column="name" property="answerUserName"/>
-        <id column="photo" property="answerUserPhoto"/>
-        <id column="occupation" property="answerUserOccupation"/>
-    </resultMap>-->
+    </resultMap>
+
+
+
+    <!--    <resultMap id="QAPairResultMap" type="QAPairVO">
+            <id column="ans_no" property="ansNo"/>
+            <id column="question" property="question"/>
+            <id column="answer" property="answer"/>
+            <id column="ans_no" property="ansNo"/>
+            <id column="reg_date" property="answerRegDate"/>
+            <id column="like_cnt" property="answerLikeCnt"/>
+            <id column="user_no" property="answerUserNo"/>
+            <id column="email" property="answerUserEmail"/>
+            <id column="name" property="answerUserName"/>
+            <id column="photo" property="answerUserPhoto"/>
+            <id column="occupation" property="answerUserOccupation"/>
+        </resultMap>-->
 </mapper>

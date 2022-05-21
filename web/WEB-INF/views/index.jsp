@@ -233,8 +233,8 @@
                                                                                     </svg>
                                                                                 </span>
                                                                             </div>
-                                                                            <div class="d-flex align-items-center justify-content-center"
-                                                                                 style="font-size: 13px; margin-left: 2px;">
+                                                                            <div class="like-cnt d-flex align-items-center justify-content-center"
+                                                                                 style="font-size: 13px; margin-left: 2px;" data-test="시발">
                                                                                 <c:if test="${answerPair.answerLikeCnt > 0}">
                                                                                     ${answerPair.answerLikeCnt}
                                                                                 </c:if>

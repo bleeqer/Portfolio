@@ -41,17 +41,14 @@ public class AnswerController {
 
     @GetMapping("like")
     @ResponseBody
-    public void likeAnswer(@RequestParam int ansNo, Principal principal) {
+    public int likeAnswer(@RequestParam int ansNo, Principal principal) {
 
         LikeVO likeVO = new LikeVO();
 
         likeVO.setAnsNo(ansNo);
         likeVO.setUserEmail(principal.getName());
 
-        System.out.println(likeVO.getUserEmail());
-
-        answerService.addLikeCnt(likeVO);
-
+        return answerService.addLike(likeVO);
     }
 
 //    @PostMapping("more")
