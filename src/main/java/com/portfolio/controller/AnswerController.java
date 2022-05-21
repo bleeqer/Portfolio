@@ -1,11 +1,21 @@
 package com.portfolio.controller;
 
 import com.portfolio.domain.AnswerVO;
+import com.portfolio.domain.LikeVO;
+import com.portfolio.security.CustomUserDetails;
+import com.portfolio.security.CustomUserDetailsService;
 import com.portfolio.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Member;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -27,6 +37,21 @@ public class AnswerController {
         System.out.println("answer number: " + answerNo);
 
         return answerService.select(answerNo);
+    }
+
+    @GetMapping("like")
+    @ResponseBody
+    public void likeAnswer(@RequestParam int ansNo, Principal principal) {
+
+        LikeVO likeVO = new LikeVO();
+
+        likeVO.setAnsNo(ansNo);
+        likeVO.setUserEmail(principal.getName());
+
+        System.out.println(likeVO.getUserEmail());
+
+        answerService.addLikeCnt(likeVO);
+
     }
 
 //    @PostMapping("more")

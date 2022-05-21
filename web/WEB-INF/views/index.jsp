@@ -218,7 +218,7 @@
                                                                 <div class="d-flex rounded-pill" role="button"
                                                                      style="background-color: rgba(255, 255, 255, 0.05); height: 30px;">
                                                                         <%--Like 버튼--%>
-                                                                    <div class="like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill">
+                                                                    <div class="like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" data-ans-no="${answerPair.ansNo}">
                                                                         <div class="d-flex">
                                                                             <div>
                                                                                 <span class="d-inline-block d-flex align-items-center justify-content-center">
@@ -879,6 +879,7 @@
     <script src="/static/js/getMore.js"></script>
     <script src="/static/js/main.js"></script>
     <script src="/static/js/comment.js"></script>
+    <script src="/static/js/liking.js"></script>
 
 </body>
 </html>

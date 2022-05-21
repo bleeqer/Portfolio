@@ -48,8 +48,11 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
         answerCommentMapper.update(answerReply);
     }
 
+    @Transactional
     @Override
     public void delete(int coNo) {
+
+
         answerCommentMapper.delete(coNo);
     }
 

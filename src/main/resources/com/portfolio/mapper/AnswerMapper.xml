@@ -71,19 +71,15 @@
         DELETE FROM TB_ANSWER WHERE ans_no=#{ansNo}
     </delete>
 
-    <select id="selectAll" resultType="AnswerVO">
-        SELECT * FROM TB_ANSWER
-    </select>
+    <insert id="addLikeCnt" parameterType="LikeVO">
+        <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
+            SELECT LIKE_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
 
-    <update id="addViewCnt" parameterType="int">
-        UPDATE TB_ANSWER SET view_cnt=view_cnt + 1
-        WHERE ans_no=#{ansNo}
-    </update>
+        INSERT INTO TB_LIKE_REC (like_no, ans_no, user_email)
+        VALUES (#{likeNo}, #{ansNo}, #{userEmail})
 
-    <update id="addLikeCnt" parameterType="int">
-        UPDATE TB_ANSWER SET like_cnt=like_cnt + 1
-        WHERE ans_no=#{ansNo}
-    </update>
+    </insert>
 
     <update id="addCommentCnt" parameterType="int">
         UPDATE TB_ANSWER SET comment_cnt=comment_cnt + 1

@@ -1,6 +1,7 @@
 package com.portfolio.service;
 
 import com.portfolio.domain.AnswerVO;
+import com.portfolio.domain.LikeVO;
 import com.portfolio.domain.QAPairVO;
 
 import java.util.List;
@@ -13,5 +14,5 @@ public interface AnswerService {
     void update(AnswerVO answerVO);
     void delete(int postNo);
     void addViewCnt(int postNo);
-    void addLikeCnt(int postNo);
+    void addLikeCnt(LikeVO likeVO);
 }

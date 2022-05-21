@@ -1,9 +1,6 @@
 package com.portfolio.service;
 
-import com.portfolio.domain.ImageVO;
-import com.portfolio.domain.AnswerVO;
-import com.portfolio.domain.QAPairVO;
-import com.portfolio.domain.UserVO;
+import com.portfolio.domain.*;
 import com.portfolio.mapper.AnswerImageMapper;
 import com.portfolio.mapper.AnswerMapper;
 import com.portfolio.mapper.UserMapper;
@@ -94,8 +91,8 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public void addLikeCnt(int postNo) {
-        answerMapper.addLikeCnt(postNo);
+    public void addLikeCnt(LikeVO likeVO) {
+        answerMapper.addLikeCnt(likeVO);
     }
 
 }

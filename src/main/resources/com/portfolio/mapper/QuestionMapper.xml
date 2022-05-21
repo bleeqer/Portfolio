@@ -8,10 +8,10 @@
     <insert id="insert" parameterType="QuestionVO">
 
         <selectKey keyProperty="quesNo" resultType="int" order="BEFORE">
-            select QUESTION_SEQ.NEXTVAL from dual
+            SELECT QUESTION_SEQ.NEXTVAL FROM dual
         </selectKey>
 
-        INSERT INTO TB_QUESTION (ans_no, title, content, writer)
+        INSERT INTO TB_QUESTION (ques_no, title, content, writer)
         VALUES (#{quesNo}, #{title}, #{content}, #{writer})
 
     </insert>
