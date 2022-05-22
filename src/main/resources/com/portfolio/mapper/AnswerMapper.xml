@@ -76,11 +76,11 @@
             SELECT LIKE_SEQ.NEXTVAL FROM DUAL
         </selectKey>
 
-        INSERT INTO TB_LIKE_REC (like_no, ans_no, user_email)
-        VALUES (#{likeNo}, #{ansNo}, #{userEmail})
+        INSERT INTO TB_LIKE_REC (like_no, ans_no, user_email, like_type)
+        VALUES (#{likeNo}, #{ansNo}, #{userEmail}, #{likeType})
     </insert>
 
-    <delete id="subtractLike" parameterType="LikeVO">
+    <delete id="deleteLike" parameterType="LikeVO">
         DELETE FROM TB_LIKE_REC WHERE ans_no=#{ansNo} AND user_email=#{userEmail}
     </delete>
 
@@ -88,8 +88,16 @@
         SELECT * FROM TB_LIKE_REC WHERE ans_no=#{ansNo} AND user_email=#{userEmail}
     </select>
 
-    <select id="countLike" parameterType="LikeVO" resultType="int">
-        SELECT COUNT(*) FROM TB_LIKE_REC WHERE ans_no=#{ansNo}
+    <update id="updateLike" parameterType="LikeVO">
+        UPDATE TB_LIKE_REC
+        SET like_type=#{likeType}
+        WHERE ans_no=#{ansNo} AND user_email=#{userEmail}
+    </update>
+
+    <select id="countLike" parameterType="LikeVO" resultMap="likeCountMap">
+        SELECT NVL(SUM(CASE WHEN like_type = 'UP' THEN 1 ELSE 0 END), 0) likes,
+               NVL(SUM(CASE WHEN like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes
+        FROM tb_like_rec WHERE ans_no=#{ansNo}
     </select>
 
     <update id="addCommentCnt" parameterType="int">
@@ -113,7 +121,12 @@
     <resultMap id="likeResultMap" type="LikeVO">
         <id column="ans_no" property="ansNo"/>
         <id column="user_email" property="userEmail"/>
+        <id column="like_type" property="likeType"/>
+    </resultMap>
 
+    <resultMap id="likeCountMap" type="Hashmap">
+        <id column="likes" property="likes" javaType="int"/>
+        <id column="dislikes" property="dislikes" javaType="int"/>
     </resultMap>
 
 

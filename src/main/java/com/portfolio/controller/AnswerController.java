@@ -6,6 +6,7 @@ import com.portfolio.security.CustomUserDetails;
 import com.portfolio.security.CustomUserDetailsService;
 import com.portfolio.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Member;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("answer")
@@ -41,14 +44,27 @@ public class AnswerController {
 
     @GetMapping("like")
     @ResponseBody
-    public int likeAnswer(@RequestParam int ansNo, Principal principal) {
+    public Map<String, Integer> likeAnswer(@RequestParam int ansNo, Principal principal) {
+
+        LikeVO likeVO = new LikeVO();
+
+        likeVO.setAnsNo(ansNo);
+        likeVO.setUserEmail(principal.getName());
+        likeVO.setLikeType("UP");
+
+        return answerService.addLike(likeVO);
+    }
+
+    @GetMapping("dislike")
+    @ResponseBody
+    public Map<String, Integer> dislikeAnswer(@RequestParam int ansNo, Principal principal) {
 
         LikeVO likeVO = new LikeVO();
 
         likeVO.setAnsNo(ansNo);
         likeVO.setUserEmail(principal.getName());
 
-        return answerService.addLike(likeVO);
+        return answerService.subtractLike(likeVO);
     }
 
 //    @PostMapping("more")

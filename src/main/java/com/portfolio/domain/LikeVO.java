@@ -10,4 +10,5 @@ public class LikeVO {
     private int likeNo;
     private int ansNo;
     private String userEmail;
+    private String likeType;
 }

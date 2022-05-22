@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 
 @Service
@@ -91,20 +93,53 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public int addLike(LikeVO likeVO) {
+    public Map<String, Integer> addLike(LikeVO likeVO) {
 
-        if (answerMapper.findLike(likeVO) == null) {
+        LikeVO like = answerMapper.findLike(likeVO);
+
+        if (like == null) {
 
             answerMapper.addLike(likeVO);
+            
+
+        } else if (like.getLikeType().equals("UP")) {
+
+            System.out.println(likeVO.getUserEmail());
+
+            // 이미 좋아요 했다면 좋아요 취소
+            answerMapper.deleteLike(likeVO);
 
         } else {
 
-            // 이미 upvote 했다면 upvote 취소
-            answerMapper.subtractLike(likeVO);
-
+            // 싫어요 -> 좋아요 업데이트
+            answerMapper.updateLike(likeVO);
         }
 
-        return answerMapper.countLike(likeVO);
+        return answerMapper.countLike(likeVO.getAnsNo());
+
+    }
+
+    @Override
+    public Map<String, Integer> subtractLike(LikeVO likeVO) {
+
+        LikeVO like = answerMapper.findLike(likeVO);
+
+        if (like == null) {
+
+            answerMapper.addLike(likeVO);
+
+        } else if (like.getLikeType().equals("DOWN")) {
+
+            // 이미 싫어요 했다면 싫어요 취소
+            answerMapper.deleteLike(likeVO);
+
+        } else {
+
+            // 좋아요 -> 싫어요 업데이트
+            answerMapper.updateLike(likeVO);
+        }
+
+        return answerMapper.countLike(likeVO.getAnsNo());
 
     }
 

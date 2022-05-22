@@ -234,7 +234,7 @@
                                                                                 </span>
                                                                             </div>
                                                                             <div class="like-cnt d-flex align-items-center justify-content-center"
-                                                                                 style="font-size: 13px; margin-left: 2px;" data-test="시발">
+                                                                                 style="font-size: 13px; margin-left: 2px;">
                                                                                 <c:if test="${answerPair.answerLikeCnt > 0}">
                                                                                     ${answerPair.answerLikeCnt}
                                                                                 </c:if>
@@ -242,7 +242,7 @@
                                                                         </div>
                                                                     </div>
                                                                         <%--Unlike 버튼--%>
-                                                                    <div class="unlike-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill">
+                                                                    <div class="dislike-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill">
                                                                         <div class="d-flex">
                                                                             <div>
                                                                                 <span class="d-inline-block d-flex align-items-center justify-content-center">
@@ -256,6 +256,10 @@
                                                                                               stroke-linejoin="round"></path>
                                                                                     </svg>
                                                                                 </span>
+                                                                            </div>
+                                                                            <div class="dislike-cnt d-flex align-items-center justify-content-center"
+                                                                                 style="font-size: 13px; margin-left: 2px;">
+
                                                                             </div>
                                                                         </div>
                                                                     </div>

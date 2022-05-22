@@ -5,6 +5,7 @@ import com.portfolio.domain.LikeVO;
 import com.portfolio.domain.QAPairVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AnswerService {
     int create(AnswerVO answerVO);
@@ -14,5 +15,6 @@ public interface AnswerService {
     void update(AnswerVO answerVO);
     void delete(int postNo);
     void addViewCnt(int postNo);
-    int addLike(LikeVO likeVO);
+    Map<String, Integer> addLike(LikeVO likeVO);
+    Map<String, Integer> subtractLike(LikeVO likeVO);
 }

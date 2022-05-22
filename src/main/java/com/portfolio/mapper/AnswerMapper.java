@@ -6,6 +6,7 @@ import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.QuestionVO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AnswerMapper {
 
@@ -17,9 +18,10 @@ public interface AnswerMapper {
     List<QAPairVO> selectAnsweredPairByUser(int userNo);
     void addViewCnt(int ansNo);
     int addLike(LikeVO likeVO);
-    int subtractLike(LikeVO likeVO);
+    int deleteLike(LikeVO likeVO);
     LikeVO findLike(LikeVO likeVO);
-    int countLike(LikeVO likeVO);
+    LikeVO updateLike(LikeVO likeVO);
+    Map<String, Integer> countLike(int ansNo);
 
     void addCommentCnt(int ansNo);
 
