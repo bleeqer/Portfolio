@@ -63,6 +63,7 @@ public class AnswerController {
 
         likeVO.setAnsNo(ansNo);
         likeVO.setUserEmail(principal.getName());
+        likeVO.setLikeType("DOWN");
 
         return answerService.subtractLike(likeVO);
     }

@@ -202,7 +202,7 @@
 
 
                                                     <%--Upvote/Downvote, Comment, Share, Option 버튼--%>
-                                                <div class="pe-1">
+                                                <div class="footer-container pe-1" data-ans-no="${answerPair.ansNo}">
 
                                                         <%--Container--%>
                                                     <div class="d-flex justify-content-center align-items-center my-1"
@@ -218,7 +218,7 @@
                                                                 <div class="d-flex rounded-pill" role="button"
                                                                      style="background-color: rgba(255, 255, 255, 0.05); height: 30px;">
                                                                         <%--Like 버튼--%>
-                                                                    <div class="like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" data-ans-no="${answerPair.ansNo}">
+                                                                    <div class="like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill">
                                                                         <div class="d-flex">
                                                                             <div>
                                                                                 <span class="d-inline-block d-flex align-items-center justify-content-center">

@@ -126,9 +126,15 @@ public class AnswerServiceImpl implements AnswerService {
 
         if (like == null) {
 
+            System.out.println("add dislike");
+
+
             answerMapper.addLike(likeVO);
 
         } else if (like.getLikeType().equals("DOWN")) {
+
+            System.out.println("cancel dislike");
+
 
             // 이미 싫어요 했다면 싫어요 취소
             answerMapper.deleteLike(likeVO);
@@ -136,6 +142,7 @@ public class AnswerServiceImpl implements AnswerService {
         } else {
 
             // 좋아요 -> 싫어요 업데이트
+            System.out.println("like to dislike");
             answerMapper.updateLike(likeVO);
         }
 
