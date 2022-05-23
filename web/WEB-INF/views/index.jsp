@@ -235,8 +235,8 @@
                                                                             </div>
                                                                             <div class="like-cnt d-flex align-items-center justify-content-center"
                                                                                  style="font-size: 13px; margin-left: 2px;">
-                                                                                <c:if test="${answerPair.answerLikeCnt > 0}">
-                                                                                    ${answerPair.answerLikeCnt}
+                                                                                <c:if test="${answerPair.likes > 0}">
+                                                                                    ${answerPair.likes}
                                                                                 </c:if>
                                                                             </div>
                                                                         </div>
@@ -259,7 +259,9 @@
                                                                             </div>
                                                                             <div class="dislike-cnt d-flex align-items-center justify-content-center"
                                                                                  style="font-size: 13px; margin-left: 2px;">
-
+                                                                                <c:if test="${answerPair.dislikes > 0}">
+                                                                                    ${answerPair.dislikes}
+                                                                                </c:if>
                                                                             </div>
                                                                         </div>
                                                                     </div>

@@ -62,32 +62,47 @@
 
         SELECT *
         FROM
-            (SELECT ROW_NUMBER() OVER(PARTITION BY ANS.ques_no ORDER BY like_cnt DESC, ans_no ASC) ANS_RN,
-            QUES.ques_no,
-            QUES.question,
-            QUES.category_name,
-            ANS.ans_no,
-            ANS.answer,
-            ANS.reg_date,
-            ANS.like_cnt,
-            ANS.comment_cnt,
-            U.email,
-            U.name,
-            U.photo,
-            U.occupation
-            FROM tb_answer ANS, tb_question QUES, tb_user U
-            WHERE ANS.ques_no = QUES.ques_no
-              <if test="quesNo != null and quesNo != ''">
-              AND QUES.ques_no <![CDATA[<]]> #{quesNo}
-              </if>
-              AND U.email = ANS.user_email
-              AND QUES.answered = 'Y'
-              <if test="categoryName != null and categoryName != ''">
-                  AND QUES.category_name = #{categoryName}
-              </if>
-            ORDER BY QUES.ques_no DESC, QUES.view_cnt DESC)
-        WHERE ANS_RN = 1 AND ROWNUM BETWEEN 0 AND 10
+            (SELECT ROW_NUMBER() OVER(PARTITION BY ques_no ORDER BY LIKES DESC, ans_no ASC) AS RN, PAIR.*
+            FROM
+                (SELECT
+                    QUES.ques_no,
+                    QUES.question,
+                    QUES.category_name,
+                    ANS.ans_no,
+                    ANS.answer,
+                    ANS.reg_date,
+                    ANS.comment_cnt,
+                    NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes,
+                    NVL(SUM(CASE WHEN REC.like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes,
+                    U.email,
+                    U.name,
+                    U.photo,
+                    U.occupation
+                FROM TB_QUESTION QUES, TB_USER U, TB_ANSWER ANS LEFT OUTER JOIN TB_LIKE_REC REC ON REC.ans_no = ANS.ans_no
+                WHERE
+                    ANS.ques_no = QUES.ques_no
+                    AND U.email = ANS.user_email
+                    AND QUES.answered = 'Y'
+                <if test="quesNo != null and quesNo != ''">
+                    AND QUES.ques_no <![CDATA[<]]> #{quesNo}
+                </if>
 
+                <if test="categoryName != null and categoryName != ''">
+                    AND QUES.category_name = #{categoryName}
+                </if>
+                GROUP BY
+                    QUES.ques_no,
+                    QUES.question,
+                    QUES.category_name,
+                    ANS.ans_no,
+                    ANS.answer,
+                    ANS.reg_date,
+                    ANS.comment_cnt,
+                    U.email,
+                    U.name,
+                    U.photo,
+                    U.occupation) PAIR)
+        WHERE RN=1 AND ROWNUM BETWEEN 0 AND 10
     </select>
 
     <update id="addViewCnt" parameterType="int">
@@ -112,6 +127,8 @@
         <id column="ans_no" property="ansNo"/>
         <id column="answer" property="answer"/>
         <id column="reg_date" property="answerRegDate"/>
+        <id column="likes" property="likes"/>
+        <id column="dislikes" property="dislikes"/>
         <id column="like_cnt" property="answerLikeCnt"/>
         <id column="comment_cnt" property="answerCommentCnt"/>
         <id column="user_no" property="answerUserNo"/>
