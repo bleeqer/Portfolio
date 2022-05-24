@@ -39,7 +39,21 @@ public class CommentController {
 
         System.out.println(commentVO.getLastCoNo());
 
-        model.addAttribute("comments", answerCommentService.selectList(commentVO));
+        List<CommentVO> comments = answerCommentService.selectList(commentVO);
+
+        int lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
+
+        model.addAttribute("comments", comments);
+
+        model.addAttribute("isLast", "N");
+
+        // 마지막 댓글일 시 isLast = Y
+        if (comments.get(comments.size() - 1).getCoNo() <= lastCoNo) {
+            model.addAttribute("isLast", "Y");
+
+        }
+
+
 
         return "templates/commentTemplate";
 

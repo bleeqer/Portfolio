@@ -1,4 +1,4 @@
-
+// 댓글 가져오기
 function getComments(data) {
 
     let comments
@@ -20,7 +20,7 @@ function getComments(data) {
     return comments
 }
 
-// 댓글
+// 답변글의 댓글 보기
 $('.comment-button').click(function () {
 
     const ansNo = $(this).data('ans-no')
@@ -35,17 +35,18 @@ $('.comment-button').click(function () {
 
         commentSection.find('.comment-list').html(getComments(data))
 
+
     }
 })
 
-// 대댓글
+// 대댓글 보기
 $('.comment-section').on('click', 'div.reply-button', function () {
 
-                            const parentNo = $(this).parents('.comment').data('co-no')
+    const parentNo = $(this).parents('.comment').data('co-no')
 
-                            $('.comment[data-parent-co-no="' + parentNo + '"]').toggle()
-                            $('.comment[data-co-no="' + parentNo + '"] .reply-input-container').toggle()
-                        })
+    $('.comment[data-parent-co-no="' + parentNo + '"]').toggle()
+    $('.comment[data-co-no="' + parentNo + '"] .reply-input-container').toggle()
+})
 
 $('.view-more-comments').click(function () {
 
@@ -58,6 +59,14 @@ $('.view-more-comments').click(function () {
                   lastCoNo: commentSection.find('.comment[data-co-level="1"]').last().data('co-no')}
 
     commentSection.find('.comment-list').append(getComments(data))
+
+    // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
+    if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
+
+        alert(commentSection.find('.last-checker').last().data('is-last'))
+
+        $(this).addClass('hidden')
+    }
 
 
 })
@@ -85,3 +94,4 @@ $('.comment-section').on('click', '.comment-submit-button', function () {
         }
     })
 })
+
