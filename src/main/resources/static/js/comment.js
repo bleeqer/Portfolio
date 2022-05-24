@@ -35,6 +35,7 @@ $('.comment-button').click(function () {
 
         commentSection.find('.comment-list').html(getComments(data))
 
+        commentSection.find('.comment').first().removeClass('border-top-gray')
 
     }
 })

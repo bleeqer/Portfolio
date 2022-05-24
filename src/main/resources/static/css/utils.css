@@ -168,6 +168,12 @@
     border-color: #393839 !important;
 }
 
+.border-top-gray {
+    border-top-style: solid !important;
+    border-width: 1px !important;
+    border-color: #393839 !important;
+}
+
 .border-bottom-gray-light {
     border-bottom-style: solid !important;
     border-width: 1px !important;
