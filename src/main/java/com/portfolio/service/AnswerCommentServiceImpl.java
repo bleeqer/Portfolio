@@ -41,6 +41,11 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
         return answerCommentMapper.selectList(commentVO);
     }
 
+    @Override
+    public int selectLastCoNo(int ansNo) {
+        return answerCommentMapper.selectLastCoNo(ansNo);
+    }
+
 
     @Override
     public void update(CommentVO answerReply) {
@@ -63,19 +68,19 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
 
     }
 
-    @Override
-    public void addLikeCnt(int postNo) {
-        answerCommentMapper.addLikeCnt(postNo);
-    }
+//    @Override
+//    public void addLikeCnt(int postNo) {
+//        answerCommentMapper.addLikeCnt(postNo);
+//    }
 
-    @Override
-    public int selectNestedMaxOrder(int parentCommentNo) {
-        return answerCommentMapper.selectNestedMaxOrder(parentCommentNo);
-    }
-
-    @Override
-    public int selectMaxOrder() {
-        return answerCommentMapper.selectMaxOrder();
-    }
+//    @Override
+//    public int selectNestedMaxOrder(int parentCommentNo) {
+//        return answerCommentMapper.selectNestedMaxOrder(parentCommentNo);
+//    }
+//
+//    @Override
+//    public int selectMaxOrder() {
+//        return answerCommentMapper.selectMaxOrder();
+//    }
 
 }

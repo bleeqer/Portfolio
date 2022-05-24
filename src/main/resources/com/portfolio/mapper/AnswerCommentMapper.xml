@@ -31,6 +31,13 @@
 <!--        SELECT * FROM TB_ANS_COMMENT WHERE COMMENT_NO=#{replyNo}-->
 <!--    </select>-->
 
+    <select id="selectLastCoNo" parameterType="int" resultType="int">
+
+        SELECT MAX(co_no)
+        FROM TB_ANSWER_COMMENT
+        WHERE ans_no = #{ansNo}
+    </select>
+
     <select id="selectList" parameterType="CommentVO" resultMap="AnswerCommentResultMap">
 
         SELECT level,
@@ -49,8 +56,8 @@
                                       FROM tb_answer_comment
                                       WHERE parent_co_no = 0
                                             AND ans_no = #{ansNo}
-                                        <if test="coNo != null and coNo != ''">
-                                            AND CO.co_no <![CDATA[<]]> #{coNo}
+                                        <if test="lastCoNo != null and lastCoNo != ''">
+                                            AND co_no <![CDATA[>]]> #{lastCoNo}
                                         </if>
                                       ORDER BY co_no)
                                 WHERE RN <![CDATA[<=]]> 3)

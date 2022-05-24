@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("comment")
 public class CommentController {
@@ -32,17 +34,15 @@ public class CommentController {
         answerCommentService.delete(commentVO.getCoNo());
     }
 
-    @GetMapping("{ansNo}")
-    public String getComments(@PathVariable int ansNo, Model model) {
-        CommentVO commentVO = new CommentVO();
+    @GetMapping("")
+    public String getComments(CommentVO commentVO, Model model) {
 
-        commentVO.setAnsNo(ansNo);
-//        commentVO.setCoNo(lastCommentNo);
+        System.out.println(commentVO.getLastCoNo());
+
         model.addAttribute("comments", answerCommentService.selectList(commentVO));
-
-
 
         return "templates/commentTemplate";
 
     }
+
 }

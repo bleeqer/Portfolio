@@ -15,6 +15,7 @@ public interface AnswerCommentMapper {
     void addLikeCnt(int replyNo);
     CommentVO selectOne(int replyNo);
     List<CommentVO> selectList(CommentVO commentVO);
-    int selectNestedMaxOrder(int parentCommentNo);
-    int selectMaxOrder();
+    int selectLastCoNo(int ansNo);
+//    int selectNestedMaxOrder(int parentCommentNo);
+//    int selectMaxOrder();
 }

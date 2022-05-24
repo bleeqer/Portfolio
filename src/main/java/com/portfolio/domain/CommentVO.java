@@ -16,6 +16,7 @@ public class CommentVO {
     private int ansNo;
     private String answerComment;
     private int parentCoNo;
+    private int lastCoNo;
     private String regDate;
     private int likeCnt;
 
