@@ -37,7 +37,31 @@ $('.comment-button').click(function () {
 
         commentSection.find('.comment').first().removeClass('border-top-gray')
 
+        // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
+        if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
+
+            $(this).find('.view-more-comments').addClass('hidden')
+        }
+
+        // popover 초기화
+        $(function () {
+            $('.comment-option-button').popover({
+                html: true,
+                sanitize: false,
+                content: function() {
+                    return $(this).find('.option-popover-content').html()
+                }
+            })
+        })
+
     }
+})
+
+$(document).on('click', '.popover-item.option', function () {
+    const coNo = $(this).data('co-no')
+    const optionType = $(this).data('option-type')
+    alert(coNo)
+    alert(optionType)
 })
 
 // 대댓글 보기
@@ -53,7 +77,6 @@ $('.view-more-comments').click(function () {
 
     const ansNo = $(this).data('ans-no')
 
-
     const commentSection = $('.comment-section[data-ans-no="' + ansNo + '"]')
 
     const data = {ansNo: ansNo,
@@ -63,8 +86,6 @@ $('.view-more-comments').click(function () {
 
     // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
     if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
-
-        alert(commentSection.find('.last-checker').last().data('is-last'))
 
         $(this).addClass('hidden')
     }

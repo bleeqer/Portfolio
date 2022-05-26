@@ -51,6 +51,7 @@
                U.photo,
                U.occupation
         FROM tb_answer_comment CO, tb_user U
+        WHERE U.email = CO.user_email
         START WITH CO.co_no IN (SELECT co_no
                                 FROM (SELECT ROWNUM AS RN, co_no
                                       FROM tb_answer_comment

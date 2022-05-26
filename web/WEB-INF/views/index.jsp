@@ -474,8 +474,17 @@
             </div>
         </div>
     </div>
-    <%@ include file="/WEB-INF/views/modals/question.jsp" %>
+    <div id="option-popover-content" style="display: none;">
 
+        <div class="d-flex option-popover-item">
+            <div class="py-1 px-3">Edit</div>
+        </div>
+        <div class="d-flex option-popover-item">
+            <div class="py-1 px-3">Delete</div>
+        </div>
+    </div>
+
+<%@ include file="/WEB-INF/views/modals/question.jsp" %>
 
     <script src="/static/js/utils.js"></script>
     <script src="/static/js/questions.js"></script>
@@ -483,6 +492,7 @@
     <script src="/static/js/main.js"></script>
     <script src="/static/js/comment.js"></script>
     <script src="/static/js/liking.js"></script>
+    <script src="/static/js/popovers.js"></script>
 
 </body>
 </html>

@@ -28,16 +28,15 @@ public class CommentController {
         answerCommentService.insert(commentVO);
     }
 
-    @PostMapping("delete")
+    @GetMapping("delete")
     public void deleteComment(CommentVO commentVO) {
+
 
         answerCommentService.delete(commentVO.getCoNo());
     }
 
     @GetMapping("")
     public String getComments(CommentVO commentVO, Model model) {
-
-        System.out.println(commentVO.getLastCoNo());
 
         List<CommentVO> comments = answerCommentService.selectList(commentVO);
 
@@ -50,10 +49,7 @@ public class CommentController {
         // 마지막 댓글일 시 isLast = Y
         if (comments.get(comments.size() - 1).getCoNo() <= lastCoNo) {
             model.addAttribute("isLast", "Y");
-
         }
-
-
 
         return "templates/commentTemplate";
 
