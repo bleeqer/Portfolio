@@ -4,7 +4,9 @@
 
 <sec:authentication property="principal" var="user"/>
 
+<%--마지막 댓글 체크--%>
 <span class="last-checker" style="display: none;" data-is-last="${isLast}"></span>
+
 <c:forEach var="comment" items="${comments}">
     <div class="comment py-1 <c:if test="${comment.level == 1}">border-top-gray</c:if>"
          data-co-level="${comment.level}"

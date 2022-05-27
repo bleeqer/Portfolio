@@ -26,8 +26,9 @@ function deleteCommentTree (rootCoNo) {
     // 해당 댓글 지우기
     $('.comment[data-co-no="' + rootCoNo + '"]').remove()
 
+
     // 해당 댓글을 부모 댓글로 가지는 댓글 지우기
-    if ($('.comment[data-parent-co-no="' + rootCoNo + '"]')) {
+    if (typeof rootCoNo !== 'undefined') {
         deleteCommentTree($('.comment[data-parent-co-no="' + rootCoNo + '"]').data('co-no'))
     }
 }
@@ -80,10 +81,19 @@ $(document).on('click', '.popover-item.option', function () {
             url: '/comment/delete',
             data: {coNo: coNo},
             contentType: 'application/json',
+            context: this,
             success: function (deletedCoNo) {
+
+
+
+                // 댓글 포함된 comment-section
+                const commentSection = $('.comment[data-co-no="' + deletedCoNo + '"]').parents('.comment-section')
 
                 // 해당 댓글 포함 하위 댓글 모두 화면에서 지우기
                 deleteCommentTree(deletedCoNo)
+
+                // 삭제 댓글이 첫번째 댓글일 수 있으므로 댓글이 포함되어 있었던 comment-section의 첫번째 댓글 top border 지우기
+                commentSection.find('.comment').first().removeClass('border-top-gray')
 
             },
             error: function () {
