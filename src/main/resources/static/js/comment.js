@@ -84,8 +84,6 @@ $(document).on('click', '.popover-item.option', function () {
             context: this,
             success: function (deletedCoNo) {
 
-
-
                 // 댓글 포함된 comment-section
                 const commentSection = $('.comment[data-co-no="' + deletedCoNo + '"]').parents('.comment-section')
 
@@ -94,6 +92,9 @@ $(document).on('click', '.popover-item.option', function () {
 
                 // 삭제 댓글이 첫번째 댓글일 수 있으므로 댓글이 포함되어 있었던 comment-section의 첫번째 댓글 top border 지우기
                 commentSection.find('.comment').first().removeClass('border-top-gray')
+                
+                // popover 숨기기
+                $(this).parents('.popover').popover('hide')
 
             },
             error: function () {
