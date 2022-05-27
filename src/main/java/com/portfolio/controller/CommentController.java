@@ -29,10 +29,12 @@ public class CommentController {
     }
 
     @GetMapping("delete")
-    public void deleteComment(CommentVO commentVO) {
+    @ResponseBody
+    public int deleteComment(@RequestParam int coNo) {
 
+        answerCommentService.delete(coNo);
 
-        answerCommentService.delete(commentVO.getCoNo());
+        return coNo;
     }
 
     @GetMapping("")

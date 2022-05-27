@@ -20,6 +20,18 @@ function getComments(data) {
     return comments
 }
 
+// root 댓글 및 하위댓글 모두 지우기
+function deleteCommentTree (rootCoNo) {
+
+    // 해당 댓글 지우기
+    $('.comment[data-co-no="' + rootCoNo + '"]').remove()
+
+    // 해당 댓글을 부모 댓글로 가지는 댓글 지우기
+    if ($('.comment[data-parent-co-no="' + rootCoNo + '"]')) {
+        deleteCommentTree($('.comment[data-parent-co-no="' + rootCoNo + '"]').data('co-no'))
+    }
+}
+
 // 답변글의 댓글 보기
 $('.comment-button').click(function () {
 
@@ -60,8 +72,25 @@ $('.comment-button').click(function () {
 $(document).on('click', '.popover-item.option', function () {
     const coNo = $(this).data('co-no')
     const optionType = $(this).data('option-type')
-    alert(coNo)
-    alert(optionType)
+    
+    if (optionType === 'Delete') {
+        
+        $.ajax({
+            type: 'GET',
+            url: '/comment/delete',
+            data: {coNo: coNo},
+            contentType: 'application/json',
+            success: function (deletedCoNo) {
+
+                // 해당 댓글 포함 하위 댓글 모두 화면에서 지우기
+                deleteCommentTree(deletedCoNo)
+
+            },
+            error: function () {
+                alert('오류가 발생했습니다.')
+            }
+        })
+    }
 })
 
 // 대댓글 보기
