@@ -10,7 +10,7 @@ public interface AnswerCommentMapper {
 
     int insert(CommentVO answerReply);
     void update(CommentVO answerReply);
-    void delete(int coNo);
+    int delete(int coNo);
     List<CommentVO> selectAll();
     void addLikeCnt(int replyNo);
     CommentVO selectOne(int replyNo);

@@ -16,7 +16,7 @@
 
     </insert>
 
-    <select id="delete" parameterType="int">
+    <delete id="delete" parameterType="int">
 
         DELETE FROM TB_ANSWER_COMMENT
         WHERE co_no IN (SELECT co_no
@@ -24,7 +24,7 @@
                         START WITH co_no = #{coNo}
                         CONNECT BY PRIOR  co_no = parent_co_no)
 
-    </select>
+    </delete>
 
 <!--    <select id="selectOne" parameterType="int" resultMap="AnswerReplyResultMap">-->
 <!--        SELECT * FROM TB_ANS_COMMENT WHERE COMMENT_NO=#{replyNo}-->

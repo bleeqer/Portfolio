@@ -56,7 +56,7 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     @Transactional
     @Override
     public void delete(int coNo) {
-        answerCommentMapper.delete(coNo);
+        int res = answerCommentMapper.delete(coNo);
     }
 
     @Override
