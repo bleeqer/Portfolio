@@ -39,19 +39,31 @@
     </select>
 -->
 
-<!--
-    <select id="selectAnswers" parameterType="AnswerVO" resultMap="AnswerResultMap">
+
+    <select id="selectAnswers" parameterType="map" resultMap="AnswerResultMap">
         SELECT *
-              (SELECT *
+        FROM (SELECT ANS.ques_no,
+                     ANS.ans_no,
+                     ANS.answer,
+                     ANS.reg_date,
+                     ANS.like_cnt,
+                     ANS.comment_cnt,
+                     U.email,
+                     U.name,
+                     U.photo,
+                     U.occupation
               FROM TB_ANSWER ANS,
                    TB_USER U
-              WHERE ques_no = #{quesNo}
-                AND ans_no > #{ansNo}
+              WHERE ANS.ques_no = #{quesNo}
+                AND ANS.user_email = U.email
+                <if test="ansNo != null and ansNo != ''">
+                    AND ANS.ans_no > #{ansNo}
+                </if>
               ORDER BY like_cnt DESC, ans_no ASC)
         WHERE ROWNUM BETWEEN 0 AND 10
 
     </select>
--->
+
 
 <!--    <select id="selectAnsweredPairByUser" parameterType="int" resultMap="QAPairResultMap">-->
 <!--        SELECT B.ques_no, B.question, A.answer, A.ans_no, A.reg_date, A.like_cnt, C.user_no, C.email, C.name, C.occupation, C.photo FROM tb_answer A, tb_question B, tb_user C WHERE A.ques_no = B.ques_no AND A.user_no = #{userNo} AND ROWNUM <![CDATA[<=]]> 5 ORDER BY A.ans_no DESC-->
@@ -100,7 +112,7 @@
         FROM tb_like_rec WHERE ans_no=#{ansNo}
     </select>
 
-    <update id="updateCommentCnt" parameterType="int">
+    <update id="updateCommentCnt" parameterType="map">
         UPDATE TB_ANSWER SET comment_cnt=comment_cnt + #{coCnt}
         WHERE ans_no=#{ansNo}
     </update>
@@ -111,7 +123,7 @@
         <id column="answer" property="answer"/>
         <id column="reg_date" property="regDate"/>
         <id column="like_cnt" property="likeCnt"/>
-        <id column="user_no" property="userNo"/>
+        <id column="comment_cnt" property="coCnt"/>
         <id column="email" property="userEmail"/>
         <id column="name" property="userName"/>
         <id column="photo" property="userPhoto"/>

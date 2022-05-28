@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.ws.Response;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,17 +37,17 @@ public class QuestionController {
     @Autowired
     QuestionImageService imageService;
 
-    @PostMapping("create")
-    @ResponseBody
-    public QuestionVO createQuestion(QuestionVO questionVO) {
-
-        // 게시글 저장
-        questionService.create(questionVO);
-
-        System.out.println(questionService.read(questionVO.getQuesNo()).getRegDate());
-
-        return questionService.read(questionVO.getQuesNo());
-    }
+//    @PostMapping("create")
+//    @ResponseBody
+//    public QuestionVO createQuestion(QuestionVO questionVO) {
+//
+//        // 게시글 저장
+//        questionService.create(questionVO);
+//
+//        System.out.println(questionService.read(questionVO.getQuesNo()).getRegDate());
+//
+//        return questionService.read(questionVO.getQuesNo());
+//    }
 
 //    @RequestMapping("/{postNo}")
 //    public String viewQuestion(@PathVariable int postNo, Model model) {
@@ -62,31 +63,55 @@ public class QuestionController {
 //        return "viewQuestion";
 //    }
 
-    @GetMapping(value="edit/{postNo}") //, produces="application/json"
-    @ResponseBody
-    public QuestionVO editQuestion(@PathVariable int postNo) {
-        return questionService.read(postNo);
+    @GetMapping("{quesNo}")
+    public String viewQuestion(@PathVariable int quesNo, Model model) {
 
-    }
+        QuestionVO question = questionService.select(quesNo);
 
-    @PostMapping("edit/")
-    @ResponseBody
-    public QuestionVO editQuestion(HttpServletRequest request, QuestionVO question, Principal principal) {
+        model.addAttribute("question", question);
 
-        List<ImageVO> imgVOList = imageService.readAll(question.getQuesNo());
+        if (question.getAnswered().equals("Y")) {
 
-        for (ImageVO imgVO : imgVOList) {
+            HashMap<String, Integer> map = new HashMap<>();
 
-            System.out.println("기존 업로드 파일 경로:" + imgVO.getUploadPath());
+            map.put("quesNo", quesNo);
+
+            // 더불러오기용 마지막 답변글 번호
+            map.put("ansNo", null);
+
+            model.addAttribute("answers", answerService.selectAnswers(map));
 
         }
 
-        UploadFileUtils.deleteFile(request, imgVOList);
+        return "detailQuestion";
 
-        questionService.update(question);
-
-        return questionService.read(question.getQuesNo());
     }
+
+//    @GetMapping(value="edit/{postNo}") //, produces="application/json"
+//    @ResponseBody
+//    public QuestionVO editQuestion(@PathVariable int postNo) {
+//        return questionService.read(postNo);
+//
+//    }
+
+//    @PostMapping("edit/")
+//    @ResponseBody
+//    public QuestionVO editQuestion(HttpServletRequest request, QuestionVO question, Principal principal) {
+//
+//        List<ImageVO> imgVOList = imageService.readAll(question.getQuesNo());
+//
+//        for (ImageVO imgVO : imgVOList) {
+//
+//            System.out.println("기존 업로드 파일 경로:" + imgVO.getUploadPath());
+//
+//        }
+//
+//        UploadFileUtils.deleteFile(request, imgVOList);
+//
+//        questionService.update(question);
+//
+//        return questionService.read(question.getQuesNo());
+//    }
 
     @RequestMapping("delete/{postNo}")
     public String deleteQuestion(HttpServletRequest request, @PathVariable int postNo) {

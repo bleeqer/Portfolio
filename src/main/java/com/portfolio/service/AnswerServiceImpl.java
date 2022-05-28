@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -51,23 +52,9 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<AnswerVO> selectAnswers(int quesNo) {
+    public List<AnswerVO> selectAnswers(Map<String, Integer> map) {
 
-        // 답변글 리스트 조회
-        List<AnswerVO> answers = answerMapper.selectAnswers(quesNo);
-
-        // 답변글 순회하며 유저 정보 담기
-        for (AnswerVO answer : answers) {
-
-            UserVO user = userMapper.select(answer.getUserNo());
-            answer.setUserEmail(user.getEmail());
-            answer.setUserName(user.getName());
-            answer.setUserNo(user.getUserNo());
-            answer.setUserPhoto(user.getPhoto());
-
-        }
-
-        return answers;
+        return answerMapper.selectAnswers(map);
     }
 
     @Override

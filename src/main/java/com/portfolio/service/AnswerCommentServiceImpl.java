@@ -24,8 +24,16 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     @Override
     public void insert(CommentVO commentVO) {
 
-        // 답변글 번호, comment_cnt 더하기 갯수 1
-        answerMapper.updateCommentCnt(commentVO.getAnsNo(), 1);
+        HashMap<String, Integer> map = new HashMap<>();
+
+        // 답변글 번호
+        map.put("AnsNo", commentVO.getAnsNo());
+
+        // comment_cnt 더하기 갯수 1
+        map.put("coCnt", 1);
+
+        // 코멘트 갯수 업데이트
+        answerMapper.updateCommentCnt(map);
 
         answerCommentMapper.insert(commentVO);
 
@@ -62,8 +70,15 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
         // 코멘트 트리 삭제하고 삭제된 row 갯수 반환
         int res = answerCommentMapper.delete(commentVO.getCoNo());
 
-        // 해당 답변글의 삭제된 comment row 갯수만큼 답변글 comment_cnt 값 빼기
-        answerMapper.updateCommentCnt(commentVO.getAnsNo(), -res);
+        HashMap<String, Integer> map = new HashMap<>();
+
+        // 답변글 번호
+        map.put("ansNo", commentVO.getAnsNo());
+
+        // 삭제된 댓글 갯수 음수 변환하여 매핑
+        map.put("coCnt", -res);
+
+        answerMapper.updateCommentCnt(map);
     }
 
 //    @Override

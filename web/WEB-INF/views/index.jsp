@@ -177,7 +177,7 @@
                                                             <div>
                                                                 <div>
                                                                     <a class="text-decoration-none link-default-color hover-underline"
-                                                                       href="#"><strong>${answerPair.question}</strong></a>
+                                                                       href="/question/${answerPair.quesNo}"><strong>${answerPair.question}</strong></a>
                                                                 </div>
                                                             </div>
 

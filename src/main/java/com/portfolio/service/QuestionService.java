@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface QuestionService {
     void create(QuestionVO questionVO);
-    QuestionVO read(int postNo);
+    QuestionVO select(int quesNo);
     void update(QuestionVO questionVO);
     void delete(int postNo);
     List<QuestionVO> selectList(QuestionVO questionVO);

@@ -56,8 +56,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public QuestionVO read(int postNo) {
-        return questionMapper.select(postNo);
+    public QuestionVO select(int quesNo) {
+        return questionMapper.select(quesNo);
     }
 
     @Override
