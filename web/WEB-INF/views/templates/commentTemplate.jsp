@@ -196,10 +196,10 @@
                                             <%--Option popover--%>
                                             <div class="option-popover-content" style="display: none;">
 
-                                                <div class="d-flex popover-item option" data-co-no="${comment.coNo}" data-option-type="Edit">
+                                                <div class="d-flex popover-item option" data-co-no="${comment.coNo}" data-ans-no="${comment.ansNo}" data-option-type="Edit">
                                                     <div class="py-1 px-3">Edit</div>
                                                 </div>
-                                                <div class="d-flex popover-item option" data-co-no="${comment.coNo}" data-option-type="Delete">
+                                                <div class="d-flex popover-item option" data-co-no="${comment.coNo}" data-ans-no="${comment.ansNo}" data-option-type="Delete">
                                                     <div class="py-1 px-3">Delete</div>
                                                 </div>
                                             </div>

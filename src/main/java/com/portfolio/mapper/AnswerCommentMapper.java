@@ -8,14 +8,12 @@ import java.util.Map;
 
 public interface AnswerCommentMapper {
 
-    int insert(CommentVO answerReply);
-    void update(CommentVO answerReply);
+    int insert(CommentVO commentVO);
+    CommentVO select(int coNo);
+    void update(CommentVO commentVO);
     int delete(int coNo);
-    List<CommentVO> selectAll();
-    void addLikeCnt(int replyNo);
-    CommentVO selectOne(int replyNo);
     List<CommentVO> selectList(CommentVO commentVO);
     int selectLastCoNo(int ansNo);
-//    int selectNestedMaxOrder(int parentCommentNo);
-//    int selectMaxOrder();
+    void addLikeCnt(int coNo);
+
 }

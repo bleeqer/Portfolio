@@ -24,15 +24,17 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     @Override
     public void insert(CommentVO commentVO) {
 
-        answerMapper.addCommentCnt(commentVO.getAnsNo());
+        // 답변글 번호, comment_cnt 더하기 갯수 1
+        answerMapper.updateCommentCnt(commentVO.getAnsNo(), 1);
+
         answerCommentMapper.insert(commentVO);
 
     }
 
     @Override
-    public CommentVO readOne(int ansNo) {
+    public CommentVO select(int ansNo) {
 
-        return answerCommentMapper.selectOne(ansNo);
+        return answerCommentMapper.select(ansNo);
     }
 
     @Override
@@ -55,15 +57,13 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
 
     @Transactional
     @Override
-    public void delete(int coNo) {
-        int res = answerCommentMapper.delete(coNo);
-    }
+    public void delete(CommentVO commentVO) {
 
-    @Override
-    public List<CommentVO> readAll() {
+        // 코멘트 트리 삭제하고 삭제된 row 갯수 반환
+        int res = answerCommentMapper.delete(commentVO.getCoNo());
 
-        return answerCommentMapper.selectAll();
-
+        // 해당 답변글의 삭제된 comment row 갯수만큼 답변글 comment_cnt 값 빼기
+        answerMapper.updateCommentCnt(commentVO.getAnsNo(), -res);
     }
 
 //    @Override

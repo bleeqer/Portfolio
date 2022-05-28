@@ -72,6 +72,7 @@ $('.comment-button').click(function () {
 
 $(document).on('click', '.popover-item.option', function () {
     const coNo = $(this).data('co-no')
+    const ansNo = $(this).data('ans-no')
     const optionType = $(this).data('option-type')
     
     if (optionType === 'Delete') {
@@ -79,7 +80,7 @@ $(document).on('click', '.popover-item.option', function () {
         $.ajax({
             type: 'GET',
             url: '/comment/delete',
-            data: {coNo: coNo},
+            data: {coNo: coNo, ansNo: ansNo},
             contentType: 'application/json',
             context: this,
             success: function (deletedCoNo) {

@@ -100,8 +100,8 @@
         FROM tb_like_rec WHERE ans_no=#{ansNo}
     </select>
 
-    <update id="addCommentCnt" parameterType="int">
-        UPDATE TB_ANSWER SET comment_cnt=comment_cnt + 1
+    <update id="updateCommentCnt" parameterType="int">
+        UPDATE TB_ANSWER SET comment_cnt=comment_cnt + #{coCnt}
         WHERE ans_no=#{ansNo}
     </update>
 

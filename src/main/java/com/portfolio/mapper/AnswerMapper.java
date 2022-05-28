@@ -4,6 +4,7 @@ import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.LikeVO;
 import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.QuestionVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ public interface AnswerMapper {
     LikeVO findLike(LikeVO likeVO);
     LikeVO updateLike(LikeVO likeVO);
     Map<String, Integer> countLike(int ansNo);
+    void updateCommentCnt(@Param("ansNo") int ansNo, @Param("coCnt") int coCnt);
 
-    void addCommentCnt(int ansNo);
 
 }

@@ -8,14 +8,10 @@ import java.util.List;
 
 public interface AnswerCommentService {
     void insert(CommentVO commentVO);
-    void delete(int coNo);
-    CommentVO readOne(int ansNo);
+    CommentVO select(int ansNo);
+    void update(CommentVO commentVO);
+    void delete(CommentVO commentVO);
     List<CommentVO> selectList(CommentVO commentVO);
     int selectLastCoNo(int ansNo);
-    void update(CommentVO answerReply);
 
-    List<CommentVO> readAll();
-//    void addLikeCnt(int postNo);
-//    int selectNestedMaxOrder(int parentCommentNo);
-//    int selectMaxOrder();
 }

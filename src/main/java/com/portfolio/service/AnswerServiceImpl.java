@@ -88,11 +88,6 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public void addViewCnt(int postNo) {
-        answerMapper.addViewCnt(postNo);
-    }
-
-    @Override
     public Map<String, Integer> addLike(LikeVO likeVO) {
 
         LikeVO like = answerMapper.findLike(likeVO);

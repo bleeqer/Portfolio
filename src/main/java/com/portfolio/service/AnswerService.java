@@ -14,7 +14,6 @@ public interface AnswerService {
     List<QAPairVO> selectAnsweredPairByUser(int userNo);
     void update(AnswerVO answerVO);
     void delete(int postNo);
-    void addViewCnt(int postNo);
     Map<String, Integer> addLike(LikeVO likeVO);
     Map<String, Integer> subtractLike(LikeVO likeVO);
 }
