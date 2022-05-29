@@ -11,3 +11,11 @@ $('.fade-post').each(function() {
         $(this).parent().find('.readMore-button').removeClass('hidden')
     }
 })
+
+// 답변 버튼 클릭 시 답변 modal에 유저정보, 질문글 띄우기
+$('.answer-button').click(function () {
+
+    $.ajax({
+        url: ''
+    })
+})

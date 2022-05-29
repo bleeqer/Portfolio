@@ -65,4 +65,11 @@ public class UserController {
         return "profile";
     }
 
+    @GetMapping("get/{userEmail}")
+    @ResponseBody
+    public UserVO getUser(@PathVariable String userEmail) {
+
+        return userService.selectByEmail(userEmail);
+    }
+
 }

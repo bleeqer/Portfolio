@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserVO selectByEmail(String email) {
+        return userMapper.selectByEmail(email);
+    }
+
+    @Override
     public void update(UserVO userVO) {
 
         userMapper.update(userVO);

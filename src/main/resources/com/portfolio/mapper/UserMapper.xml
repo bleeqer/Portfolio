@@ -15,7 +15,11 @@
     </select>
 
     <select id="select" parameterType="int" resultType="UserVO">
-        SELECT user_no AS userNo, email, name, password, photo, occupation FROM TB_USER where user_no=#{userNo}
+        SELECT user_no AS userNo, email, name, password, photo, occupation FROM TB_USER where user_no = #{userNo}
+    </select>
+
+    <select id="selectByEmail" parameterType="String" resultType="UserVO">
+        SELECT user_no AS userNo, email, name, password, photo, occupation FROM TB_USER where email = #{email}
     </select>
 
     <update id="update" parameterType="UserVO">

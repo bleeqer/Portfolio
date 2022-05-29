@@ -68,6 +68,7 @@ public class QuestionController {
 
         QuestionVO question = questionService.select(quesNo);
 
+        // 답변여부에 따라 답변글 조회
         if (question.getAnswered().equals("Y")) {
 
             HashMap<String, Integer> map = new HashMap<>();

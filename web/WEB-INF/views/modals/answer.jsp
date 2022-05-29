@@ -27,7 +27,7 @@
                         <%--프로필 사진--%>
                         <div class="me-3 position-relative">
                             <div>
-                                <img class="rounded-circle border border-color-whiten" src="/static/img/flower.jpeg" alt="" width="50" height="50">
+                                <img id="user-img" class="rounded-circle border border-color-whiten" src="" alt="" width="50" height="50">
                             </div>
                             <div class="bg-hover-darken position-absolute" style="inset: 0;">
                             </div>
@@ -37,10 +37,10 @@
                         <div class="d-flex flex-column">
 
                             <%--이름--%>
-                            <div class="my-auto font-size-1"><a class="text-decoration-none link-default-color hover-underline h6" href=""><b>홍길동</b></a></div>
+                            <div class="my-auto font-size-1"><a class="text-decoration-none link-default-color hover-underline h6" href=""><strong id="user-name"></strong></a></div>
 
                             <%--상세--%>
-                            <div class="my-auto color-grey font-size-1">프로그래머</div>
+                            <div id="user-occupation" class="my-auto color-grey font-size-1"></div>
 
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                 <%--Question content--%>
                 <div class="pt-4">
                     <div class="d-flex align-items-center" style="font-size: 18px;">
-                        <h5><b>This is the asked question</b></h5>
+                        <h5><strong id="asked-question"></strong></h5>
                     </div>
                 </div>
 

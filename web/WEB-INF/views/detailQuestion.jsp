@@ -114,7 +114,7 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex">
                                         <%--Answer button--%>
-                                        <button class="px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal">
+                                        <button class="answer-button" class="px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal">
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <%--Answer icon--%>
                                                 <div>
@@ -517,6 +517,9 @@
 
 <%--        </div>--%>
 <%--    </div>--%>
+
+<%@ include file="/WEB-INF/views/modals/answer.jsp" %>
+
 <script src="/static/js/utils.js"></script>
 <script src="/static/js/question.js"></script>
 <script src="/static/js/comment.js"></script>
