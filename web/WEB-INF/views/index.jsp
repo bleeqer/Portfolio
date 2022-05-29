@@ -36,6 +36,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/utils.css">
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/popover.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/answer.css">
 
     <style>
         input, textarea, button, a {
@@ -490,6 +491,7 @@
     <script src="/static/js/questions.js"></script>
     <script src="/static/js/getMore.js"></script>
     <script src="/static/js/main.js"></script>
+    <script src="/static/js/answer.js"></script>
     <script src="/static/js/comment.js"></script>
     <script src="/static/js/liking.js"></script>
     <script src="/static/js/popovers.js"></script>

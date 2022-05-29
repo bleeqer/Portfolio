@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/utils.css">
     <link rel="stylesheet" type="text/css" href="/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="/static/css/popover.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/answer.css">
 
     <style>
         input, textarea, button, a {
@@ -513,9 +514,9 @@
 <%--        </div>--%>
 <%--    </div>--%>
 <script src="/static/js/utils.js"></script>
-<script src="/static/js/questions.js"></script>
 <script src="/static/js/question.js"></script>
 <script src="/static/js/comment.js"></script>
+<script src="/static/js/answer.js"></script>
 <script src="/static/js/detailQuestion.js"></script>
 
 <script>
