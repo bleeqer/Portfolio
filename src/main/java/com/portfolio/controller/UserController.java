@@ -6,10 +6,12 @@ import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionService;
 import com.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 
@@ -30,34 +32,34 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("profile/{userNo}")
-    public String userProfile(@PathVariable int userNo, Model model) {
+    @GetMapping("profile/{email}")
+    public String userProfile(@PathVariable String email, Model model) {
 
         // 유저 정보 가져오기
-        UserVO user = userService.select(userNo);
+        UserVO user = userService.select(email);
 
         model.addAttribute("user", user);
 
         return "profile";
     }
 
-    @GetMapping("profile/{userNo}/answers")
-    public String userAnswers(@PathVariable int userNo, Model model) {
+    @GetMapping("profile/{email}/answers")
+    public String userAnswers(@PathVariable String email, Model model) {
 
         // 유저 정보 가져오기
-        model.addAttribute("user", userService.select(userNo));
+        model.addAttribute("user", userService.select(email));
 
         // 유저가 작성한 답변-질문 페어 3개 가져오기
-        model.addAttribute("answerPairs", answerService.selectAnsweredPairByUser(userNo));
+        model.addAttribute("answerPairs", answerService.selectAnsweredPairByUser(email));
 
         return "profile";
     }
 
-    @GetMapping("profile/{userNo}/questions")
-    public String userQuestions(@PathVariable int userNo, Model model) {
+    @GetMapping("profile/{email}/questions")
+    public String userQuestions(@PathVariable String email, Model model) {
 
         // 유저 정보 가져오기
-        model.addAttribute("user", userService.select(userNo));
+        model.addAttribute("user", userService.select(email));
 
         // 유저가 작성한 질문 리스트 가져오기
 //        model.addAttribute("questions", questionService.selectList(userNo));
@@ -65,11 +67,11 @@ public class UserController {
         return "profile";
     }
 
-    @GetMapping("get/{userEmail}")
+    @GetMapping("get")
     @ResponseBody
-    public UserVO getUser(@PathVariable String userEmail) {
+    public UserVO getUser(Principal principal) {
 
-        return userService.selectByEmail(userEmail);
+        return userService.select(principal.getName());
     }
 
 }

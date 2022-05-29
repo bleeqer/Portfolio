@@ -26,14 +26,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO select(int userNo) {
-        return userMapper.select(userNo);
-
-    }
-
-    @Override
-    public UserVO selectByEmail(String email) {
-        return userMapper.selectByEmail(email);
+    public UserVO select(String email) {
+        return userMapper.select(email);
     }
 
     @Override

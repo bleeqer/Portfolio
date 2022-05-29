@@ -16,6 +16,17 @@ $('.fade-post').each(function() {
 $('.answer-button').click(function () {
 
     $.ajax({
-        url: ''
+        url: '/user/get',
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        context: this,
+        success: function (user) {
+            $('#answer-modal').find('#user-img').attr('src', user.photo)
+            $('#answer-modal').find('#user-name').html(user.name)
+            $('#answer-modal').find('#user-occupation').html(user.occupation)
+            $('#answer-modal').find('#asked-question').html($('.question[data-ques-no="' + $(this).data('ques-no') + '"]').find('.question-text').text())
+
+        }
     })
 })

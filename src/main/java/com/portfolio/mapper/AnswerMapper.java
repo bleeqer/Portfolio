@@ -16,7 +16,7 @@ public interface AnswerMapper {
     void delete(int ansNo);
     List<AnswerVO> selectAnswers(Map<String, Integer> map);
     int countAnswers(int quesNo);
-    List<QAPairVO> selectAnsweredPairByUser(int userNo);
+    List<QAPairVO> selectAnsweredPairByUser(String email);
     int addLike(LikeVO likeVO);
     int deleteLike(LikeVO likeVO);
     LikeVO findLike(LikeVO likeVO);

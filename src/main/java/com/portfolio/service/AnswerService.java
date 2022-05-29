@@ -13,7 +13,7 @@ public interface AnswerService {
     AnswerVO select(int ansNo);
     List<AnswerVO> selectAnswers(Map<String, Integer> map);
     int countAnswers(int quesNo);
-    List<QAPairVO> selectAnsweredPairByUser(int userNo);
+    List<QAPairVO> selectAnsweredPairByUser(String email);
     void update(AnswerVO answerVO);
     void delete(AnswerVO answerVO);
     Map<String, Integer> addLike(LikeVO likeVO);

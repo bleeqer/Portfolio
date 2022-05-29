@@ -8,8 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public interface UserService {
     void create(UserVO userVO);
     CustomUserDetails selectForAuth(String username);
-    UserVO select(int userNo);
-    UserVO selectByEmail(String email);
+    UserVO select(String email);
     void update(UserVO userVO);
     void delete(String userNo);
 

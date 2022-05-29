@@ -9,8 +9,7 @@ public interface UserMapper {
 
     void insert(UserVO userVO);
     CustomUserDetails selectForAuth(String username);
-    UserVO select(int userNo);
-    UserVO selectByEmail(String email);
+    UserVO select(String email);
     void update(UserVO userVO);
     void delete(String userNo);
 

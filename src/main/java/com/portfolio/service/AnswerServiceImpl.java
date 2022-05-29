@@ -78,9 +78,9 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<QAPairVO> selectAnsweredPairByUser(int userNo) {
+    public List<QAPairVO> selectAnsweredPairByUser(String email) {
 
-        return answerMapper.selectAnsweredPairByUser(userNo);
+        return answerMapper.selectAnsweredPairByUser(email);
     }
 
     @Override
