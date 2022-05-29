@@ -81,7 +81,7 @@ public class QuestionController {
             model.addAttribute("answers", answerService.selectAnswers(map));
 
             // 총 답변 갯수 구하기
-            question.setAnswerCnt(answerService.countAnswers(question.getQuesNo()));
+//            question.setAnswerCnt(answerService.countAnswers(question.getQuesNo()));
         }
 
         model.addAttribute("question", question);

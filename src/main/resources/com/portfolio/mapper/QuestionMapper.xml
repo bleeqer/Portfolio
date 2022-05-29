@@ -17,7 +17,8 @@
     </insert>
 
     <select id="select" parameterType="int" resultMap="QuestionResultMap">
-        SELECT * FROM tb_question WHERE ques_no = #{quesNo} ORDER BY ques_no ASC
+        SELECT QUES.*, (SELECT COUNT(*) FROM TB_ANSWER WHERE ques_no = #{quesNo}) answer_cnt
+        FROM tb_question QUES WHERE QUES.ques_no = #{quesNo} ORDER BY QUES.ques_no ASC
     </select>
 
     <update id="update" parameterType="QuestionVO">
@@ -123,6 +124,7 @@
         <id column="email" property="userEmail"/>
         <id column="reg_date" property="regDate"/>
         <id column="view_cnt" property="viewCnt"/>
+        <id column="answer_cnt" property="answerCnt"/>
     </resultMap>
 
     <resultMap id="QAPairResultMap" type="QAPairVO">
