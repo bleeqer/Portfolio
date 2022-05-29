@@ -46,7 +46,7 @@
                     </div>
 
                 <%--Question content--%>
-                <div class="pt-4">
+                <div class="pt-3">
                     <div class="d-flex align-items-center" style="font-size: 18px;">
                         <h5><strong id="asked-question"></strong></h5>
                     </div>
@@ -130,60 +130,6 @@
 </script>
 
 <script>
-    $( document ).ready(function() {
-        function isOverflown(element) {
-            return element.prop('scrollHeight') > element.height()
-        }
-
-        // 질문 Modal Window textarea 자동 높이 조절
-        $('#question-textarea').on('keyup', function () {
-            $(this).height('26')
-            let scHeight = $(this).prop('scrollHeight')
-            $(this).height(scHeight)
-        })
-
-        // 답변 Modal Window open 시
-        $('#answer-modal').on('shown.bs.modal', function () {
-            initEditor()
-        })
-
-        // 질문 Modal Window close 시
-        $('#question-modal').on('hidden.bs.modal', function () {
-
-            // form 내용 초기화
-            $(this).find('form').trigger('reset')
-
-            // 카테고리 초기화
-            $('#first-category').val('1')
-            $('#second-category').val('1')
-        })
-
-        // // add question button 클릭 시 form submit
-        // $('#add-question-button').click(function () {
-        //     $('#question-form')
-        // })
-
-
-
-        async function initEditor () {
-
-          await tinymce.init({
-            selector: '#answer-textarea',
-            menubar: false,
-            statusbar: false,
-            toolbar: false,
-            browser_spellcheck: true,
-            // height: $("#modal-question").height() - $('title').height(),
-            setup: function (editor) {
-                editor.getBody().style.backgroundColor = '#E5FFCC';
-              editor.on('change', function () {
-                editor.save()
-              })
-            },
-            relative_urls: false,
-          })
-        }
-    })
 
 
 </script>

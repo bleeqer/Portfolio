@@ -28,3 +28,17 @@
 .bg-hover-whiten:hover .overflow-fade {
     background: linear-gradient(to bottom, transparent 60%, rgb(46, 46, 46) 100%);
 }
+
+#answer-textarea_ifr {
+    background: rgb(24, 24, 24) !important;
+}
+
+.tox-tinymce {
+    border: none !important;
+}
+
+.mce-content-body[data-mce-placeholder]::before {
+    color: rgb(0, 0, 0) !important;
+}
+
+

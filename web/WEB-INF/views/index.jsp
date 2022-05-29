@@ -25,12 +25,15 @@
         const header = $("meta[name='_csrf_header']").attr("content");
     </script>
 
-<%--  Bootstrap  --%>
+    <%--Bootstrap--%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <%-- Bootstrap Icon --%>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <%--tinymce editor--%>
+    <script src="https://cdn.tiny.cloud/1/gus813frvbl3fe4mc223cqoe7nmtzbc5kbk3xc2dzvawxe52/tinymce/6/tinymce.min.js"></script>
+
+    <%--Bootstrap Icon--%>
+    <link rel="stylesheet" href="https://cdn.misdeliver.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
     <%--CSS--%>
     <link rel="stylesheet" type="text/css" href="/static/css/utils.css">

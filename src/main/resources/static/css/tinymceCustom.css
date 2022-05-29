@@ -1,0 +1,30 @@
+.mce-content-body:not([dir=rtl])[data-mce-placeholder]:not(.mce-visualblocks)::before {
+    left: 0;
+}
+
+.mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
+    color: rgb(213, 214, 214, 0.7);
+    content: attr(data-mce-placeholder);
+    position: absolute;
+    font-size: 13px;
+}
+
+/*placeholder*/
+.mce-content-body::before  {
+    padding: 0 5px 0 5px;
+}
+
+/*entered content*/
+.mce-content-body  {
+    padding: 0 5px 0 5px;
+}
+
+
+p {
+    display: block;
+    margin-block-start: 10px;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+}
+
