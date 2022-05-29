@@ -184,7 +184,7 @@
                                         </div>
                                     </div>
                                     <div style="font-size: 15px; line-height: 26px;">
-                                        0 Answers
+                                        ${question.answerCnt} Answers
                                     </div>
                                 </div>
                             </div>

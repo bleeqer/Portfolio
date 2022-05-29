@@ -68,8 +68,6 @@ public class QuestionController {
 
         QuestionVO question = questionService.select(quesNo);
 
-        model.addAttribute("question", question);
-
         if (question.getAnswered().equals("Y")) {
 
             HashMap<String, Integer> map = new HashMap<>();
@@ -79,9 +77,14 @@ public class QuestionController {
             // 더불러오기용 마지막 답변글 번호
             map.put("ansNo", null);
 
+            // 답변 리스트
             model.addAttribute("answers", answerService.selectAnswers(map));
 
+            // 총 답변 갯수 구하기
+            question.setAnswerCnt(answerService.countAnswers(question.getQuesNo()));
         }
+
+        model.addAttribute("question", question);
 
         return "detailQuestion";
 

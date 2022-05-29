@@ -18,6 +18,7 @@ public class QuestionVO {
     private String regDate;
     private String answered;
     private int viewCnt;
+    private int answerCnt;
 
     public String getRegDate() {
         return regDate;
