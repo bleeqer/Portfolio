@@ -92,15 +92,19 @@
 
                         <%--Category--%>
                         <div>
-                            <div class="d-flex mb-1">
-                                <div class="rounded-pill px-3 text-center font-bold" style="font-size: 13px; height: 23px; line-height: 23px; background-color: rgb(13,110,253);">${question.categoryName}</div>
+                            <div class="d-flex mb-1"><div class="rounded-pill px-3 text-center font-bold" style="font-size: 13px; height: 23px; line-height: 23px; background-color: rgb(13,110,253);">${question.categoryName}</div>
                             </div>
                         </div>
 
                         <%--Question--%>
                         <div>
+                            <%--question--%>
                             <div>
-                                <div class="font-bold" style="font-size: 21px;">${question.question}</div>
+                                <div class="font-bold d-flex align-items-center" style="font-size: 21px;">${question.question}</div>
+                            </div>
+                            <%--views--%>
+                            <div>
+                                <span class="color-gray-light" style="font-size: 13px;">${question.viewCnt} views</span>
                             </div>
                         </div>
 
