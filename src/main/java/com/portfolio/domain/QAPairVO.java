@@ -10,20 +10,23 @@ import java.util.Date;
 @Setter
 public class QAPairVO {
 
+    // question
     private int quesNo;
     private String question;
     private String categoryName;
+
+    // answer
     private int ansNo;
     private String answer;
     private String answerRegDate;
     private int likes;
     private int dislikes;
-    private int answerCommentCnt;
-    private int answerUserNo;
-    private String answerUserEmail;
-    private String answerUserName;
-    private String answerUserPhoto;
-    private String answerUserOccupation;
+    private int commentCnt;
+    private int userNo;
+    private String userEmail;
+    private String userName;
+    private String userPhoto;
+    private String userOccupation;
 
     public String getAnswerRegDate() {
         return answerRegDate;

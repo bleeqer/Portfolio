@@ -122,8 +122,7 @@
         <id column="ans_no" property="ansNo"/>
         <id column="answer" property="answer"/>
         <id column="reg_date" property="regDate"/>
-        <id column="like_cnt" property="likeCnt"/>
-        <id column="comment_cnt" property="coCnt"/>
+        <id column="comment_cnt" property="commentCnt"/>
         <id column="email" property="userEmail"/>
         <id column="name" property="userName"/>
         <id column="photo" property="userPhoto"/>

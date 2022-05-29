@@ -164,11 +164,11 @@
                                                                         <%--이름--%>
                                                                     <div class="my-auto font-size-1"><a
                                                                             class="text-decoration-none link-default-color hover-underline h6"
-                                                                            href="/user/profile/${answerPair.answerUserNo}"><strong>${answerPair.answerUserName}</strong></a>
+                                                                            href="/user/profile/${answerPair.userNo}"><strong>${answerPair.userName}</strong></a>
                                                                     </div>
 
                                                                         <%--상세--%>
-                                                                    <div class="my-auto color-gray font-size-1">${answerPair.answerUserOccupation}<span> · </span>${answerPair.answerRegDate}
+                                                                    <div class="my-auto color-gray font-size-1">${answerPair.userOccupation}<span> · </span>${answerPair.answerRegDate}
                                                                     </div>
 
                                                                 </div>
@@ -293,7 +293,7 @@
 
                                                                             <%--Comment count--%>
                                                                         <div class="d-flex align-items-center justify-content-center color-gray">
-                                                                            ${answerPair.answerCommentCnt}
+                                                                            ${answerPair.commentCnt}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -320,7 +320,7 @@
                                                             </div>
                                                                 <%--Three dots--%>
                                                             <sec:authorize access="isAuthenticated()">
-                                                                <c:if test="${user.username == answerPair.answerUserEmail}">
+                                                                <c:if test="${user.username == answerPair.userEmail}">
                                                                     <div>
                             <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
                                   style="width: 38px; height: 38px;">

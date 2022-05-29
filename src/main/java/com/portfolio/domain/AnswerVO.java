@@ -15,8 +15,9 @@ public class AnswerVO {
     private int ansNo;
     private String answer;
     private String regDate;
-    private int likeCnt;
-    private int coCnt;
+    private int likes;
+    private int dislikes;
+    private int commentCnt;
     private String userEmail;
     private String userName;
     private String userPhoto;

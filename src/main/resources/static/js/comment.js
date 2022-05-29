@@ -38,6 +38,8 @@ $('.comment-button').click(function () {
 
     const ansNo = $(this).data('ans-no')
 
+    alert(ansNo)
+
     const commentSection = $('.comment-section[data-ans-no="' + ansNo + '"]')
 
     commentSection.toggle()

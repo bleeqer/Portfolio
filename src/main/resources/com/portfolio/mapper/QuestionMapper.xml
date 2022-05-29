@@ -129,13 +129,12 @@
         <id column="reg_date" property="answerRegDate"/>
         <id column="likes" property="likes"/>
         <id column="dislikes" property="dislikes"/>
-        <id column="like_cnt" property="answerLikeCnt"/>
-        <id column="comment_cnt" property="answerCommentCnt"/>
-        <id column="user_no" property="answerUserNo"/>
-        <id column="email" property="answerUserEmail"/>
-        <id column="name" property="answerUserName"/>
-        <id column="photo" property="answerUserPhoto"/>
-        <id column="occupation" property="answerUserOccupation"/>
+        <id column="comment_cnt" property="commentCnt"/>
+        <id column="user_no" property="userNo"/>
+        <id column="email" property="userEmail"/>
+        <id column="name" property="userName"/>
+        <id column="photo" property="userPhoto"/>
+        <id column="occupation" property="userOccupation"/>
     </resultMap>
 
 
