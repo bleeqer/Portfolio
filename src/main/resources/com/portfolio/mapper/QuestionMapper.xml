@@ -111,8 +111,8 @@
         WHERE ques_no = #{quesNo}
     </update>
 
-    <update id="updateAnswered" parameterType="int">
-        UPDATE TB_QUESTION SET answered = 'Y'
+    <update id="updateAnswered" parameterType="AnswerVO">
+        UPDATE TB_QUESTION SET answered = #{answered}
         WHERE ques_no = #{quesNo}
     </update>
 

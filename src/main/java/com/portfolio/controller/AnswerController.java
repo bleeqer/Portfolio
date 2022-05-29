@@ -21,13 +21,22 @@ public class AnswerController {
 
     @PostMapping("create")
     @ResponseBody
-    public AnswerVO createAnswer(@RequestBody AnswerVO answer) {
+    public AnswerVO createAnswer(AnswerVO answer) {
 
         System.out.println(answer.getQuesNo());
 
         int answerNo = answerService.create(answer);
 
         return answerService.select(answerNo);
+    }
+
+    @GetMapping("delete")
+    @ResponseBody
+    public int deleteAnswer(AnswerVO answer) {
+
+        answerService.delete(answer);
+
+        return answer.getAnsNo();
     }
 
     @GetMapping("like")

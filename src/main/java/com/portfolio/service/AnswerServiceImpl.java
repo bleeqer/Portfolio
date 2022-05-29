@@ -37,7 +37,16 @@ public class AnswerServiceImpl implements AnswerService {
         // answerVO 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
         answerMapper.insert(answerVO);
 
-        questionMapper.updateAnswered(answerVO.getQuesNo());
+
+        QuestionVO questionVO = new QuestionVO();
+
+        questionVO.setQuesNo(answerVO.getQuesNo());
+
+        // 답변여부 Y
+        questionVO.setAnswered("Y");
+
+        // 답변여부 업데이트
+        questionMapper.updateAnswered(questionVO);
 
         // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
 //        for (String uploadPath : answerVO.getImageList()) {
@@ -81,8 +90,21 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public void delete(int postNo) {
-        answerMapper.delete(postNo);
+    public void delete(AnswerVO answerVO) {
+
+        answerMapper.delete(answerVO.getAnsNo());
+
+        // 답변글 삭제 후 해당 질문글의 답변글 갯수가 0개일 때 답변여부 N 업데이트
+        if (answerMapper.countAnswers(answerVO.getQuesNo()) <= 0) {
+
+            QuestionVO questionVO = new QuestionVO();
+
+            questionVO.setQuesNo(answerVO.getQuesNo());
+            questionVO.setAnswered("N");
+
+            questionMapper.updateAnswered(questionVO);
+        }
+
     }
 
     @Override

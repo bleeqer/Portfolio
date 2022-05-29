@@ -1,5 +1,6 @@
 package com.portfolio.mapper;
 
+import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.QuestionVO;
 
@@ -15,6 +16,6 @@ public interface QuestionMapper {
     List<QuestionVO> selectList(QuestionVO questionVO);
     List<QAPairVO> selectPairList(QuestionVO questionVO);
     void addViewCnt(int quesNo);
-    void updateAnswered(int quesNo);
+    void updateAnswered(QuestionVO questionVO);
 
 }
