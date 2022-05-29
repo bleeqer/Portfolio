@@ -55,8 +55,12 @@ public class QuestionServiceImpl implements QuestionService {
 //        }
     }
 
+    @Transactional
     @Override
     public QuestionVO select(int quesNo) {
+
+        questionMapper.addViewCnt(quesNo);
+
         return questionMapper.select(quesNo);
     }
 
@@ -83,16 +87,5 @@ public class QuestionServiceImpl implements QuestionService {
 
         return questionMapper.selectPairList(questionVO);
     }
-
-    @Override
-    public void addViewCnt(int postNo) {
-        questionMapper.addViewCnt(postNo);
-    }
-
-    @Override
-    public void addLikeCnt(int postNo) {
-        questionMapper.addLikeCnt(postNo);
-    }
-
 
 }

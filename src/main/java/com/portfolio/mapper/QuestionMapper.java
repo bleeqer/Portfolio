@@ -14,9 +14,6 @@ public interface QuestionMapper {
     void delete(int postNo);
     List<QuestionVO> selectList(QuestionVO questionVO);
     List<QAPairVO> selectPairList(QuestionVO questionVO);
-    void addViewCnt(int postNo);
-    void addLikeCnt(int postNo);
-
-
+    void addViewCnt(int quesNo);
 
 }
