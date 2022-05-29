@@ -3,6 +3,7 @@ package com.portfolio.service;
 import com.portfolio.domain.*;
 import com.portfolio.mapper.AnswerImageMapper;
 import com.portfolio.mapper.AnswerMapper;
+import com.portfolio.mapper.QuestionMapper;
 import com.portfolio.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class AnswerServiceImpl implements AnswerService {
     AnswerMapper answerMapper;
 
     @Autowired
+    QuestionMapper questionMapper;
+
+    @Autowired
     UserMapper userMapper;
 
     @Autowired
@@ -32,6 +36,8 @@ public class AnswerServiceImpl implements AnswerService {
 
         // answerVO 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
         answerMapper.insert(answerVO);
+
+        questionMapper.updateAnswered(answerVO.getQuesNo());
 
         // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
 //        for (String uploadPath : answerVO.getImageList()) {

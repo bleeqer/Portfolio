@@ -110,6 +110,11 @@
         WHERE ques_no = #{quesNo}
     </update>
 
+    <update id="updateAnswered" parameterType="int">
+        UPDATE TB_QUESTION SET answered = 'Y'
+        WHERE ques_no = #{quesNo}
+    </update>
+
     <resultMap id="QuestionResultMap" type="QuestionVO">
         <id column="ques_no" property="quesNo"/>
         <id column="question" property="question"/>

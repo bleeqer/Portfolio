@@ -15,5 +15,6 @@ public interface QuestionMapper {
     List<QuestionVO> selectList(QuestionVO questionVO);
     List<QAPairVO> selectPairList(QuestionVO questionVO);
     void addViewCnt(int quesNo);
+    void updateAnswered(int quesNo);
 
 }
