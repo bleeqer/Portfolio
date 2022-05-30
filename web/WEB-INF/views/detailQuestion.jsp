@@ -19,8 +19,6 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <sec:csrfMetaTags/>
-
     <%--  Bootstrap  --%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -221,7 +219,7 @@
                         <c:forEach var="answer" items="${answers}">
 
                             <%--Answer--%>
-                            <div class="answer pt-3 border-bottom-gray border-top-gray mt-3">
+                            <div class="answer pt-3 border-bottom-gray mt-1">
                                 <div>
 
                                         <%--Content--%>

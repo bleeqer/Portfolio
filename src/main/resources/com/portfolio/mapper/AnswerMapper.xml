@@ -9,12 +9,31 @@
 
         -- file 테이블의 외래키로 사용될 ques_no를 반환받아 QuestionVO에 담김
         <selectKey keyProperty="ansNo" resultType="int" order="BEFORE">
-            select ANS_SEQUENCE.NEXTVAL from dual
+            select ANSWER_SEQ.NEXTVAL from dual
         </selectKey>
 
-        INSERT INTO TB_ANSWER (ans_no, ques_no, content, writer)
-        VALUES (#{ansNo}, #{quesNo}, #{content}, #{writer})
+        INSERT INTO TB_ANSWER (ans_no, ques_no, answer, user_email)
+        VALUES (#{ansNo}, #{quesNo}, #{answer}, #{userEmail})
     </insert>
+
+    <select id="select" parameterType="int" resultMap="AnswerResultMap">
+
+        SELECT ANS.ques_no,
+               ANS.ans_no,
+               ANS.answer,
+               ANS.reg_date,
+               ANS.like_cnt,
+               ANS.comment_cnt,
+               U.email,
+               U.name,
+               U.photo,
+               U.occupation
+        FROM TB_ANSWER ANS,
+             TB_USER U
+        WHERE ANS.ans_no = #{ansNo}
+              AND ANS.user_email = U.email
+
+    </select>
 
 <!--    <select id="select" parameterType="int" resultMap="AnswerResultMap">-->
 <!--        SELECT ques_no, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER WHERE ans_no=#{ansNo}-->

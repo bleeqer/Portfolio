@@ -56,14 +56,14 @@ $('#answer-modal').on('hidden.bs.modal', function () {
 
 $('#add-answer-button').click(function () {
 
+    const formData = new FormData($('#answer-form')[0])
     $.ajax({
         url: '/answer/create',
-        type: 'GET',
+        type: 'POST',
         dataType: 'json',
-        contentType: 'application/json',
-        data: {quesNo: $('#answer-form #ques-no').val(), answer: $('#answer-form #answer-textarea').val()},
-        success: function () {
-
+        data: $('#answer-form').serialize(),
+        success: function (answer) {
+            alert(answer.answer)
         }
     })
 

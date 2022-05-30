@@ -21,13 +21,14 @@ public class AnswerController {
 
     @PostMapping("create")
     @ResponseBody
-    public AnswerVO createAnswer(AnswerVO answer) {
+    public AnswerVO createAnswer(AnswerVO answer, Principal principal) {
 
-        System.out.println(answer.getQuesNo());
+        // 작성자 셋팅
+        answer.setUserEmail(principal.getName());
 
-        int answerNo = answerService.create(answer);
-
-        return answerService.select(answerNo);
+        int ansNo = answerService.create(answer);
+//
+        return answerService.select(ansNo);
     }
 
     @GetMapping("delete")
