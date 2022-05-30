@@ -59,23 +59,24 @@
                             <textarea id="answer-textarea" name="answer" class="mt-3 mb-1 px-2" style="scrollbar-width: none; width: 100%; height: 260px; outline: none; border: none;" placeholder="답변을 입력해주세요."></textarea>
                         </div>
                         <input id="ques-no" type="hidden" name="quesNo">
+                        <input id="image" type="file" style="display: none;">
                         <sec:csrfInput/>
                     </form>
                 </div>
             </div>
 
 
-            <div class="modal-footer ms-auto border-top-0 mt-auto">
-                <div class="d-flex align-items-center" style="width: 100%;">
+            <div class="modal-footer border-top-0 mt-auto" style="width: 100%;">
+                <div class="d-flex align-items-center justify-content-between" style="width: 100%;">
                     <%--Image upload--%>
-<%--                    <div>--%>
-<%--                        <div class="hover-border-color-blue d-flex justify-content-center align-items-center rounded-2" style="width: 30px; height: 30px; border: 1px solid transparent; transition: border-color 250ms !important;">--%>
-<%--                            <span>--%>
-<%--                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"><defs><path d="M5 4.5v14H2V.5h16.5v4H5z" id="a"></path></defs><g fill="#B1B3B6" fill-rule="evenodd" class="icon_svg-fill_as_stroke"><g fill-rule="nonzero"><path d="M8 7a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5v-12A.5.5 0 0 0 20 7H8zm0-1.25h12a1.75 1.75 0 0 1 1.75 1.75v12A1.75 1.75 0 0 1 20 21.25H8a1.75 1.75 0 0 1-1.75-1.75v-12A1.75 1.75 0 0 1 8 5.75zM17.5 9a1 1 0 1 0 0 2 1 1 0 1 0 0-2zm0-1.25a2.25 2.25 0 1 1 0 4.5 2.25 2.25 0 1 1 0-4.5z"></path><path d="M7.511 16.316V20h13v-3.682c-1.73-.926-2.81-1.389-3.241-1.389-.647 0-2.606 1.388-3.257 1.389s-2.609-2.299-3.252-2.299c-.429 0-1.512.766-3.25 2.298zm6.674-1.353.867-.443c1.296-.69 1.629-.842 2.217-.842.732 0 1.874.489 3.831 1.537a1.25 1.25 0 0 1 .66 1.102V20a1.25 1.25 0 0 1-1.25 1.25h-13A1.25 1.25 0 0 1 6.261 20v-3.684a1.25 1.25 0 0 1 .423-.938c2.065-1.82 3.183-2.61 4.077-2.61.523 0 .911.21 1.443.613.271.205.489.392 1.007.849l.866.732.041.031.067-.03z"></path></g><mask id="b" fill="#B1B3B6"><use xlink:href="#a"></use></mask><path d="M4.5 3.5A.5.5 0 0 0 4 4v12a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5V4a.5.5 0 0 0-.5-.5h-12zm0-1.25h12A1.75 1.75 0 0 1 18.25 4v12a1.75 1.75 0 0 1-1.75 1.75h-12A1.75 1.75 0 0 1 2.75 16V4A1.75 1.75 0 0 1 4.5 2.25z" fill-rule="nonzero" mask="url(#b)"></path></g>--%>
-<%--                                </svg>--%>
-<%--                            </span>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
+                    <div>
+                        <div id="image-upload-button" class="hover-border-color-blue d-flex justify-content-center align-items-center rounded-2" style="width: 30px; height: 30px; border: 1px solid transparent; transition: border-color 250ms !important;">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"><defs><path d="M5 4.5v14H2V.5h16.5v4H5z" id="a"></path></defs><g fill="#B1B3B6" fill-rule="evenodd" class="icon_svg-fill_as_stroke"><g fill-rule="nonzero"><path d="M8 7a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5v-12A.5.5 0 0 0 20 7H8zm0-1.25h12a1.75 1.75 0 0 1 1.75 1.75v12A1.75 1.75 0 0 1 20 21.25H8a1.75 1.75 0 0 1-1.75-1.75v-12A1.75 1.75 0 0 1 8 5.75zM17.5 9a1 1 0 1 0 0 2 1 1 0 1 0 0-2zm0-1.25a2.25 2.25 0 1 1 0 4.5 2.25 2.25 0 1 1 0-4.5z"></path><path d="M7.511 16.316V20h13v-3.682c-1.73-.926-2.81-1.389-3.241-1.389-.647 0-2.606 1.388-3.257 1.389s-2.609-2.299-3.252-2.299c-.429 0-1.512.766-3.25 2.298zm6.674-1.353.867-.443c1.296-.69 1.629-.842 2.217-.842.732 0 1.874.489 3.831 1.537a1.25 1.25 0 0 1 .66 1.102V20a1.25 1.25 0 0 1-1.25 1.25h-13A1.25 1.25 0 0 1 6.261 20v-3.684a1.25 1.25 0 0 1 .423-.938c2.065-1.82 3.183-2.61 4.077-2.61.523 0 .911.21 1.443.613.271.205.489.392 1.007.849l.866.732.041.031.067-.03z"></path></g><mask id="b" fill="#B1B3B6"><use xlink:href="#a"></use></mask><path d="M4.5 3.5A.5.5 0 0 0 4 4v12a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5V4a.5.5 0 0 0-.5-.5h-12zm0-1.25h12A1.75 1.75 0 0 1 18.25 4v12a1.75 1.75 0 0 1-1.75 1.75h-12A1.75 1.75 0 0 1 2.75 16V4A1.75 1.75 0 0 1 4.5 2.25z" fill-rule="nonzero" mask="url(#b)"></path></g>
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
 
                     <div class="d-flex justify-content-center align-items-center">
                         <%--Cancel--%>
