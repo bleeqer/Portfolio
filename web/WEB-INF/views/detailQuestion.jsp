@@ -302,9 +302,9 @@
                                                                                 </div>
                                                                                 <div class="like-cnt d-flex align-items-center justify-content-center"
                                                                                      style="font-size: 13px; margin-left: 2px;">
-    <%--                                                                                <c:if test="${answerPair.likes > 0}">--%>
-    <%--                                                                                    ${answerPair.likes}--%>
-    <%--                                                                                </c:if>--%>
+                                                                                    <c:if test="${answer.likes > 0}">
+                                                                                        ${answer.likes}
+                                                                                    </c:if>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -326,9 +326,9 @@
                                                                                 </div>
                                                                                 <div class="dislike-cnt d-flex align-items-center justify-content-center"
                                                                                      style="font-size: 13px; margin-left: 2px;">
-    <%--                                                                                <c:if test="${answerPair.dislikes > 0}">--%>
-    <%--                                                                                    ${answerPair.dislikes}--%>
-    <%--                                                                                </c:if>--%>
+                                                                                    <c:if test="${answer.dislikes > 0}">
+                                                                                        ${answer.dislikes}
+                                                                                    </c:if>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -530,6 +530,7 @@
 <script src="/static/js/comment.js"></script>
 <script src="/static/js/answer.js"></script>
 <script src="/static/js/detailQuestion.js"></script>
+<script src="/static/js/liking.js"></script>
 
 <script>
 

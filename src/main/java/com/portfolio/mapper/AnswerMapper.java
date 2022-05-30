@@ -20,7 +20,7 @@ public interface AnswerMapper {
     int addLike(LikeVO likeVO);
     int deleteLike(LikeVO likeVO);
     LikeVO findLike(LikeVO likeVO);
-    LikeVO updateLike(LikeVO likeVO);
+    int updateLike(LikeVO likeVO);
     Map<String, Integer> countLike(int ansNo);
     void updateCommentCnt(Map<String, Integer> map);
 
