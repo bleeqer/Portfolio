@@ -10,23 +10,18 @@ $('.like-button').click(function () {
         context: this,
         success: function (result) {
 
-            if (result.likes > 0) {
-
-                $(this).find('.like-cnt').html(result.likes)
-
-            } else {
-
-                $(this).find('.like-cnt').html('')
+            if (result.likes === 0) {
+                result.likes = ''
             }
 
-            if (result.dislikes > 0) {
-
-                $(this).find('.dislike-cnt').html(result.dislikes)
-
-            } else {
-
-                $(this).find('.dislike-cnt').html('')
+            if (result.dislikes === 0) {
+                result.dislikes = ''
             }
+
+            $(this).parents('.like-container').find('.like-cnt').html(result.likes)
+
+            $(this).parents('.like-container').find('.dislike-cnt').html(result.dislikes)
+
 
         },
         error: function () {
@@ -48,23 +43,17 @@ $('.dislike-button').click(function () {
         context: this,
         success: function (result) {
 
-            if (result.likes > 0) {
-
-                $(this).find('.like-cnt').html(result.likes)
-
-            } else {
-
-                $(this).find('.like-cnt').html('')
+            if (result.likes === 0) {
+                result.likes = ''
             }
 
-            if (result.dislikes > 0) {
-
-                $(this).find('.dislike-cnt').html(result.dislikes)
-
-            } else {
-
-                $(this).find('.dislike-cnt').html('')
+            if (result.dislikes === 0) {
+                result.dislikes = ''
             }
+
+            $(this).parents('.like-container').find('.like-cnt').html(result.likes)
+
+            $(this).parents('.like-container').find('.dislike-cnt').html(result.dislikes)
 
         },
         error: function () {

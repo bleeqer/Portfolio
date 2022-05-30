@@ -219,7 +219,7 @@
                         <c:forEach var="answer" items="${answers}">
 
                             <%--Answer--%>
-                            <div class="answer pt-3 border-bottom-gray mt-1">
+                            <div class="answer pt-2 border-bottom-gray mt-1">
                                 <div>
 
                                         <%--Content--%>
@@ -279,7 +279,7 @@
                                                             <div class="d-flex justify-content-center align-items-center">
 
                                                                     <%--Upvote/Downvote 버튼--%>
-                                                                <div class="me-1 d-flex justify-content-center align-items-center">
+                                                                <div class="like-container me-1 d-flex justify-content-center align-items-center">
 
                                                                         <%--Container--%>
                                                                     <div class="d-flex rounded-pill" role="button"
