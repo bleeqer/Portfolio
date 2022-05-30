@@ -98,6 +98,7 @@ async function initEditor () {
         content_style: "body { margin: 0; color: white !important; }",
         content_css: "/static/css/tinymceCustom.css",
         browser_spellcheck: true,
+        height : "260",
         // height: $("#modal-question").height() - $('title').height(),
         setup: function (editor) {
             // editor.getBody().style.backgroundColor = '#E5FFCC';
