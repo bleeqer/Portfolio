@@ -56,8 +56,9 @@
                 <div>
                     <form id="answer-form" action="">
                         <div class="d-flex justify-content-center align-items-start modal-body hover-border-bottom-color-blue border-top-0" style="width: 100%; min-height: 260px; height: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
-                            <textarea id="answer-textarea" name="content" class="mt-3 mb-1 px-2" style="scrollbar-width: none; width: 100%; height: 260px; outline: none; border: none;" placeholder="답변을 입력해주세요."></textarea>
+                            <textarea id="answer-textarea" name="answer" class="mt-3 mb-1 px-2" style="scrollbar-width: none; width: 100%; height: 260px; outline: none; border: none;" placeholder="답변을 입력해주세요."></textarea>
                         </div>
+                        <input id="ques-no" type="hidden" name="quesNo">
                     </form>
                 </div>
             </div>

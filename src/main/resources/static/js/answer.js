@@ -27,6 +27,7 @@ $('.answer-button').click(function () {
             $('#answer-modal').find('#user-name').html(user.name)
             $('#answer-modal').find('#user-occupation').html(user.occupation)
             $('#answer-modal').find('#asked-question').html($('.question[data-ques-no="' + $(this).data('ques-no') + '"]').find('.question-text').text())
+            $('#answer-modal').find('#ques-no').val($(this).data('ques-no'))
 
         }
     })
@@ -52,6 +53,23 @@ $('#answer-modal').on('hidden.bs.modal', function () {
     tinymce.activeEditor.destroy()
     $('#answer-textarea').val('')
 })
+
+$('#add-answer-button').click(function () {
+
+    $.ajax({
+        url: '/answer/create',
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: {quesNo: $('#answer-form #ques-no').val(), answer: $('#answer-form #answer-textarea').val()},
+        success: function () {
+
+        }
+    })
+
+})
+
+
 
 // 질문 Modal Window close 시
 // $('#question-modal').on('hidden.bs.modal', function () {
