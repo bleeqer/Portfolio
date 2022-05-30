@@ -56,15 +56,17 @@ $('#answer-modal').on('hidden.bs.modal', function () {
 
 $('#add-answer-button').click(function () {
 
-    const formData = new FormData($('#answer-form')[0])
     $.ajax({
         url: '/answer/create',
         type: 'POST',
         data: $('#answer-form').serialize(),
         success: function (answer) {
+
+            // 등록된 답변을 답변 리스트에 추가
             $('#answer-list').prepend(answer)
-            // $('#answer-modal').hide()
-            // alert(answer)
+
+            // 모달창 종료
+            $('#answer-modal').modal('toggle')
         }
     })
 
