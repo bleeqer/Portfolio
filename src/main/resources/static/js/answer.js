@@ -49,6 +49,8 @@ $('#answer-modal').on('shown.bs.modal', function () {
 })
 
 $('#answer-modal').on('hidden.bs.modal', function () {
+    tinymce.activeEditor.destroy()
+    $('#answer-textarea').val('')
 })
 
 // 질문 Modal Window close 시
