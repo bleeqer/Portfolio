@@ -124,7 +124,7 @@ $('#image').on("change", function () {
             for (const path of paths) {
 
                 // 이미지 태그 클릭하면 에러 발생함 나중에 삭제버튼 추가하기
-                tags = tags + '<div class="d-flex" style="width: 100%;"><img class="inserted-image px-auto" alt="photo" src= "' + path + '" style="width: 80%;"/></div>'
+                tags = tags + '<div class="d-flex" style="width: 100%;"><img class="inserted-image px-auto" alt="photo" src= "' + path + '" style="width: 80%;"/></div></b>'
             }
 
             tinymce.activeEditor.insertContent(tags)
@@ -166,6 +166,7 @@ async function initEditor () {
         menubar: false,
         statusbar: false,
         toolbar: false,
+        auto_focus: true,
         content_style: "body { margin: 0; color: white !important; }",
         content_css: "/static/css/tinymceCustom.css",
         browser_spellcheck: true,
