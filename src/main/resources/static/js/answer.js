@@ -60,10 +60,11 @@ $('#add-answer-button').click(function () {
     $.ajax({
         url: '/answer/create',
         type: 'POST',
-        dataType: 'json',
         data: $('#answer-form').serialize(),
         success: function (answer) {
-            alert(answer.answer)
+            $('#answer-list').prepend(answer)
+            // $('#answer-modal').hide()
+            // alert(answer)
         }
     })
 

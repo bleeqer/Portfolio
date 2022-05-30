@@ -7,9 +7,12 @@ import com.portfolio.security.CustomUserDetailsService;
 import com.portfolio.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -20,15 +23,23 @@ public class AnswerController {
     AnswerService answerService;
 
     @PostMapping("create")
-    @ResponseBody
-    public AnswerVO createAnswer(AnswerVO answer, Principal principal) {
+    public String createAnswer(AnswerVO answer, Principal principal, Model model) {
 
         // 작성자 셋팅
         answer.setUserEmail(principal.getName());
 
         int ansNo = answerService.create(answer);
-//
-        return answerService.select(ansNo);
+
+        AnswerVO createdAnswer = answerService.select(ansNo);
+
+        // answerTemplate 사용을 위해 list에 넣기
+        List<AnswerVO> answers = new ArrayList<>();
+
+        answers.add(createdAnswer);
+
+        model.addAttribute("answers", answers);
+
+        return "templates/answerTemplate";
     }
 
     @GetMapping("delete")
