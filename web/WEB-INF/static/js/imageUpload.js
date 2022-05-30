@@ -59,7 +59,7 @@ $("#image").on("change", function () {
 
         },
         error: function () {
-            alert("이미지 파일이 아닙니다.")
+            alert("이미지 업로드에 실패했습니다.")
         }
     })
 })

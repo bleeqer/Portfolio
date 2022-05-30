@@ -28,3 +28,19 @@ p {
     margin-inline-end: 0;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 9999em;
+    box-shadow: rgb(255 255 255 / 10%) 0px 0px 10px 10px inset;
+    border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+
+

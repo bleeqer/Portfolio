@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/views/board.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/views" />
+        <entry key="file://$PROJECT_DIR$/web/WEB-INF/views/modals/answer.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/views/modals" />
         <entry key="file://$PROJECT_DIR$/web/WEB-INF/views/modals/question-modal.jsp" value="file://$PROJECT_DIR$/web/WEB-INF/views/modals" />
       </map>
     </option>

@@ -42,6 +42,8 @@ public class UploadFileUtils {
             // 조회시 과부하를 막기 위한 경로 구분용 현재 날짜를 yyyyMMdd 형태로 반환받기
             String date = getTodayDate();
 
+            System.out.println("1");
+
             // 파일 이름 중복문제를 해결하기 위한 UUID
             String uuid = UUID.randomUUID().toString();
 
@@ -49,6 +51,7 @@ public class UploadFileUtils {
             // 현재날짜 + UUID + "_" + 파일
             String dbFile = File.separator + "uploadedImages" + File.separator + date + uuid + "_" + originalFileName;
 
+            System.out.println("2");
 
             // 위에서 생성했던 리스트에 첨부 이미지 데이터 담기
             fileList.add(dbFile);
@@ -56,8 +59,12 @@ public class UploadFileUtils {
             // 파일 저장 경로
             String saveFile = uploadPath + dbFile;
 
+
+
             // 파일 경로에 저장하기
             mtf.transferTo(new File(saveFile));
+
+            System.out.println("3");
 
         }
 
