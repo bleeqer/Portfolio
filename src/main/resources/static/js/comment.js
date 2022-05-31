@@ -192,13 +192,29 @@ $('.comment-section').on('click', '.add-comment-button', function () {
         data : $(this).parent().find('.comment-form').serialize(),
         context: this,
         success: function (comment) {
-            $(this).parents('.comment-section').find('.comment-list').prepend(comment)
+
+            const parentCoNo = $(this).data('co-no')
+
+            if (parentCoNo === 0) { // 부모 댓글 없을 때 댓글리스트 맨 위에 추가
+
+                $(this).parents('.comment-section').find('.comment-list').prepend(comment)
+
+            } else { // 부모 댓글 있을 때 부모 댓글의 바로 아래에 추가
+
+                // 댓글 추가
+                $('.comment[data-co-no="' + parentCoNo + '"]').after(comment)
+
+                // 추가한 댓글의 level이 1보다 커서 template에서 숨겨지므로 수동으로 보여주기
+                $('.comment[data-parent-co-no="' + parentCoNo + '"]').show()
+
+            }
+
 
             // popover 초기화
             initPopovers()
 
             // 해당 댓글의 부모 댓글의 자식 댓글 카운트 업데이트
-            recursiveCountChildComments($(this).data('co-no'))
+            countChildComments($(this).data('co-no'))
 
         },
         error: function () {

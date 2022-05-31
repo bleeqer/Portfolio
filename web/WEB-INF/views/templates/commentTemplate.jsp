@@ -409,7 +409,7 @@
                         <sec:csrfInput/>
                     </form>
                 </div>
-                <div class="add-comment-button rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;" data-co-level="${comment.level}" data-parent-co-no="${comment.parentCoNo}" data-ans-no="${comment.ansNo}">
+                <div class="add-comment-button rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;" data-co-level="${comment.level}" data-co-no="${comment.coNo}" data-parent-co-no="${comment.parentCoNo}" data-ans-no="${comment.ansNo}">
                     Reply
                 </div>
             </div>

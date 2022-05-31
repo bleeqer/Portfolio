@@ -29,8 +29,9 @@
                U.photo,
                U.occupation
         FROM tb_answer_comment CO, tb_user U
-        WHERE CO.co_no = #{coNo}
-            AND CO.user_email = U.email
+        WHERE CO.user_email = U.email
+            AND CO.co_no = #{coNo}
+        START WITH CO.parent_co_no = 0
         CONNECT BY PRIOR CO.co_no = CO.parent_co_no
 
     </select>
