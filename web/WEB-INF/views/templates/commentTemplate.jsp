@@ -8,7 +8,7 @@
 <span class="last-checker" style="display: none;" data-is-last="${isLast}"></span>
 
 <c:forEach var="comment" items="${comments}">
-    <div class="comment py-1 <c:if test="${comment.level == 1}">border-bottom-gray</c:if>"
+    <div class="comment py-1 <c:if test="${comment.level == 1}">border-top-gray</c:if>"
          data-co-level="${comment.level}"
          data-ans-no="${comment.ansNo}"
          data-co-no="${comment.coNo}"

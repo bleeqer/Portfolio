@@ -89,7 +89,8 @@ $('.comment-button').click(function () {
 
         commentSection.find('.comment-list').html(getComments(data))
 
-        commentSection.find('.comment[data-co-level="1"]').last().removeClass('border-bottom-gray')
+        // 첫번째 댓글 border-top 지우기
+        commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
 
         // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
         if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
@@ -130,8 +131,8 @@ $(document).on('click', '.popover-item.option', function () {
                 // 해당 댓글 포함 하위 댓글 모두 화면에서 지우기
                 deleteCommentTree(deletedCoNo)
 
-                // 삭제 댓글이 마지막 댓글일 수 있으므로 댓글이 포함되어 있었던 comment-section의 마지막 댓글 bottom border 지우기
-                commentSection.find('.comment[data-co-level="1"]').last().removeClass('border-bottom-gray')
+                // 첫번째 댓글 border-top 지우기
+                commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
                 
                 // popover 숨기기
                 $(this).parents('.popover').popover('hide')
@@ -171,8 +172,8 @@ $('.view-more-comments').click(function () {
     // popover 초기화
     initPopovers()
 
-    // 마지막 댓글 border-bottom 지우기
-    commentSection.find('.comment[data-co-level="1"]').last().removeClass('border-bottom-gray')
+    // 첫번째 댓글 border-top 지우기
+    commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
 
     // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
     if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
@@ -202,6 +203,12 @@ $('.comment-section').on('click', '.add-comment-button', function () {
 
                 $(this).parents('.comment-section').find('.comment-list').prepend(comment)
 
+                // 모든 루트 댓글 border-top 추가 (border-top이 없던 첫번째 댓글이 두번째 댓글이 되므로)
+                $(this).parents('.comment-section').find('.comment').addClass('border-top-gray')
+
+                // 첫번째 댓글 border-top 삭제
+                $(this).parents('.comment-section').find('.comment').first().removeClass('border-top-gray')
+
             } else { // 부모 댓글 있을 때 부모 댓글의 바로 아래에 추가
 
                 // 댓글 추가
@@ -211,6 +218,9 @@ $('.comment-section').on('click', '.add-comment-button', function () {
                 $('.comment[data-parent-co-no="' + parentCoNo + '"]').show()
 
             }
+
+
+
 
 
             // popover 초기화
