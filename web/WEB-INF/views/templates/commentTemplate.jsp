@@ -153,8 +153,7 @@
                                                     </span>
 
                                                 <%--Comment count--%>
-                                            <div class="d-flex align-items-center justify-content-center color-gray">
-                                                100
+                                            <div class="comment-count d-flex align-items-center justify-content-center color-gray">
                                             </div>
                                         </div>
                                     </div>
@@ -354,7 +353,6 @@
 
                                                 <%--Comment count--%>
                                             <div class="comment-count d-flex align-items-center justify-content-center color-gray">
-                                                100
                                             </div>
                                         </div>
                                     </div>
@@ -408,9 +406,7 @@
                         <input type="text" name="answerComment" placeholder="Add a reply..." style="height: 22px; border: none; outline: none; width: 100%; font-size: 15px; line-height: 22px;">
                         <input type="hidden" name="ansNo" value="${comment.ansNo}">
                         <input type="hidden" name="parentCoNo" value="${comment.coNo}">
-                        <sec:authorize access="isAuthenticated()">
-                            <input type="hidden" name="userEmail" value="${user.username}">
-                        </sec:authorize>
+                        <sec:csrfInput/>
                     </form>
                 </div>
                 <div class="add-comment-button rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;" data-co-level="${comment.level}" data-parent-co-no="${comment.parentCoNo}" data-ans-no="${comment.ansNo}">
