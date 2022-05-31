@@ -15,10 +15,10 @@
          data-parent-co-no="${comment.parentCoNo}"
          style="
          <c:if test="${comment.level > 1}">display: none;</c:if>
-         padding-left: calc(${comment.level - 1} * <c:choose>
-                                                        <c:when test="${comment.level == 2}">42px</c:when>
-                                                        <c:when test="${comment.level > 2}">28px</c:when>
-                                                   </c:choose>);">
+         <c:choose>
+              <c:when test="${comment.level == 2}">padding-left: 42px</c:when>
+              <c:when test="${comment.level > 2}">padding-left: calc(${(comment.level - 2) * 36}px + 42px)</c:when>
+         </c:choose>;">
 
             <%--Comment node--%>
         <div class="d-flex flex-column">
