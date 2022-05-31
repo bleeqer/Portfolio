@@ -193,6 +193,9 @@ $('.comment-section').on('click', '.add-comment-button', function () {
         context: this,
         success: function (comment) {
 
+            // comment input 초기화
+            $(this).parent().find('.comment-form input[name="answerComment"]').val('')
+
             const parentCoNo = $(this).data('co-no')
 
             if (parentCoNo === 0) { // 부모 댓글 없을 때 댓글리스트 맨 위에 추가
