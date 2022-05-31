@@ -29,9 +29,6 @@
     <%--tinymce editor--%>
     <script src="https://cdn.tiny.cloud/1/gus813frvbl3fe4mc223cqoe7nmtzbc5kbk3xc2dzvawxe52/tinymce/6/tinymce.min.js"></script>
 
-    <script>
-
-    </script>
 
     <%--CSS--%>
     <link rel="stylesheet" type="text/css" href="/static/css/utils.css">

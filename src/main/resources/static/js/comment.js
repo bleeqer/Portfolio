@@ -38,8 +38,6 @@ $('.comment-button').click(function () {
 
     const ansNo = $(this).data('ans-no')
 
-    alert(ansNo)
-
     const commentSection = $('.comment-section[data-ans-no="' + ansNo + '"]')
 
     commentSection.toggle()
@@ -50,7 +48,7 @@ $('.comment-button').click(function () {
 
         commentSection.find('.comment-list').html(getComments(data))
 
-        commentSection.find('.comment').first().removeClass('border-top-gray')
+        commentSection.find('.comment').last().removeClass('border-bottom-gray')
 
         // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
         if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
@@ -59,19 +57,18 @@ $('.comment-button').click(function () {
         }
 
         // popover 초기화
-        $(function () {
-            $('.comment-option-button').popover({
-                html: true,
-                sanitize: false,
-                content: function() {
-                    return $(this).find('.option-popover-content').html()
-                }
-            })
+        $('.comment-option-button').popover({
+            html: true,
+            sanitize: false,
+            content: function() {
+                return $(this).find('.option-popover-content').html()
+            }
         })
 
     }
 })
 
+// 댓글 popover 옵션
 $(document).on('click', '.popover-item.option', function () {
     const coNo = $(this).data('co-no')
     const ansNo = $(this).data('ans-no')
@@ -93,8 +90,8 @@ $(document).on('click', '.popover-item.option', function () {
                 // 해당 댓글 포함 하위 댓글 모두 화면에서 지우기
                 deleteCommentTree(deletedCoNo)
 
-                // 삭제 댓글이 첫번째 댓글일 수 있으므로 댓글이 포함되어 있었던 comment-section의 첫번째 댓글 top border 지우기
-                commentSection.find('.comment').first().removeClass('border-top-gray')
+                // 삭제 댓글이 마지막 댓글일 수 있으므로 댓글이 포함되어 있었던 comment-section의 마지막 댓글 bottom border 지우기
+                commentSection.find('.comment').last().removeClass('border-bottom-gray')
                 
                 // popover 숨기기
                 $(this).parents('.popover').popover('hide')
@@ -136,26 +133,29 @@ $('.view-more-comments').click(function () {
 
 })
 
-
-$('.comment-section').on('click', '.comment-submit-button', function () {
-
-    const formData = new FormData($(this).parent().find('.comment-form')[0])
+// 댓글 등록
+$('.comment-section').on('click', '.add-comment-button', function () {
 
     $.ajax({
         url: '/comment/create',
         type: 'POST',
-        contentType: false,
-        processData: false,
-        data : formData,
-        beforeSend : function(xhr){
-            xhr.setRequestHeader(header, token);
-        },
-        success: function () {
-            alert('댓글 등록 성공')
+        data : $(this).parent().find('.comment-form').serialize(),
+        context: this,
+        success: function (comment) {
+            $(this).parents('.comment-section').find('.comment-list').prepend(comment)
+
+            // popover 초기화
+            $(this).parents('.comment-section').find('.comment-option-button').popover({
+                html: true,
+                sanitize: false,
+                content: function() {
+                    return $(this).find('.option-popover-content').html()
+                }
+            })
 
         },
         error: function () {
-            console.log('error occurred')
+            console.log('댓글 등록에 실패했습니다.')
         }
     })
 })

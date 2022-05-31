@@ -369,18 +369,19 @@
                                                                style="width: 100%; outline: none; border: none;"
                                                                placeholder="Add a comment...">
                                                         <input type="hidden" name="ansNo" value="${answerPair.ansNo}">
-                                                        <sec:authorize access="isAuthenticated()">
-                                                            <input type="hidden" name="userEmail" value="${user.username}">
-                                                        </sec:authorize>
+                                                        <sec:csrfInput/>
+<%--                                                        <sec:authorize access="isAuthenticated()">--%>
+<%--                                                            <input type="hidden" name="userEmail" value="${user.username}">--%>
+<%--                                                        </sec:authorize>--%>
                                                     </form>
                                                 </div>
 
                                                 <%--Add button--%>
-                                                <button class="comment-submit-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
+                                                <span class="add-comment-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
                                                         style="font-size: 13px; height: 30px; margin-left: 4px;">
                                                     <div style="white-space: nowrap;">Add comment
                                                     </div>
-                                                </button>
+                                                </span>
                                             </div>
 
                                                 <%--Comments--%>

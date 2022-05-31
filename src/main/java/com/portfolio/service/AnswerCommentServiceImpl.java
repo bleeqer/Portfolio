@@ -27,7 +27,7 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
         HashMap<String, Integer> map = new HashMap<>();
 
         // 답변글 번호
-        map.put("AnsNo", commentVO.getAnsNo());
+        map.put("ansNo", commentVO.getAnsNo());
 
         // comment_cnt 더하기 갯수 1
         map.put("coCnt", 1);
@@ -40,9 +40,9 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     }
 
     @Override
-    public CommentVO select(int ansNo) {
+    public CommentVO select(int coNo) {
 
-        return answerCommentMapper.select(ansNo);
+        return answerCommentMapper.select(coNo);
     }
 
     @Override

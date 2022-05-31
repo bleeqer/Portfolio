@@ -1,20 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<style>
-    #answer-modal textarea::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    #answer-modal textarea::-webkit-scrollbar-thumb {
-        border-radius: 9999em;
-        box-shadow: rgb(255 255 255 / 10%) 0px 0px 10px 10px inset;
-        border: 2px solid transparent;
-    }
-
-    #answer-modal textarea::-webkit-scrollbar-track {
-        background-color: transparent;
-    }
-</style>
 <div id="answer-modal" tabindex="-1" class="modal fade" aria-hidden="true" aria-labelledby="modal-title">
     <%--    style="left: 50%; top: 50%; transform: translate(-50%, -50%); min-height: 350px; max-height: 70vh; min-width: 680px; max-width: 90vw; width: 730px;" role="dialog"--%>
     <div class="modal-dialog border-grey rounded-3" style="top: calc(50% - 25px); transform: translateY(-50%); background-color: rgb(24, 24, 24) !important; min-height: 350px; max-height: 70vh; min-width: 680px; max-width: 90vw; width: 730px;">

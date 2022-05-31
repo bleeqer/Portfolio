@@ -8,7 +8,7 @@
 <span class="last-checker" style="display: none;" data-is-last="${isLast}"></span>
 
 <c:forEach var="comment" items="${comments}">
-    <div class="comment py-1 <c:if test="${comment.level == 1}">border-top-gray</c:if>"
+    <div class="comment py-1 <c:if test="${comment.level == 1}">border-bottom-gray</c:if>"
          data-co-level="${comment.level}"
          data-ans-no="${comment.ansNo}"
          data-co-no="${comment.coNo}"
@@ -182,18 +182,13 @@
                                 <sec:authorize access="isAuthenticated()">
                                     <c:if test="${user.username == comment.userEmail}">
                                         <div>
-                                        <span class="comment-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
-                                              style="width: 38px; height: 38px;"
-                                              data-bs-toggle="popover">
-                                          <svg class="d-block" width="24" height="24" viewBox="0 0 24 24"
-                                               xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                                  class="icon_svg-stroke" stroke-width="1.5" stroke="#666"
-                                                  fill="none">
+                                        <span class="comment-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" data-bs-toggle="popover" data-bs-original-title="" title="">
+                                          <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
                                             </path>
                                           </svg>
 
-                                            <%--Option popover--%>
+
                                             <div class="option-popover-content" style="display: none;">
 
                                                 <div class="d-flex popover-item option" data-co-no="${comment.coNo}" data-ans-no="${comment.ansNo}" data-option-type="Edit">
@@ -204,7 +199,6 @@
                                                 </div>
                                             </div>
                                         </span>
-
                                         </div>
                                     </c:if>
                                 </sec:authorize>

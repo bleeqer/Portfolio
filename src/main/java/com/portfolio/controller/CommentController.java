@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,16 +20,20 @@ public class CommentController {
     AnswerCommentService answerCommentService;
 
     @PostMapping("create")
-    public void createComment(CommentVO commentVO) {
+    public String createComment(CommentVO commentVO, Principal principal, Model model) {
 
-        System.out.println("외않되");
-
-        System.out.println(commentVO.getAnsNo());
-        System.out.println(commentVO.getParentCoNo());
-        System.out.println(commentVO.getAnswerComment());
-        System.out.println(commentVO.getUserEmail());
+        commentVO.setUserEmail(principal.getName());
 
         answerCommentService.insert(commentVO);
+
+        // commentTemplate 사용을 위해 comments list에 넣기
+        List<CommentVO> comments = new ArrayList<>();
+
+        comments.add(answerCommentService.select(commentVO.getCoNo()));
+
+        model.addAttribute("comments", comments);
+
+        return "templates/commentTemplate";
     }
 
     @GetMapping("delete")

@@ -32,7 +32,7 @@ public class AnswerController {
 
         AnswerVO createdAnswer = answerService.select(ansNo);
 
-        // answerTemplate 사용을 위해 list에 넣기
+        // answerTemplate 사용을 위해 answers list에 넣기
         List<AnswerVO> answers = new ArrayList<>();
 
         answers.add(createdAnswer);

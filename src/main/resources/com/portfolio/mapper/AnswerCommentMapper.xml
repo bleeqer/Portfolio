@@ -8,13 +8,32 @@
     <insert id="insert" parameterType="CommentVO">
 
         <selectKey keyProperty="coNo" resultType="int" order="BEFORE">
-            select COMMENT_SEQ.NEXTVAL from dual
+            SELECT COMMENT_SEQ.NEXTVAL FROM dual
         </selectKey>
 
         INSERT INTO TB_ANSWER_COMMENT (co_no, ans_no, answer_comment, user_email, parent_co_no)
         VALUES (#{coNo}, #{ansNo}, #{answerComment}, #{userEmail}, #{parentCoNo})
 
     </insert>
+
+    <select id="select" parameterType="int" resultMap="AnswerCommentResultMap">
+
+        SELECT level,
+               CO.co_no,
+               CO.ans_no,
+               CO.answer_comment,
+               CO.parent_co_no,
+               CO.reg_date,
+               U.email,
+               U.name,
+               U.photo,
+               U.occupation
+        FROM tb_answer_comment CO, tb_user U
+        WHERE CO.co_no = #{coNo}
+            AND CO.user_email = U.email
+        CONNECT BY PRIOR CO.co_no = CO.parent_co_no
+
+    </select>
 
     <delete id="delete" parameterType="int">
 
@@ -32,9 +51,10 @@
 
     <select id="selectLastCoNo" parameterType="int" resultType="int">
 
-        SELECT MAX(co_no)
+        SELECT NVL(MAX(co_no), 0) co_no
         FROM TB_ANSWER_COMMENT
         WHERE ans_no = #{ansNo}
+
     </select>
 
     <select id="selectList" parameterType="CommentVO" resultMap="AnswerCommentResultMap">

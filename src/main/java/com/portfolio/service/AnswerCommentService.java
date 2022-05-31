@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AnswerCommentService {
     void insert(CommentVO commentVO);
-    CommentVO select(int ansNo);
+    CommentVO select(int coNo);
     void update(CommentVO commentVO);
     void delete(CommentVO commentVO);
     List<CommentVO> selectList(CommentVO commentVO);

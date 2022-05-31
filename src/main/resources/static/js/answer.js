@@ -56,6 +56,8 @@ $('#answer-modal').on('hidden.bs.modal', function () {
 
 $('#add-answer-button').click(function () {
 
+    alert($('#answer-form').serialize())
+
     $.ajax({
         url: '/answer/create',
         type: 'POST',
@@ -110,7 +112,7 @@ $('#image').on("change", function () {
         data: formData,
 
         // 데이터 전송 방식
-        type: "POST",
+        type: 'POST',
 
         beforeSend: function(xhr){
             xhr.setRequestHeader('X-CSRF-TOKEN', $('input[name="_csrf"]').val())
@@ -167,20 +169,15 @@ async function initEditor () {
         statusbar: false,
         toolbar: false,
         auto_focus: true,
-        content_style: "body { margin: 0; color: white !important; }",
         content_css: "/static/css/tinymceCustom.css",
         browser_spellcheck: true,
         height : "260",
-        // height: $("#modal-question").height() - $('title').height(),
+        relative_urls: false,
         setup: function (editor) {
-            // editor.getBody().style.backgroundColor = '#E5FFCC';
-            // editor.contentDocument.body.style.backgroundColor = '#D6FFD6';
-            // editor.activeEditor.style.backgroundColor = 'black'
             editor.on('change', function () {
                 editor.save()
             })
         },
-        relative_urls: false,
     })
 }
 
