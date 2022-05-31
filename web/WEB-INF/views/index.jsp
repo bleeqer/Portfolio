@@ -378,7 +378,8 @@
 
                                                 <%--Add button--%>
                                                 <span class="add-comment-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
-                                                        style="font-size: 13px; height: 30px; margin-left: 4px;">
+                                                        style="font-size: 13px; height: 30px; margin-left: 4px;"
+                                                        data-co-level="0" data-parent-co-no="0" data-ans-no="${answerPair.ansNo}">
                                                     <div style="white-space: nowrap;">Add comment
                                                     </div>
                                                 </span>

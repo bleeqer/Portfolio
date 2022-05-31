@@ -108,13 +108,13 @@ $(document).on('click', '.popover-item.option', function () {
 
                     const parentCommentCount = $('.comment[data-co-no="' + $(this).data('parent-co-no') + '"] .comment-count')
                     
-                    parentCommentCount.html(parentCommentCount.html() - 1)
+                    parentCommentCount.html(parseInt(parentCommentCount.html()) - 1)
 
                 } else { // 부모 댓글 없을 때
 
                     const answerCommentCount = $('.QnA-container[data-ans-no="' + $(this).data('ans-no') + '"] .QnA-section .comment-count')
                     
-                    answerCommentCount.html(answerCommentCount.html() - 1)
+                    answerCommentCount.html(parseInt(answerCommentCount.html()) - 1)
                 }
 
                 // $(this).parents().closest('.comment-count').html($(this).parents().closest('.comment-count').html - 1)
@@ -136,6 +136,7 @@ $('.comment-section').on('click', 'div.reply-button', function () {
     $('.comment[data-co-no="' + parentNo + '"] .reply-input-container').toggle()
 })
 
+// 댓글 더보기
 $('.view-more-comments').click(function () {
 
     const ansNo = $(this).data('ans-no')
@@ -175,6 +176,20 @@ $('.comment-section').on('click', '.add-comment-button', function () {
 
             // popover 초기화
             initPopovers()
+
+            // 화면 댓글 카운트 수정하기
+            if ($(this).data('co-level') > 1) { // 부모 댓글 있을 때
+
+                const parentCommentCount = $('.comment[data-co-no="' + $(this).data('parent-co-no') + '"] .comment-count')
+
+                parentCommentCount.html(parseInt(parentCommentCount.html()) + 1)
+
+            } else { // 부모 댓글 없을 때
+
+                const answerCommentCount = $('.QnA-container[data-ans-no="' + $(this).data('ans-no') + '"] .QnA-section .comment-count')
+
+                answerCommentCount.html(parseInt(answerCommentCount.html()) + 1)
+            }
 
         },
         error: function () {
