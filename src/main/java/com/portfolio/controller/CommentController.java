@@ -20,6 +20,8 @@ public class CommentController {
     @PostMapping("create")
     public void createComment(CommentVO commentVO) {
 
+        System.out.println("외않되");
+
         System.out.println(commentVO.getAnsNo());
         System.out.println(commentVO.getParentCoNo());
         System.out.println(commentVO.getAnswerComment());
@@ -49,7 +51,7 @@ public class CommentController {
         model.addAttribute("isLast", "N");
 
         // 마지막 댓글일 시 isLast = Y
-        if (comments.get(comments.size() - 1).getCoNo() <= lastCoNo) {
+        if (!comments.isEmpty() && comments.get(comments.size() - 1).getCoNo() <= lastCoNo) {
             model.addAttribute("isLast", "Y");
         }
 
