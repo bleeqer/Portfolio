@@ -1,3 +1,15 @@
+// 댓글 popover option 초기화
+function initPopovers() {
+    $('.comment-option-button').popover({
+        html: true,
+        sanitize: false,
+        content: function() {
+            return $(this).find('.option-popover-content').html()
+        }
+    })
+}
+
+
 // 댓글 가져오기
 function getComments(data) {
 
@@ -48,7 +60,7 @@ $('.comment-button').click(function () {
 
         commentSection.find('.comment-list').html(getComments(data))
 
-        commentSection.find('.comment').last().removeClass('border-bottom-gray')
+        commentSection.find('.comment[data-co-level="1"]').last().removeClass('border-bottom-gray')
 
         // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
         if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
@@ -57,13 +69,7 @@ $('.comment-button').click(function () {
         }
 
         // popover 초기화
-        $('.comment-option-button').popover({
-            html: true,
-            sanitize: false,
-            content: function() {
-                return $(this).find('.option-popover-content').html()
-            }
-        })
+        initPopovers()
 
     }
 })
@@ -92,13 +98,13 @@ $(document).on('click', '.popover-item.option', function () {
                 deleteCommentTree(deletedCoNo)
 
                 // 삭제 댓글이 마지막 댓글일 수 있으므로 댓글이 포함되어 있었던 comment-section의 마지막 댓글 bottom border 지우기
-                commentSection.find('.comment').last().removeClass('border-bottom-gray')
+                commentSection.find('.comment[data-co-level="1"]').last().removeClass('border-bottom-gray')
                 
                 // popover 숨기기
                 $(this).parents('.popover').popover('hide')
                 
                 // 화면 댓글 카운트 수정하기
-                if ($(this).data('parent-co-no') > 0) { // 부모 댓글 있을 때
+                if ($(this).data('co-level') > 1) { // 부모 댓글 있을 때
 
                     const parentCommentCount = $('.comment[data-co-no="' + $(this).data('parent-co-no') + '"] .comment-count')
                     
@@ -141,6 +147,12 @@ $('.view-more-comments').click(function () {
 
     commentSection.find('.comment-list').append(getComments(data))
 
+    // popover 초기화
+    initPopovers()
+
+    // 마지막 댓글 border-bottom 지우기
+    commentSection.find('.comment[data-co-level="1"]').last().removeClass('border-bottom-gray')
+
     // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
     if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
 
@@ -162,13 +174,7 @@ $('.comment-section').on('click', '.add-comment-button', function () {
             $(this).parents('.comment-section').find('.comment-list').prepend(comment)
 
             // popover 초기화
-            $(this).parents('.comment-section').find('.comment-option-button').popover({
-                html: true,
-                sanitize: false,
-                content: function() {
-                    return $(this).find('.option-popover-content').html()
-                }
-            })
+            initPopovers()
 
         },
         error: function () {

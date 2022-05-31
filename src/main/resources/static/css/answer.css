@@ -55,3 +55,6 @@
     display: none !important;
 }
 
+.comment-list {
+    transition: height 250ms ease-in-out;
+}
