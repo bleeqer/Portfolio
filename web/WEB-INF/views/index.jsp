@@ -133,12 +133,12 @@
                             <c:forEach var="answerPair" items="${answerPairs}">
 
                                 <%--질문글--%>
-                                <div class="question-container mb-3 mx-1" data-ques-no="${answerPair.quesNo}">
+                                <div class="QnA-container mb-3 mx-1" data-ques-no="${answerPair.quesNo}" data-ans-no="${answerPair.ansNo}">
 
                                         <%--배경색--%>
                                     <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten">
-                                        <div class="px-4 pt-3" style="height: 100%;">
-                                            <div>
+                                        <div class="QnA-section px-4 pt-3" style="height: 100%;">
+                                            <div class="">
 
                                                     <%--질문글--%>
                                                 <div>
@@ -296,7 +296,7 @@
                                                                         </span>
 
                                                                             <%--Comment count--%>
-                                                                        <div class="d-flex align-items-center justify-content-center color-gray">
+                                                                        <div class="comment-count d-flex align-items-center justify-content-center color-gray">
                                                                             ${answerPair.commentCnt}
                                                                         </div>
                                                                     </div>

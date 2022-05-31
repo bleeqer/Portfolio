@@ -70,6 +70,7 @@ $('.comment-button').click(function () {
 
 // 댓글 popover 옵션
 $(document).on('click', '.popover-item.option', function () {
+
     const coNo = $(this).data('co-no')
     const ansNo = $(this).data('ans-no')
     const optionType = $(this).data('option-type')
@@ -95,6 +96,22 @@ $(document).on('click', '.popover-item.option', function () {
                 
                 // popover 숨기기
                 $(this).parents('.popover').popover('hide')
+                
+                // 화면 댓글 카운트 수정하기
+                if ($(this).data('parent-co-no') > 0) { // 부모 댓글 있을 때
+
+                    const parentCommentCount = $('.comment[data-co-no="' + $(this).data('parent-co-no') + '"] .comment-count')
+                    
+                    parentCommentCount.html(parentCommentCount.html() - 1)
+
+                } else { // 부모 댓글 없을 때
+
+                    const answerCommentCount = $('.QnA-container[data-ans-no="' + $(this).data('ans-no') + '"] .QnA-section .comment-count')
+                    
+                    answerCommentCount.html(answerCommentCount.html() - 1)
+                }
+
+                // $(this).parents().closest('.comment-count').html($(this).parents().closest('.comment-count').html - 1)
 
             },
             error: function () {
