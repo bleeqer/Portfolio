@@ -36,6 +36,13 @@
 
     </select>
 
+    <update id="update" parameterType="CommentVO">
+
+        UPDATE tb_answer_comment SET answer_comment = #{answerComment}
+        WHERE co_no = #{coNo}
+
+    </update>
+
     <delete id="delete" parameterType="int">
 
         DELETE FROM TB_ANSWER_COMMENT
@@ -45,10 +52,6 @@
                         CONNECT BY PRIOR  co_no = parent_co_no)
 
     </delete>
-
-<!--    <select id="selectOne" parameterType="int" resultMap="AnswerReplyResultMap">-->
-<!--        SELECT * FROM TB_ANS_COMMENT WHERE COMMENT_NO=#{replyNo}-->
-<!--    </select>-->
 
     <select id="selectLastCoNo" parameterType="int" resultType="int">
 

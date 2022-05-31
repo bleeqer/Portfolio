@@ -60,7 +60,7 @@
                     </div>
 
                         <%--Comment content--%>
-                    <div>
+                    <div class="comment-text" data-co-no="${comment.coNo}">
                         <div>
                             <p class="m-0"
                                style="font-size: 15px;">
@@ -70,7 +70,7 @@
                     </div>
 
                         <%--Footer--%>
-                    <div>
+                    <div class="comment-footer" data-co-no="${comment.coNo}">
 
                             <%--Container--%>
                         <div class="d-flex justify-content-center align-items-center py-1"
@@ -204,6 +204,30 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="comment-edit-container" style="display: none;" data-co-no="${comment.coNo}">
+                        <div>
+                            <div class="rounded-6 bg-black px-3 border-gray mt-1" style="width: 100%; padding-top: 7px; padding-bottom: 7px;">
+                                <form class="comment-edit-form" action="" style="line-height: 0;" data-co-no="${comment.coNo}">
+                                    <input id="comment-edit-input" type="text" name="answerComment" style="height: 22px; border: none; outline: none; width: 100%; font-size: 15px; line-height: 22px;">
+                                    <input id="co-no" type="hidden" name="coNo" value="">
+                                    <input id="user-email" type="hidden" name="userEmail" value="">
+                                    <sec:csrfInput/>
+                                </form>
+                            </div>
+                            <div class="d-flex my-2" style="width: 100%;">
+                                <div class="d-flex ms-auto">
+                                    <div class="comment-edit-cancel-button rounded-pill d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;" data-co-level="${comment.level}" data-co-no="${comment.coNo}" data-parent-co-no="${comment.parentCoNo}" data-ans-no="${comment.ansNo}">
+                                        Cancel
+                                    </div>
+                                    <div class="comment-edit-submit-button rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;" data-co-no="${comment.coNo}">
+                                        Edit
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
 

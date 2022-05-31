@@ -9,7 +9,7 @@ import java.util.List;
 public interface AnswerCommentService {
     void insert(CommentVO commentVO);
     CommentVO select(int coNo);
-    void update(CommentVO commentVO);
+    int update(CommentVO commentVO);
     void delete(CommentVO commentVO);
     List<CommentVO> selectList(CommentVO commentVO);
     int selectLastCoNo(int ansNo);

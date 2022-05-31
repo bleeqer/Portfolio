@@ -58,9 +58,9 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
 
 
     @Override
-    public void update(CommentVO answerReply) {
+    public int update(CommentVO commentVO) {
 
-        answerCommentMapper.update(answerReply);
+        return answerCommentMapper.update(commentVO);
     }
 
     @Transactional

@@ -36,6 +36,28 @@ public class CommentController {
         return "templates/commentTemplate";
     }
 
+    @GetMapping("select")
+    @ResponseBody
+    public CommentVO selectComment(int coNo) {
+        return answerCommentService.select(coNo);
+    }
+
+    @PostMapping("update")
+    @ResponseBody
+    public CommentVO updateComment(CommentVO commentVO, Principal principal) {
+        
+        // 예외처리 할 것
+        int res = 0;
+
+        if (commentVO.getUserEmail().equals(principal.getName())) {
+
+            res = answerCommentService.update(commentVO);
+
+        }
+
+        return commentVO;
+    }
+
     @GetMapping("delete")
     @ResponseBody
     public int deleteComment(CommentVO commentVO) {

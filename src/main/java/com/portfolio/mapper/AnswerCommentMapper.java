@@ -10,7 +10,7 @@ public interface AnswerCommentMapper {
 
     int insert(CommentVO commentVO);
     CommentVO select(int coNo);
-    void update(CommentVO commentVO);
+    int update(CommentVO commentVO);
     int delete(int coNo);
     List<CommentVO> selectList(CommentVO commentVO);
     int selectLastCoNo(int ansNo);

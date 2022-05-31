@@ -114,6 +114,9 @@ $(document).on('click', '.popover-item.option', function () {
     const coNo = $(this).data('co-no')
     const ansNo = $(this).data('ans-no')
     const optionType = $(this).data('option-type')
+
+    // popover 숨기기
+    $(this).parents('.popover').popover('hide')
     
     if (optionType === 'Delete') {
         
@@ -133,9 +136,6 @@ $(document).on('click', '.popover-item.option', function () {
 
                 // 첫번째 댓글 border-top 지우기
                 commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
-                
-                // popover 숨기기
-                $(this).parents('.popover').popover('hide')
 
                 // 해당 댓글의 부모 댓글의 자식 댓글 카운트 업데이트
                 countChildComments($(this).data('parent-co-no'))
@@ -146,6 +146,54 @@ $(document).on('click', '.popover-item.option', function () {
             }
         })
     }
+
+    else if (optionType === 'Edit') {
+
+        $('.comment-text[data-co-no="' + coNo + '"]').hide()
+        $('.comment-footer[data-co-no="' + coNo + '"]').hide()
+        $('.comment-edit-container[data-co-no="' + coNo + '"]').show()
+
+        $.ajax({
+            type: 'GET',
+            url: '/comment/select',
+            data: {coNo: coNo},
+            contentType: 'application/json',
+            success: function (comment) {
+
+                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#comment-edit-input').val(comment.answerComment)
+                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#co-no').val(comment.coNo)
+                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#user-email').val(comment.userEmail)
+
+            },
+            error: function () {
+                alert('오류가 발생했습니다.')
+            }
+        })
+
+
+    }
+})
+
+//
+$('.comment-section').on('click', '.comment-edit-submit-button', function () {
+
+    const coNo = $(this).data('co-no')
+
+    $.ajax({
+        url: '/comment/update',
+        type: 'POST',
+        data: $('.comment-edit-form[data-co-no="' + coNo + '"]').serialize(),
+        success: function (comment) {
+
+            $('.comment-text[data-co-no="' + coNo + '"]').show()
+            $('.comment-footer[data-co-no="' + coNo + '"]').show()
+            $('.comment-edit-container[data-co-no="' + coNo + '"]').hide()
+
+            // 수정된 댓글 내용으로 바꾸기
+            $('.comment-text[data-co-no="' + coNo + '"] p').html(comment.answerComment)
+
+        }
+    })
 })
 
 // 대댓글 보기
