@@ -125,8 +125,9 @@ $(document).on('click', '.comment-popover-item', function () {
         $.ajax({
             type: 'POST',
             url: '/comment/delete',
-            data: {coNo: coNo, ansNo: ansNo},
+            data: JSON.stringify({coNo: coNo, ansNo: ansNo}),
             contentType: 'application/json',
+            dataType: 'json',
             context: this,
             beforeSend: function(xhr){
                 xhr.setRequestHeader(header, token)

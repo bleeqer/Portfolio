@@ -44,7 +44,7 @@ public class CommentController {
         return answerCommentService.select(coNo);
     }
 
-    @GetMapping("update")
+    @PostMapping("update")
     @ResponseBody
     public CommentVO updateComment(CommentVO commentVO, Principal principal) {
         
@@ -62,7 +62,7 @@ public class CommentController {
 
     @PostMapping("delete")
     @ResponseBody
-    public int deleteComment(CommentVO commentVO) {
+    public int deleteComment(@RequestBody CommentVO commentVO) {
 
         answerCommentService.delete(commentVO);
 
