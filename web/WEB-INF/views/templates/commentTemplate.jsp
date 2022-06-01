@@ -62,7 +62,7 @@
                         <%--Comment content--%>
                     <div class="comment-text" data-co-no="${comment.coNo}">
                         <div>
-                            <p class="m-0"
+                            <p class="my-1"
                                style="font-size: 15px;">
                                 ${comment.answerComment}
                             </p>
@@ -80,15 +80,15 @@
                             <div class="d-flex justify-content-center align-items-center">
 
                                     <%--Upvote/Downvote 버튼--%>
-                                <div class="me-1 d-flex justify-content-center align-items-center">
+                                <div class="comment-like-container me-1 d-flex justify-content-center align-items-center">
 
                                         <%--Container--%>
                                     <div class="d-flex rounded-pill"
                                          role="button"
                                          style="background-color: rgba(255, 255, 255, 0.05);">
                                             <%--Upvote 버튼--%>
-                                        <div class="d-flex justify-content-center align-items-center bg-hover-whiten-light rounded-left-top-pill rounded-left-bottom-pill"
-                                             style="height: 30px; padding: 0px 10px;">
+                                        <div class="comment-like-button d-flex justify-content-center align-items-center bg-hover-whiten-light rounded-left-top-pill rounded-left-bottom-pill"
+                                             style="height: 30px; padding: 0px 10px;" data-co-no="${comment.coNo}">
                                             <div class="d-flex">
                                                 <div>
                                                                     <span class="d-inline-block d-flex align-items-center justify-content-center">
@@ -104,17 +104,19 @@
                                                                     </span>
                                                 </div>
 
-                                                <div class="d-flex align-items-center justify-content-center"
-                                                     style="font-size: 13px; margin-left: 2px;">
-                                                    ${comment.likeCnt}
+                                                <div class="comment-like-cnt d-flex align-items-center justify-content-center"
+                                                     style="font-size: 13px; margin-left: 2px;" data-co-no="${comment.coNo}">
+                                                    <c:if test="${comment.likes > 0}">
+                                                        ${comment.likes}
+                                                    </c:if>
                                                 </div>
                                             </div>
                                         </div>
 
                                             <%--Downvote 버튼--%>
-                                        <div class=" d-flex justify-content-center align-items-center bg-hover-whiten-light px-2 rounded-right-top-pill rounded-right-bottom-pill"
-                                             style="height: 30px; padding: 0px 10px;">
-                                            <div>
+                                        <div class="comment-dislike-button d-flex justify-content-center align-items-center bg-hover-whiten-light px-2 rounded-right-top-pill rounded-right-bottom-pill"
+                                             style="height: 30px; padding: 0px 10px;" data-co-no="${comment.coNo}">
+                                            <div class="d-flex">
                                                       <span class="d-inline-block d-flex align-items-center justify-content-center">
                                                         <svg width="20" height="20" viewBox="0 0 24 24"
                                                              xmlns="http://www.w3.org/2000/svg">
@@ -124,6 +126,13 @@
                                                                 stroke-linejoin="round"></path>
                                                         </svg>
                                                       </span>
+                                            </div>
+
+                                            <div class="comment-dislike-cnt d-flex align-items-center justify-content-center"
+                                                 style="font-size: 13px; margin-left: 2px;" data-co-no="${comment.coNo}">
+                                                <c:if test="${comment.dislikes > 0}">
+                                                    ${comment.dislikes}
+                                                </c:if>
                                             </div>
                                         </div>
                                     </div>

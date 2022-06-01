@@ -79,7 +79,7 @@
                     U.name,
                     U.photo,
                     U.occupation
-                FROM TB_QUESTION QUES, TB_USER U, TB_ANSWER ANS LEFT OUTER JOIN TB_LIKE_REC REC ON REC.ans_no = ANS.ans_no
+                FROM tb_question QUES, tb_user U, tb_answer ANS LEFT OUTER JOIN tb_answer_like_rec REC ON REC.ans_no = ANS.ans_no
                 WHERE
                     ANS.ques_no = QUES.ques_no
                     AND U.email = ANS.user_email

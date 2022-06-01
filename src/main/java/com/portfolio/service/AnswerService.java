@@ -1,9 +1,8 @@
 package com.portfolio.service;
 
 import com.portfolio.domain.AnswerVO;
-import com.portfolio.domain.LikeVO;
+import com.portfolio.domain.AnswerLikeVO;
 import com.portfolio.domain.QAPairVO;
-import com.portfolio.domain.QuestionVO;
 
 import java.util.List;
 import java.util.Map;
@@ -16,6 +15,6 @@ public interface AnswerService {
     List<QAPairVO> selectAnsweredPairByUser(String email);
     void update(AnswerVO answerVO);
     void delete(AnswerVO answerVO);
-    Map<String, Integer> addLike(LikeVO likeVO);
-    Map<String, Integer> subtractLike(LikeVO likeVO);
+    Map<String, Integer> addLike(AnswerLikeVO likeVO);
+    Map<String, Integer> subtractLike(AnswerLikeVO likeVO);
 }

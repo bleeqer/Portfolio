@@ -72,7 +72,7 @@
                 U.name,
                 U.photo,
                 U.occupation
-            FROM TB_ANSWER ANS LEFT OUTER JOIN TB_LIKE_REC REC ON REC.ans_no = ANS.ans_no, TB_USER U
+            FROM TB_ANSWER ANS LEFT OUTER JOIN tb_answer_like_rec REC ON REC.ans_no = ANS.ans_no, TB_USER U
             WHERE ANS.ques_no = #{quesNo}
                 AND ANS.user_email = U.email
                 <if test="ansNo != null and ansNo != ''">
@@ -114,38 +114,38 @@
         DELETE FROM TB_ANSWER WHERE ans_no=#{ansNo}
     </delete>
 
-    <insert id="addLike" parameterType="LikeVO">
+    <insert id="addLike" parameterType="AnswerLikeVO">
         <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
-            SELECT LIKE_SEQ.NEXTVAL FROM DUAL
+            SELECT answer_like_seq.nextval FROM dual
         </selectKey>
 
-        INSERT INTO TB_LIKE_REC (like_no, ans_no, user_email, like_type)
+        INSERT INTO tb_answer_like_rec (like_no, ans_no, user_email, like_type)
         VALUES (#{likeNo}, #{ansNo}, #{userEmail}, #{likeType})
     </insert>
 
-    <delete id="deleteLike" parameterType="LikeVO">
-        DELETE FROM TB_LIKE_REC WHERE ans_no=#{ansNo} AND user_email=#{userEmail}
+    <delete id="deleteLike" parameterType="AnswerLikeVO">
+        DELETE FROM tb_answer_like_rec WHERE ans_no=#{ansNo} AND user_email=#{userEmail}
     </delete>
 
-    <select id="findLike" parameterType="LikeVO" resultMap="likeResultMap">
-        SELECT * FROM TB_LIKE_REC WHERE ans_no=#{ansNo} AND user_email=#{userEmail}
+    <select id="findLike" parameterType="AnswerLikeVO" resultMap="answerLikeResultMap">
+        SELECT * FROM tb_answer_like_rec WHERE ans_no=#{ansNo} AND user_email=#{userEmail}
     </select>
 
-    <update id="updateLike" parameterType="LikeVO">
-        UPDATE TB_LIKE_REC
+    <update id="updateLike" parameterType="AnswerLikeVO">
+        UPDATE tb_answer_like_rec
         SET like_type = #{likeType}
         WHERE ans_no = #{ansNo} AND user_email = #{userEmail}
     </update>
 
-    <select id="countLike" parameterType="LikeVO" resultMap="likeCountMap">
+    <select id="countLike" parameterType="AnswerLikeVO" resultMap="likeCountMap">
         SELECT NVL(SUM(CASE WHEN like_type = 'UP' THEN 1 ELSE 0 END), 0) likes,
                NVL(SUM(CASE WHEN like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes
-        FROM tb_like_rec WHERE ans_no=#{ansNo}
+        FROM tb_answer_like_rec WHERE ans_no = #{ansNo}
     </select>
 
     <update id="updateCommentCnt" parameterType="map">
-        UPDATE TB_ANSWER SET comment_cnt=comment_cnt + #{coCnt}
-        WHERE ans_no=#{ansNo}
+        UPDATE tb_answer SET comment_cnt = comment_cnt + #{coCnt}
+        WHERE ans_no = #{ansNo}
     </update>
 
     <resultMap id="AnswerResultMap" type="AnswerVO">
@@ -160,7 +160,7 @@
         <id column="occupation" property="userOccupation"/>
     </resultMap>
 
-    <resultMap id="likeResultMap" type="LikeVO">
+    <resultMap id="answerLikeResultMap" type="AnswerLikeVO">
         <id column="ans_no" property="ansNo"/>
         <id column="user_email" property="userEmail"/>
         <id column="like_type" property="likeType"/>

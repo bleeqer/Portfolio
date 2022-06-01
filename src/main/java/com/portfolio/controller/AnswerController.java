@@ -1,9 +1,7 @@
 package com.portfolio.controller;
 
 import com.portfolio.domain.AnswerVO;
-import com.portfolio.domain.LikeVO;
-import com.portfolio.security.CustomUserDetails;
-import com.portfolio.security.CustomUserDetailsService;
+import com.portfolio.domain.AnswerLikeVO;
 import com.portfolio.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,10 +53,12 @@ public class AnswerController {
     @ResponseBody
     public Map<String, Integer> likeAnswer(@RequestParam int ansNo, Principal principal) {
 
-        LikeVO likeVO = new LikeVO();
+        AnswerLikeVO likeVO = new AnswerLikeVO();
 
         likeVO.setAnsNo(ansNo);
         likeVO.setUserEmail(principal.getName());
+
+        System.out.println(likeVO);
 
         return answerService.addLike(likeVO);
     }
@@ -67,7 +67,7 @@ public class AnswerController {
     @ResponseBody
     public Map<String, Integer> dislikeAnswer(@RequestParam int ansNo, Principal principal) {
 
-        LikeVO likeVO = new LikeVO();
+        AnswerLikeVO likeVO = new AnswerLikeVO();
 
         likeVO.setAnsNo(ansNo);
         likeVO.setUserEmail(principal.getName());

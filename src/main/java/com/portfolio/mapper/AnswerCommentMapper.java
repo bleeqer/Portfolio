@@ -1,8 +1,9 @@
 package com.portfolio.mapper;
 
+import com.portfolio.domain.CommentLikeVO;
 import com.portfolio.domain.CommentVO;
+import com.portfolio.domain.AnswerLikeVO;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,10 @@ public interface AnswerCommentMapper {
     int delete(int coNo);
     List<CommentVO> selectList(CommentVO commentVO);
     int selectLastCoNo(int ansNo);
-    void addLikeCnt(int coNo);
+    int addLike(CommentLikeVO likeVO);
+    int deleteLike(CommentLikeVO likeVO);
+    CommentLikeVO findLike(CommentLikeVO likeVO);
+    int updateLike(CommentLikeVO likeVO);
+    Map<String, Integer> countLike(int ansNo);
 
 }

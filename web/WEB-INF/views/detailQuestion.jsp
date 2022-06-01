@@ -276,13 +276,13 @@
                                                             <div class="d-flex justify-content-center align-items-center">
 
                                                                     <%--Upvote/Downvote 버튼--%>
-                                                                <div class="like-container me-1 d-flex justify-content-center align-items-center">
+                                                                <div class="answer-like-container me-1 d-flex justify-content-center align-items-center">
 
                                                                         <%--Container--%>
                                                                     <div class="d-flex rounded-pill" role="button"
                                                                          style="background-color: rgba(255, 255, 255, 0.05); height: 30px;">
                                                                             <%--Like 버튼--%>
-                                                                        <div class="like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill">
+                                                                        <div class="answer-like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" data-ans-no="${answer.ansNo}">
                                                                             <div class="d-flex">
                                                                                 <div>
                                                                                     <span class="d-inline-block d-flex align-items-center justify-content-center">
@@ -297,8 +297,8 @@
                                                                                         </svg>
                                                                                     </span>
                                                                                 </div>
-                                                                                <div class="like-cnt d-flex align-items-center justify-content-center"
-                                                                                     style="font-size: 13px; margin-left: 2px;">
+                                                                                <div class="answer-like-cnt d-flex align-items-center justify-content-center"
+                                                                                     style="font-size: 13px; margin-left: 2px;" data-ans-no="${answer.ansNo}">
                                                                                     <c:if test="${answer.likes > 0}">
                                                                                         ${answer.likes}
                                                                                     </c:if>
@@ -306,7 +306,7 @@
                                                                             </div>
                                                                         </div>
                                                                             <%--Unlike 버튼--%>
-                                                                        <div class="dislike-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill">
+                                                                        <div class="answer-dislike-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill" data-ans-no="${answer.ansNo}">
                                                                             <div class="d-flex">
                                                                                 <div>
                                                                                     <span class="d-inline-block d-flex align-items-center justify-content-center">
@@ -321,8 +321,8 @@
                                                                                         </svg>
                                                                                     </span>
                                                                                 </div>
-                                                                                <div class="dislike-cnt d-flex align-items-center justify-content-center"
-                                                                                     style="font-size: 13px; margin-left: 2px;">
+                                                                                <div class="answer-dislike-cnt d-flex align-items-center justify-content-center"
+                                                                                     style="font-size: 13px; margin-left: 2px;" data-ans-no="${answer.ansNo}">
                                                                                     <c:if test="${answer.dislikes > 0}">
                                                                                         ${answer.dislikes}
                                                                                     </c:if>

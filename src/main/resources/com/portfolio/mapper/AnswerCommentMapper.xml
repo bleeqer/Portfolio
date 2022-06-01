@@ -90,6 +90,35 @@
 
     </select>
 
+    <insert id="addLike" parameterType="CommentLikeVO">
+        <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
+            SELECT comment_like_seq.nextval FROM dual
+        </selectKey>
+
+        INSERT INTO tb_comment_like_rec (like_no, co_no, user_email, like_type)
+        VALUES (#{likeNo}, #{coNo}, #{userEmail}, #{likeType})
+    </insert>
+
+    <delete id="deleteLike" parameterType="CommentLikeVO">
+        DELETE FROM tb_comment_like_rec WHERE co_no = #{coNo} AND user_email = #{userEmail}
+    </delete>
+
+    <select id="findLike" parameterType="CommentLikeVO" resultMap="commentLikeResultMap">
+        SELECT * FROM tb_comment_like_rec WHERE co_no = #{coNo} AND user_email = #{userEmail}
+    </select>
+
+    <update id="updateLike" parameterType="CommentLikeVO">
+        UPDATE tb_comment_like_rec
+        SET like_type = #{likeType}
+        WHERE co_no = #{coNo} AND user_email = #{userEmail}
+    </update>
+
+    <select id="countLike" parameterType="CommentLikeVO" resultMap="likeCountMap">
+        SELECT NVL(SUM(CASE WHEN like_type = 'UP' THEN 1 ELSE 0 END), 0) likes,
+               NVL(SUM(CASE WHEN like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes
+        FROM tb_comment_like_rec WHERE co_no = #{coNo}
+    </select>
+
 <!--    <select id="selectMoreList" parameterType="map" resultMap="AnswerReplyResultMap">-->
 <!--        SELECT LEVEL, ANS_NO, COMMENT_NO, PARENT_COMMENT_NO, CONTENT, WRITER, LIKE_CNT, REG_DATE FROM TB_ANS_COMMENT-->
 <!--            START WITH COMMENT_NO IN (-->
@@ -97,7 +126,7 @@
 <!--                                        FROM (-->
 <!--                                                SELECT COMMENT_NO-->
 <!--                                                FROM TB_ANS_COMMENT-->
-<!--                                                WHERE ans_no=#{ansNo} AND COMMENT_NO<![CDATA[>]]>#{replyNo} AND PARENT_COMMENT_NO=0-->
+<!--                                                WHERE co_no=#{coNo} AND COMMENT_NO<![CDATA[>]]>#{replyNo} AND PARENT_COMMENT_NO=0-->
 <!--                                                ORDER BY COMMENT_NO-->
 <!--                                             )-->
 <!--                                        WHERE rownum<![CDATA[<=]]>4-->
@@ -150,5 +179,15 @@
         <id column="occupation" property="userOccupation"/>
     </resultMap>
 
+    <resultMap id="commentLikeResultMap" type="CommentLikeVO">
+        <id column="co_no" property="coNo"/>
+        <id column="user_email" property="userEmail"/>
+        <id column="like_type" property="likeType"/>
+    </resultMap>
+
+    <resultMap id="likeCountMap" type="Hashmap">
+        <id column="likes" property="likes" javaType="int"/>
+        <id column="dislikes" property="dislikes" javaType="int"/>
+    </resultMap>
 
 </mapper>

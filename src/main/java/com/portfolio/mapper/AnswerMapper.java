@@ -1,10 +1,7 @@
 package com.portfolio.mapper;
 
 import com.portfolio.domain.*;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.lang.Nullable;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,10 +14,10 @@ public interface AnswerMapper {
     List<AnswerVO> selectAnswers(Map<String, Integer> map);
     int countAnswers(int quesNo);
     List<QAPairVO> selectAnsweredPairByUser(String email);
-    int addLike(LikeVO likeVO);
-    int deleteLike(LikeVO likeVO);
-    LikeVO findLike(LikeVO likeVO);
-    int updateLike(LikeVO likeVO);
+    int addLike(AnswerLikeVO likeVO);
+    int deleteLike(AnswerLikeVO likeVO);
+    AnswerLikeVO findLike(AnswerLikeVO likeVO);
+    int updateLike(AnswerLikeVO likeVO);
     Map<String, Integer> countLike(int ansNo);
     void updateCommentCnt(Map<String, Integer> map);
 

@@ -5,10 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LikeVO {
+public class CommentLikeVO {
 
     private int likeNo;
-    private int ansNo;
+    private int coNo;
     private String userEmail;
     private String likeType;
 }

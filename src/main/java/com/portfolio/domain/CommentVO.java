@@ -18,7 +18,8 @@ public class CommentVO {
     private int parentCoNo;
     private int lastCoNo;
     private String regDate;
-    private int likeCnt;
+    private int likes;
+    private int dislikes;
 
     private String userEmail;
     private String userName;

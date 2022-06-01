@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 
 @Service
@@ -108,11 +106,9 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Map<String, Integer> addLike(LikeVO likeVO) {
+    public Map<String, Integer> addLike(AnswerLikeVO likeVO) {
 
-        System.out.println();
-
-        LikeVO like = answerMapper.findLike(likeVO);
+        AnswerLikeVO like = answerMapper.findLike(likeVO);
 
         // likeType 구분 없이 findLike 후 likeType 셋팅
         likeVO.setLikeType("UP");
@@ -144,14 +140,14 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Map<String, Integer> subtractLike(LikeVO likeVO) {
+    public Map<String, Integer> subtractLike(AnswerLikeVO likeVO) {
 
-        LikeVO like = answerMapper.findLike(likeVO);
+        AnswerLikeVO like = answerMapper.findLike(likeVO);
 
         // likeType 구분 없이 findLike 후 likeType 셋팅
         likeVO.setLikeType("DOWN");
 
-        System.out.println("subtract find like: ");
+        System.out.println("subtract find like");
 
         if (like == null) {
 
