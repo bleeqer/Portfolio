@@ -1,11 +1,15 @@
 // 댓글 popover option 초기화
 function initAnswerPopover() {
-    $(function() {
-        $('.answer-option-button').popover({
-            trigger: 'focus',
-            html: true,
-            sanitize: false,
-            content: $(this).find($('.answer-option-popover-content')).html()
+
+    $('.answer-option-button').each(function (idx, element) {
+
+        $(function() {
+            $(element).popover({
+                trigger: 'focus',
+                html: true,
+                sanitize: false,
+                content: $(element).find($('.answer-option-popover-content')).html()
+            })
         })
     })
 }
@@ -49,7 +53,8 @@ $(document).on('click', '.answer-popover-item', function () {
             },
             success: function (ansNo) {
 
-                $('.answer[data-ans-no="' + ansNo + '"]').remove()
+                $('.answer[data-ans-no="' + ansNo + '"]').hide()
+                initAnswerPopover()
 
             },
             error: function () {

@@ -261,7 +261,7 @@
                                                 <div class="position-relative">
                                                     <div class="fade-post" style="">
                                                         <div class="" style="font-size: 15px; line-height: 1.5rem;">
-                                                                ${answer.answer}
+                                                                ${answer.answer} ${answer.ansNo}
                                                         </div>
                                                         <div class="overflow-fade hidden" style="background: linear-gradient(to bottom, transparent 60%, rgb(24, 24, 24) 100%) !important;"></div>
                                                     </div>
@@ -394,7 +394,7 @@
     <%--                                                                <c:if test="${user.username == answerPair.answerUserEmail}">--%>
                                                                 <div>
                                                                     <a tabindex="0" class="answer-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
-                                                                          style="width: 38px; height: 38px;">
+                                                                          style="width: 38px; height: 38px;" data-ans-no="${answer.ansNo}">
                                                                         <svg class="d-block" width="24" height="24" viewBox="0 0 24 24"
                                                                              xmlns="http://www.w3.org/2000/svg"><path
                                                                                 d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
@@ -402,11 +402,11 @@
                                                                         </svg>
                                                                         <div class="answer-option-popover-content" style="display: none;">
 
-                                                                            <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Edit">
-                                                                                <div class="py-1 px-3">Edit${answer.quesNo}</div>
+                                                                            <div class="d-flex answer-popover-item" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Edit">
+                                                                                <div class="py-1 px-3">Edit ${answer.quesNo} ${answer.ansNo}</div>
                                                                             </div>
-                                                                            <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Delete">
-                                                                                <div class="py-1 px-3">Delete</div>
+                                                                            <div class="d-flex answer-popover-item" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Delete">
+                                                                                <div class="py-1 px-3">Delete ${answer.quesNo} ${answer.ansNo}</div>
                                                                             </div>
                                                                         </div>
                                                                     </a>

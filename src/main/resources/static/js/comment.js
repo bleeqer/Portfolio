@@ -1,14 +1,19 @@
 // 댓글 popover option 초기화
 function initCommentPopover() {
-    $(function() {
-        $('.comment-option-button').popover({
-            trigger: 'focus',
-            html: true,
-            sanitize: false,
-            content: $(this).find($('.comment-option-popover-content')).html()
+    $('.comment-option-button').each(function (idx, element) {
+
+        $(function() {
+            $(element).popover({
+                trigger: 'focus',
+                html: true,
+                sanitize: false,
+                content: $(element).find($('.comment-option-popover-content')).html()
+            })
         })
     })
 }
+
+
 
 // 댓글 가져오기
 function getComments(data) {
@@ -123,6 +128,9 @@ $(document).on('click', '.comment-popover-item', function () {
             data: {coNo: coNo, ansNo: ansNo},
             contentType: 'application/json',
             context: this,
+            beforeSend: function(xhr){
+                xhr.setRequestHeader(header, token)
+            },
             success: function (deletedCoNo) {
 
                 // 댓글 포함된 comment-section
@@ -151,7 +159,7 @@ $(document).on('click', '.comment-popover-item', function () {
         $('.comment-edit-container[data-co-no="' + coNo + '"]').show()
 
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: '/comment/select',
             data: {coNo: coNo},
             contentType: 'application/json',
@@ -237,6 +245,9 @@ $('.comment-section').on('click', '.add-comment-button', function () {
         type: 'POST',
         data : $(this).parent().find('.comment-form').serialize(),
         context: this,
+        beforeSend: function(xhr){
+            xhr.setRequestHeader(header, token)
+        },
         success: function (comment) {
 
             // comment input 초기화
