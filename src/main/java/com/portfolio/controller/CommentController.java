@@ -74,6 +74,10 @@ public class CommentController {
 
         List<CommentVO> comments = answerCommentService.selectList(commentVO);
 
+        for (CommentVO comment : comments) {
+            System.out.println(comment.getLevel());
+        }
+
         int lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
 
         model.addAttribute("comments", comments);

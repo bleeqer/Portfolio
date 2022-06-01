@@ -62,45 +62,32 @@
     </select>
 
     <select id="selectList" parameterType="CommentVO" resultMap="AnswerCommentResultMap">
-        SELECT RES.*,
-            NVL(SUM(CASE WHEN RES.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes,
-            NVL(SUM(CASE WHEN RES.like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes
-        FROM (SELECT level lv,
-                CO.co_no,
-                CO.ans_no,
-                CO.answer_comment,
-                CO.parent_co_no,
-                CO.reg_date,
-                REC.like_type,
-                U.email,
-                U.name,
-                U.photo,
-                U.occupation
-            FROM tb_answer_comment CO LEFT OUTER JOIN tb_comment_like_rec REC ON REC.co_no = CO.co_no, tb_user U
-            WHERE U.email = CO.user_email
-            START WITH CO.co_no IN (SELECT co_no
-                                    FROM (SELECT ROWNUM AS RN, co_no
-                                          FROM tb_answer_comment
-                                          WHERE parent_co_no = 0
-                                                AND ans_no = #{ansNo}
-                                            <if test="lastCoNo != null and lastCoNo != ''">
-                                                AND co_no <![CDATA[>]]> #{lastCoNo}
-                                            </if>
-                                          ORDER BY co_no)
-                                    WHERE RN <![CDATA[<=]]> 3)
-            CONNECT BY PRIOR CO.co_no = CO.parent_co_no
-            ORDER SIBLINGS BY CO.co_no) RES
-        GROUP BY lv,
-                co_no,
-                ans_no,
-                answer_comment,
-                parent_co_no,
-                reg_date,
-                like_type,
-                email,
-                name,
-                photo,
-                occupation
+        SELECT level,
+            CO.co_no,
+            CO.ans_no,
+            CO.answer_comment,
+            CO.parent_co_no,
+            CO.reg_date,
+            (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes FROM tb_comment_like_rec REC WHERE REC.co_no = CO.co_no) likes,
+            (SELECT NVL(SUM(CASE WHEN REC.like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes FROM tb_comment_like_rec REC WHERE REC.co_no = CO.co_no) dislikes,
+            U.email,
+            U.name,
+            U.photo,
+            U.occupation
+        FROM tb_answer_comment CO, tb_user U
+        WHERE U.email = CO.user_email
+        START WITH CO.co_no IN (SELECT co_no
+                                FROM (SELECT ROWNUM AS RN, co_no
+                                      FROM tb_answer_comment
+                                      WHERE parent_co_no = 0
+                                            AND ans_no = #{ansNo}
+                                        <if test="lastCoNo != null and lastCoNo != ''">
+                                            AND co_no <![CDATA[>]]> #{lastCoNo}
+                                        </if>
+                                      ORDER BY co_no)
+                                WHERE RN <![CDATA[<=]]> 3)
+        CONNECT BY PRIOR CO.co_no = CO.parent_co_no
+        ORDER SIBLINGS BY CO.co_no
 
     </select>
 
@@ -180,7 +167,7 @@
 <!--    </update>-->
 
     <resultMap id="AnswerCommentResultMap" type="CommentVO">
-        <id column="lv" property="level"/>
+        <id column="level" property="level"/>
         <id column="co_no" property="coNo"/>
         <id column="ans_no" property="ansNo"/>
         <id column="answer_comment" property="answerComment"/>

@@ -89,6 +89,8 @@
                 ORDER BY likes DESC, ans_no ASC)
         WHERE ROWNUM BETWEEN 0 AND 10
 
+
+
     </select>
 
     <select id="countAnswers" parameterType="int" resultType="int">
