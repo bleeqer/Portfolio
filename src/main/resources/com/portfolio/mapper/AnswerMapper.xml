@@ -62,31 +62,31 @@
     <select id="selectAnswers" parameterType="map" resultMap="AnswerResultMap">
         SELECT *
             FROM (SELECT
-                ANS.ans_no,
-                ANS.answer,
-                ANS.reg_date,
-                ANS.comment_cnt,
-                NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes,
-                NVL(SUM(CASE WHEN REC.like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes,
-                U.email,
-                U.name,
-                U.photo,
-                U.occupation
-            FROM TB_ANSWER ANS LEFT OUTER JOIN tb_answer_like_rec REC ON REC.ans_no = ANS.ans_no, TB_USER U
-            WHERE ANS.ques_no = #{quesNo}
-                AND ANS.user_email = U.email
-                <if test="ansNo != null and ansNo != ''">
-                    AND ANS.ans_no <![CDATA[<]]> #{ansNo}
-                </if>
-            GROUP BY ANS.ans_no,
+                    ANS.ans_no,
                     ANS.answer,
                     ANS.reg_date,
                     ANS.comment_cnt,
+                    NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes,
+                    NVL(SUM(CASE WHEN REC.like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes,
                     U.email,
                     U.name,
                     U.photo,
                     U.occupation
-            ORDER BY likes DESC, ans_no ASC)
+                FROM TB_ANSWER ANS LEFT OUTER JOIN tb_answer_like_rec REC ON REC.ans_no = ANS.ans_no, TB_USER U
+                WHERE ANS.ques_no = #{quesNo}
+                    AND ANS.user_email = U.email
+                    <if test="ansNo != null and ansNo != ''">
+                        AND ANS.ans_no <![CDATA[<]]> #{ansNo}
+                    </if>
+                GROUP BY ANS.ans_no,
+                        ANS.answer,
+                        ANS.reg_date,
+                        ANS.comment_cnt,
+                        U.email,
+                        U.name,
+                        U.photo,
+                        U.occupation
+                ORDER BY likes DESC, ans_no ASC)
         WHERE ROWNUM BETWEEN 0 AND 10
 
     </select>
