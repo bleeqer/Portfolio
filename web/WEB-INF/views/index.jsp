@@ -20,9 +20,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <sec:csrfMetaTags/>
+
     <script>
-        const token = $("meta[name='_csrf']").attr("content");
-        const header = $("meta[name='_csrf_header']").attr("content");
+        const token = $("meta[name='_csrf']").attr("content")
+        const header = $("meta[name='_csrf_header']").attr("content")
     </script>
 
     <%--Bootstrap--%>
@@ -322,31 +323,31 @@
                                                                     </span>
                                                                 </div>
                                                             </div>
-                                                                <%--Three dots--%>
-                                                            <sec:authorize access="isAuthenticated()">
-                                                                <c:if test="${user.username == answerPair.userEmail}">
-                                                                    <div>
-                                                                        <a tabindex="0" class="answer-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
-                                                                              style="width: 38px; height: 38px;">
-                                                                            <svg class="d-block" width="24" height="24" viewBox="0 0 24 24"
-                                                                                 xmlns="http://www.w3.org/2000/svg"><path
-                                                                                    d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                                                                    class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none"></path>
-                                                                            </svg>
-                                                                            <div class="answer-option-popover-content" style="display: none;">
+<%--                                                                &lt;%&ndash;Three dots&ndash;%&gt;--%>
+<%--                                                            <sec:authorize access="isAuthenticated()">--%>
+<%--                                                                <c:if test="${user.username == answerPair.userEmail}">--%>
+<%--                                                                    <div>--%>
+<%--                                                                        <a tabindex="0" class="answer-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"--%>
+<%--                                                                              style="width: 38px; height: 38px;">--%>
+<%--                                                                            <svg class="d-block" width="24" height="24" viewBox="0 0 24 24"--%>
+<%--                                                                                 xmlns="http://www.w3.org/2000/svg"><path--%>
+<%--                                                                                    d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"--%>
+<%--                                                                                    class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none"></path>--%>
+<%--                                                                            </svg>--%>
+<%--                                                                            <div class="answer-option-popover-content" style="display: none;">--%>
 
-                                                                                <div class="d-flex answer-popover-item option" data-ans-no="${answerPair.ansNo}" data-option-type="Edit">
-                                                                                    <div class="py-1 px-3">Edit</div>
-                                                                                </div>
-                                                                                <div class="d-flex answer-popover-item option" data-ans-no="${answerPair.ansNo}" data-option-type="Delete">
-                                                                                    <div class="py-1 px-3">Delete</div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </a>
+<%--                                                                                <div class="d-flex answer-popover-item option" data-ans-no="${answerPair.ansNo}" data-ques-no="${answerPair.quesNo}" data-option-type="Edit">--%>
+<%--                                                                                    <div class="py-1 px-3">Edit</div>--%>
+<%--                                                                                </div>--%>
+<%--                                                                                <div class="d-flex answer-popover-item option" data-ans-no="${answerPair.ansNo}" data-ques-no="${answerPair.quesNo}" data-option-type="Delete">--%>
+<%--                                                                                    <div class="py-1 px-3">Delete</div>--%>
+<%--                                                                                </div>--%>
+<%--                                                                            </div>--%>
+<%--                                                                        </a>--%>
 
-                                                                    </div>
-                                                                </c:if>
-                                                            </sec:authorize>
+<%--                                                                    </div>--%>
+<%--                                                                </c:if>--%>
+<%--                                                            </sec:authorize>--%>
 
 
                                                         </div>
@@ -501,7 +502,6 @@
     <script src="/static/js/getMore.js"></script>
     <script src="/static/js/main.js"></script>
     <script src="/static/js/liking.js"></script>
-    <script src="/static/js/popovers.js"></script>
     <script src="/static/js/comment.js"></script>
     <script src="/static/js/answer.js"></script>
 

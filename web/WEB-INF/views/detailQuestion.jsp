@@ -15,9 +15,16 @@
 <head>
     <title>Title</title>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <sec:authentication property="principal" var="user"/>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <sec:csrfMetaTags/>
+
+    <script>
+        const token = $("meta[name='_csrf']").attr("content")
+        const header = $("meta[name='_csrf_header']").attr("content")
+    </script>
 
     <%--  Bootstrap  --%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -216,7 +223,7 @@
                         <c:forEach var="answer" items="${answers}">
 
                             <%--Answer--%>
-                            <div class="answer pt-2 border-bottom-gray mt-1">
+                            <div class="answer pt-2 border-bottom-gray mt-1" data-ans-no="${answer.ansNo}">
                                 <div>
 
                                         <%--Content--%>
@@ -395,10 +402,10 @@
                                                                         </svg>
                                                                         <div class="answer-option-popover-content" style="display: none;">
 
-                                                                            <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-option-type="Edit">
-                                                                                <div class="py-1 px-3">Edit</div>
+                                                                            <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Edit">
+                                                                                <div class="py-1 px-3">Edit${answer.quesNo}</div>
                                                                             </div>
-                                                                            <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-option-type="Delete">
+                                                                            <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Delete">
                                                                                 <div class="py-1 px-3">Delete</div>
                                                                             </div>
                                                                         </div>
@@ -475,15 +482,15 @@
 
                                                                         <%--Arrow--%>
                                                                     <span>
-                                            <span>
-                                                <svg class="d-flex" width="16" height="16" viewBox="0 0 24 24"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke"
-                                                          stroke="#666" stroke-width="1.5" fill="none"
-                                                          stroke-linecap="round"></path>
-                                                </svg>
-                                            </span>
-                                        </span>
+                                                                        <span>
+                                                                            <svg class="d-flex" width="16" height="16" viewBox="0 0 24 24"
+                                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke"
+                                                                                      stroke="#666" stroke-width="1.5" fill="none"
+                                                                                      stroke-linecap="round"></path>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </span>
                                                                 </div>
                                                             </button>
                                                         </div>
@@ -519,20 +526,10 @@
         <div class="py-1 px-3">Most Liked</div>
         <div class="position-relative">
             <div class="sort-mini-checker hidden"></div>
-        </div>
-    </div>
-</div>
-
-<%--    <div class="container-fluid m-0" style="padding-top: 50px;">--%>
-<%--        <div class="d-flex mx-auto pt-3 px-2" style="max-width: 1002px;">--%>
-
-<%--        </div>--%>
-<%--    </div>--%>
 
 <%@ include file="/WEB-INF/views/modals/answer.jsp" %>
 
 <script src="/static/js/utils.js"></script>
-<script src="/static/js/question.js"></script>
 <script src="/static/js/comment.js"></script>
 <script src="/static/js/answer.js"></script>
 <script src="/static/js/detailQuestion.js"></script>

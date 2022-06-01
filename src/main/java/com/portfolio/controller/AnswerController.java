@@ -40,13 +40,13 @@ public class AnswerController {
         return "templates/answerTemplate";
     }
 
-    @GetMapping("delete")
+    @PostMapping("delete")
     @ResponseBody
-    public int deleteAnswer(AnswerVO answer) {
+    public int deleteAnswer(@RequestBody AnswerVO answerVO) {
 
-        answerService.delete(answer);
+        answerService.delete(answerVO);
 
-        return answer.getAnsNo();
+        return answerVO.getAnsNo();
     }
 
     @GetMapping("like")

@@ -27,6 +27,65 @@ $('.fade-post').each(function() {
     }
 })
 
+// 답변글 popover 옵션
+$(document).on('click', '.answer-popover-item', function () {
+
+    // 질문글 답변 갯수 체크 목적
+    const quesNo = $(this).data('ques-no')
+
+    const ansNo = $(this).data('ans-no')
+    const optionType = $(this).data('option-type')
+
+    if (optionType === 'Delete') {
+
+        $.ajax({
+            type: 'POST',
+            url: '/answer/delete',
+            data: JSON.stringify({ansNo: ansNo, quesNo: quesNo}),
+            contentType: 'application/json',
+            context: this,
+            beforeSend: function(xhr){
+                xhr.setRequestHeader(header, token)
+            },
+            success: function (ansNo) {
+
+                $('.answer[data-ans-no="' + ansNo + '"]').remove()
+
+            },
+            error: function () {
+                alert('오류가 발생했습니다.')
+            }
+        })
+    }
+
+    else if (optionType === 'Edit') {
+
+        $('.comment-text[data-co-no="' + coNo + '"]').hide()
+        $('.comment-footer[data-co-no="' + coNo + '"]').hide()
+        $('.comment-edit-container[data-co-no="' + coNo + '"]').show()
+
+        $.ajax({
+            type: 'POST',
+            url: '/comment/select',
+            data: {coNo: coNo},
+            contentType: 'application/json',
+            success: function (comment) {
+
+                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#comment-edit-input').val(comment.answerComment)
+                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#co-no').val(comment.coNo)
+                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#user-email').val(comment.userEmail)
+
+            },
+            error: function () {
+                alert('오류가 발생했습니다.')
+            }
+        })
+
+
+    }
+})
+
+
 // 답변 버튼 클릭 시 답변 modal에 유저정보, 질문글 띄우기
 $('.answer-button').click(function () {
 
@@ -47,10 +106,6 @@ $('.answer-button').click(function () {
     })
 })
 
-function isOverflown(element) {
-    return element.prop('scrollHeight') > element.height()
-}
-
 // 질문 Modal Window textarea 자동 높이 조절
 $('#question-textarea').on('keyup', function () {
     $(this).height('26')
@@ -58,19 +113,19 @@ $('#question-textarea').on('keyup', function () {
     $(this).height(scHeight)
 })
 
-// 답변 Modal Window open 시
+// 답변 Modal Window open 시 text editor 초기화
 $('#answer-modal').on('shown.bs.modal', function () {
     initEditor()
 })
 
+// 답변 Modal Window close 시 text editor 종료 및 텍스트 input 초기화
 $('#answer-modal').on('hidden.bs.modal', function () {
     tinymce.activeEditor.destroy()
     $('#answer-textarea').val('')
 })
 
+// 답변 등록
 $('#add-answer-button').click(function () {
-
-    alert($('#answer-form').serialize())
 
     $.ajax({
         url: '/answer/create',
@@ -88,6 +143,7 @@ $('#add-answer-button').click(function () {
 
 })
 
+// 이미지 업로드 버튼 클릭 시 file input trigger
 $('#image-upload-button').click(function () {
     $('#image').trigger('click')
 })
@@ -175,6 +231,7 @@ $('#image').on("change", function () {
 //     $('#question-form')
 // })
 
+// text editor 초기화 함수
 async function initEditor () {
 
     await tinymce.init({

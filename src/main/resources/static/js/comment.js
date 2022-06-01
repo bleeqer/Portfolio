@@ -115,15 +115,10 @@ $(document).on('click', '.comment-popover-item', function () {
     const ansNo = $(this).data('ans-no')
     const optionType = $(this).data('option-type')
 
-    alert(optionType)
-
-    // popover 숨기기
-    $(this).parents('.popover').popover('hide')
-    
     if (optionType === 'Delete') {
         
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/comment/delete',
             data: {coNo: coNo, ansNo: ansNo},
             contentType: 'application/json',
@@ -156,7 +151,7 @@ $(document).on('click', '.comment-popover-item', function () {
         $('.comment-edit-container[data-co-no="' + coNo + '"]').show()
 
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: '/comment/select',
             data: {coNo: coNo},
             contentType: 'application/json',

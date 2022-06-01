@@ -63,6 +63,7 @@
         SELECT *
             FROM (SELECT
                     ANS.ans_no,
+                    ANS.ques_no,
                     ANS.answer,
                     ANS.reg_date,
                     ANS.comment_cnt,
@@ -105,7 +106,7 @@
     </update>
 
     <delete id="delete" parameterType="int">
-        DELETE FROM TB_ANSWER WHERE ans_no=#{ansNo}
+        DELETE FROM TB_ANSWER WHERE ans_no = #{ansNo}
     </delete>
 
     <insert id="addLike" parameterType="AnswerLikeVO">

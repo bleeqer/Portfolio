@@ -185,10 +185,10 @@
                                             </span>
                                             <div class="answer-option-popover-content" style="display: none;">
 
-                                                <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-option-type="Edit">
+                                                <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Edit">
                                                     <div class="py-1 px-3">Edit</div>
                                                 </div>
-                                                <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-option-type="Delete">
+                                                <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Delete">
                                                     <div class="py-1 px-3">Delete</div>
                                                 </div>
                                             </div>
