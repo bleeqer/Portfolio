@@ -28,13 +28,14 @@
 }
 
 
-.popover-item {
+.comment-popover-item, .answer-popover-item {
     padding: 5px 12px 5px 5px;
     transition: background-color 250ms ease-in-out;
     font-size: 13px;
+    cursor: pointer;
 }
 
-.popover-item:hover {
+.comment-popover-item:hover, .answer-popover-item:hover {
     background-color: rgba(255, 255, 255, 0.04) !important;
 }
 

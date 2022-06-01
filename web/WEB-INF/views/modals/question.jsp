@@ -195,6 +195,6 @@
 
 </script>
 
-<script src="/js/imageUpload.js"></script>
+<%--<script src="/js/imageUpload.js"></script>--%>
 
 

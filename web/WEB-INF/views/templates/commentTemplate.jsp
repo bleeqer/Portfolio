@@ -190,23 +190,20 @@
                                 <sec:authorize access="isAuthenticated()">
                                     <c:if test="${user.username == comment.userEmail}">
                                         <div>
-                                        <span class="comment-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" data-bs-toggle="popover" data-bs-original-title="" title="">
-                                          <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
-                                            </path>
-                                          </svg>
-
-
-                                            <div class="option-popover-content" style="display: none;">
-
-                                                <div class="d-flex popover-item option" data-co-level="${comment.level}" data-ans-no="${comment.ansNo}" data-co-no="${comment.coNo}" data-parent-co-no="${comment.parentCoNo}" data-option-type="Edit">
-                                                    <div class="py-1 px-3">Edit</div>
+                                            <a tabindex="0" class="comment-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                                <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                  <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
+                                                  </path>
+                                                </svg>
+                                                <div class="comment-option-popover-content" style="display: none;">
+                                                    <div class="d-flex comment-popover-item" data-co-level="${comment.level}" data-ans-no="${comment.ansNo}" data-co-no="${comment.coNo}" data-parent-co-no="${comment.parentCoNo}" data-option-type="Edit">
+                                                        <div class="py-1 px-3">Edit</div>
+                                                    </div>
+                                                    <div class="d-flex comment-popover-item" data-co-level="${comment.level}" data-ans-no="${comment.ansNo}" data-co-no="${comment.coNo}" data-parent-co-no="${comment.parentCoNo}" data-option-type="Delete">
+                                                        <div class="py-1 px-3">Delete</div>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex popover-item option" data-co-level="${comment.level}" data-ans-no="${comment.ansNo}" data-co-no="${comment.coNo}" data-parent-co-no="${comment.parentCoNo}" data-option-type="Delete">
-                                                    <div class="py-1 px-3">Delete</div>
-                                                </div>
-                                            </div>
-                                        </span>
+                                            </a>
                                         </div>
                                     </c:if>
                                 </sec:authorize>

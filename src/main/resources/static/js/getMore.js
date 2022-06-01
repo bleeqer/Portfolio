@@ -15,6 +15,7 @@ $(window).scroll(function() {
             data : {'quesNo': lastQuesNo},
             success: function (result) {
                 $('.question-container').parent().append(result)
+                initAnswerPopover()
 
             },
             error: function () {

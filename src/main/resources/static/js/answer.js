@@ -1,3 +1,17 @@
+// 댓글 popover option 초기화
+function initAnswerPopover() {
+    $(function() {
+        $('.answer-option-button').popover({
+            trigger: 'focus',
+            html: true,
+            sanitize: false,
+            content: $(this).find($('.answer-option-popover-content')).html()
+        })
+    })
+}
+
+// 최초 조회된 답변 popover
+initAnswerPopover()
 
 $('.readMore-button').on('click', function() {
     $(this).parent().find('.fade-post').css('max-height', $(this).parent().find('.fade-post').prop('scrollHeight') + 'px')

@@ -1,14 +1,14 @@
 // 댓글 popover option 초기화
-function initPopovers() {
-    $('.comment-option-button').popover({
-        html: true,
-        sanitize: false,
-        content: function() {
-            return $(this).find('.option-popover-content').html()
-        }
+function initCommentPopover() {
+    $(function() {
+        $('.comment-option-button').popover({
+            trigger: 'focus',
+            html: true,
+            sanitize: false,
+            content: $(this).find($('.comment-option-popover-content')).html()
+        })
     })
 }
-
 
 // 댓글 가져오기
 function getComments(data) {
@@ -103,17 +103,19 @@ $('.comment-button').click(function () {
         })
 
         // popover 초기화
-        initPopovers()
+        initCommentPopover()
 
     }
 })
 
 // 댓글 popover 옵션
-$(document).on('click', '.popover-item.option', function () {
+$(document).on('click', '.comment-popover-item', function () {
 
     const coNo = $(this).data('co-no')
     const ansNo = $(this).data('ans-no')
     const optionType = $(this).data('option-type')
+
+    alert(optionType)
 
     // popover 숨기기
     $(this).parents('.popover').popover('hide')
@@ -218,7 +220,7 @@ $('.view-more-comments').click(function () {
     commentSection.find('.comment-list').append(getComments(data))
 
     // popover 초기화
-    initPopovers()
+    initCommentPopover()
 
     // 첫번째 댓글 border-top 지우기
     commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
@@ -268,7 +270,7 @@ $('.comment-section').on('click', '.add-comment-button', function () {
             }
 
             // popover 초기화
-            initPopovers()
+            initCommentPopover()
 
             // 해당 댓글의 부모 댓글의 comment-count 업데이트
             countChildComments(parentCoNo)

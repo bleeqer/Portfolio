@@ -26,8 +26,8 @@
     </script>
 
     <%--Bootstrap--%>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <%--tinymce editor--%>
     <script src="https://cdn.tiny.cloud/1/gus813frvbl3fe4mc223cqoe7nmtzbc5kbk3xc2dzvawxe52/tinymce/6/tinymce.min.js"></script>
@@ -326,14 +326,24 @@
                                                             <sec:authorize access="isAuthenticated()">
                                                                 <c:if test="${user.username == answerPair.userEmail}">
                                                                     <div>
-                            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
-                                  style="width: 38px; height: 38px;">
-                                <svg class="d-block" width="24" height="24" viewBox="0 0 24 24"
-                                     xmlns="http://www.w3.org/2000/svg"><path
-                                        d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                        class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none"></path>
-                                </svg>
-                            </span>
+                                                                        <a tabindex="0" class="answer-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
+                                                                              style="width: 38px; height: 38px;">
+                                                                            <svg class="d-block" width="24" height="24" viewBox="0 0 24 24"
+                                                                                 xmlns="http://www.w3.org/2000/svg"><path
+                                                                                    d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                                                                                    class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none"></path>
+                                                                            </svg>
+                                                                            <div class="answer-option-popover-content" style="display: none;">
+
+                                                                                <div class="d-flex answer-popover-item option" data-ans-no="${answerPair.ansNo}" data-option-type="Edit">
+                                                                                    <div class="py-1 px-3">Edit</div>
+                                                                                </div>
+                                                                                <div class="d-flex answer-popover-item option" data-ans-no="${answerPair.ansNo}" data-option-type="Delete">
+                                                                                    <div class="py-1 px-3">Delete</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </a>
+
                                                                     </div>
                                                                 </c:if>
                                                             </sec:authorize>
@@ -480,26 +490,20 @@
             </div>
         </div>
     </div>
-    <div id="option-popover-content" style="display: none;">
 
-        <div class="d-flex option-popover-item">
-            <div class="py-1 px-3">Edit</div>
-        </div>
-        <div class="d-flex option-popover-item">
-            <div class="py-1 px-3">Delete</div>
-        </div>
-    </div>
+
 
 <%@ include file="/WEB-INF/views/modals/question.jsp" %>
+
 
     <script src="/static/js/utils.js"></script>
     <script src="/static/js/questions.js"></script>
     <script src="/static/js/getMore.js"></script>
     <script src="/static/js/main.js"></script>
-    <script src="/static/js/answer.js"></script>
-    <script src="/static/js/comment.js"></script>
     <script src="/static/js/liking.js"></script>
     <script src="/static/js/popovers.js"></script>
+    <script src="/static/js/comment.js"></script>
+    <script src="/static/js/answer.js"></script>
 
 </body>
 </html>

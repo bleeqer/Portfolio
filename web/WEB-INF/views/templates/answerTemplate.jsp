@@ -74,17 +74,17 @@
                                             <div class="like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill">
                                                 <div class="d-flex">
                                                     <div>
-                                                                                    <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                                                                        <svg width="20" height="20"
-                                                                                             viewBox="0 0 24 24"
-                                                                                             xmlns="http://www.w3.org/2000/svg">
-                                                                                            <path d="M12 4 3 15h6v5h6v-5h6z"
-                                                                                                  stroke-width="1.5"
-                                                                                                  stroke="rgb(72, 148, 253)"
-                                                                                                  fill="none"
-                                                                                                  stroke-linejoin="round"></path>
-                                                                                        </svg>
-                                                                                    </span>
+                                                        <span class="d-inline-block d-flex align-items-center justify-content-center">
+                                                            <svg width="20" height="20"
+                                                                 viewBox="0 0 24 24"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M12 4 3 15h6v5h6v-5h6z"
+                                                                      stroke-width="1.5"
+                                                                      stroke="rgb(72, 148, 253)"
+                                                                      fill="none"
+                                                                      stroke-linejoin="round"></path>
+                                                            </svg>
+                                                        </span>
                                                     </div>
                                                     <div class="like-cnt d-flex align-items-center justify-content-center"
                                                          style="font-size: 13px; margin-left: 2px;">
@@ -98,17 +98,17 @@
                                             <div class="dislike-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill">
                                                 <div class="d-flex">
                                                     <div>
-                                                                                    <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                                                                        <svg width="20" height="20"
-                                                                                             viewBox="0 0 24 24"
-                                                                                             xmlns="http://www.w3.org/2000/svg">
-                                                                                            <path d="m12 20 9-11h-6V4H9v5H3z"
-                                                                                                  class="icon_svg-stroke icon_svg-fill"
-                                                                                                  stroke="#666" fill="none"
-                                                                                                  stroke-width="1.5"
-                                                                                                  stroke-linejoin="round"></path>
-                                                                                        </svg>
-                                                                                    </span>
+                                                        <span class="d-inline-block d-flex align-items-center justify-content-center">
+                                                            <svg width="20" height="20"
+                                                                 viewBox="0 0 24 24"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="m12 20 9-11h-6V4H9v5H3z"
+                                                                      class="icon_svg-stroke icon_svg-fill"
+                                                                      stroke="#666" fill="none"
+                                                                      stroke-width="1.5"
+                                                                      stroke-linejoin="round"></path>
+                                                            </svg>
+                                                        </span>
                                                     </div>
                                                     <div class="dislike-cnt d-flex align-items-center justify-content-center"
                                                          style="font-size: 13px; margin-left: 2px;">
@@ -134,15 +134,15 @@
                                                     <%--Comment icon--%>
                                                 <span class="d-inline-block d-flex align-items-center justify-content-center"
                                                       style="height: 30px;">
-                                                                                <svg width="24" height="24"
-                                                                                     viewBox="0 0 24 24"
-                                                                                     xmlns="http://www.w3.org/2000/svg">
-                                                                                    <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z"
-                                                                                          class="icon_svg-stroke icon_svg-fill"
-                                                                                          stroke="#666" stroke-width="1.5"
-                                                                                          fill="none"></path>
-                                                                                </svg>
-                                                                            </span>
+                                                    <svg width="24" height="24"
+                                                         viewBox="0 0 24 24"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z"
+                                                              class="icon_svg-stroke icon_svg-fill"
+                                                              stroke="#666" stroke-width="1.5"
+                                                              fill="none"></path>
+                                                    </svg>
+                                                </span>
 
                                                     <%--Comment count--%>
                                                 <div class="d-flex align-items-center justify-content-center color-gray">
@@ -159,30 +159,39 @@
                                         <%--Share button--%>
                                     <div>
                                         <div>
-                                                                        <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
-                                                                              style="width: 38px; height: 38px;">
-                                                                            <svg width="24" height="24" viewBox="0 0 24 24"
-                                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                                <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z"
-                                                                                      class="icon_svg-stroke" stroke="#666"
-                                                                                      fill="none" stroke-width="1.5"
-                                                                                      stroke-linejoin="round"></path>
-                                                                            </svg>
-                                                                        </span>
+                                            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
+                                                  style="width: 38px; height: 38px;">
+                                                <svg width="24" height="24" viewBox="0 0 24 24"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z"
+                                                          class="icon_svg-stroke" stroke="#666"
+                                                          fill="none" stroke-width="1.5"
+                                                          stroke-linejoin="round"></path>
+                                                </svg>
+                                            </span>
                                         </div>
                                     </div>
                                         <%--Three dots--%>
                                     <sec:authorize access="isAuthenticated()">
                                         <%--                                                                <c:if test="${user.username == answerPair.answerUserEmail}">--%>
                                         <div>
-                                <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
-                                      style="width: 38px; height: 38px;">
-                                    <svg class="d-block" width="24" height="24" viewBox="0 0 24 24"
-                                         xmlns="http://www.w3.org/2000/svg"><path
-                                            d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                            class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none"></path>
-                                    </svg>
-                                </span>
+                                            <span class="answer-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
+                                                  style="width: 38px; height: 38px;" data-bs-toggle="popover" data-bs-original-title="" title="">
+                                                <svg class="d-block" width="24" height="24" viewBox="0 0 24 24"
+                                                     xmlns="http://www.w3.org/2000/svg"><path
+                                                        d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                                                        class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none"></path>
+                                                </svg>
+                                            </span>
+                                            <div class="answer-option-popover-content" style="display: none;">
+
+                                                <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-option-type="Edit">
+                                                    <div class="py-1 px-3">Edit</div>
+                                                </div>
+                                                <div class="d-flex answer-popover-item option" data-ans-no="${answer.ansNo}" data-option-type="Delete">
+                                                    <div class="py-1 px-3">Delete</div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <%--                                                                </c:if>--%>
                                     </sec:authorize>
