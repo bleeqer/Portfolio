@@ -495,6 +495,7 @@
 
 
 <%@ include file="/WEB-INF/views/modals/question.jsp" %>
+<%@ include file="/WEB-INF/views/modals/answer.jsp" %>
 
 
     <script src="/static/js/utils.js"></script>

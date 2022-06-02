@@ -65,20 +65,20 @@ $(document).on('click', '.answer-popover-item', function () {
 
     else if (optionType === 'Edit') {
 
-        $('.comment-text[data-co-no="' + coNo + '"]').hide()
-        $('.comment-footer[data-co-no="' + coNo + '"]').hide()
-        $('.comment-edit-container[data-co-no="' + coNo + '"]').show()
-
         $.ajax({
-            type: 'POST',
-            url: '/comment/select',
-            data: {coNo: coNo},
+            type: 'GET',
+            url: '/answer/select',
+            data: {ansNo: ansNo},
+            dataType: 'json',
             contentType: 'application/json',
-            success: function (comment) {
+            success: function (answer) {
 
-                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#comment-edit-input').val(comment.answerComment)
-                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#co-no').val(comment.coNo)
-                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#user-email').val(comment.userEmail)
+                $('#answer-modal #asked-question').text($('.question-text').html())
+                $('#answer-modal #user-img').attr('src', answer.userPhoto)
+                $('#answer-modal #user-name').text(answer.userName)
+                $('#answer-modal #user-occupation').text(answer.userOccupation)
+                $('#answer-modal #answer-textarea').val(answer.answer)
+                $('#answer-modal #ques-no').val(answer.quesNo)
 
             },
             error: function () {

@@ -15,9 +15,9 @@
 <head>
     <title>Title</title>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <sec:authentication property="principal" var="user"/>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <sec:csrfMetaTags/>
 
@@ -26,16 +26,12 @@
         const header = $("meta[name='_csrf_header']").attr("content")
     </script>
 
-    <%--  Bootstrap  --%>
+    <%--Bootstrap--%>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <%-- Bootstrap Icon --%>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
     <%--tinymce editor--%>
     <script src="https://cdn.tiny.cloud/1/gus813frvbl3fe4mc223cqoe7nmtzbc5kbk3xc2dzvawxe52/tinymce/6/tinymce.min.js"></script>
-
 
     <%--CSS--%>
     <link rel="stylesheet" type="text/css" href="/static/css/utils.css">
@@ -79,6 +75,7 @@
 </head>
 <body>
 <div>
+    <%@ include file="/WEB-INF/views/modals/answer.jsp" %>
 
     <div style="height: 50px;"></div>
 
@@ -123,7 +120,7 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex">
                                         <%--Answer button--%>
-                                        <button class="answer-button" class="px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal" data-ques-no="${question.quesNo}">
+                                        <button class="answer-button px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal" data-ques-no="${question.quesNo}">
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <%--Answer icon--%>
                                                 <div>
@@ -402,11 +399,11 @@
                                                                         </svg>
                                                                         <div class="answer-option-popover-content" style="display: none;">
 
-                                                                            <div class="d-flex answer-popover-item" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Edit">
-                                                                                <div class="py-1 px-3">Edit ${answer.quesNo} ${answer.ansNo}</div>
+                                                                            <div class="d-flex answer-popover-item" data-bs-toggle="modal" data-bs-target="#answer-modal" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Edit">
+                                                                                <div class="py-1 px-3">Edit</div>
                                                                             </div>
                                                                             <div class="d-flex answer-popover-item" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Delete">
-                                                                                <div class="py-1 px-3">Delete ${answer.quesNo} ${answer.ansNo}</div>
+                                                                                <div class="py-1 px-3">Delete</div>
                                                                             </div>
                                                                         </div>
                                                                     </a>
@@ -526,20 +523,14 @@
         <div class="py-1 px-3">Most Liked</div>
         <div class="position-relative">
             <div class="sort-mini-checker hidden"></div>
-
-<%@ include file="/WEB-INF/views/modals/answer.jsp" %>
+        </div>
+    </div>
+</div>
 
 <script src="/static/js/utils.js"></script>
 <script src="/static/js/comment.js"></script>
 <script src="/static/js/answer.js"></script>
 <script src="/static/js/detailQuestion.js"></script>
 <script src="/static/js/liking.js"></script>
-
-<script>
-
-
-
-
-</script>
 </body>
 </html>

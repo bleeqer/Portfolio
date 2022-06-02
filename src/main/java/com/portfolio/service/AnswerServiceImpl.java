@@ -113,25 +113,19 @@ public class AnswerServiceImpl implements AnswerService {
         // likeType 구분 없이 findLike 후 likeType 셋팅
         likeVO.setLikeType("UP");
 
-        System.out.println("add find like");
-
         if (like == null) {
 
             answerMapper.addLike(likeVO);
-            System.out.println("add add like");
 
         } else if (like.getLikeType().equals("UP")) {
 
             // 이미 좋아요 했다면 좋아요 취소
             answerMapper.deleteLike(likeVO);
-            System.out.println("add delete like");
-
 
         } else {
 
             // 싫어요 -> 좋아요 업데이트
             answerMapper.updateLike(likeVO);
-            System.out.println("add update like");
 
         }
 
@@ -147,26 +141,20 @@ public class AnswerServiceImpl implements AnswerService {
         // likeType 구분 없이 findLike 후 likeType 셋팅
         likeVO.setLikeType("DOWN");
 
-        System.out.println("subtract find like");
-
         if (like == null) {
 
             answerMapper.addLike(likeVO);
-            System.out.println("subtract add like");
-
 
         } else if (like.getLikeType().equals("DOWN")) {
 
             // 이미 싫어요 했다면 싫어요 취소
             answerMapper.deleteLike(likeVO);
-            System.out.println("subtract delete like");
-
 
         } else {
 
             // 좋아요 -> 싫어요 업데이트
             answerMapper.updateLike(likeVO);
-            System.out.println("subtract update like");
+            
         }
 
         return answerMapper.countLike(likeVO.getAnsNo());

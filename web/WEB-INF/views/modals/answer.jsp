@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div id="answer-modal" tabindex="-1" class="modal fade" aria-hidden="true" aria-labelledby="modal-title">
-    <%--    style="left: 50%; top: 50%; transform: translate(-50%, -50%); min-height: 350px; max-height: 70vh; min-width: 680px; max-width: 90vw; width: 730px;" role="dialog"--%>
     <div class="modal-dialog border-grey rounded-3" style="top: calc(50% - 25px); transform: translateY(-50%); background-color: rgb(24, 24, 24) !important; min-height: 350px; max-height: 70vh; min-width: 680px; max-width: 90vw; width: 730px;">
         <div class="modal-content px-3" style="background-color: transparent; height: 100%;">
 
@@ -110,15 +109,10 @@
 
 
 
-    // 이미지 업로드 버튼 클릭 시 image input 태그 클릭 작동
-    $('#upload-button').click(function () {
-        $('#image').trigger('click')
-    })
-
-</script>
-
-<script>
-
+    // // 이미지 업로드 버튼 클릭 시 image input 태그 클릭 작동
+    // $('#upload-button').click(function () {
+    //     $('#image').trigger('click')
+    // })
 
 </script>
 

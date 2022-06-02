@@ -49,6 +49,13 @@ public class AnswerController {
         return answerVO.getAnsNo();
     }
 
+    @GetMapping("select")
+    @ResponseBody
+    public AnswerVO selectAnswer(int ansNo) {
+
+        return answerService.select(ansNo);
+    }
+
     @GetMapping("like")
     @ResponseBody
     public Map<String, Integer> likeAnswer(@RequestParam int ansNo, Principal principal) {
@@ -57,8 +64,6 @@ public class AnswerController {
 
         likeVO.setAnsNo(ansNo);
         likeVO.setUserEmail(principal.getName());
-
-        System.out.println(likeVO);
 
         return answerService.addLike(likeVO);
     }

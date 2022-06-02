@@ -114,86 +114,86 @@
 <%--    </form>--%>
 </div>
 
-<script>
+<%--<script>--%>
 
-    // var myModal = document.getElementById('question-modal')
-    // var myInput = document.getElementById('myInput')
-    //
-    // myModal.addEventListener('shown.bs.modal', function () {
-    //     myInput.focus()
-    // })
-
-
-
-    // 이미지 업로드 버튼 클릭 시 image input 태그 클릭 작동
-    $('#upload-button').click(function () {
-        $('#image').trigger('click')
-    })
-
-</script>
-
-<script>
-    $( document ).ready(function() {
-        function isOverflown(element) {
-            return element.prop('scrollHeight') > element.height()
-        }
-
-        // 질문 Modal Window textarea 자동 높이 조절
-        $('#question-textarea').on('keyup', function () {
-            $(this).height('26')
-            let scHeight = $(this).prop('scrollHeight')
-            $(this).height(scHeight)
-        })
-
-        // // 질문 Modal Window open 시
-        // $('#question-modal').on('shown.bs.modal', function () {
-        //     initEditor()
-        // })
-
-        // 질문 Modal Window close 시
-        $('#question-modal').on('hidden.bs.modal', function () {
-
-            // form 내용 초기화
-            $(this).find('form').trigger('reset')
-
-            // 카테고리 초기화
-            $('#first-category').val('1')
-            $('#second-category').val('1')
-        })
-
-        // // add question button 클릭 시 form submit
-        // $('#add-question-button').click(function () {
-        //     $('#question-form')
-        // })
-
-        // 대분류 카테고리 선택 시 소분류 카테고리 설정
-        $('#first-category').change(function () {
-            const parentCatCode = $(this).find('option:selected').val()
-            $('#second-category').val('1')
-            $('#second-category option').attr('hidden', 'hidden')
-            $('#second-category option').filter('[value="' + parentCatCode + '"]').removeAttr('hidden')
-        })
-
-        async function initEditor () {
-
-          await tinymce.init({
-            selector: '#question-textarea',
-            menubar: false,
-            statusbar: false,
-            toolbar: false,
-            height: $("#modal-question").height() - $('title').height(),
-            setup: function (editor) {
-              editor.on('change', function () {
-                editor.save()
-              })
-            },
-            relative_urls: false,
-          })
-        }
-    })
+<%--    // var myModal = document.getElementById('question-modal')--%>
+<%--    // var myInput = document.getElementById('myInput')--%>
+<%--    //--%>
+<%--    // myModal.addEventListener('shown.bs.modal', function () {--%>
+<%--    //     myInput.focus()--%>
+<%--    // })--%>
 
 
-</script>
+
+<%--    // 이미지 업로드 버튼 클릭 시 image input 태그 클릭 작동--%>
+<%--    $('#upload-button').click(function () {--%>
+<%--        $('#image').trigger('click')--%>
+<%--    })--%>
+
+<%--</script>--%>
+
+<%--<script>--%>
+<%--    $( document ).ready(function() {--%>
+<%--        function isOverflown(element) {--%>
+<%--            return element.prop('scrollHeight') > element.height()--%>
+<%--        }--%>
+
+<%--        // 질문 Modal Window textarea 자동 높이 조절--%>
+<%--        $('#question-textarea').on('keyup', function () {--%>
+<%--            $(this).height('26')--%>
+<%--            let scHeight = $(this).prop('scrollHeight')--%>
+<%--            $(this).height(scHeight)--%>
+<%--        })--%>
+
+<%--        // // 질문 Modal Window open 시--%>
+<%--        // $('#question-modal').on('shown.bs.modal', function () {--%>
+<%--        //     initEditor()--%>
+<%--        // })--%>
+
+<%--        // 질문 Modal Window close 시--%>
+<%--        $('#question-modal').on('hidden.bs.modal', function () {--%>
+
+<%--            // form 내용 초기화--%>
+<%--            $(this).find('form').trigger('reset')--%>
+
+<%--            // 카테고리 초기화--%>
+<%--            $('#first-category').val('1')--%>
+<%--            $('#second-category').val('1')--%>
+<%--        })--%>
+
+<%--        // // add question button 클릭 시 form submit--%>
+<%--        // $('#add-question-button').click(function () {--%>
+<%--        //     $('#question-form')--%>
+<%--        // })--%>
+
+<%--        // 대분류 카테고리 선택 시 소분류 카테고리 설정--%>
+<%--        $('#first-category').change(function () {--%>
+<%--            const parentCatCode = $(this).find('option:selected').val()--%>
+<%--            $('#second-category').val('1')--%>
+<%--            $('#second-category option').attr('hidden', 'hidden')--%>
+<%--            $('#second-category option').filter('[value="' + parentCatCode + '"]').removeAttr('hidden')--%>
+<%--        })--%>
+
+<%--        async function initEditor () {--%>
+
+<%--          await tinymce.init({--%>
+<%--            selector: '#question-textarea',--%>
+<%--            menubar: false,--%>
+<%--            statusbar: false,--%>
+<%--            toolbar: false,--%>
+<%--            height: $("#modal-question").height() - $('title').height(),--%>
+<%--            setup: function (editor) {--%>
+<%--              editor.on('change', function () {--%>
+<%--                editor.save()--%>
+<%--              })--%>
+<%--            },--%>
+<%--            relative_urls: false,--%>
+<%--          })--%>
+<%--        }--%>
+<%--    })--%>
+
+
+<%--</script>--%>
 
 <%--<script src="/js/imageUpload.js"></script>--%>
 
