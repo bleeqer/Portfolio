@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 public class QuestionVO {
 
-    private int quesNo;
+    private Integer quesNo;
     private String question;
     private String categoryName;
     private String userEmail;

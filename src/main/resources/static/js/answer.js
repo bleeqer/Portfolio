@@ -8,10 +8,11 @@ function initAnswerPopover() {
                 trigger: 'focus',
                 html: true,
                 sanitize: false,
-                content: $(element).find($('.answer-option-popover-content')).html()
+                content: $(element).find('.answer-option-popover-content').html()
             })
         })
     })
+
 }
 
 // 최초 조회된 답변 popover
@@ -73,12 +74,19 @@ $(document).on('click', '.answer-popover-item', function () {
             contentType: 'application/json',
             success: function (answer) {
 
-                $('#answer-modal #asked-question').text($('.question-text').html())
+                // 답변 모달창의 submit 버튼 교체
+                $('#answer-modal #add-answer-button').hide()
+                $('#answer-modal #edit-answer-button').show()
+
+                $('#answer-modal #asked-question').html($('.question-text').html())
                 $('#answer-modal #user-img').attr('src', answer.userPhoto)
                 $('#answer-modal #user-name').text(answer.userName)
                 $('#answer-modal #user-occupation').text(answer.userOccupation)
                 $('#answer-modal #answer-textarea').val(answer.answer)
+                $('#answer-modal #ans-no').val(answer.ansNo)
                 $('#answer-modal #ques-no').val(answer.quesNo)
+
+
 
             },
             error: function () {
@@ -89,7 +97,6 @@ $(document).on('click', '.answer-popover-item', function () {
 
     }
 })
-
 
 // 답변 버튼 클릭 시 답변 modal에 유저정보, 질문글 띄우기
 $('.answer-button').click(function () {
@@ -140,12 +147,33 @@ $('#add-answer-button').click(function () {
 
             // 등록된 답변을 답변 리스트에 추가
             $('#answer-list').prepend(answer)
+            initAnswerPopover()
 
             // 모달창 종료
             $('#answer-modal').modal('toggle')
+
         }
     })
+})
 
+// 답변 수정
+$('#edit-answer-button').click(function () {
+
+    $.ajax({
+        url: '/answer/edit',
+        type: 'POST',
+        data: $('#answer-form').serialize(),
+        success: function (answer) {
+
+            // 등록된 답변을 답변 리스트에 추가
+            $('.answer[data-ans-no="' + answer.ansNo + '"]').find('.answer-text').html(answer.answer)
+
+            $('#answer-modal').modal('toggle')
+
+            initAnswerPopover()
+
+        }
+    })
 })
 
 // 이미지 업로드 버튼 클릭 시 file input trigger
@@ -190,7 +218,7 @@ $('#image').on("change", function () {
         type: 'POST',
 
         beforeSend: function(xhr){
-            xhr.setRequestHeader('X-CSRF-TOKEN', $('input[name="_csrf"]').val())
+            xhr.setRequestHeader(header, token)
         },
 
         // ajax 요청 성공 시 콜백함수

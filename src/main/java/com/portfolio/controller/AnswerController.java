@@ -21,12 +21,13 @@ public class AnswerController {
     AnswerService answerService;
 
     @PostMapping("create")
-    public String createAnswer(AnswerVO answer, Principal principal, Model model) {
-
+    public String createAnswer(AnswerVO answerVO, Principal principal, Model model) {
+        System.out.println(answerVO.getAnswer());
+        System.out.println(answerVO.getQuesNo());
         // 작성자 셋팅
-        answer.setUserEmail(principal.getName());
+        answerVO.setUserEmail(principal.getName());
 
-        int ansNo = answerService.create(answer);
+        int ansNo = answerService.create(answerVO);
 
         AnswerVO createdAnswer = answerService.select(ansNo);
 
@@ -40,6 +41,13 @@ public class AnswerController {
         return "templates/answerTemplate";
     }
 
+    @GetMapping("select")
+    @ResponseBody
+    public AnswerVO selectAnswer(int ansNo) {
+
+        return answerService.select(ansNo);
+    }
+
     @PostMapping("delete")
     @ResponseBody
     public int deleteAnswer(@RequestBody AnswerVO answerVO) {
@@ -49,12 +57,19 @@ public class AnswerController {
         return answerVO.getAnsNo();
     }
 
-    @GetMapping("select")
+    @PostMapping("edit")
     @ResponseBody
-    public AnswerVO selectAnswer(int ansNo) {
+    public AnswerVO updateAnswer(AnswerVO answerVO) {
 
-        return answerService.select(ansNo);
+        answerService.update(answerVO);
+
+        System.out.println(answerVO.getAnswer());
+        System.out.println(answerVO.getAnsNo());
+
+        return answerService.select(answerVO.getAnsNo());
     }
+
+
 
     @GetMapping("like")
     @ResponseBody

@@ -101,9 +101,8 @@
     </select>-->
 
     <update id="update" parameterType="AnswerVO">
-        UPDATE TB_ANSWER SET title = #{title},
-                         content = #{content}
-        WHERE ans_no=#{ansNo}
+        UPDATE TB_ANSWER SET answer = #{answer}
+        WHERE ans_no = #{ansNo}
     </update>
 
     <delete id="delete" parameterType="int">

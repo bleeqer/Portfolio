@@ -11,13 +11,13 @@ import java.util.List;
 @Setter
 public class AnswerVO {
 
-    private int quesNo;
-    private int ansNo;
+    private Integer quesNo;
+    private Integer ansNo;
     private String answer;
     private String regDate;
-    private int likes;
-    private int dislikes;
-    private int commentCnt;
+    private Integer likes;
+    private Integer dislikes;
+    private Integer commentCnt;
     private String userEmail;
     private String userName;
     private String userPhoto;
