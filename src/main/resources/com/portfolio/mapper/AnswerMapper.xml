@@ -9,7 +9,7 @@
 
         -- file 테이블의 외래키로 사용될 ques_no를 반환받아 QuestionVO에 담김
         <selectKey keyProperty="ansNo" resultType="int" order="BEFORE">
-            select ANSWER_SEQ.NEXTVAL from dual
+            select answer_seq.nextval from dual
         </selectKey>
 
         INSERT INTO TB_ANSWER (ans_no, ques_no, answer, user_email)

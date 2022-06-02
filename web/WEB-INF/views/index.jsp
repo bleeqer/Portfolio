@@ -505,6 +505,8 @@
     <script src="/static/js/liking.js"></script>
     <script src="/static/js/comment.js"></script>
     <script src="/static/js/answer.js"></script>
+    <script src="/static/js/question.js"></script>
+
 
 </body>
 </html>

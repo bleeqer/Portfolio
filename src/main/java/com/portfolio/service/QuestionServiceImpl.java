@@ -36,10 +36,9 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Transactional
     @Override
-    public void create(QuestionVO questionVO) {
+    public int create(QuestionVO questionVO) {
 
         // questionVO 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
-        questionMapper.insert(questionVO);
 
         // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
 //        if (questionVO.getImageList() != null) {
@@ -53,6 +52,9 @@ public class QuestionServiceImpl implements QuestionService {
 //                questionImageMapper.insert(imgVO);
 //            }
 //        }
+
+        return questionMapper.insert(questionVO);
+
     }
 
     @Transactional

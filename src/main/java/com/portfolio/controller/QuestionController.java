@@ -37,21 +37,19 @@ public class QuestionController {
     @Autowired
     QuestionImageService imageService;
 
-//    @PostMapping("create")
-//    @ResponseBody
-//    public QuestionVO createQuestion(QuestionVO questionVO) {
-//
-//        // 게시글 저장
-//        questionService.create(questionVO);
-//
-//        System.out.println(questionService.read(questionVO.getQuesNo()).getRegDate());
-//
-//        return questionService.read(questionVO.getQuesNo());
-//    }
+    @PostMapping("create")
+    @ResponseBody
+    public QuestionVO createQuestion(QuestionVO questionVO, Principal principal) {
+
+        questionVO.setUserEmail(principal.getName());
+        questionVO.setCategoryName("Programming Language");
+
+        // 질문글 생성 후 생성된 질문글 셀렉트해서 전달
+        return questionService.select(questionService.create(questionVO));
+    }
 
 //    @RequestMapping("/{postNo}")
 //    public String viewQuestion(@PathVariable int postNo, Model model) {
-//
 //        QuestionVO question = questionService.read(postNo);
 //
 //        List<AnswerVO> answers = answerService.readList(postNo);

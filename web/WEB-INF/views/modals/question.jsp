@@ -54,7 +54,7 @@
                 <div>
                     <form id="question-form" action="">
                         <div class="d-flex justify-content-center align-items-center modal-body border-bottom-grey hover-border-bottom-color-blue border-top-0" style="width: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
-                            <textarea id="question-textarea" name="content" class="mt-3 mb-1 px-2" style="line-height: 1.4; font-size: 14px; min-height: 28px; height: 28px; border: 0; outline: none; overflow: hidden; overflow-wrap: break-word; width: 100%; resize: none; max-height: 130px;" placeholder="질문을 입력해주세요."></textarea>
+                            <textarea id="question-textarea" name="question" class="mt-3 mb-1 px-2 py-0" style="line-height: 1.4; font-size: 14px; border: 0; outline: none; overflow: hidden; overflow-wrap: break-word; width: 100%; resize: none; max-height: 130px;" placeholder="질문을 입력해주세요."></textarea>
                         </div>
                     </form>
                 </div>

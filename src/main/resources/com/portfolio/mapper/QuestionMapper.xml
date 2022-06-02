@@ -8,13 +8,14 @@
     <insert id="insert" parameterType="QuestionVO">
 
         <selectKey keyProperty="quesNo" resultType="int" order="BEFORE">
-            SELECT QUESTION_SEQ.NEXTVAL FROM dual
+            SELECT question_seq.nextval FROM dual
         </selectKey>
 
-        INSERT INTO TB_QUESTION (ques_no, title, content, writer)
-        VALUES (#{quesNo}, #{title}, #{content}, #{writer})
+        INSERT INTO TB_QUESTION (ques_no, question, user_email, category_name)
+        VALUES (#{quesNo}, #{question}, #{userEmail}, #{categoryName})
 
     </insert>
+
 
     <select id="select" parameterType="int" resultMap="QuestionResultMap">
         SELECT QUES.*, (SELECT COUNT(*) FROM TB_ANSWER WHERE ques_no = #{quesNo}) answer_cnt

@@ -117,24 +117,22 @@ $('.answer-button').click(function () {
         }
     })
 })
-
 // 질문 Modal Window textarea 자동 높이 조절
 $('#question-textarea').on('keyup', function () {
 
-    // 일정 높이 도달 전까지 크기 조절
-    if ($(this).height() < 124) {
-        console.log($(this).height())
-        $(this).height($(this).prop('scrollHeight'))
-        return
+    $(this).css('height', 'auto')
+    $(this).height($(this).prop('scrollHeight'))
+
+    if ($(this).height() >= 130) {
+        $(this).css('overflow', '')
     }
 
-    // 일정 높이 도달 시 더이상 높이 조절 없이 스크롤바 보이기
-    $(this).css('overflow', '')
+
 })
 
 $('#question-modal').on('hidden.bs.modal', function () {
     $('#question-textarea').val('')
-    $('#question-textarea').height('26')
+    $('#question-textarea').height($(this).height($(this).prop('scrollHeight')))
 
 })
 
@@ -166,7 +164,6 @@ $('#add-answer-button').click(function () {
 
             // 모달창 종료
             $('#answer-modal').modal('toggle')
-
         }
     })
 })

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface QuestionService {
-    void create(QuestionVO questionVO);
+    int create(QuestionVO questionVO);
     QuestionVO select(int quesNo);
     void update(QuestionVO questionVO);
     void delete(int postNo);
