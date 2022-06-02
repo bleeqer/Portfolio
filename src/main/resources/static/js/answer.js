@@ -120,10 +120,25 @@ $('.answer-button').click(function () {
 
 // 질문 Modal Window textarea 자동 높이 조절
 $('#question-textarea').on('keyup', function () {
-    $(this).height('26')
-    let scHeight = $(this).prop('scrollHeight')
-    $(this).height(scHeight)
+
+    // 일정 높이 도달 전까지 크기 조절
+    if ($(this).height() < 124) {
+        console.log($(this).height())
+        $(this).height($(this).prop('scrollHeight'))
+        return
+    }
+
+    // 일정 높이 도달 시 더이상 높이 조절 없이 스크롤바 보이기
+    $(this).css('overflow', '')
 })
+
+$('#question-modal').on('hidden.bs.modal', function () {
+    $('#question-textarea').val('')
+    $('#question-textarea').height('26')
+
+})
+
+
 
 // 답변 Modal Window open 시 text editor 초기화
 $('#answer-modal').on('shown.bs.modal', function () {

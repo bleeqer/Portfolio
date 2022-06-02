@@ -37,20 +37,6 @@
     border: none !important;
 }
 
-#answer-modal textarea::-webkit-scrollbar {
-    width: 10px;
-}
-
-#answer-modal textarea::-webkit-scrollbar-thumb {
-    border-radius: 9999em;
-    box-shadow: rgb(255 255 255 / 10%) 0px 0px 10px 10px inset;
-    border: 2px solid transparent;
-}
-
-#answer-modal textarea::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
 .tox-editor-header {
     display: none !important;
 }
