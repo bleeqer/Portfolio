@@ -146,6 +146,10 @@
     background-color: rgba(255, 255, 255, 0.04) !important;
 }
 
+.bg-darken-light {
+    background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
 .bg-whiten {
     background-color: rgba(255, 255, 255, 0.08) !important;
 }

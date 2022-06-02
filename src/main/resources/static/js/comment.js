@@ -206,9 +206,72 @@ $('.comment-section').on('click', '.comment-edit-submit-button', function () {
 $('.comment-section').on('click', 'div.reply-button', function () {
 
     const parentNo = $(this).parents('.comment').data('co-no')
+    
+    // 해당 댓글의 자식 댓글
+    const childComments = $('.comment[data-parent-co-no="' + parentNo + '"]')
 
-    $('.comment[data-parent-co-no="' + parentNo + '"]').toggle()
+    // 보여지고 있는 자식 댓글 선택
+    let shownChildComments = childComments.filter(function() {
+        return $(this).is(':visible')
+    })
+
+    // reply button 클릭 시 이미 보여지고 있는 자식 댓글이 있다면 전부 숨기기
+    if (shownChildComments.length > 0) {
+
+        shownChildComments.hide()
+
+    // 보여지고 있는 자식 댓글이 없다면 특정 갯수 보여주기
+    } else {
+        childComments.slice(0, 3).show()
+
+        // 보여지고 있는 자식 댓글 다시 선택
+        shownChildComments = childComments.filter(function() {
+            return $(this).is(':visible')
+        })
+
+        // 보여지고 있는 자식 댓글의 마지막 엘레멘트가 전체 자식댓글의 마지막 엘레멘트가 아닐 경우 view more replies 버튼 보여주기
+        if (shownChildComments.last().data('co-no') < childComments.last().data('co-no')) {
+            shownChildComments.last().find('.view-more-reply-container').show()
+        }
+    }
+
+    // reply 입력 input 토글
     $('.comment[data-co-no="' + parentNo + '"] .reply-input-container').toggle()
+})
+
+$('.comment-section').on('click', '.view-more-reply-container', function () {
+
+    const parentCoNo = $(this).data('parent-co-no')
+
+    const childComments = $('.comment[data-parent-co-no="' + parentCoNo + '"]')
+
+
+    // 해당 댓글의 숨겨져있는 자식 댓글
+    const hiddenChildComments = childComments.filter(function () {
+        return $(this).is(':hidden')
+    })
+
+    // 특정 갯수만 보여주기
+    hiddenChildComments.slice(0, 3).toggle()
+
+    // 현재 view more replies 버튼 숨기기
+    $(this).hide()
+
+    // 보여지고 있는 자식 댓글 선택
+    let shownChildComments = childComments.filter(function() {
+        return $(this).is(':visible')
+    })
+
+    // 보여지고 있는 자식 댓글의 마지막 엘레멘트가 전체 자식댓글의 마지막 엘레멘트일 경우 view more replies 버튼 숨기기
+    if (shownChildComments.last().data('co-no') >= childComments.last().data('co-no')) {
+
+        shownChildComments.last().find('.view-more-reply-container').hide()
+
+    // 마지막 엘레멘트가 아닐 경우 view more replies 버튼 보여주기
+    } else {
+        shownChildComments.last().find('.view-more-reply-container').show()
+    }
+
 })
 
 // 댓글 더보기
