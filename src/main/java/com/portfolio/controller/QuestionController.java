@@ -43,7 +43,6 @@ public class QuestionController {
     public QuestionVO createQuestion(QuestionVO questionVO, Principal principal) {
 
         questionVO.setUserEmail(principal.getName());
-        questionVO.setCategoryName("Programming Language");
 
         // 질문글 생성 후 생성된 질문글 셀렉트해서 전달
         return questionService.select(questionService.create(questionVO));

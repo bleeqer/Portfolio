@@ -16,6 +16,32 @@ $('#ask-question-button').click(function () {
     })
 })
 
+$('#category-select').change(function () {
+
+    const category = $('#category-select option:selected').text()
+    const categoryCode = $('#category-select option:selected').attr('value')
+
+    $('#category-name').val(category)
+    })
+
+$('#ask-question-button').click(function () {
+
+    $.ajax({
+        url: '/question/categories',
+        type: 'GET',
+        success: function (categories) {
+            let cats = '';
+            categories.forEach(function (cat) {
+
+                cats += ('<option value="' + cat.categoryCode + '">' + cat.categoryName + '</option>')
+            })
+
+            // 카테고리 리스트에 카테고리 목록 추가
+            $('#category-select').append(cats)
+        }
+    })
+})
+
 $('#add-question-button').click(function () {
 
     $.ajax({
