@@ -1,10 +1,7 @@
 package com.portfolio.service;
 
 import com.portfolio.commons.util.TimeDiff;
-import com.portfolio.domain.AnswerVO;
-import com.portfolio.domain.QAPairVO;
-import com.portfolio.domain.QuestionVO;
-import com.portfolio.domain.ImageVO;
+import com.portfolio.domain.*;
 import com.portfolio.mapper.AnswerMapper;
 import com.portfolio.mapper.QuestionCategoryMapper;
 import com.portfolio.mapper.QuestionMapper;
@@ -88,6 +85,12 @@ public class QuestionServiceImpl implements QuestionService {
     public List<QAPairVO> selectPairList(QuestionVO questionVO) {
 
         return questionMapper.selectPairList(questionVO);
+    }
+
+    @Override
+    public List<QuestionCategoryVO> selectCategories() {
+
+        return questionMapper.selectCategories();
     }
 
 }

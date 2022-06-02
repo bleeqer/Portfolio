@@ -26,28 +26,12 @@
                 <div class="d-flex">
                     <div class="pt-3 me-2">
 <%--                        <select class="rounded-1 py-0" aria-label="select" style="width: 160px; height: 30px; border: none !important; color: rgb(225, 225, 225);--%>
-                        <select id="first-category" class="rounded-1 py-0 px-1" aria-label="select" style="height: 30px; border: none !important; color: rgb(213, 214, 214);
+                        <select id="category-select" class="rounded-1 py-0 px-1" aria-label="select" style="height: 30px; border: none !important; color: rgb(213, 214, 214);
                          background-color: rgb(13,110,253) !important;">
                             <option selected hidden value="1">Choose category</option>
-                            <option value="100">Programming Language</option>
-                            <option value="200">Computer Science</option>
-                            <option value="300">Web Development</option>
                         </select>
                     </div>
-                    <div class="pt-3">
-                        <select id="second-category" class="rounded-1 py-0 px-1" aria-label="select" style="height: 30px; border: none !important; color: rgb(213, 214, 214);
-                         background-color: rgb(62,141,255) !important;">
-                            <option selected hidden value="1">Choose category</option>
-                            <option hidden value="100">Java</option>
-                            <option hidden value="100">C</option>
-                            <option hidden value="100">Python</option>
-                            <option hidden value="200">Operating Systems</option>
-                            <option hidden value="200">Computer Architecture</option>
-                            <option hidden value="200">Database</option>
-                            <option hidden value="300">Frontend</option>
-                            <option hidden value="300">Backend</option>
-                        </select>
-                    </div>
+
                 </div>
 
                 <%--Question textarea--%>

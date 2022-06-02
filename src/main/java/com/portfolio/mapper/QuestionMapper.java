@@ -2,6 +2,7 @@ package com.portfolio.mapper;
 
 import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.QAPairVO;
+import com.portfolio.domain.QuestionCategoryVO;
 import com.portfolio.domain.QuestionVO;
 
 import java.util.HashMap;
@@ -17,5 +18,7 @@ public interface QuestionMapper {
     List<QAPairVO> selectPairList(QuestionVO questionVO);
     void addViewCnt(int quesNo);
     void updateAnswered(QuestionVO questionVO);
+    List<QuestionCategoryVO> selectCategories();
+
 
 }

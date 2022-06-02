@@ -112,6 +112,10 @@
         WHERE ques_no = #{quesNo}
     </update>
 
+    <select id="selectCategories" resultMap="QuestionCategoryResultMap">
+            SELECT * FROM tb_category ORDER BY category_code
+    </select>
+
     <update id="updateAnswered" parameterType="AnswerVO">
         UPDATE TB_QUESTION SET answered = #{answered}
         WHERE ques_no = #{quesNo}
@@ -145,5 +149,10 @@
         <id column="occupation" property="userOccupation"/>
     </resultMap>
 
+    <resultMap id="QuestionCategoryResultMap" type="QuestionCategoryVO">
+        <id column="category_code" property="categoryCode"/>
+        <id column="category_name" property="categoryName"/>
+        <id column="category_photo" property="categoryPhoto"/>
+    </resultMap>
 
 </mapper>

@@ -86,7 +86,7 @@
 
         <%--Ask question button--%>
         <div class="px-2">
-            <a class="btn btn-danger rounded-pill py-1 font-bold" style="font-size: 15px; min-width: 120px;" data-bs-toggle="modal" data-bs-target="#question-modal">Ask question</a>
+            <a id="ask-question-button" class="btn btn-danger rounded-pill py-1 font-bold" style="font-size: 15px; min-width: 120px;" data-bs-toggle="modal" data-bs-target="#question-modal">Ask question</a>
         </div>
 
     </nav>

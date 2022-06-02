@@ -3,6 +3,7 @@ package com.portfolio.controller;
 import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate;
 import com.portfolio.commons.util.UploadFileUtils;
 import com.portfolio.domain.AnswerVO;
+import com.portfolio.domain.QuestionCategoryVO;
 import com.portfolio.domain.QuestionVO;
 import com.portfolio.domain.ImageVO;
 import com.portfolio.service.AnswerService;
@@ -113,24 +114,30 @@ public class QuestionController {
 //        return questionService.read(question.getQuesNo());
 //    }
 
-    @RequestMapping("delete/{postNo}")
-    public String deleteQuestion(HttpServletRequest request, @PathVariable int postNo) {
+//    @RequestMapping("delete/{postNo}")
+//    public String deleteQuestion(HttpServletRequest request, @PathVariable int postNo) {
+//
+//        questionService.delete(postNo);
+//
+//        // 삭제하려는 게시글의 모든 첨부파일(이미지) 불러오기
+//        List<ImageVO> atchList = imageService.readAll(postNo);
+//
+//        // 파일관련유틸에 절대경로를 얻기위한 HttpServletRequest 객체, 삭제할 파일 리스트 전달하여 파일삭제
+//        UploadFileUtils.deleteFile(request, atchList);
+//
+//        // 첨부파일 리스트 순회하며 데이터베이스에서 삭제
+//        for (ImageVO atch : atchList) {
+//            imageService.delete(atch);
+//        }
+//
+//        return "index";
+//    }
 
-        questionService.delete(postNo);
+    @GetMapping("categories")
+    @ResponseBody
+    public List<QuestionCategoryVO> getCategories() {
 
-        // 삭제하려는 게시글의 모든 첨부파일(이미지) 불러오기
-        List<ImageVO> atchList = imageService.readAll(postNo);
-
-        // 파일관련유틸에 절대경로를 얻기위한 HttpServletRequest 객체, 삭제할 파일 리스트 전달하여 파일삭제
-        UploadFileUtils.deleteFile(request, atchList);
-
-        // 첨부파일 리스트 순회하며 데이터베이스에서 삭제
-        for (ImageVO atch : atchList) {
-            imageService.delete(atch);
-        }
-
-        return "index";
+        return questionService.selectCategories();
     }
-
 
 }
