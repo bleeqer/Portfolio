@@ -11,14 +11,17 @@
             SELECT question_seq.nextval FROM dual
         </selectKey>
 
-        INSERT INTO TB_QUESTION (ques_no, question, user_email, category_name)
-        VALUES (#{quesNo}, #{question}, #{userEmail}, #{categoryName})
+        INSERT INTO TB_QUESTION (ques_no, question, user_email, category_code)
+        VALUES (#{quesNo}, #{question}, #{userEmail}, #{categoryCode})
 
     </insert>
 
 
     <select id="select" parameterType="int" resultMap="QuestionResultMap">
-        SELECT QUES.*, (SELECT COUNT(*) FROM TB_ANSWER WHERE ques_no = #{quesNo}) answer_cnt
+        SELECT
+            QUES.*,
+            (SELECT COUNT(*) FROM TB_ANSWER WHERE ques_no = #{quesNo}) answer_cnt,
+            (SELECT category_name FROM tb_category WHERE category_code = QUES.category_code) category_name
         FROM tb_question QUES WHERE QUES.ques_no = #{quesNo} ORDER BY QUES.ques_no ASC
     </select>
 
@@ -35,26 +38,27 @@
     <select id="selectList" parameterType="QuestionVO" resultMap="QuestionResultMap">
 
         SELECT *
-        FROM
+            FROM
             (SELECT QUES.ques_no,
-                    QUES.question,
-                    QUES.category_name
+                QUES.question,
+                (SELECT category_name FROM tb_category WHERE category_code = QUES.category_code) category_name,
+                QUES.category_code
             FROM tb_question QUES, tb_user U
-            <where>
+            WHERE QUES.user_email = U.email
+                AND QUES.answered = 'N'
                 <if test="quesNo != null and quesNo != ''">
                     QUES.ques_no <![CDATA[<]]> #{quesNo}
                 </if>
                 <if test="answered != null and answered != ''">
                     AND QUES.answered = #{answered}
                 </if>
-                <if test="userNo != null and userNo != ''">
-                    AND QUES.user_no = #{userNo}
+                <if test="userEmail != null and userEmail != ''">
+                    AND QUES.userEmail = #{userEmail}
                     AND U.email = QUES.user_email
                 </if>
-                <if test="categoryName != null and categoryName != ''">
-                    AND QUES.category_name = #{categoryName}
+                <if test="categoryCode != null and categoryCode != ''">
+                    AND QUES.category_code = #{categoryCode}
                 </if>
-            </where>
             ORDER BY QUES.ques_no DESC, QUES.view_cnt DESC)
         WHERE ROWNUM BETWEEN 0 AND 10
 
@@ -62,49 +66,38 @@
 
     <select id="selectPairList" parameterType="QuestionVO" resultMap="QAPairResultMap">
 
-        SELECT *
-        FROM
-            (SELECT ROW_NUMBER() OVER(PARTITION BY ques_no ORDER BY LIKES DESC, ans_no ASC) AS RN, PAIR.*
+    SELECT *
+    FROM
+        (SELECT ROW_NUMBER() OVER(PARTITION BY ques_no ORDER BY LIKES DESC, ans_no ASC) AS RN, PAIR.*
             FROM
                 (SELECT
                     QUES.ques_no,
                     QUES.question,
-                    QUES.category_name,
+                    (SELECT category_name FROM tb_category WHERE category_code = QUES.category_code) category_name,
+                    QUES.category_code,
                     ANS.ans_no,
                     ANS.answer,
                     ANS.reg_date,
                     ANS.comment_cnt,
-                    NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes,
-                    NVL(SUM(CASE WHEN REC.like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes,
+                    (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) likes,
+                    (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) dislikes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) dislikes,
                     U.email,
                     U.name,
                     U.photo,
                     U.occupation
-                FROM tb_question QUES, tb_user U, tb_answer ANS LEFT OUTER JOIN tb_answer_like_rec REC ON REC.ans_no = ANS.ans_no
+                FROM tb_question QUES, tb_answer ANS, tb_user U
                 WHERE
                     ANS.ques_no = QUES.ques_no
                     AND U.email = ANS.user_email
                     AND QUES.answered = 'Y'
-                <if test="quesNo != null and quesNo != ''">
-                    AND QUES.ques_no <![CDATA[<]]> #{quesNo}
-                </if>
+                    <if test="quesNo != null and quesNo != ''">
+                        AND QUES.ques_no <![CDATA[<]]> #{quesNo}
+                    </if>
+                    <if test="categoryCode != null and categoryCode != ''">
+                        AND QUES.category_code = #{categoryCode}
+                    </if>) PAIR)
+    WHERE RN = 1 AND ROWNUM BETWEEN 0 AND 10
 
-                <if test="categoryName != null and categoryName != ''">
-                    AND QUES.category_name = #{categoryName}
-                </if>
-                GROUP BY
-                    QUES.ques_no,
-                    QUES.question,
-                    QUES.category_name,
-                    ANS.ans_no,
-                    ANS.answer,
-                    ANS.reg_date,
-                    ANS.comment_cnt,
-                    U.email,
-                    U.name,
-                    U.photo,
-                    U.occupation) PAIR)
-        WHERE RN=1 AND ROWNUM BETWEEN 0 AND 10
     </select>
 
     <update id="addViewCnt" parameterType="int">

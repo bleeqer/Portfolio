@@ -13,6 +13,7 @@ public class QuestionVO {
 
     private Integer quesNo;
     private String question;
+    private String categoryCode;
     private String categoryName;
     private String userEmail;
     private String regDate;

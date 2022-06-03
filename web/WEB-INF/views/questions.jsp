@@ -154,7 +154,7 @@
                       </div>
                     </div>
 
-                    <div class="" style="height: 100%;">
+                    <div id="question-list" style="height: 100%;">
                       <div>
 
                       <c:forEach var="question" items="${questions}">
