@@ -28,7 +28,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <%-- Bootstrap Icon --%>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<%--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">--%>
 
   <%--CSS--%>
   <link rel="stylesheet" type="text/css" href="/static/css/utils.css">
@@ -269,7 +269,7 @@
                                         <%--Share button--%>
                                         <div>
                                           <div>
-                                            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                            <span class="share-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" data-ques-no="${question.quesNo}" data-bs-toggle="popover" data-bs-content="Copy Link">
                                               <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
                                               </svg>
@@ -373,6 +373,7 @@
 
   <%--JS--%>
   <script type="text/javascript" src="/static/js/questions.js"></script>
+  <script type="text/javascript" src="/static/js/question.js"></script>
   <script src="/static/js/getMore.js"></script>
 </body>
 </html>
