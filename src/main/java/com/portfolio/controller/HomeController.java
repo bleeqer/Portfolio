@@ -2,7 +2,6 @@ package com.portfolio.controller;
 
 import com.portfolio.domain.*;
 import com.portfolio.service.AnswerService;
-import com.portfolio.service.QuestionCategoryService;
 import com.portfolio.service.QuestionService;
 import com.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +24,6 @@ public class HomeController {
     @Autowired
     UserService userService;
 
-    @Autowired
-    QuestionCategoryService questionCategoryService;
-
     @GetMapping("/search")
     public String getSearchResults(@RequestParam String keyword, Model model) {
 
@@ -45,7 +41,7 @@ public class HomeController {
         model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
 
         // 카테고리 리스트 담기
-        model.addAttribute("categories", questionCategoryService.selectAll());
+        model.addAttribute("categories", questionService.selectCategories());
 
         return "index";
     }
@@ -70,6 +66,8 @@ public class HomeController {
 
         // 답변 여부
         questionVO.setAnswered("N");
+
+        model.addAttribute("categories", questionService.selectCategories());
 
         model.addAttribute("questions", questionService.selectList(questionVO));
 
@@ -101,7 +99,7 @@ public class HomeController {
         model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
 
         // 카테고리 리스트 담기
-        model.addAttribute("categories", questionCategoryService.selectAll());
+        model.addAttribute("categories", questionService.selectCategories());
 
         model.addAttribute("topic", topic);
 

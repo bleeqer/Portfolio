@@ -1,29 +1,18 @@
 package com.portfolio.controller;
 
-import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate;
-import com.portfolio.commons.util.UploadFileUtils;
-import com.portfolio.domain.AnswerVO;
-import com.portfolio.domain.QuestionCategoryVO;
+import com.portfolio.domain.CategoryVO;
 import com.portfolio.domain.QuestionVO;
-import com.portfolio.domain.ImageVO;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionService;
 import com.portfolio.service.QuestionImageService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.xml.ws.Response;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("question")
@@ -61,7 +50,9 @@ public class QuestionController {
 
         model.addAttribute("questions", questions);
 
-        return "questions";
+        model.addAttribute("categories", questionService.selectCategories());
+
+        return "redirect:/questions";
     }
 
 //    @RequestMapping("/{postNo}")
@@ -150,7 +141,7 @@ public class QuestionController {
 
     @GetMapping("categories")
     @ResponseBody
-    public List<QuestionCategoryVO> getCategories() {
+    public List<CategoryVO> getCategories() {
 
         return questionService.selectCategories();
     }

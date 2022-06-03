@@ -14,7 +14,7 @@
         <typeAlias type="com.portfolio.domain.CommentVO" alias="CommentVO"/>
         <typeAlias type="com.portfolio.domain.AnswerLikeVO" alias="AnswerLikeVO"/>
         <typeAlias type="com.portfolio.domain.CommentLikeVO" alias="CommentLikeVO"/>
-        <typeAlias type="com.portfolio.domain.QuestionCategoryVO" alias="QuestionCategoryVO"/>
+        <typeAlias type="com.portfolio.domain.CategoryVO" alias="CategoryVO"/>
         <typeAlias type="com.portfolio.domain.QAPairVO" alias="QAPairVO"/>
 <!--        <typeAlias type="com.portfolio.domain.QuestionReplyVO" alias="QuestionReplyVO"/>-->
         <typeAlias type="com.portfolio.domain.ImageVO" alias="ImageVO"/>

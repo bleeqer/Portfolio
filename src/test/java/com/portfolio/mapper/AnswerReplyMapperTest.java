@@ -14,9 +14,6 @@ public class AnswerReplyMapperTest {
     AnswerCommentMapper answerReplyMapper;
 
     @Autowired
-    QuestionCategoryMapper questionCategoryMapper;
-
-    @Autowired
     QuestionService questionService;
 
 //    @Test

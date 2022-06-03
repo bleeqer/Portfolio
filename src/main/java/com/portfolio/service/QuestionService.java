@@ -1,10 +1,9 @@
 package com.portfolio.service;
 
 import com.portfolio.domain.QAPairVO;
-import com.portfolio.domain.QuestionCategoryVO;
+import com.portfolio.domain.CategoryVO;
 import com.portfolio.domain.QuestionVO;
 
-import java.util.HashMap;
 import java.util.List;
 
 public interface QuestionService {
@@ -14,7 +13,7 @@ public interface QuestionService {
     void delete(int postNo);
     List<QuestionVO> selectList(QuestionVO questionVO);
     List<QAPairVO> selectPairList(QuestionVO questionVO);
-    List<QuestionCategoryVO> selectCategories();
+    List<CategoryVO> selectCategories();
 
 
 }

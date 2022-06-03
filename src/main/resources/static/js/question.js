@@ -67,7 +67,3 @@ $('#add-question-button').click(function () {
     //     }
     // })
 })
-
-$(document).on('click', '.share-button', function () {
-    navigator.clipboard.writeText(window.location.origin + '/question/' + $(this).data('ques-no'))
-})

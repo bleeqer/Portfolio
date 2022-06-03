@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -501,7 +502,20 @@
 
                         </c:forEach>
 
+                        <c:if test="${fn:length(answers) <= 0}">
+                            <div id="no-content" class="" style="width: 100%;">
+                                <div class="pt-4 pb-2 d-flex justify-content-center">
+                                    <img src="/static/img/noContent.png" alt="" height="100" width="100">
+                                </div>
+                                <div class="text-center color-gray-light" style="font-size: 13px;">등록된 답변이 없습니다.</div>
+                            </div>
+                        </c:if>
+
+
+
                     </div>
+
+
 
 
                 </div>

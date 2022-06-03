@@ -19,3 +19,11 @@ $('.best-title').mouseenter(function () {
         $(this).css('height', 32)
     })
 
+// 질문글 url 복사
+$(document).on('click', '.share-button', function () {
+
+    const url = window.location.origin + '/question/' + $(this).data('ques-no')
+    navigator.clipboard.writeText(url)
+
+    alert('url이 성공적으로 복사 되었습니다.\n' + url)
+})

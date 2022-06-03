@@ -1,19 +1,13 @@
 package com.portfolio.service;
 
-import com.portfolio.commons.util.TimeDiff;
 import com.portfolio.domain.*;
-import com.portfolio.mapper.AnswerMapper;
-import com.portfolio.mapper.QuestionCategoryMapper;
 import com.portfolio.mapper.QuestionMapper;
 import com.portfolio.mapper.QuestionImageMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Service
@@ -27,9 +21,6 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     QuestionImageMapper questionImageMapper;
-
-    @Autowired
-    QuestionCategoryMapper questionCategoryMapper;
 
     @Transactional
     @Override
@@ -88,7 +79,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionCategoryVO> selectCategories() {
+    public List<CategoryVO> selectCategories() {
 
         return questionMapper.selectCategories();
     }

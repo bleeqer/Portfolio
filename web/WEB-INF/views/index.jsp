@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -439,54 +440,76 @@
                                     </div>
                                 </div>
                             </c:forEach>
+
+                            <c:if test="${fn:length(answerPairs) <= 0}">
+
+                            <div class="QnA-container mb-3 mx-1">
+
+                                <%--배경색--%>
+                                <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten" style="height: calc(95vh - 80px);">
+                                    <div class="QnA-section d-flex px-4 justify-content-center align-items-center" style="height: 100%;">
+                                        <div id="no-content" class="pb-4" style="width: 100%;">
+                                            <div class="d-flex justify-content-center">
+                                                <img src="/static/img/noContent.png" alt="" height="100" width="100">
+                                            </div>
+                                            <div class="text-center color-gray-light" style="font-size: 13px;">등록된 질문이 없습니다.</div>
+                                        </div>
+                                    </div>
+
+                                    <%--Comment section--%>
+                                </div>
+                            </div>
+
+
+                            </c:if>
                         </div>
                     </div>
                 </div>
 
-                <%--주간 조회, 좋아요 베스트--%>
-                <div class="position-fixed" style="width: 238px; margin-left: 758px;">
+<%--                &lt;%&ndash;주간 조회, 좋아요 베스트&ndash;%&gt;--%>
+<%--                <div class="position-fixed" style="width: 238px; margin-left: 758px;">--%>
 
-                    <%--주간 조회수 베스트--%>
-                    <div class="bg-dark rounded-3 mb-2">
-                        <div class="px-4 py-2 border-bottom-gray">
-                            <div class="text-center">
-                                <b>Most viewed</b>
-                            </div>
-                        </div>
+<%--                    &lt;%&ndash;주간 조회수 베스트&ndash;%&gt;--%>
+<%--                    <div class="bg-dark rounded-3 mb-2">--%>
+<%--                        <div class="px-4 py-2 border-bottom-gray">--%>
+<%--                            <div class="text-center">--%>
+<%--                                <b>Most viewed</b>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                        <div class="best-title px-3 bg-hover-whiten-light py-1 dark border-bottom-gray"
-                             style="transition: height 250ms; height: 32px; overflow: hidden;">
-                            <div>
-                                <div>
-                                    <div style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 206px;">
-                                        hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<%--                        <div class="best-title px-3 bg-hover-whiten-light py-1 dark border-bottom-gray"--%>
+<%--                             style="transition: height 250ms; height: 32px; overflow: hidden;">--%>
+<%--                            <div>--%>
+<%--                                <div>--%>
+<%--                                    <div style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 206px;">--%>
+<%--                                        hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                    </div>
+<%--                    </div>--%>
 
-                    <%--주간 좋아요 베스트--%>
-                    <div class="bg-dark rounded-3">
-                        <div class="px-4 py-2 border-bottom-gray">
-                            <div class="text-center">
-                                <b>Most liked</b>
-                            </div>
-                        </div>
+<%--                    &lt;%&ndash;주간 좋아요 베스트&ndash;%&gt;--%>
+<%--                    <div class="bg-dark rounded-3">--%>
+<%--                        <div class="px-4 py-2 border-bottom-gray">--%>
+<%--                            <div class="text-center">--%>
+<%--                                <b>Most liked</b>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                        <div class="best-title px-3 bg-hover-whiten-light py-1 dark border-bottom-gray"
-                             style="transition: height 250ms; height: 32px; overflow: hidden;">
-                            <div>
-                                <div>
-                                    <div style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 206px;">
-                                        hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<%--                        <div class="best-title px-3 bg-hover-whiten-light py-1 dark border-bottom-gray"--%>
+<%--                             style="transition: height 250ms; height: 32px; overflow: hidden;">--%>
+<%--                            <div>--%>
+<%--                                <div>--%>
+<%--                                    <div style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden; width: 206px;">--%>
+<%--                                        hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기 hover 시 끝까지 다 보여주기--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
             </div>
         </div>

@@ -1,3 +1,1 @@
-
-$('.unanswered-question:last-child').removeClass('border-bottom-grey')
-
+$('.unanswered-question').last().removeClass('border-bottom-gray')
