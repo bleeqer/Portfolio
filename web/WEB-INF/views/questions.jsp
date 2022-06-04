@@ -165,15 +165,15 @@
                       <c:forEach var="question" items="${questions}">
 
                       <%--질문글--%>
-                        <div class="question-container" data-ques-no="${question.quesNo}">
-                          <div class="unanswered-question pt-3 px-3 border-bottom-gray">
+                        <div class="question-container">
+                          <div class="question pt-3 px-3 border-bottom-gray" data-ques-no="${question.quesNo}">
                             <div>
                               <div>
                                 <%--title and close--%>
                                 <div>
                                   <div class="d-flex justify-content-between position-relative">
                                     <%--Question title--%>
-                                    <div class="pe-2">
+                                    <div class="question-text pe-2">
                                       <a class="hover-underline" href="/question/${question.quesNo}"><strong style="line-height: 1.6;">${question.question}</strong></a>
                                     </div>
                                     <%--Question close--%>
@@ -204,7 +204,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                       <div class="d-flex">
                                         <%--Answer button--%>
-                                        <button class="answer-button px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal">
+                                        <button class="answer-button px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal" data-ques-no="${question.quesNo}">
                                           <div class="d-flex justify-content-center align-items-center">
                                             <%--Answer icon--%>
                                             <div>

@@ -18,6 +18,12 @@ function initAnswerPopover() {
 // 최초 조회된 답변 popover
 initAnswerPopover()
 
+// 엘레멘트 존재 여부 체커
+function isExist(selector) {
+    return $(selector).length > 0
+
+}
+
 $('.readMore-button').on('click', function() {
     $(this).parent().find('.fade-post').css('max-height', $(this).parent().find('.fade-post').prop('scrollHeight') + 'px')
     $(this).hide()
@@ -56,6 +62,9 @@ $(document).on('click', '.answer-popover-item', function () {
 
                 $('.answer[data-ans-no="' + ansNo + '"]').hide()
                 initAnswerPopover()
+                
+                // 보여지는 answer 엘레멘트가 없을 경우 no content 이미지 보여주기
+                if (!isExist('.answer:visible')) $('#no-content').show()
 
             },
             error: function () {
@@ -78,7 +87,7 @@ $(document).on('click', '.answer-popover-item', function () {
                 $('#answer-modal #add-answer-button').hide()
                 $('#answer-modal #edit-answer-button').show()
 
-                $('#answer-modal #asked-question').html($('.question-text').html())
+                $('#answer-modal #asked-question').html($('.question-text').text())
                 $('#answer-modal #user-img').attr('src', answer.userPhoto)
                 $('#answer-modal #user-name').text(answer.userName)
                 $('#answer-modal #user-occupation').text(answer.userOccupation)
@@ -108,11 +117,12 @@ $('.answer-button').click(function () {
         contentType: 'application/json',
         context: this,
         success: function (user) {
-            $('#answer-modal').find('#user-img').attr('src', user.photo)
-            $('#answer-modal').find('#user-name').html(user.name)
-            $('#answer-modal').find('#user-occupation').html(user.occupation)
-            $('#answer-modal').find('#asked-question').html($('.question[data-ques-no="' + $(this).data('ques-no') + '"]').find('.question-text').text())
-            $('#answer-modal').find('#ques-no').val($(this).data('ques-no'))
+            $('#answer-modal #asked-question').html($('.question-text').text())
+            $('#answer-modal #user-img').attr('src', user.photo)
+            $('#answer-modal #user-name').html(user.name)
+            $('#answer-modal #user-occupation').html(user.occupation)
+            $('#answer-modal #asked-question').html($('.question[data-ques-no="' + $(this).data('ques-no') + '"]').find('.question-text').text())
+            $('#answer-modal #ques-no').val($(this).data('ques-no'))
 
         }
     })
@@ -156,14 +166,32 @@ $('#add-answer-button').click(function () {
         url: '/answer/create',
         type: 'POST',
         data: $('#answer-form').serialize(),
+        context: this,
         success: function (answer) {
 
-            // 등록된 답변을 답변 리스트에 추가
-            $('#answer-list').prepend(answer)
-            initAnswerPopover()
+            const currentURL = window.location.pathname.split('/')[1]
+
+            if (currentURL === 'question') {
+
+                // 등록된 답변을 답변 리스트에 추가
+                $('#answer-list').prepend(answer)
+                initAnswerPopover()
+
+                // 답변글 존재여부 체크 후 no content 이미지 숨기기
+                if (isExist('.answer')) {
+                    $('#no-content').hide()
+                }
+
+            } else if (currentURL === 'questions') {
+                
+                // 답변 등록된 질문글 숨기기
+                $('.question[data-ques-no="' + $('#ques-no').val() + '"]').hide()
+                alert('답변이 성공적으로 등록되었습니다.')
+            }
 
             // 모달창 종료
             $('#answer-modal').modal('toggle')
+
         }
     })
 })

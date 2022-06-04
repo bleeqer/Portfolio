@@ -76,7 +76,6 @@
 </head>
 <body>
 <div>
-    <%@ include file="/WEB-INF/views/modals/answer.jsp" %>
 
     <div style="height: 50px;"></div>
 
@@ -498,7 +497,7 @@
                                     </div>
                                 </div>
                             </div>
-                            </div>
+                        </div>
 
                         </c:forEach>
 
@@ -510,14 +509,7 @@
                                 <div class="text-center color-gray-light" style="font-size: 13px;">등록된 답변이 없습니다.</div>
                             </div>
                         </c:if>
-
-
-
                     </div>
-
-
-
-
                 </div>
             </div>
         </div>
@@ -540,6 +532,8 @@
         </div>
     </div>
 </div>
+
+<%@ include file="/WEB-INF/views/modals/answer.jsp" %>
 
 <script src="/static/js/utils.js"></script>
 <script src="/static/js/comment.js"></script>
