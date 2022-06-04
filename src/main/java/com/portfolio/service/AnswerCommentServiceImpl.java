@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 @Service
 public class AnswerCommentServiceImpl implements AnswerCommentService {
 
@@ -22,7 +21,6 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     @Autowired
     AnswerMapper answerMapper;
 
-    @Transactional
     @Override
     public void insert(CommentVO commentVO) {
 

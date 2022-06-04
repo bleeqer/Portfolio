@@ -80,7 +80,7 @@ function deleteCommentTree (rootCoNo) {
 }
 
 // 답변글의 댓글 보기
-$('.comment-button').click(function () {
+$('body').on('click', '.comment-button', function () {
 
     const ansNo = $(this).data('ans-no')
 
@@ -97,10 +97,14 @@ $('.comment-button').click(function () {
         // 첫번째 댓글 border-top 지우기
         commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
 
-        // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
-        if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
+        alert(commentSection.find('.comment').length)
 
-            $(this).find('.view-more-comments').addClass('hidden')
+        commentSection.find('.view-more-comments').show()
+
+        // 마지막 댓글일 경우, 댓글이 없을 경우 댓글 더보기 버튼 숨기기
+        if (commentSection.find('.last-checker').last().data('is-last') === "Y" || commentSection.find('.comment').length < 1) {
+
+            commentSection.find('.view-more-comments').parent().addClass('hidden')
         }
 
         $.each(commentSection.find('.comment'), function (index, item) {
@@ -295,7 +299,7 @@ $('.view-more-comments').click(function () {
     // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
     if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
 
-        $(this).addClass('hidden')
+        $(this).hide()
     }
 
 

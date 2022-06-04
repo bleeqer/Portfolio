@@ -30,6 +30,7 @@ $(document).on('click', '.share-button', function () {
 
 // 숨기기 버튼 클릭
 $('body').on('click', '.hide-button', function () {
-    alert($(this).data('ques-no'))
+
     $('.hide-object[data-ques-no="' + $(this).data('ques-no') + '"]').hide()
+
 })
