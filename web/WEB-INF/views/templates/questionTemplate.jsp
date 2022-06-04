@@ -7,8 +7,8 @@
 <c:forEach var="question" items="${questions}">
 
     <%--질문글--%>
-    <div class="question-container">
-        <div class="question pt-3 px-3 border-bottom-gray" data-ques-no="${question.quesNo}">
+    <div class="question hide-object border-bottom-gray" data-ques-no="${question.quesNo}">
+        <div class=" pt-3 px-3" >
             <div>
                 <div>
                         <%--title and close--%>
@@ -21,7 +21,7 @@
                                 <%--Question close--%>
                             <div class="position-absolute" style="top: -12px; right: -12px;">
                                 <div>
-                                        <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                        <span class="hide-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" data-ques-no="${question.quesNo}">
                                           <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path d="m16.243 7.757-8.486 8.486m8.486 0L7.757 7.757" class="icon_svg-stroke" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke="#666" stroke-width="1.5"></path>
                                           </svg>
@@ -98,17 +98,6 @@
                                               </svg>
                                             </span>
                                         </div>
-                                    </div>
-
-                                        <%--Three dots--%>
-                                    <div>
-                                          <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                                            <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                              <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                                    class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
-                                              </path>
-                                            </svg>
-                                          </span>
                                     </div>
                                 </div>
                             </div>

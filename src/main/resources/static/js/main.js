@@ -27,3 +27,9 @@ $(document).on('click', '.share-button', function () {
 
     alert('url이 성공적으로 복사 되었습니다.\n' + url)
 })
+
+// 숨기기 버튼 클릭
+$('body').on('click', '.hide-button', function () {
+    alert($(this).data('ques-no'))
+    $('.hide-object[data-ques-no="' + $(this).data('ques-no') + '"]').hide()
+})

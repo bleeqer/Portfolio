@@ -135,11 +135,11 @@
                             <c:forEach var="answerPair" items="${answerPairs}">
 
                                 <%--질문글--%>
-                                <div class="pair mb-3 mx-1" data-ques-no="${answerPair.quesNo}" data-ans-no="${answerPair.ansNo}">
+                                <div class="pair hide-object mb-3 mx-1" data-ques-no="${answerPair.quesNo}" data-ans-no="${answerPair.ansNo}">
 
                                         <%--배경색--%>
-                                    <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten">
-                                        <div class="QnA-section px-4 pt-3" style="height: 100%;">
+                                    <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten position-relative">
+                                        <div class="QnA-section ps-4 pe-3 pt-3" style="height: 100%;">
                                             <div class="">
 
                                                     <%--질문글--%>
@@ -179,13 +179,26 @@
 
                                                                 </div>
                                                             </div>
-                                                                <%--질문글 내용--%>
-                                                            <div>
-                                                                <div>
-                                                                    <a class="text-decoration-none link-default-color hover-underline"
-                                                                       href="/question/${answerPair.quesNo}"><strong>${answerPair.question}</strong></a>
-                                                                </div>
-                                                            </div>
+
+                                                                        <%--질문글 내용--%>
+                                                                    <div>
+                                                                        <div class="d-flex justify-content-between">
+                                                                                <%--Question title--%>
+                                                                            <div class="question-text pe-2">
+                                                                                <a class="hover-underline" href="/question/${answerPair.quesNo}"><strong style="line-height: 1.6;">${answerPair.question}</strong></a>
+                                                                            </div>
+                                                                                <%--Question close--%>
+                                                                            <div class="position-absolute" style="top: 4px; right: 4px;">
+                                                                                <div>
+                                                                                    <span class="hide-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" data-ques-no="${answerPair.quesNo}">
+                                                                                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path d="m16.243 7.757-8.486 8.486m8.486 0L7.757 7.757" class="icon_svg-stroke" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke="#666" stroke-width="1.5"></path>
+                                                                                      </svg>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
                                                                 <%--답변글 내용--%>
                                                             <div class="position-relative">

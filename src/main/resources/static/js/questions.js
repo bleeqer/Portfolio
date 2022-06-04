@@ -1,4 +1,4 @@
-$('.unanswered-question').last().removeClass('border-bottom-gray')
+$('.question').last().removeClass('border-bottom-gray')
 
 $(window).scroll(function() {
 
