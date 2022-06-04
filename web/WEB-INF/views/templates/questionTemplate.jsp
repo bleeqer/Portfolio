@@ -3,19 +3,20 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <sec:authentication property="principal" var="user"/>
+
 <c:forEach var="question" items="${questions}">
 
     <%--질문글--%>
-    <div class="question-container" data-ques-no="${question.quesNo}">
-        <div class="unanswered-question pt-3 px-3 border-bottom-gray">
+    <div class="question-container">
+        <div class="question pt-3 px-3 border-bottom-gray" data-ques-no="${question.quesNo}">
             <div>
                 <div>
-                    <%--title and close--%>
+                        <%--title and close--%>
                     <div>
                         <div class="d-flex justify-content-between position-relative">
                                 <%--Question title--%>
-                            <div class="pe-2">
-                                <a class="hover-underline" href=""><strong class="question-text">${question.question}</strong></a>
+                            <div class="question-text pe-2">
+                                <a class="hover-underline" href="/question/${question.quesNo}"><strong style="line-height: 1.6;">${question.question}</strong></a>
                             </div>
                                 <%--Question close--%>
                             <div class="position-absolute" style="top: -12px; right: -12px;">
@@ -34,7 +35,7 @@
                     <div class="mt-2 color-gray" style="font-size: 13px;">
                         <div>
                             <div>
-                                asked 00 ago
+                                    ${question.regDate}
                             </div>
                         </div>
                     </div>
@@ -45,7 +46,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex">
                                         <%--Answer button--%>
-                                    <button class="px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal">
+                                    <button class="answer-button px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal" data-ques-no="${question.quesNo}">
                                         <div class="d-flex justify-content-center align-items-center">
                                                 <%--Answer icon--%>
                                             <div>
@@ -64,49 +65,25 @@
                                         </div>
                                     </button>
 
-                                        <%--Comment 버튼--%>
-                                    <div role="button">
-
-                                            <%--Container--%>
-                                        <div class="d-inline">
-
-                                                <%--Comment button--%>
-                                            <div class="d-flex rounded-pill px-2 bg-hover-whiten-light">
-
-                                                    <%--Comment icon--%>
-                                                <span class="d-inline-block d-flex align-items-center justify-content-center" style="height: 38px;">
-                                              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z" class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="1.5" fill="none"></path>
-                                              </svg>
-                                            </span>
-
-                                                    <%--Comment count--%>
-                                                <div class="d-flex align-items-center justify-content-center color-gray">
-                                                    100
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                         <%--Pass button--%>
-                                    <button class="px-2 rounded-pill bg-hover-whiten-light" style="height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;">
-                                        <div class="d-flex justify-content-center align-items-center">
-                                                <%--Answer icon--%>
-                                            <div>
-                                                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <g fill="none" fill-rule="evenodd">
-                                                        <path d="m11.828 9.314 3.9-3.9a2 2 0 1 1 2.828 2.829l-3.9 3.9m-3.535 3.535-2.464 2.464-4.241 1.416 1.412-4.244 2.465-2.465" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"></path>
-                                                        <path class="icon_svg-fill_as_stroke" fill="#666" d="m4.414 19.556 2.652-.884-1.768-1.767z"></path>
-                                                        <path d="M4.636 5.636 18.5 19.5" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" stroke-linecap="round"></path>
-                                                    </g>
-                                                </svg>
-                                            </div>
-                                                <%--Answer text--%>
-                                            <div class="color-gray ms-1" style="font-size: 14px;">
-                                                <div>Pass</div>
-                                            </div>
-                                        </div>
-                                    </button>
+                                        <%--                                        <button class="px-2 rounded-pill bg-hover-whiten-light" style="height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;">--%>
+                                        <%--                                          <div class="d-flex justify-content-center align-items-center">--%>
+                                        <%--                                            &lt;%&ndash;Answer icon&ndash;%&gt;--%>
+                                        <%--                                            <div>--%>
+                                        <%--                                              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">--%>
+                                        <%--                                                <g fill="none" fill-rule="evenodd">--%>
+                                        <%--                                                  <path d="m11.828 9.314 3.9-3.9a2 2 0 1 1 2.828 2.829l-3.9 3.9m-3.535 3.535-2.464 2.464-4.241 1.416 1.412-4.244 2.465-2.465" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"></path>--%>
+                                        <%--                                                  <path class="icon_svg-fill_as_stroke" fill="#666" d="m4.414 19.556 2.652-.884-1.768-1.767z"></path>--%>
+                                        <%--                                                  <path d="M4.636 5.636 18.5 19.5" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" stroke-linecap="round"></path>--%>
+                                        <%--                                                </g>--%>
+                                        <%--                                              </svg>--%>
+                                        <%--                                            </div>--%>
+                                        <%--                                            &lt;%&ndash;Answer text&ndash;%&gt;--%>
+                                        <%--                                            <div class="color-gray ms-1" style="font-size: 14px;">--%>
+                                        <%--                                              <div>Pass</div>--%>
+                                        <%--                                            </div>--%>
+                                        <%--                                          </div>--%>
+                                        <%--                                        </button>--%>
                                 </div>
 
                                     <%--Options--%>
@@ -115,26 +92,24 @@
                                         <%--Share button--%>
                                     <div>
                                         <div>
-                                            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                            <span class="share-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" data-ques-no="${question.quesNo}" data-bs-toggle="popover" data-bs-content="Copy Link">
                                               <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
                                               </svg>
                                             </span>
                                         </div>
                                     </div>
-                                    <%--Three dots--%>
-                                    <sec:authorize access="isAuthenticated()">
-                                        <c:if test="${user.username == question.userEmail}">
-                                            <div>
-                            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
-                                  style="width: 38px; height: 38px;">
-                                <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                                                                                                                                         class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none"></path>
-                                </svg>
-                            </span>
-                                            </div>
-                                        </c:if>
-                                    </sec:authorize>
+
+                                        <%--Three dots--%>
+                                    <div>
+                                          <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                            <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                              <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                                                    class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
+                                              </path>
+                                            </svg>
+                                          </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

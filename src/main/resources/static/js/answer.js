@@ -286,23 +286,34 @@ $('#image').on("change", function () {
     })
 })
 
+$(window).scroll(function() {
 
+    if ($(window).scrollTop() + 0.5 >= $(document).height() - $(window).height()) {
 
-// 질문 Modal Window close 시
-// $('#question-modal').on('hidden.bs.modal', function () {
-//
-//     // form 내용 초기화
-//     $(this).find('form').trigger('reset')
-//
-//     // 카테고리 초기화
-//     $('#first-category').val('1')
-//     $('#second-category').val('1')
-// })
+        const url = $(location).attr('pathname') + ($(location).attr('pathname') === '/' ? 'more' : '/more')
 
-// // add question button 클릭 시 form submit
-// $('#add-question-button').click(function () {
-//     $('#question-form')
-// })
+        // questions 에서 호출 시 실행 막기
+        if (url.split('/')[1] === 'questions') return
+
+        const lastQuesNo = $('.pair').last().data('ques-no')
+
+        $.ajax({
+            url: url,
+            type: 'GET',
+            contentType: 'application/json',
+            data : {'quesNo': lastQuesNo},
+            success: function (pairs) {
+                alert(pairs)
+                $('#pair-list').append(pairs)
+                // initAnswerPopover()
+
+            },
+            error: function () {
+                console.log('error occurred')
+            }
+        })
+    }
+})
 
 // text editor 초기화 함수
 async function initEditor () {

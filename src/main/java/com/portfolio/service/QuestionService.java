@@ -11,6 +11,7 @@ public interface QuestionService {
     QuestionVO select(int quesNo);
     void update(QuestionVO questionVO);
     void delete(int postNo);
+    int selectLastQuesNo();
     List<QuestionVO> selectList(QuestionVO questionVO);
     List<QAPairVO> selectPairList(QuestionVO questionVO);
     List<CategoryVO> selectCategories();

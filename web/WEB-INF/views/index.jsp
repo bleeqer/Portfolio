@@ -130,12 +130,12 @@
                 <%--질문글 리스트--%>
                 <div style="width: 572px; margin-left: 172px;">
                     <div>
-                        <div>
+                        <div id="pair-list">
 
                             <c:forEach var="answerPair" items="${answerPairs}">
 
                                 <%--질문글--%>
-                                <div class="QnA-container mb-3 mx-1" data-ques-no="${answerPair.quesNo}" data-ans-no="${answerPair.ansNo}">
+                                <div class="pair mb-3 mx-1" data-ques-no="${answerPair.quesNo}" data-ans-no="${answerPair.ansNo}">
 
                                         <%--배경색--%>
                                     <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten">
@@ -522,8 +522,6 @@
 
 
     <script src="/static/js/utils.js"></script>
-    <script src="/static/js/questions.js"></script>
-    <script src="/static/js/getMore.js"></script>
     <script src="/static/js/main.js"></script>
     <script src="/static/js/liking.js"></script>
     <script src="/static/js/comment.js"></script>

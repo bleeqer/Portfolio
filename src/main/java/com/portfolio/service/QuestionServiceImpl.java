@@ -67,6 +67,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    public int selectLastQuesNo() {
+        return questionMapper.selectLastQuesNo();
+    }
+
+    @Override
     public List<QuestionVO> selectList(QuestionVO questionVO) {
 
         return questionMapper.selectList(questionVO);
