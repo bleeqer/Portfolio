@@ -97,8 +97,6 @@ $('body').on('click', '.comment-button', function () {
         // 첫번째 댓글 border-top 지우기
         commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
 
-        alert(commentSection.find('.comment').length)
-
         commentSection.find('.view-more-comments').show()
 
         // 마지막 댓글일 경우, 댓글이 없을 경우 댓글 더보기 버튼 숨기기

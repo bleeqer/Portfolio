@@ -21,6 +21,7 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     @Autowired
     AnswerMapper answerMapper;
 
+    @Transactional
     @Override
     public void insert(CommentVO commentVO) {
 
