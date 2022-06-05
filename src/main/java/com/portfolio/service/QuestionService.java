@@ -7,11 +7,11 @@ import com.portfolio.domain.QuestionVO;
 import java.util.List;
 
 public interface QuestionService {
-    int create(QuestionVO questionVO);
-    QuestionVO select(int quesNo);
+    long create(QuestionVO questionVO);
+    QuestionVO select(long quesNo);
     void update(QuestionVO questionVO);
-    void delete(int postNo);
-    int selectLastQuesNo();
+    void delete(long postNo);
+    long selectLastQuesNo();
     List<QuestionVO> selectList(QuestionVO questionVO);
     List<QAPairVO> selectPairList(QuestionVO questionVO);
     List<CategoryVO> selectCategories();

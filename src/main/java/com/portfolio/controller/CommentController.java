@@ -49,7 +49,7 @@ public class CommentController {
     public CommentVO updateComment(CommentVO commentVO, Principal principal) {
         
         // 예외처리 할 것
-        int res = 0;
+        long res = 0;
 
         if (commentVO.getUserEmail().equals(principal.getName())) {
 
@@ -62,7 +62,7 @@ public class CommentController {
 
     @PostMapping("delete")
     @ResponseBody
-    public int deleteComment(@RequestBody CommentVO commentVO) {
+    public long deleteComment(@RequestBody CommentVO commentVO) {
 
         answerCommentService.delete(commentVO);
 
@@ -74,11 +74,7 @@ public class CommentController {
 
         List<CommentVO> comments = answerCommentService.selectList(commentVO);
 
-        for (CommentVO comment : comments) {
-            System.out.println(comment.getLevel());
-        }
-
-        int lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
+        long lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
 
         model.addAttribute("comments", comments);
 
@@ -102,14 +98,12 @@ public class CommentController {
         likeVO.setCoNo(coNo);
         likeVO.setUserEmail(principal.getName());
 
-        System.out.println(likeVO);
-
         return answerCommentService.addLike(likeVO);
     }
 
     @GetMapping("dislike")
     @ResponseBody
-    public Map<String, Integer> dislikeComment(@RequestParam int coNo, Principal principal) {
+    public Map<String, Integer> dislikeComment(@RequestParam long coNo, Principal principal) {
 
         CommentLikeVO likeVO = new CommentLikeVO();
 

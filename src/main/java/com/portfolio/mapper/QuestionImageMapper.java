@@ -8,5 +8,5 @@ public interface QuestionImageMapper {
 
     void insert(ImageVO imageVO);
     void delete(ImageVO imageVO);
-    List<ImageVO> selectAll(int bno);
+    List<ImageVO> selectAll(long bno);
 }

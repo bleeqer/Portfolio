@@ -7,7 +7,7 @@
 
     <insert id="insert" parameterType="CommentVO">
 
-        <selectKey keyProperty="coNo" resultType="int" order="BEFORE">
+        <selectKey keyProperty="coNo" resultType="long" order="BEFORE">
             SELECT COMMENT_SEQ.NEXTVAL FROM dual
         </selectKey>
 
@@ -16,7 +16,7 @@
 
     </insert>
 
-    <select id="select" parameterType="int" resultMap="AnswerCommentResultMap">
+    <select id="select" parameterType="long" resultMap="AnswerCommentResultMap">
 
         SELECT level,
                CO.co_no,
@@ -43,7 +43,7 @@
 
     </update>
 
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="long">
 
         DELETE FROM TB_ANSWER_COMMENT
         WHERE co_no IN (SELECT co_no
@@ -53,7 +53,7 @@
 
     </delete>
 
-    <select id="selectLastCoNo" parameterType="int" resultType="int">
+    <select id="selectLastCoNo" parameterType="long" resultType="long">
 
         SELECT NVL(MAX(co_no), 0) co_no
         FROM TB_ANSWER_COMMENT
@@ -92,7 +92,7 @@
     </select>
 
     <insert id="addLike" parameterType="CommentLikeVO">
-        <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
+        <selectKey keyProperty="likeNo" resultType="long" order="BEFORE">
             SELECT comment_like_seq.nextval FROM dual
         </selectKey>
 
@@ -136,11 +136,11 @@
 <!--            ORDER SIBLINGS BY COMMENT_NO ASC-->
 <!--    </select>-->
 
-<!--&lt;!&ndash;    <select id="selectNestedMaxOrder" resultType="int" parameterType="int">&ndash;&gt;-->
+<!--&lt;!&ndash;    <select id="selectNestedMaxOrder" resultType="long" parameterType="long">&ndash;&gt;-->
 <!--&lt;!&ndash;        SELECT NVL(MAX(comment_order), 0) FROM TB_ANS_COMMENT WHERE parent_comment_no=#{parentCommentNo}&ndash;&gt;-->
 <!--&lt;!&ndash;    </select>&ndash;&gt;-->
 
-<!--&lt;!&ndash;    <select id="selectMaxOrder" resultType="int" parameterType="int">&ndash;&gt;-->
+<!--&lt;!&ndash;    <select id="selectMaxOrder" resultType="long" parameterType="long">&ndash;&gt;-->
 <!--&lt;!&ndash;        SELECT NVL(MAX(comment_order), 0) FROM TB_ANS_COMMENT&ndash;&gt;-->
 <!--&lt;!&ndash;    </select>&ndash;&gt;-->
 
@@ -161,7 +161,7 @@
 <!--        SELECT * FROM TB_ANS_COMMENT-->
 <!--    </select>-->
 
-<!--    <update id="addLike" parameterType="int">-->
+<!--    <update id="addLike" parameterType="long">-->
 <!--        UPDATE TB_ANS_COMMENT SET like_cnt=like_cnt + 1-->
 <!--        WHERE comment_no=#{replyNo}-->
 <!--    </update>-->
@@ -188,8 +188,8 @@
     </resultMap>
 
     <resultMap id="likeCountMap" type="Hashmap">
-        <id column="likes" property="likes" javaType="int"/>
-        <id column="dislikes" property="dislikes" javaType="int"/>
+        <id column="likes" property="likes" javaType="long"/>
+        <id column="dislikes" property="dislikes" javaType="long"/>
     </resultMap>
 
 </mapper>

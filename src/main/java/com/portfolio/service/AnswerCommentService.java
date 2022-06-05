@@ -10,11 +10,11 @@ import java.util.Map;
 
 public interface AnswerCommentService {
     void insert(CommentVO commentVO);
-    CommentVO select(int coNo);
-    int update(CommentVO commentVO);
+    CommentVO select(long coNo);
+    long update(CommentVO commentVO);
     void delete(CommentVO commentVO);
     List<CommentVO> selectList(CommentVO commentVO);
-    int selectLastCoNo(int ansNo);
+    long selectLastCoNo(long ansNo);
     Map<String, Integer> addLike(CommentLikeVO likeVO);
     Map<String, Integer> subtractLike(CommentLikeVO likeVO);
 

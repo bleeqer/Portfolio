@@ -25,13 +25,13 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     @Override
     public void insert(CommentVO commentVO) {
 
-        HashMap<String, Integer> map = new HashMap<>();
+        HashMap<String, Long> map = new HashMap<>();
 
         // 답변글 번호
         map.put("ansNo", commentVO.getAnsNo());
 
         // comment_cnt 더하기 갯수 1
-        map.put("coCnt", 1);
+        map.put("coCnt", 1L);
 
         // 코멘트 갯수 업데이트
         answerMapper.updateCommentCnt(map);
@@ -41,7 +41,7 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     }
 
     @Override
-    public CommentVO select(int coNo) {
+    public CommentVO select(long coNo) {
 
         return answerCommentMapper.select(coNo);
     }
@@ -53,13 +53,13 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     }
 
     @Override
-    public int selectLastCoNo(int ansNo) {
+    public long selectLastCoNo(long ansNo) {
         return answerCommentMapper.selectLastCoNo(ansNo);
     }
 
 
     @Override
-    public int update(CommentVO commentVO) {
+    public long update(CommentVO commentVO) {
 
         return answerCommentMapper.update(commentVO);
     }
@@ -69,9 +69,9 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     public void delete(CommentVO commentVO) {
 
         // 코멘트 트리 삭제하고 삭제된 row 갯수 반환
-        int res = answerCommentMapper.delete(commentVO.getCoNo());
+        long res = answerCommentMapper.delete(commentVO.getCoNo());
 
-        HashMap<String, Integer> map = new HashMap<>();
+        HashMap<String, Long> map = new HashMap<>();
 
         // 답변글 번호
         map.put("ansNo", commentVO.getAnsNo());
@@ -149,17 +149,17 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     }
 
 //    @Override
-//    public void addLikeCnt(int postNo) {
+//    public void addLikeCnt(long postNo) {
 //        answerCommentMapper.addLikeCnt(postNo);
 //    }
 
 //    @Override
-//    public int selectNestedMaxOrder(int parentCommentNo) {
+//    public long selectNestedMaxOrder(long parentCommentNo) {
 //        return answerCommentMapper.selectNestedMaxOrder(parentCommentNo);
 //    }
 //
 //    @Override
-//    public int selectMaxOrder() {
+//    public long selectMaxOrder() {
 //        return answerCommentMapper.selectMaxOrder();
 //    }
 

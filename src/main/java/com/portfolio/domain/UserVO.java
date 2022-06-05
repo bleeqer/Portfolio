@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class UserVO {
 
-    private int userNo;
+    private long userNo;
     private String email;
     private String name;
     private String photo;

@@ -7,19 +7,19 @@ import java.util.Map;
 
 public interface AnswerMapper {
 
-    AnswerVO select(int ansNo);
-    int insert(AnswerVO answerVO);
+    AnswerVO select(long ansNo);
+    long insert(AnswerVO answerVO);
     void update(AnswerVO answerVO);
-    void delete(int ansNo);
-    List<AnswerVO> selectAnswers(Map<String, Integer> map);
-    int countAnswers(int quesNo);
+    void delete(long ansNo);
+    List<AnswerVO> selectAnswers(Map<String, Long> map);
+    long countAnswers(long quesNo);
     List<QAPairVO> selectAnsweredPairByUser(String email);
-    int addLike(AnswerLikeVO likeVO);
-    int deleteLike(AnswerLikeVO likeVO);
+    long addLike(AnswerLikeVO likeVO);
+    long deleteLike(AnswerLikeVO likeVO);
     AnswerLikeVO findLike(AnswerLikeVO likeVO);
-    int updateLike(AnswerLikeVO likeVO);
-    Map<String, Integer> countLike(int ansNo);
-    void updateCommentCnt(Map<String, Integer> map);
+    long updateLike(AnswerLikeVO likeVO);
+    Map<String, Long> countLike(long ansNo);
+    void updateCommentCnt(Map<String, Long> map);
 
 
 }

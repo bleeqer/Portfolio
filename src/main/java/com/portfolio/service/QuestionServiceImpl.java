@@ -24,7 +24,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Transactional
     @Override
-    public int create(QuestionVO questionVO) {
+    public long create(QuestionVO questionVO) {
 
         // questionVO 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
 
@@ -47,7 +47,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Transactional
     @Override
-    public QuestionVO select(int quesNo) {
+    public QuestionVO select(long quesNo) {
 
         questionMapper.addViewCnt(quesNo);
 
@@ -62,12 +62,12 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void delete(int postNo) {
+    public void delete(long postNo) {
         questionMapper.delete(postNo);
     }
 
     @Override
-    public int selectLastQuesNo() {
+    public long selectLastQuesNo() {
         return questionMapper.selectLastQuesNo();
     }
 

@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 public interface AnswerService {
-    int create(AnswerVO answerVO);
-    AnswerVO select(int ansNo);
-    List<AnswerVO> selectAnswers(Map<String, Integer> map);
-    int countAnswers(int quesNo);
+    long create(AnswerVO answerVO);
+    AnswerVO select(long ansNo);
+    List<AnswerVO> selectAnswers(Map<String, Long> map);
+    long countAnswers(long quesNo);
     List<QAPairVO> selectAnsweredPairByUser(String email);
     void update(AnswerVO answerVO);
     void delete(AnswerVO answerVO);
-    Map<String, Integer> addLike(AnswerLikeVO likeVO);
-    Map<String, Integer> subtractLike(AnswerLikeVO likeVO);
+    Map<String, Long> addLike(AnswerLikeVO likeVO);
+    Map<String, Long> subtractLike(AnswerLikeVO likeVO);
 }

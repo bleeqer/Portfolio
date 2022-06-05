@@ -56,14 +56,14 @@ public class QuestionController {
     }
 
     @GetMapping("{quesNo}")
-    public String viewQuestion(@PathVariable int quesNo, Model model) {
+    public String viewQuestion(@PathVariable long quesNo, Model model) {
 
         QuestionVO question = questionService.select(quesNo);
 
         // 답변여부에 따라 답변글 조회
         if (question.getAnswered().equals("Y")) {
 
-            HashMap<String, Integer> map = new HashMap<>();
+            HashMap<String, Long> map = new HashMap<>();
 
             map.put("quesNo", quesNo);
 

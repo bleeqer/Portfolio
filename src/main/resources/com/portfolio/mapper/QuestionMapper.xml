@@ -7,7 +7,7 @@
 
     <insert id="insert" parameterType="QuestionVO">
 
-        <selectKey keyProperty="quesNo" resultType="int" order="BEFORE">
+        <selectKey keyProperty="quesNo" resultType="long" order="BEFORE">
             SELECT question_seq.nextval FROM dual
         </selectKey>
 
@@ -16,7 +16,7 @@
 
     </insert>
 
-    <select id="select" parameterType="int" resultMap="QuestionResultMap">
+    <select id="select" parameterType="long" resultMap="QuestionResultMap">
         SELECT
             QUES.*,
             (SELECT COUNT(*) FROM TB_ANSWER WHERE ques_no = #{quesNo}) answer_cnt,
@@ -30,11 +30,11 @@
         WHERE ques_no=#{quesNo}
     </update>
 
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="long">
         DELETE FROM TB_QUESTION WHERE ques_no=#{quesNo}
     </delete>
 
-    <select id="selectLastQuesNo" resultType="int">
+    <select id="selectLastQuesNo" resultType="long">
 
         SELECT NVL(MAX(ques_no), 0) ques_no
         FROM tb_question
@@ -108,7 +108,7 @@
 
     </select>
 
-    <update id="addViewCnt" parameterType="int">
+    <update id="addViewCnt" parameterType="long">
         UPDATE TB_QUESTION SET view_cnt = view_cnt + 1
         WHERE ques_no = #{quesNo}
     </update>

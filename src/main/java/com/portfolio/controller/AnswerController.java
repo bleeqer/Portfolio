@@ -34,7 +34,7 @@ public class AnswerController {
         answerVO.setUserEmail(principal.getName());
 
         // 답변 생성 후 ansNo 받기
-        int ansNo = answerService.create(answerVO);
+        long ansNo = answerService.create(answerVO);
 
         // 생성된 답변 가져오기
         AnswerVO createdAnswer = answerService.select(ansNo);
@@ -52,17 +52,14 @@ public class AnswerController {
 
     @GetMapping("select")
     @ResponseBody
-    public AnswerVO selectAnswer(int ansNo) {
+    public AnswerVO selectAnswer(long ansNo) {
 
         return answerService.select(ansNo);
     }
 
     @PostMapping("delete")
     @ResponseBody
-    public int deleteAnswer(@RequestBody AnswerVO answerVO) {
-
-        System.out.println(answerVO.getAnsNo());
-        System.out.println(answerVO.getAnswer());
+    public long deleteAnswer(@RequestBody AnswerVO answerVO) {
 
         answerService.delete(answerVO);
 
@@ -75,9 +72,6 @@ public class AnswerController {
 
         answerService.update(answerVO);
 
-        System.out.println(answerVO.getAnswer());
-        System.out.println(answerVO.getAnsNo());
-
         return answerService.select(answerVO.getAnsNo());
     }
 
@@ -85,7 +79,7 @@ public class AnswerController {
 
     @GetMapping("like")
     @ResponseBody
-    public Map<String, Integer> likeAnswer(@RequestParam int ansNo, Principal principal) {
+    public Map<String, Long> likeAnswer(@RequestParam long ansNo, Principal principal) {
 
         AnswerLikeVO likeVO = new AnswerLikeVO();
 
@@ -97,7 +91,7 @@ public class AnswerController {
 
     @GetMapping("dislike")
     @ResponseBody
-    public Map<String, Integer> dislikeAnswer(@RequestParam int ansNo, Principal principal) {
+    public Map<String, Long> dislikeAnswer(@RequestParam long ansNo, Principal principal) {
 
         AnswerLikeVO likeVO = new AnswerLikeVO();
 
@@ -116,9 +110,9 @@ public class AnswerController {
 
 //    @GetMapping("like")
 //    @ResponseBody
-//    public String likeAnswer(int ansNo) {
+//    public String likeAnswer(long ansNo) {
 //
-//        int likeCnt = answerService.addLikeCnt(ansNo);
+//        long likeCnt = answerService.addLikeCnt(ansNo);
 //
 //        return
 //    }

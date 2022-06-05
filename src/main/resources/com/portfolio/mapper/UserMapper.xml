@@ -23,7 +23,7 @@
         WHERE user_id=#{userNo}
     </update>
 
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="long">
         DELETE FROM TB_USER WHERE user_id=#{userId}
     </delete>
 

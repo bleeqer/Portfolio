@@ -11,18 +11,18 @@ import java.util.Date;
 public class QAPairVO {
 
     // question
-    private int quesNo;
+    private long quesNo;
     private String question;
     private String categoryName;
 
     // answer
-    private int ansNo;
+    private long ansNo;
     private String answer;
     private String answerRegDate;
-    private int likes;
-    private int dislikes;
-    private int commentCnt;
-    private int userNo;
+    private long likes;
+    private long dislikes;
+    private long commentCnt;
+    private long userNo;
     private String userEmail;
     private String userName;
     private String userPhoto;

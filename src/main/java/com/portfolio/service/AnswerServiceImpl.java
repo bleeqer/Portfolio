@@ -30,7 +30,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Transactional
     @Override
-    public int create(AnswerVO answerVO) {
+    public long create(AnswerVO answerVO) {
 
         // answerVO 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
         answerMapper.insert(answerVO);
@@ -60,18 +60,18 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public AnswerVO select(int ansNo) {
+    public AnswerVO select(long ansNo) {
         return answerMapper.select(ansNo);
     }
 
     @Override
-    public List<AnswerVO> selectAnswers(Map<String, Integer> map) {
+    public List<AnswerVO> selectAnswers(Map<String, Long> map) {
 
         return answerMapper.selectAnswers(map);
     }
 
     @Override
-    public int countAnswers(int quesNo) {
+    public long countAnswers(long quesNo) {
         return answerMapper.countAnswers(quesNo);
     }
 
@@ -106,7 +106,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Map<String, Integer> addLike(AnswerLikeVO likeVO) {
+    public Map<String, Long> addLike(AnswerLikeVO likeVO) {
 
         AnswerLikeVO like = answerMapper.findLike(likeVO);
 
@@ -134,7 +134,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Map<String, Integer> subtractLike(AnswerLikeVO likeVO) {
+    public Map<String, Long> subtractLike(AnswerLikeVO likeVO) {
 
         AnswerLikeVO like = answerMapper.findLike(likeVO);
 
@@ -154,7 +154,7 @@ public class AnswerServiceImpl implements AnswerService {
 
             // 좋아요 -> 싫어요 업데이트
             answerMapper.updateLike(likeVO);
-            
+
         }
 
         return answerMapper.countLike(likeVO.getAnsNo());
