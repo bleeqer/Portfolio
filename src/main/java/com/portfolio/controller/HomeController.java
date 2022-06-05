@@ -35,7 +35,7 @@ public class HomeController {
 
         QuestionVO questionVO = new QuestionVO();
 
-        questionVO.setQuesNo(0);
+        questionVO.setQuesNo(0L);
 
         // 질문글 + 답변글 1:1 페어 리스트 model에 담기
         model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
@@ -47,7 +47,7 @@ public class HomeController {
     }
 
     @GetMapping("more")
-    public String getMorePairs(@RequestParam int quesNo, Model model) {
+    public String getMorePairs(@RequestParam Long quesNo, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -75,7 +75,7 @@ public class HomeController {
     }
 
     @GetMapping("questions/more") // 미답변 질문글 목록 더보기
-    public String getMoreQuestions(@RequestParam int quesNo, Model model) {
+    public String getMoreQuestions(@RequestParam Long quesNo, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -107,7 +107,7 @@ public class HomeController {
     }
 
     @GetMapping("topic/{topic}/more")
-    public String getMoreQuestionsByTopic(@PathVariable String topic, @RequestParam int quesNo, Model model) {
+    public String getMoreQuestionsByTopic(@PathVariable String topic, @RequestParam Long quesNo, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 

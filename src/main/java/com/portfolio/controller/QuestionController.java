@@ -55,6 +55,26 @@ public class QuestionController {
         return "redirect:/questions";
     }
 
+    @GetMapping("select")
+    @ResponseBody
+    public QuestionVO selectQuestion(@RequestParam int quesNo) {
+
+        return questionService.select(quesNo);
+
+    }
+
+    @PostMapping("update")
+    @ResponseBody
+    public QuestionVO updateQuestion(@RequestBody QuestionVO questionVO) {
+
+        System.out.println(questionVO.getQuestion());
+        System.out.println(questionVO.getQuesNo());
+        questionService.update(questionVO);
+
+        return questionService.select(questionVO.getQuesNo());
+
+    }
+
     @GetMapping("{quesNo}")
     public String viewQuestion(@PathVariable long quesNo, Model model) {
 

@@ -154,16 +154,29 @@
                                             </div>
                                         </div>
 
+                                        <c:if test="${user.username == question.userEmail}">
+
                                         <%--Three dots--%>
                                         <div>
-                                            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+
+                                            <a tabindex="0" class="question-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
                                               <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
                                                       class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
                                                 </path>
                                               </svg>
-                                            </span>
+                                                <div class="question-option-popover-content" style="display: none;">
+                                                    <div class="d-flex question-popover-item option" data-bs-toggle="modal" data-bs-target="#question-modal" data-ques-no="${question.quesNo}" data-option-type="Edit">
+                                                        <div class="py-1 px-3">Edit</div>
+                                                    </div>
+                                                    <div class="d-flex question-popover-item option" data-ques-no="${question.quesNo}" data-option-type="Delete">
+                                                        <div class="py-1 px-3">Delete</div>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
+
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -533,10 +546,13 @@
     </div>
 </div>
 
+<%@ include file="/WEB-INF/views/modals/question.jsp" %>
 <%@ include file="/WEB-INF/views/modals/answer.jsp" %>
 
 <script src="/static/js/utils.js"></script>
 <script src="/static/js/comment.js"></script>
+<script src="/static/js/question.js"></script>
+<script src="/static/js/questions.js"></script>
 <script src="/static/js/answer.js"></script>
 <script src="/static/js/detailQuestion.js"></script>
 <script src="/static/js/liking.js"></script>

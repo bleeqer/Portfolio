@@ -40,3 +40,7 @@ $('a').each(function () {
     }
 
 })
+
+// $('#ask-question-button').click(function () {
+//     $('#question-modal').modal('show')
+// })

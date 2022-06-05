@@ -40,6 +40,8 @@
                         <div class="d-flex justify-content-center align-items-center modal-body border-bottom-grey hover-border-bottom-color-blue border-top-0" style="width: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
                             <textarea id="question-textarea" name="question" class="mt-3 mb-1 px-2 py-0" style="line-height: 1.4; font-size: 14px; border: 0; outline: none; overflow: hidden; overflow-wrap: break-word; width: 100%; resize: none; max-height: 130px;" placeholder="질문을 입력해주세요."></textarea>
                         </div>
+                        <input id="ques-no" type="hidden" name="quesNo" value="">
+                        <input id="user-email" type="hidden" name="userEmail" value="${user.username}">
                         <input id="category-code" type="hidden" name="categoryCode">
                         <sec:csrfInput/>
                     </form>
@@ -65,6 +67,8 @@
 
                         <%--Post--%>
                         <button id="add-question-button" class="btn btn-primary rounded-pill hover-opacity-9">Add question</button>
+                        <button id="edit-question-button" class="btn btn-primary rounded-pill hover-opacity-9" style="display: none;">Edit question</button>
+
                     </div>
                 </div>
             </div>
@@ -72,11 +76,11 @@
     </div>
 </div>
 
-<style>
-    textarea {
-        resize: none;
-    }
-</style>
+<%--<style>--%>
+<%--    textarea {--%>
+<%--        resize: none;--%>
+<%--    }--%>
+<%--</style>--%>
 
 
 

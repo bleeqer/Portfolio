@@ -11,15 +11,15 @@ import java.util.List;
 @Setter
 public class QuestionVO {
 
-    private long quesNo;
+    private Long quesNo;
     private String question;
     private String categoryCode;
     private String categoryName;
     private String userEmail;
     private String regDate;
     private String answered;
-    private long viewCnt;
-    private long answerCnt;
+    private Long viewCnt;
+    private Long answerCnt;
 
     public String getRegDate() {
         return regDate;

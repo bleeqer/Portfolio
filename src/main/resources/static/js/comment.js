@@ -168,9 +168,9 @@ $(document).on('click', '.comment-popover-item', function () {
             contentType: 'application/json',
             success: function (comment) {
 
-                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#comment-edit-input').val(comment.answerComment)
-                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#co-no').val(comment.coNo)
-                $('.comment-edit-form[data-co-no="' + comment.coNo + '"]').find('input#user-email').val(comment.userEmail)
+                $('.comment-edit-form[data-co-no="' + comment.coNo + '"] input#comment-edit-input').val(comment.answerComment)
+                $('.comment-edit-form[data-co-no="' + comment.coNo + '"] input#co-no').val(comment.coNo)
+                $('.comment-edit-form[data-co-no="' + comment.coNo + '"] input#user-email').val(comment.userEmail)
 
             },
             error: function () {

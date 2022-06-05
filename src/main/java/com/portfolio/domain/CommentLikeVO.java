@@ -7,8 +7,8 @@ import lombok.Setter;
 @Setter
 public class CommentLikeVO {
 
-    private long likeNo;
-    private long coNo;
+    private Long likeNo;
+    private Long coNo;
     private String userEmail;
     private String likeType;
 }

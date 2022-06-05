@@ -117,6 +117,11 @@ $('.answer-button').click(function () {
         contentType: 'application/json',
         context: this,
         success: function (user) {
+
+            // 답변 모달창의 submit 버튼 교체
+            $('#answer-modal #add-answer-button').show()
+            $('#answer-modal #edit-answer-button').hide()
+
             $('#answer-modal #asked-question').html($('.question-text').text())
             $('#answer-modal #user-img').attr('src', user.photo)
             $('#answer-modal #user-name').html(user.name)
@@ -127,24 +132,7 @@ $('.answer-button').click(function () {
         }
     })
 })
-// 질문 Modal Window textarea 자동 높이 조절
-$('#question-textarea').on('keyup', function () {
 
-    $(this).css('height', 'auto')
-    $(this).height($(this).prop('scrollHeight'))
-
-    if ($(this).height() >= 130) {
-        $(this).css('overflow', '')
-    }
-
-
-})
-
-$('#question-modal').on('hidden.bs.modal', function () {
-    $('#question-textarea').val('')
-    $('#question-textarea').height($(this).height($(this).prop('scrollHeight')))
-
-})
 
 
 
@@ -161,7 +149,7 @@ $('#answer-modal').on('hidden.bs.modal', function () {
 
 // 답변 등록
 $('#add-answer-button').click(function () {
-
+    alert($('#answer-form').serialize())
     $.ajax({
         url: '/answer/create',
         type: 'POST',

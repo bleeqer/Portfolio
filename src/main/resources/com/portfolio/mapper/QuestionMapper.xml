@@ -11,7 +11,7 @@
             SELECT question_seq.nextval FROM dual
         </selectKey>
 
-        INSERT INTO TB_QUESTION (ques_no, question, user_email, category_code)
+        INSERT INTO tb_question (ques_no, question, user_email, category_code)
         VALUES (#{quesNo}, #{question}, #{userEmail}, #{categoryCode})
 
     </insert>
@@ -19,19 +19,22 @@
     <select id="select" parameterType="long" resultMap="QuestionResultMap">
         SELECT
             QUES.*,
+            U.email,
             (SELECT COUNT(*) FROM TB_ANSWER WHERE ques_no = #{quesNo}) answer_cnt,
             (SELECT category_name FROM tb_category WHERE category_code = QUES.category_code) category_name
-        FROM tb_question QUES WHERE QUES.ques_no = #{quesNo} ORDER BY QUES.ques_no ASC
+        FROM tb_question QUES, tb_user U
+        WHERE QUES.ques_no = #{quesNo}
+            AND QUES.user_email = U.email
+        ORDER BY QUES.ques_no ASC
     </select>
 
     <update id="update" parameterType="QuestionVO">
-        UPDATE TB_QUESTION SET title = #{title},
-                         content = #{content}
-        WHERE ques_no=#{quesNo}
+        UPDATE tb_question SET question = #{question}
+        WHERE ques_no = #{quesNo}
     </update>
 
     <delete id="delete" parameterType="long">
-        DELETE FROM TB_QUESTION WHERE ques_no=#{quesNo}
+        DELETE FROM tb_question WHERE ques_no=#{quesNo}
     </delete>
 
     <select id="selectLastQuesNo" resultType="long">
@@ -109,12 +112,12 @@
     </select>
 
     <update id="addViewCnt" parameterType="long">
-        UPDATE TB_QUESTION SET view_cnt = view_cnt + 1
+        UPDATE tb_question SET view_cnt = view_cnt + 1
         WHERE ques_no = #{quesNo}
     </update>
 
     <update id="updateAnswered" parameterType="AnswerVO">
-        UPDATE TB_QUESTION SET answered = #{answered}
+        UPDATE tb_question SET answered = #{answered}
         WHERE ques_no = #{quesNo}
     </update>
 

@@ -91,7 +91,7 @@ public class CommentController {
 
     @GetMapping("like")
     @ResponseBody
-    public Map<String, Integer> likeComment(@RequestParam int coNo, Principal principal) {
+    public Map<String, Integer> likeComment(@RequestParam Long coNo, Principal principal) {
 
         CommentLikeVO likeVO = new CommentLikeVO();
 
@@ -103,7 +103,7 @@ public class CommentController {
 
     @GetMapping("dislike")
     @ResponseBody
-    public Map<String, Integer> dislikeComment(@RequestParam long coNo, Principal principal) {
+    public Map<String, Integer> dislikeComment(@RequestParam Long coNo, Principal principal) {
 
         CommentLikeVO likeVO = new CommentLikeVO();
 
