@@ -423,7 +423,7 @@
                                                     <div>
                                                         <div class="pb-3 px-3">
                                                             <button class="view-more-comments btn d-flex justify-content-center align-items-center border-gray rounded-pill bg-black-light bg-hover-darken-strong py-0 px-3"
-                                                                    style="height: 30px; width: 100%; font-weight: 500;" data-ans-no="${answerPair.ansNo}">
+                                                                    style="height: 30px; width: 100%; font-weight: 500;" data-ans-no="${answerPair.ansNo}" data-parent-co-no="0">
                                                                 <div class="d-flex align-items-center">
 
                                                                         <%--Text--%>

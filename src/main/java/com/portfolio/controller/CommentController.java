@@ -81,7 +81,7 @@ public class CommentController {
         model.addAttribute("isLast", "N");
 
         // 마지막 댓글일 시 isLast = Y
-        if (!comments.isEmpty() && comments.get(comments.size() - 1).getCoNo() <= lastCoNo) {
+        if (!comments.isEmpty() && comments.get(comments.size() - 1).getCoNo() >= lastCoNo) {
             model.addAttribute("isLast", "Y");
         }
 

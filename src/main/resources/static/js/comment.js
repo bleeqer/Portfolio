@@ -97,8 +97,8 @@ $('body').on('click', '.comment-button', function () {
         // 첫번째 댓글 border-top 지우기
         commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
 
-        commentSection.find('.view-more-comments').show()
-
+        commentSection.find('.view-more-comments').parent().removeClass('hidden')
+        alert(commentSection.find('.last-checker').last().data('is-last'))
         // 마지막 댓글일 경우, 댓글이 없을 경우 댓글 더보기 버튼 숨기기
         if (commentSection.find('.last-checker').last().data('is-last') === "Y" || commentSection.find('.comment').length < 1) {
 
@@ -280,6 +280,7 @@ $('.comment-section').on('click', '.view-more-reply-container', function () {
 $('.view-more-comments').click(function () {
 
     const ansNo = $(this).data('ans-no')
+    const parentCoNo = $(this).data('parent-co-no')
 
     const commentSection = $('.comment-section[data-ans-no="' + ansNo + '"]')
 
@@ -291,13 +292,18 @@ $('.view-more-comments').click(function () {
     // popover 초기화
     initCommentPopover()
 
+    const rootComments = commentSection.find('.comment[data-co-level="1"]')
+
     // 첫번째 댓글 border-top 지우기
-    commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
+    rootComments.first().removeClass('border-top-gray')
+    
+    // 같은 부모 댓글을 공유하는 댓글의 마지막 댓글과 visible 댓글이 다를 때 view more comments 살리기
+    let visibleRootComments = rootComments.filter(function() {
+        return $(this).is(':visible')
+    })
+    if (visibleRootComments.last().data('co-no') === visibleRootComments.last().data('co-no')) {
 
-    // 마지막 댓글일 경우 댓글 더보기 버튼 숨기기
-    if (commentSection.find('.last-checker').last().data('is-last') === "Y") {
-
-        $(this).hide()
+        $(this).parent().addClass('hidden')
     }
 
 
