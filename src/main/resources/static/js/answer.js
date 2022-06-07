@@ -149,7 +149,7 @@ $('#answer-modal').on('hidden.bs.modal', function () {
 
 // 답변 등록
 $('#add-answer-button').click(function () {
-    alert($('#answer-form').serialize())
+
     $.ajax({
         url: '/answer/create',
         type: 'POST',
@@ -171,9 +171,9 @@ $('#add-answer-button').click(function () {
                 }
 
             } else if (currentURL === 'questions') {
-                
+
                 // 답변 등록된 질문글 숨기기
-                $('.question[data-ques-no="' + $('#ques-no').val() + '"]').hide()
+                $('.question[data-ques-no="' + $('#answer-form #ques-no').val() + '"]').hide()
                 alert('답변이 성공적으로 등록되었습니다.')
             }
 

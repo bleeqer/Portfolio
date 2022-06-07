@@ -17,7 +17,7 @@ $('#category-select').change(function () {
 
     const categoryCode = $('#category-select option:selected').attr('value')
     $('#question-form #category-code').val(categoryCode)
-    })
+})
 
 // 질문하기 버튼 클릭 시 카테고리 조회하여 모달창에 셋팅
 $('#ask-question-button').click(function () {
