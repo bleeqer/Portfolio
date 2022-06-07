@@ -46,21 +46,21 @@
 
         <%--Search box--%>
         <div class="nav-item ms-auto me-2 bg-black rounded-pill border border-color-gray hover-border-color-blue input-container position-relative" style="min-width: 150px; transition: min-width 250ms;">
-            <form id="search-form" action="/search" method="get">
+            <form id="search-form" action="" method="GET">
                 <div class="d-flex justify-content-between py-1 px-2" style="transition: background-color 250ms; height: 36px;">
 
                     <div class="d-flex justify-content-center" style="width: 100%;">
                         <%--Search bar--%>
                         <div class="d-flex ms-1" style="width: 100%;">
-                            <input class="search-input input-focus justify-content-center" type="text" value="" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size: 13px; width: 100%; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
-
+                            <input class="search-input input-focus justify-content-center" type="text" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size: 13px; width: 100%; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
+                            <input id="category-code" type="hidden" name="categoryCode" value="${search.categoryCode}">
                             <%--Search focus overlay--%>
                             <div class="position-fixed bg-transparent-dark search-overlay hidden"></div>
                         </div>
                     </div>
                     <div class="d-flex">
                         <%--Magnifying glass--%>
-                        <span class="d-flex justify-content-center">
+                        <span id="search-button" class="d-flex justify-content-center">
             <svg class="my-auto me-1 search-button cursor-pointer" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Zm10.45 2.95L16 16l4.95 4.95Z" class="" stroke="#666" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>

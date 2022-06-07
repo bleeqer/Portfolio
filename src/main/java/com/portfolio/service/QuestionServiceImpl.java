@@ -89,4 +89,14 @@ public class QuestionServiceImpl implements QuestionService {
         return questionMapper.selectCategories();
     }
 
+    @Override
+    public List<QuestionVO> searchQuestions(SearchVO searchVO) {
+        return questionMapper.searchListByQuestions(searchVO);
+    }
+
+    @Override
+    public List<QAPairVO> searchPairs(SearchVO searchVO) {
+        return questionMapper.searchPairs(searchVO);
+    }
+
 }

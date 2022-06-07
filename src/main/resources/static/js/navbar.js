@@ -21,10 +21,6 @@ $('.search-input').focusout(function () {
     $('.search-overlay').removeClass('show-search-overlay')
 })
 
-$('.search-button').click(function () {
-    $('#search-form').submit()
-})
-
 // navbar 버튼 클릭 시 버튼 활성화
 $('a').each(function () {
     let currentURL = '/' + $(location).attr('pathname').split('/')[1]
@@ -38,6 +34,22 @@ $('a').each(function () {
         $(this).find('path').addClass('svg-fill')
         $(this).find('.under-red').removeClass('hidden')
     }
+
+})
+
+$('#search-button').click(function () {
+
+    $('#search-form').attr('action', '/search/questions')
+    $('#search-form').submit()
+    //
+    // $.ajax({
+    //     type: 'GET',
+    //     url: 'search/questions',
+    //     data: $('#search-form').serialize(),
+    //     success: function (questions) {
+    //
+    //     }
+    // })
 
 })
 

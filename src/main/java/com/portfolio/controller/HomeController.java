@@ -35,8 +35,6 @@ public class HomeController {
 
         QuestionVO questionVO = new QuestionVO();
 
-        questionVO.setQuesNo(0L);
-
         // 질문글 + 답변글 1:1 페어 리스트 model에 담기
         model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
 
@@ -89,36 +87,58 @@ public class HomeController {
         return "templates/questionTemplate";
     }
 
-    @GetMapping("topic/{topic}")
-    public String getQuestionsByTopic(@PathVariable String topic, Model model) {
+    @GetMapping("category/{categoryCode}")
+    public String getQuestionsByTopic(@PathVariable Long categoryCode, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
-        questionVO.setCategoryName(topic);
+        questionVO.setCategoryCode(categoryCode);
 
         model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
 
         // 카테고리 리스트 담기
         model.addAttribute("categories", questionService.selectCategories());
 
-        model.addAttribute("topic", topic);
+        SearchVO search = new SearchVO();
+        search.setCategoryCode(categoryCode);
+
+        model.addAttribute("search", search);
 
         return "index";
     }
 
-    @GetMapping("topic/{topic}/more")
-    public String getMoreQuestionsByTopic(@PathVariable String topic, @RequestParam Long quesNo, Model model) {
+    @GetMapping("category/{categoryCode}/more")
+    public String getMoreQuestionsByTopic(@PathVariable String categoryCode, @RequestParam Long quesNo, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
         questionVO.setQuesNo(quesNo);
-        questionVO.setCategoryName(topic);
+        questionVO.setCategoryName(categoryCode);
 
         List<QAPairVO> pairs = questionService.selectPairList(questionVO);
 
         model.addAttribute("answerPairs", pairs);
 
         return "templates/pairTemplate";
+    }
+
+    @GetMapping("search/questions")
+    public String searchQs(SearchVO searchVO, Model model) {
+
+        List<QuestionVO> questions = questionService.searchQuestions(searchVO);
+
+        model.addAttribute("categories", questionService.selectCategories());
+        model.addAttribute("search", searchVO);
+        model.addAttribute("questions", questions);
+
+        return "questions";
+
+    }
+
+    @GetMapping("search/pairs")
+    public List<QAPairVO> searchPs(SearchVO searchVO) {
+
+        return questionService.searchPairs(searchVO);
     }
 
 }

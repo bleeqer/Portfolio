@@ -102,8 +102,8 @@
                     <div>
                         <%--개별 토픽 컨테이너--%>
                         <c:forEach var="category" items="${categories}">
-                            <div class="d-flex mb-1 rounded-1 <c:if test="${topic == category.categoryName}">bg-whiten-light</c:if> bg-hover-whiten-light">
-                                <a class="topic-item text-decoration-none" href="/topic/${category.categoryName}">
+                            <div class="category-item d-flex mb-1 rounded-1 <c:if test="${search.categoryCode == category.categoryCode}">selected</c:if> bg-hover-whiten-light" data-category-code="${category.categoryCode}">
+                                <a class="text-decoration-none" href="/category/${category.categoryCode}" style="width: 100%;">
                                     <div class="p-2 d-flex align-items-center" style="height: auto;">
 
                                             <%--토픽 아이콘--%>

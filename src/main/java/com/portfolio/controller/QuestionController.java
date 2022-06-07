@@ -67,8 +67,6 @@ public class QuestionController {
     @ResponseBody
     public QuestionVO updateQuestion(@RequestBody QuestionVO questionVO) {
 
-        System.out.println(questionVO.getQuestion());
-        System.out.println(questionVO.getQuesNo());
         questionService.update(questionVO);
 
         return questionService.select(questionVO.getQuesNo());

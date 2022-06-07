@@ -60,9 +60,6 @@
                 <if test="quesNo != null and quesNo != ''">
                     AND QUES.ques_no <![CDATA[<]]> #{quesNo}
                 </if>
-                <if test="answered != null and answered != ''">
-                    AND QUES.answered = #{answered}
-                </if>
                 <if test="userEmail != null and userEmail != ''">
                     AND QUES.userEmail = #{userEmail}
                     AND U.email = QUES.user_email
@@ -71,6 +68,30 @@
                     AND QUES.category_code = #{categoryCode}
                 </if>
             ORDER BY QUES.ques_no DESC, QUES.view_cnt DESC)
+        WHERE ROWNUM BETWEEN 0 AND 10
+
+    </select>
+
+    <select id="searchListByQuestions" parameterType="SearchVO" resultMap="QuestionResultMap">
+
+        SELECT *
+        FROM
+        (SELECT QUES.ques_no,
+        QUES.question,
+        (SELECT category_name FROM tb_category WHERE category_code = QUES.category_code) category_name,
+        QUES.category_code,
+        QUES.reg_date
+        FROM tb_question QUES, tb_user U
+        WHERE QUES.user_email = U.email
+            AND QUES.answered = 'N'
+            AND QUES.question LIKE '%' || #{keyword} || '%'
+            <if test="quesNo != null and quesNo != ''">
+                AND QUES.ques_no <![CDATA[<]]> #{quesNo}
+            </if>
+            <if test="categoryCode != null and categoryCode != ''">
+                AND QUES.category_code = #{categoryCode}
+            </if>
+        ORDER BY QUES.ques_no DESC, QUES.view_cnt DESC)
         WHERE ROWNUM BETWEEN 0 AND 10
 
     </select>
