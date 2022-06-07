@@ -10,7 +10,7 @@ import java.util.Map;
 public interface AnswerService {
     long create(AnswerVO answerVO);
     AnswerVO select(long ansNo);
-    List<AnswerVO> selectAnswers(Map<String, Long> map);
+    List<AnswerVO> selectAnswers(AnswerVO answerVO);
     long countAnswers(long quesNo);
     List<QAPairVO> selectAnsweredPairByUser(String email);
     void update(AnswerVO answerVO);

@@ -60,7 +60,7 @@
 -->
 
 
-    <select id="selectAnswers" parameterType="map" resultMap="AnswerResultMap">
+    <select id="selectAnswers" parameterType="AnswerVO" resultMap="AnswerResultMap">
         SELECT *
             FROM (SELECT
                     ANS.ans_no,

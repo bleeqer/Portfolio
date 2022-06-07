@@ -65,9 +65,9 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public List<AnswerVO> selectAnswers(Map<String, Long> map) {
+    public List<AnswerVO> selectAnswers(AnswerVO answerVO) {
 
-        return answerMapper.selectAnswers(map);
+        return answerMapper.selectAnswers(answerVO);
     }
 
     @Override

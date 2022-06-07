@@ -11,7 +11,7 @@ public interface AnswerMapper {
     long insert(AnswerVO answerVO);
     void update(AnswerVO answerVO);
     void delete(long ansNo);
-    List<AnswerVO> selectAnswers(Map<String, Long> map);
+    List<AnswerVO> selectAnswers(AnswerVO answerVO);
     long countAnswers(long quesNo);
     List<QAPairVO> selectAnsweredPairByUser(String email);
     long addLike(AnswerLikeVO likeVO);

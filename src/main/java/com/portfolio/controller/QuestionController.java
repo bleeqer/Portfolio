@@ -1,5 +1,6 @@
 package com.portfolio.controller;
 
+import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.CategoryVO;
 import com.portfolio.domain.QuestionVO;
 import com.portfolio.service.AnswerService;
@@ -83,15 +84,19 @@ public class QuestionController {
         // 답변여부에 따라 답변글 조회
         if (question.getAnswered().equals("Y")) {
 
-            HashMap<String, Long> map = new HashMap<>();
+//            HashMap<String, Long> map = new HashMap<>();
+//
+//            map.put("quesNo", quesNo);
+//
+//            // 더불러오기용 마지막 답변글 번호
+//            map.put("ansNo", null);
 
-            map.put("quesNo", quesNo);
+            AnswerVO answerVO = new AnswerVO();
 
-            // 더불러오기용 마지막 답변글 번호
-            map.put("ansNo", null);
+            answerVO.setQuesNo(quesNo);
 
             // 답변 리스트
-            model.addAttribute("answers", answerService.selectAnswers(map));
+            model.addAttribute("answers", answerService.selectAnswers(answerVO));
 
         }
 
