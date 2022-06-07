@@ -101,33 +101,34 @@
     SELECT *
     FROM
         (SELECT ROW_NUMBER() OVER(PARTITION BY ques_no ORDER BY LIKES DESC, ans_no ASC) AS RN, PAIR.*
-            FROM
-                (SELECT
-                    QUES.ques_no,
-                    QUES.question,
-                    (SELECT category_name FROM tb_category WHERE category_code = QUES.category_code) category_name,
-                    QUES.category_code,
-                    ANS.ans_no,
-                    ANS.answer,
-                    ANS.reg_date,
-                    ANS.comment_cnt,
-                    (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) likes,
-                    (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) dislikes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) dislikes,
-                    U.email,
-                    U.name,
-                    U.photo,
-                    U.occupation
-                FROM tb_question QUES, tb_answer ANS, tb_user U
-                WHERE
-                    ANS.ques_no = QUES.ques_no
-                    AND U.email = ANS.user_email
-                    AND QUES.answered = 'Y'
-                    <if test="quesNo != null and quesNo != ''">
-                        AND QUES.ques_no <![CDATA[<]]> #{quesNo}
-                    </if>
-                    <if test="categoryCode != null and categoryCode != ''">
-                        AND QUES.category_code = #{categoryCode}
-                    </if>) PAIR)
+        FROM
+            (SELECT
+                QUES.ques_no,
+                QUES.question,
+                (SELECT category_name FROM tb_category WHERE category_code = QUES.category_code) category_name,
+                QUES.category_code,
+                ANS.ans_no,
+                ANS.answer,
+                ANS.reg_date,
+                ANS.comment_cnt,
+                (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) likes,
+                (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) dislikes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) dislikes,
+                U.email,
+                U.name,
+                U.photo,
+                U.occupation
+            FROM tb_question QUES, tb_answer ANS, tb_user U
+            WHERE
+                ANS.ques_no = QUES.ques_no
+                AND U.email = ANS.user_email
+                AND QUES.answered = 'Y'
+                <if test="quesNo != null and quesNo != ''">
+                    AND QUES.ques_no <![CDATA[<]]> #{quesNo}
+                </if>
+                <if test="categoryCode != null and categoryCode != ''">
+                    AND QUES.category_code = #{categoryCode}
+                </if>) PAIR
+        ORDER BY ques_no DESC)
     WHERE RN = 1 AND ROWNUM BETWEEN 0 AND 10
 
     </select>

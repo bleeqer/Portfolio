@@ -276,7 +276,7 @@ $('#image').on("change", function () {
 
 $(window).scroll(function() {
 
-    if ($(window).scrollTop() + 0.5 >= $(document).height() - $(window).height()) {
+    if ($(window).scrollTop() + 0.4 >= $(document).height() - $(window).height()) {
 
         const url = $(location).attr('pathname') + ($(location).attr('pathname') === '/' ? 'more' : '/more')
 
@@ -286,13 +286,14 @@ $(window).scroll(function() {
         const lastQuesNo = $('.pair').last().data('ques-no')
         const categoryCode = $('.category-item.selected').data('category-code')
 
+        alert(lastQuesNo)
         $.ajax({
             url: url,
             type: 'GET',
             contentType: 'application/json',
             data : {'quesNo': lastQuesNo, categoryCode: categoryCode},
             success: function (pairs) {
-                alert(pairs)
+
                 $('#pair-list').append(pairs)
                 // initAnswerPopover()
 
