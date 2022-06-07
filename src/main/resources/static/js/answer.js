@@ -274,36 +274,6 @@ $('#image').on("change", function () {
     })
 })
 
-$(window).scroll(function() {
-
-    if ($(window).scrollTop() + 0.4 >= $(document).height() - $(window).height()) {
-
-        const url = $(location).attr('pathname') + ($(location).attr('pathname') === '/' ? 'more' : '/more')
-
-        // questions 에서 호출 시 실행 막기
-        if (url.split('/')[1] === 'questions') return
-
-        const lastQuesNo = $('.pair').last().data('ques-no')
-        const categoryCode = $('.category-item.selected').data('category-code')
-
-        alert(lastQuesNo)
-        $.ajax({
-            url: url,
-            type: 'GET',
-            contentType: 'application/json',
-            data : {'quesNo': lastQuesNo, categoryCode: categoryCode},
-            success: function (pairs) {
-
-                $('#pair-list').append(pairs)
-                // initAnswerPopover()
-
-            },
-            error: function () {
-                console.log('error occurred')
-            }
-        })
-    }
-})
 
 // text editor 초기화 함수
 async function initEditor () {
