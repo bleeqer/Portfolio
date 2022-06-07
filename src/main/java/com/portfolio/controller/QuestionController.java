@@ -32,6 +32,8 @@ public class QuestionController {
 
         questionVO.setUserEmail(principal.getName());
 
+        System.out.println(questionVO.getCategoryCode());
+
         // 기존 질문 리스트 조회
         List<QuestionVO> questions = questionService.selectList(new QuestionVO());
 

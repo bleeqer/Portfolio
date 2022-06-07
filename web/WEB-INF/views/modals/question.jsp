@@ -42,7 +42,7 @@
                         </div>
                         <input id="ques-no" type="hidden" name="quesNo" value="">
                         <input id="user-email" type="hidden" name="userEmail" value="${user.username}">
-                        <input id="category-code" type="hidden" name="categoryCode">
+                        <input id="category-code" type="hidden" name="categoryCode" value="">
                         <sec:csrfInput/>
                     </form>
                 </div>
