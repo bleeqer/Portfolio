@@ -61,29 +61,22 @@
 
 
     <select id="selectAnswers" parameterType="AnswerVO" resultMap="AnswerResultMap">
-        SELECT *
-            FROM (SELECT
-                    ANS.ans_no,
-                    ANS.ques_no,
-                    ANS.answer,
-                    ANS.reg_date,
-                    ANS.comment_cnt,
-                    (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) likes,
-                    (SELECT NVL(SUM(CASE WHEN REC.like_type = 'DOWN' THEN 1 ELSE 0 END), 0) likes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) dislikes,
-                    U.email,
-                    U.name,
-                    U.photo,
-                    U.occupation
-                FROM TB_ANSWER ANS, TB_USER U
-                WHERE ANS.ques_no = #{quesNo}
-                    AND ANS.user_email = U.email
-                    <if test="ansNo != null and ansNo != ''">
-                        AND ANS.ans_no <![CDATA[<]]> #{ansNo}
-                    </if>
-                ORDER BY likes DESC, ans_no ASC)
-        WHERE ROWNUM BETWEEN 0 AND 10
-
-
+        SELECT
+            ANS.ans_no,
+            ANS.ques_no,
+            ANS.answer,
+            ANS.reg_date,
+            ANS.comment_cnt,
+            (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) likes,
+            (SELECT NVL(SUM(CASE WHEN REC.like_type = 'DOWN' THEN 1 ELSE 0 END), 0) likes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) dislikes,
+            U.email,
+            U.name,
+            U.photo,
+            U.occupation
+        FROM TB_ANSWER ANS, TB_USER U
+        WHERE ANS.ques_no = #{quesNo}
+            AND ANS.user_email = U.email
+        ORDER BY likes DESC, ans_no ASC
 
     </select>
 

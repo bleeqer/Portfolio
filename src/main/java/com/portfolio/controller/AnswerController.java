@@ -1,9 +1,6 @@
 package com.portfolio.controller;
 
-import com.portfolio.domain.AnswerVO;
-import com.portfolio.domain.AnswerLikeVO;
-import com.portfolio.domain.QAPairVO;
-import com.portfolio.domain.QuestionVO;
+import com.portfolio.domain.*;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +72,16 @@ public class AnswerController {
         return answerService.select(answerVO.getAnsNo());
     }
 
+    @GetMapping("")
+    public String getAnswers(AnswerVO answerVO, Model model) {
 
+        List<AnswerVO> answers = answerService.selectAnswers(answerVO);
+
+        model.addAttribute("answers", answers);
+
+        return "templates/answerTemplate";
+
+    }
 
     @GetMapping("like")
     @ResponseBody

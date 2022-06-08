@@ -3,23 +3,11 @@ $(window).scroll(function() {
 
     if ($(window).scrollTop() + 0.4 >= $(document).height() - $(window).height()) {
 
-        const lastQuesNo = $('.question').last().data('ques-no')
-        const categoryCode = $('.category-item.selected').data('category-code')
+        // 숨겨진 질문 3개 선택
+        const answers = $('.answer:hidden').slice(0, 3)
 
-        $.ajax({
-            url: '/answer',
-            type: 'GET',
-            contentType: 'application/json',
-            data : {'quesNo': lastQuesNo, categoryCode: categoryCode},
-            success: function (questions) {
+        // 선택된 3개 질문 보여주기
+        answers.show()
 
-                $('#question-list').append(questions)
-                // initAnswerPopover()
-
-            },
-            error: function () {
-                console.log('error occurred')
-            }
-        })
     }
 })

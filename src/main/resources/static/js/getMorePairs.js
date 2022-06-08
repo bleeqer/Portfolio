@@ -14,7 +14,6 @@ $(window).scroll(function() {
             success: function (pairs) {
 
                 $('#pair-list').append(pairs)
-                // initAnswerPopover()
 
             },
             error: function () {

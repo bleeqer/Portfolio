@@ -14,7 +14,6 @@ $(window).scroll(function() {
             success: function (questions) {
 
                 $('#question-list').append(questions)
-                // initAnswerPopover()
 
             },
             error: function () {

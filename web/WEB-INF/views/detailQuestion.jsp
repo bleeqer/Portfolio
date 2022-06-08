@@ -103,7 +103,7 @@
                         </div>
 
                         <%--Question--%>
-                        <div class="question" data-ques-no="${question.quesNo}">
+                        <div id="question" data-ques-no="${question.quesNo}">
                             <%--question--%>
                             <div>
                                 <div class="question-text font-bold d-flex align-items-center" style="font-size: 21px;">${question.question}</div>
@@ -230,10 +230,10 @@
 
                     <div id="answer-list">
 
-                        <c:forEach var="answer" items="${answers}">
+                        <c:forEach var="answer" items="${answers}" varStatus="loop">
 
                             <%--Answer--%>
-                            <div class="answer pt-2 border-bottom-gray mt-1" data-ans-no="${answer.ansNo}">
+                            <div class="answer pt-2 border-bottom-gray mt-1" data-ans-no="${answer.ansNo}" <c:if test="${loop.index >= 3}"> style="display: none;"</c:if>>
                                 <div>
 
                                         <%--Content--%>
@@ -542,5 +542,6 @@
 <script src="/static/js/detailQuestion.js"></script>
 <script src="/static/js/liking.js"></script>
 <script src="/static/js/main.js"></script>
+<script src="/static/js/getMoreAnswers.js"></script>
 </body>
 </html>
