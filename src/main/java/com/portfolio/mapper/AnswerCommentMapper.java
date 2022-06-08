@@ -1,5 +1,6 @@
 package com.portfolio.mapper;
 
+import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.CommentLikeVO;
 import com.portfolio.domain.CommentVO;
 import com.portfolio.domain.AnswerLikeVO;
@@ -19,6 +20,7 @@ public interface AnswerCommentMapper {
     long deleteLike(CommentLikeVO likeVO);
     CommentLikeVO findLike(CommentLikeVO likeVO);
     long updateLike(CommentLikeVO likeVO);
-    Map<String, Integer> countLike(long ansNo);
+    Map<String, Long> countLike(long coNo);
+    CommentLikeVO checkLiked(CommentVO commentVO);
 
 }

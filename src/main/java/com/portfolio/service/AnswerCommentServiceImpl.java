@@ -1,5 +1,7 @@
 package com.portfolio.service;
 
+import com.portfolio.domain.AnswerLikeVO;
+import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.CommentVO;
 import com.portfolio.domain.CommentLikeVO;
 import com.portfolio.mapper.AnswerCommentMapper;
@@ -81,7 +83,7 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
 
         answerMapper.updateCommentCnt(map);
     }
-    public Map<String, Integer> addLike(CommentLikeVO likeVO) {
+    public Map<String, Long> addLike(CommentLikeVO likeVO) {
 
         CommentLikeVO like = answerCommentMapper.findLike(likeVO);
 
@@ -115,7 +117,7 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     }
 
     @Override
-    public Map<String, Integer> subtractLike(CommentLikeVO likeVO) {
+    public Map<String, Long> subtractLike(CommentLikeVO likeVO) {
 
         CommentLikeVO like = answerCommentMapper.findLike(likeVO);
 
@@ -148,19 +150,10 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
 
     }
 
-//    @Override
-//    public void addLikeCnt(long postNo) {
-//        answerCommentMapper.addLikeCnt(postNo);
-//    }
+    @Override
+    public CommentLikeVO checkLiked(CommentVO commentVO) {
+        return answerCommentMapper.checkLiked(commentVO);
+    }
 
-//    @Override
-//    public long selectNestedMaxOrder(long parentCommentNo) {
-//        return answerCommentMapper.selectNestedMaxOrder(parentCommentNo);
-//    }
-//
-//    @Override
-//    public long selectMaxOrder() {
-//        return answerCommentMapper.selectMaxOrder();
-//    }
 
 }

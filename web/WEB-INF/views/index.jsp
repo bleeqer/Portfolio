@@ -395,6 +395,7 @@
                                                                style="width: 100%; outline: none; border: none;"
                                                                placeholder="Add a comment...">
                                                         <input type="hidden" name="ansNo" value="${answerPair.ansNo}">
+                                                        <input type="hidden" name="parentCoNo" value="0">
                                                         <sec:csrfInput/>
 <%--                                                        <sec:authorize access="isAuthenticated()">--%>
 <%--                                                            <input type="hidden" name="userEmail" value="${user.username}">--%>

@@ -120,6 +120,15 @@
         FROM tb_comment_like_rec WHERE co_no = #{coNo}
     </select>
 
+    <select id="checkLiked" parameterType="CommentVO" resultMap="commentLikeResultMap">
+
+        SELECT *
+        FROM tb_comment_like_rec
+        WHERE co_no = #{coNo}
+          AND user_email = #{userEmail}
+
+    </select>
+
 <!--    <select id="selectMoreList" parameterType="map" resultMap="AnswerReplyResultMap">-->
 <!--        SELECT LEVEL, ANS_NO, COMMENT_NO, PARENT_COMMENT_NO, CONTENT, WRITER, LIKE_CNT, REG_DATE FROM TB_ANS_COMMENT-->
 <!--            START WITH COMMENT_NO IN (-->

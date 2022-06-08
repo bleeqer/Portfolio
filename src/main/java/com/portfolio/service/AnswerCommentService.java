@@ -1,5 +1,6 @@
 package com.portfolio.service;
 
+import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.CommentLikeVO;
 import com.portfolio.domain.CommentVO;
 import com.portfolio.domain.AnswerLikeVO;
@@ -15,7 +16,8 @@ public interface AnswerCommentService {
     void delete(CommentVO commentVO);
     List<CommentVO> selectList(CommentVO commentVO);
     long selectLastCoNo(long ansNo);
-    Map<String, Integer> addLike(CommentLikeVO likeVO);
-    Map<String, Integer> subtractLike(CommentLikeVO likeVO);
+    Map<String, Long> addLike(CommentLikeVO likeVO);
+    Map<String, Long> subtractLike(CommentLikeVO likeVO);
+    public CommentLikeVO checkLiked(CommentVO commentVO);
 
 }

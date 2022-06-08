@@ -18,7 +18,7 @@ public interface AnswerMapper {
     long deleteLike(AnswerLikeVO likeVO);
     AnswerLikeVO findLike(AnswerLikeVO likeVO);
     long updateLike(AnswerLikeVO likeVO);
-    Map<String, Object> countLike(long ansNo);
+    Map<String, Long> countLike(long ansNo);
     void updateCommentCnt(Map<String, Long> map);
     boolean checkAnswered(QuestionVO questionVO);
     AnswerLikeVO checkLiked(AnswerVO answerVO);

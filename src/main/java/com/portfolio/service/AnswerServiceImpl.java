@@ -106,7 +106,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Map<String, Object> addLike(AnswerLikeVO likeVO) {
+    public Map<String, Long> addLike(AnswerLikeVO likeVO) {
 
         AnswerLikeVO like = answerMapper.findLike(likeVO);
 
@@ -134,7 +134,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Map<String, Object> subtractLike(AnswerLikeVO likeVO) {
+    public Map<String, Long> subtractLike(AnswerLikeVO likeVO) {
 
         AnswerLikeVO like = answerMapper.findLike(likeVO);
 

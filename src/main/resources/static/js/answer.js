@@ -22,44 +22,7 @@ function isExist(selector) {
     return $(selector).length > 0
 }
 
-// like 여부 체크 후 하이라이트
-function highlightIfLiked(selector) {
 
-    $(selector).each(function (idx, element) {
-        $.ajax({
-            url: '/answer/checkLiked',
-            type: 'GET',
-            data: {ansNo: $(element).data('ans-no')},
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (like) {
-
-                if (like.likeType === 'UP') {
-
-                    $(element).find('.answer-like-button').addClass('bg-whiten')
-                    $(element).find('.answer-dislike-button').removeClass('bg-whiten')
-
-                } else if (like.likeType === 'DOWN') {
-
-                    $(element).find('.answer-dislike-button').addClass('bg-whiten')
-                    $(element).find('.answer-like-button').removeClass('bg-whiten')
-
-
-                } else if (like.likeType === 'None') {
-
-                    $(element).find('.answer-dislike-button').removeClass('bg-whiten')
-                    $(element).find('.answer-like-button').removeClass('bg-whiten')
-
-                }
-
-
-            }
-        })
-    })
-
-}
-
-highlightIfLiked('.pair')
 
 $('.readMore-button').on('click', function() {
     $(this).parent().find('.fade-post').css('max-height', $(this).parent().find('.fade-post').prop('scrollHeight') + 'px')

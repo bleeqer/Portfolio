@@ -38,7 +38,6 @@ function getComments(data) {
 }
 
 // child comments 갯수 세기
-
 function countChildComments(coNo) {
 
     // 자식 댓글들
@@ -98,7 +97,7 @@ $('body').on('click', '.comment-button', function () {
         commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
 
         commentSection.find('.view-more-comments').parent().removeClass('hidden')
-        alert(commentSection.find('.last-checker').last().data('is-last'))
+
         // 마지막 댓글일 경우, 댓글이 없을 경우 댓글 더보기 버튼 숨기기
         if (commentSection.find('.last-checker').last().data('is-last') === "Y" || commentSection.find('.comment').length < 1) {
 
@@ -111,6 +110,7 @@ $('body').on('click', '.comment-button', function () {
 
         // popover 초기화
         initCommentPopover()
+        commentLikeHighlight()
 
     }
 })

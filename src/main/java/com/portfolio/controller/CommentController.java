@@ -1,8 +1,9 @@
 package com.portfolio.controller;
 
+import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.CommentLikeVO;
 import com.portfolio.domain.CommentVO;
-import com.portfolio.domain.AnswerLikeVO;
+import com.portfolio.domain.CommentLikeVO;
 import com.portfolio.service.AnswerCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -91,7 +92,7 @@ public class CommentController {
 
     @GetMapping("like")
     @ResponseBody
-    public Map<String, Integer> likeComment(@RequestParam Long coNo, Principal principal) {
+    public Map<String, Long> likeComment(@RequestParam Long coNo, Principal principal) {
 
         CommentLikeVO likeVO = new CommentLikeVO();
 
@@ -103,7 +104,7 @@ public class CommentController {
 
     @GetMapping("dislike")
     @ResponseBody
-    public Map<String, Integer> dislikeComment(@RequestParam Long coNo, Principal principal) {
+    public Map<String, Long> dislikeComment(@RequestParam Long coNo, Principal principal) {
 
         CommentLikeVO likeVO = new CommentLikeVO();
 
@@ -112,5 +113,25 @@ public class CommentController {
 
         return answerCommentService.subtractLike(likeVO);
     }
+
+    @GetMapping("checkLiked")
+    @ResponseBody
+    public CommentLikeVO checkLiked(long coNo, Principal principal) {
+
+        CommentVO commentVO = new CommentVO();
+
+        commentVO.setCoNo(coNo);
+        commentVO.setUserEmail(principal.getName());
+
+        CommentLikeVO likeVO = answerCommentService.checkLiked(commentVO);
+
+        if (likeVO == null) {
+            likeVO = new CommentLikeVO();
+            likeVO.setLikeType("None");
+        }
+
+        return likeVO;
+    }
+
 
 }

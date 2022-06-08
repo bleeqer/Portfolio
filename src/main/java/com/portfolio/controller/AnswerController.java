@@ -85,7 +85,7 @@ public class AnswerController {
 
     @GetMapping("like")
     @ResponseBody
-    public Map<String, Object> likeAnswer(@RequestParam long ansNo, Principal principal) {
+    public Map<String, Long> likeAnswer(@RequestParam long ansNo, Principal principal) {
 
         AnswerLikeVO likeVO = new AnswerLikeVO();
 
@@ -97,7 +97,7 @@ public class AnswerController {
 
     @GetMapping("dislike")
     @ResponseBody
-    public Map<String, Object> dislikeAnswer(@RequestParam long ansNo, Principal principal) {
+    public Map<String, Long> dislikeAnswer(@RequestParam long ansNo, Principal principal) {
 
         AnswerLikeVO likeVO = new AnswerLikeVO();
 
