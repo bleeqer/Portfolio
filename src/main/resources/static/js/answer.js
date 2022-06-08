@@ -110,27 +110,47 @@ $(document).on('click', '.answer-popover-item', function () {
 // 답변 버튼 클릭 시 답변 modal에 유저정보, 질문글 띄우기
 $('.answer-button').click(function () {
 
+
     $.ajax({
-        url: '/user/get',
+        url: '/answer/checkAnswered',
         type: 'GET',
+        data: {quesNo: $(this).data('ques-no')},
         dataType: 'json',
         contentType: 'application/json',
-        context: this,
-        success: function (user) {
+        success: function (answered) {
 
-            // 답변 모달창의 submit 버튼 교체
-            $('#answer-modal #add-answer-button').show()
-            $('#answer-modal #edit-answer-button').hide()
+            if (answered) {
+                alert('이미 답변 하였습니다.')
+            } else {
 
-            $('#answer-modal #asked-question').html($('.question-text').text())
-            $('#answer-modal #user-img').attr('src', user.photo)
-            $('#answer-modal #user-name').html(user.name)
-            $('#answer-modal #user-occupation').html(user.occupation)
-            $('#answer-modal #asked-question').html($('.question[data-ques-no="' + $(this).data('ques-no') + '"]').find('.question-text').text())
-            $('#answer-modal #ques-no').val($(this).data('ques-no'))
+                $.ajax({
+                    url: '/user/get',
+                    type: 'GET',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    context: this,
+                    success: function (user) {
 
+                        // 답변 모달창의 submit 버튼 교체
+                        $('#answer-modal #add-answer-button').show()
+                        $('#answer-modal #edit-answer-button').hide()
+
+                        $('#answer-modal #asked-question').html($('.question-text').text())
+                        $('#answer-modal #user-img').attr('src', user.photo)
+                        $('#answer-modal #user-name').html(user.name)
+                        $('#answer-modal #user-occupation').html(user.occupation)
+                        $('#answer-modal #asked-question').html($('.question[data-ques-no="' + $(this).data('ques-no') + '"]').find('.question-text').text())
+                        $('#answer-modal #ques-no').val($(this).data('ques-no'))
+
+                        $('#answer-modal').modal('show')
+
+                    }
+                })
+            }
         }
     })
+
+
 })
 
 

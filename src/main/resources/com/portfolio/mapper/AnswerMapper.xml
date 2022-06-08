@@ -136,6 +136,15 @@
         WHERE ans_no = #{ansNo}
     </update>
 
+    <select id="checkAnswered" parameterType="QuestionVO" resultType="boolean">
+
+        SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END result
+        FROM tb_answer
+        WHERE ques_no = #{quesNo}
+            AND user_email = #{userEmail}
+
+    </select>
+
     <resultMap id="AnswerResultMap" type="AnswerVO">
         <id column="ques_no" property="quesNo"/>
         <id column="ans_no" property="ansNo"/>

@@ -161,4 +161,9 @@ public class AnswerServiceImpl implements AnswerService {
 
     }
 
+    @Override
+    public boolean checkAnswered(QuestionVO questionVO) {
+        return answerMapper.checkAnswered(questionVO);
+    }
+
 }

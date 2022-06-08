@@ -107,12 +107,17 @@ public class AnswerController {
         return answerService.subtractLike(likeVO);
     }
 
-//    @PostMapping("more")
-//    @ResponseBody
-//    public List<AnswerVO> getMoreAnswers(@RequestBody AnswerVO answer) {
-//
-//        return answerService.readMoreList(answer);
-//    }
+    @GetMapping("checkAnswered")
+    @ResponseBody
+    public boolean checkAnswered(long quesNo, Principal principal) {
+
+        QuestionVO questionVO = new QuestionVO();
+
+        questionVO.setQuesNo(quesNo);
+        questionVO.setUserEmail(principal.getName());
+
+        return answerService.checkAnswered(questionVO);
+    }
 
 //    @GetMapping("like")
 //    @ResponseBody

@@ -3,6 +3,7 @@ package com.portfolio.service;
 import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.AnswerLikeVO;
 import com.portfolio.domain.QAPairVO;
+import com.portfolio.domain.QuestionVO;
 
 import java.util.List;
 import java.util.Map;
@@ -17,4 +18,5 @@ public interface AnswerService {
     void delete(AnswerVO answerVO);
     Map<String, Long> addLike(AnswerLikeVO likeVO);
     Map<String, Long> subtractLike(AnswerLikeVO likeVO);
+    boolean checkAnswered(QuestionVO questionVO);
 }

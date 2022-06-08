@@ -20,6 +20,7 @@ public interface AnswerMapper {
     long updateLike(AnswerLikeVO likeVO);
     Map<String, Long> countLike(long ansNo);
     void updateCommentCnt(Map<String, Long> map);
+    boolean checkAnswered(QuestionVO questionVO);
 
 
 }

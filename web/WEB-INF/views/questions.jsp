@@ -204,7 +204,7 @@
                                     <div class="d-flex justify-content-between align-items-center">
                                       <div class="d-flex">
                                         <%--Answer button--%>
-                                        <button class="answer-button px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-bs-toggle="modal" data-bs-target="#answer-modal" data-ques-no="${question.quesNo}">
+                                        <button class="answer-button px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-ques-no="${question.quesNo}">
                                           <div class="d-flex justify-content-center align-items-center">
                                             <%--Answer icon--%>
                                             <div>
