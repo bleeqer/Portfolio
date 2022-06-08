@@ -537,9 +537,9 @@
 
     <script src="/static/js/utils.js"></script>
     <script src="/static/js/main.js"></script>
-    <script src="/static/js/liking.js"></script>
     <script src="/static/js/comment.js"></script>
     <script src="/static/js/answer.js"></script>
+    <script src="/static/js/liking.js"></script>
     <script src="/static/js/question.js"></script>
     <script src="/static/js/getMorePairs.js"></script>
 

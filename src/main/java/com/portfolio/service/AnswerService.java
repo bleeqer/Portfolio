@@ -16,7 +16,8 @@ public interface AnswerService {
     List<QAPairVO> selectAnsweredPairByUser(String email);
     void update(AnswerVO answerVO);
     void delete(AnswerVO answerVO);
-    Map<String, Long> addLike(AnswerLikeVO likeVO);
-    Map<String, Long> subtractLike(AnswerLikeVO likeVO);
+    Map<String, Object> addLike(AnswerLikeVO likeVO);
+    Map<String, Object> subtractLike(AnswerLikeVO likeVO);
     boolean checkAnswered(QuestionVO questionVO);
+    AnswerLikeVO checkLiked(AnswerVO answerVO);
 }

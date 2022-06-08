@@ -20,10 +20,11 @@ $('body').on('click', '.answer-like-button', function () {
                 result.dislikes = ''
             }
 
+            highlightIfLiked('.pair')
+
             $('.answer-like-cnt[data-ans-no="' + ansNo + '"]').html(result.likes)
 
             $('.answer-dislike-cnt[data-ans-no="' + ansNo + '"]').html(result.dislikes)
-
 
         },
         error: function () {
@@ -54,6 +55,8 @@ $('body').on('click', '.answer-dislike-button', function () {
             if (result.dislikes === 0) {
                 result.dislikes = ''
             }
+
+            highlightIfLiked('.pair')
 
             $('.answer-like-cnt[data-ans-no="' + ansNo + '"]').html(result.likes)
 

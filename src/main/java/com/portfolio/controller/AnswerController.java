@@ -85,7 +85,7 @@ public class AnswerController {
 
     @GetMapping("like")
     @ResponseBody
-    public Map<String, Long> likeAnswer(@RequestParam long ansNo, Principal principal) {
+    public Map<String, Object> likeAnswer(@RequestParam long ansNo, Principal principal) {
 
         AnswerLikeVO likeVO = new AnswerLikeVO();
 
@@ -97,7 +97,7 @@ public class AnswerController {
 
     @GetMapping("dislike")
     @ResponseBody
-    public Map<String, Long> dislikeAnswer(@RequestParam long ansNo, Principal principal) {
+    public Map<String, Object> dislikeAnswer(@RequestParam long ansNo, Principal principal) {
 
         AnswerLikeVO likeVO = new AnswerLikeVO();
 
@@ -117,6 +117,25 @@ public class AnswerController {
         questionVO.setUserEmail(principal.getName());
 
         return answerService.checkAnswered(questionVO);
+    }
+
+    @GetMapping("checkLiked")
+    @ResponseBody
+    public AnswerLikeVO checkLiked(long ansNo, Principal principal) {
+
+        AnswerVO answerVO = new AnswerVO();
+
+        answerVO.setAnsNo(ansNo);
+        answerVO.setUserEmail(principal.getName());
+
+        AnswerLikeVO likeVO = answerService.checkLiked(answerVO);
+
+        if (likeVO == null) {
+            likeVO = new AnswerLikeVO();
+            likeVO.setLikeType("None");
+        }
+
+        return likeVO;
     }
 
 //    @GetMapping("like")

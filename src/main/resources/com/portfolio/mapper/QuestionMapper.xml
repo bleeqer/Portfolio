@@ -112,7 +112,7 @@
                 ANS.reg_date,
                 ANS.comment_cnt,
                 (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) likes,
-                (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) dislikes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) dislikes,
+                (SELECT NVL(SUM(CASE WHEN REC.like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) dislikes,
                 U.email,
                 U.name,
                 U.photo,

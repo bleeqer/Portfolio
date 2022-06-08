@@ -145,6 +145,15 @@
 
     </select>
 
+    <select id="checkLiked" parameterType="AnswerVO" resultMap="answerLikeResultMap">
+
+        SELECT *
+        FROM tb_answer_like_rec
+        WHERE ans_no = #{ansNo}
+          AND user_email = #{userEmail}
+
+    </select>
+
     <resultMap id="AnswerResultMap" type="AnswerVO">
         <id column="ques_no" property="quesNo"/>
         <id column="ans_no" property="ansNo"/>
