@@ -373,7 +373,7 @@
 
                                                                                 <%--Comment count--%>
                                                                             <div class="d-flex align-items-center justify-content-center color-gray">
-    <%--                                                                                ${answerPair.answerCommentCnt}--%>
+    <%--                                                                                ${answer.answerCommentCnt}--%>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -385,7 +385,7 @@
 
                                                                     <%--Three dots--%>
                                                                 <sec:authorize access="isAuthenticated()">
-    <%--                                                                <c:if test="${user.username == answerPair.answerUserEmail}">--%>
+    <%--                                                                <c:if test="${user.username == answer.answerUserEmail}">--%>
                                                                 <div>
                                                                     <a tabindex="0" class="answer-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
                                                                           style="width: 38px; height: 38px;" data-ans-no="${answer.ansNo}">
@@ -415,6 +415,7 @@
                                                     </div>
                                             </div>
                                         </div>
+
                                             <%--Comment section--%>
                                         <div class="comment-section"
                                              data-ans-no="${answer.ansNo}" style="display: none;">
@@ -438,18 +439,21 @@
                                                                style="width: 100%; outline: none; border: none;"
                                                                placeholder="Add a comment...">
                                                         <input type="hidden" name="ansNo" value="${answer.ansNo}">
-                                                        <sec:authorize access="isAuthenticated()">
-                                                            <input type="hidden" name="userEmail" value="${user.username}">
-                                                        </sec:authorize>
+                                                        <input type="hidden" name="parentCoNo" value="0">
+                                                        <sec:csrfInput/>
+                                                            <%--                                                        <sec:authorize access="isAuthenticated()">--%>
+                                                            <%--                                                            <input type="hidden" name="userEmail" value="${user.username}">--%>
+                                                            <%--                                                        </sec:authorize>--%>
                                                     </form>
                                                 </div>
 
                                                     <%--Add button--%>
-                                                <button class="comment-submit-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
-                                                        style="font-size: 13px; height: 30px; margin-left: 4px;">
-                                                    <div style="white-space: nowrap;">Add comment
-                                                    </div>
-                                                </button>
+                                                <span class="add-comment-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
+                                                      style="font-size: 13px; height: 30px; margin-left: 4px;"
+                                                      data-co-level="0" data-co-no="0" data-parent-co-no="0" data-ans-no="${answer.ansNo}">
+                                        <div style="white-space: nowrap;">Add comment
+                                        </div>
+                                    </span>
                                             </div>
 
                                                 <%--Comments--%>
@@ -465,7 +469,7 @@
                                                     <div>
                                                         <div class="pb-3 px-3">
                                                             <button class="view-more-comments btn d-flex justify-content-center align-items-center border-gray rounded-pill bg-black-light bg-hover-darken-strong py-0 px-3"
-                                                                    style="height: 30px; width: 100%; font-weight: 500;" data-ans-no="${answer.ansNo}">
+                                                                    style="height: 30px; width: 100%; font-weight: 500;" data-ans-no="${answer.ansNo}" data-parent-co-no="0">
                                                                 <div class="d-flex align-items-center">
 
                                                                         <%--Text--%>
@@ -476,15 +480,15 @@
 
                                                                         <%--Arrow--%>
                                                                     <span>
-                                                                        <span>
-                                                                            <svg class="d-flex" width="16" height="16" viewBox="0 0 24 24"
-                                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                                <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke"
-                                                                                      stroke="#666" stroke-width="1.5" fill="none"
-                                                                                      stroke-linecap="round"></path>
-                                                                            </svg>
-                                                                        </span>
-                                                                    </span>
+                                <span>
+                                    <svg class="d-flex" width="16" height="16" viewBox="0 0 24 24"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke"
+                                              stroke="#666" stroke-width="1.5" fill="none"
+                                              stroke-linecap="round"></path>
+                                    </svg>
+                                </span>
+                            </span>
                                                                 </div>
                                                             </button>
                                                         </div>
@@ -492,7 +496,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+
+                                        </div>
                                 </div>
                             </div>
                         </div>
