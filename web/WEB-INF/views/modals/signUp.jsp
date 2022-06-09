@@ -26,21 +26,31 @@
 
                                 <sec:csrfInput/>
 
-                                <%--Name--%>
-                                <div class="mb-3">
-
-                                    <%--Label--%>
-                                    <div class="mb-1">
-                                        <div>
-                                            <label class="font-bold color-gray-dark" for="register-name" style="font-size: 13px;">Name</label>
+                                <%--Image and Name--%>
+                                <div class="d-flex align-items-center">
+                                    <%--Image--%>
+                                    <div href="" class="me-2">
+                                        <div class="rounded-circle" style="overflow: hidden;">
+                                            <img style="width: 36px; height: 36px;"
+                                                 src="/static/img/user.png" alt="">
                                         </div>
                                     </div>
+                                    <%--Name--%>
+                                    <div class="mb-3">
 
-                                    <%--Input--%>
-                                    <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                        <input class="input-focus" type="text" id="register-name" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your name" autocomplete="off">
+                                        <%--Label--%>
+                                        <div class="mb-1">
+                                            <div>
+                                                <label class="font-bold color-gray-dark" for="register-name" style="font-size: 13px;">Name</label>
+                                            </div>
+                                        </div>
+
+                                        <%--Input--%>
+                                        <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                            <input class="input-focus" type="text" id="register-name" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your name" autocomplete="off">
+                                        </div>
+
                                     </div>
-
                                 </div>
 
                                 <%--Email--%>
@@ -54,8 +64,8 @@
                                     </div>
 
                                     <%--Input--%>
-                                    <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                        <input class="input-focus" type="text" id="register-email" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your email" autocomplete="off">
+                                    <div class="d-inline-flex align-items-center input-container color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                        <input class="input-focus" type="text" id="register-email" style=" width: auto; min-width: 50px; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your email" autocomplete="off">
                                     </div>
 
                                 </div>
@@ -71,7 +81,7 @@
                                     </div>
 
                                     <%--Input--%>
-                                    <div class="d-flex align-items-center color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                    <div class="d-flex align-items-center color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
                                         <input class="input-focus" type="password" id="register-password" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your password" autocomplete="off">
                                     </div>
 
@@ -88,7 +98,7 @@
                                     </div>
 
                                     <%--Input--%>
-                                    <div class="d-flex align-items-center color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                    <div class="d-flex align-items-center color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
                                         <input class="input-focus" type="text" id="register-occupation" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="describe your occupation concisely" autocomplete="off">
                                     </div>
 
