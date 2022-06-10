@@ -6,8 +6,9 @@
 <mapper namespace="com.portfolio.mapper.UserMapper">
 
     <insert id="insert" parameterType="UserVO">
-        INSERT INTO TB_USER (user_id, password)
-        VALUES (#{userId}, #{userPW})
+
+        INSERT INTO TB_USER (email, password, name, photo, authority, occupation)
+        VALUES (#{email}, #{password}, #{name}, #{photo}, #{authority}, #{occupation})
     </insert>
 
     <select id="selectForAuth" parameterType="String" resultType="CustomUserDetails">

@@ -5,6 +5,7 @@ import com.portfolio.domain.UserVO;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionService;
 import com.portfolio.service.UserService;
+import oracle.ucp.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -72,6 +73,18 @@ public class UserController {
     public UserVO getUser(Principal principal) {
 
         return userService.select(principal.getName());
+    }
+
+    @PostMapping("create")
+    public String createUser(UserVO userVO) {
+
+        System.out.println(userVO.getEmail());
+
+        userVO.setAuthority("USER");
+
+        userService.create(userVO);
+
+        return "redirect:/";
     }
 
 }

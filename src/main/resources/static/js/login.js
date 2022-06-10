@@ -1,92 +1,64 @@
-//
-// $('#register-button').click(function (e) {
-//
-//     e.preventDefault()
-//
-//     $('#signUp-form').
-// })
 
-// <script>
-//     $(document).ready(function() {
-//
-//
-//     $("#register-button").click(async function (e) {
-//
-//         e.preventDefault()
-//
-//         $("#userRegister-form").attr("action", "/user/register/")
-//
-//         await $("#modal-userRegister").modal("show")
-//
-//         await initEditor()
-//
-//     })
-//
-//     $("#userRegister-submit").on('click', function(e) {
-//
-//     e.preventDefault()
-//
-//     const form = $("#userRegister-form")
-//
-//     // if (check_pw(form.find("#pw").val()) !== check_pw(form.find("#pw2").val())) {
-//     //
-//     //     alert("비밀번호가 일치하지 않습니다")
-//     //     return
-//     //
-//     // }
-//
-//     //ajax form submit
-//     $.ajax({
-//     type: "POST",
-//     url: "/user/register/",
-//     data: form.serialize(),
-//     success: function () {
-//     alert("회원 가입 성공")
-// }
-// })
-//
-// })
-//     const csrfHeaderName = "${_csrf.headerName}"
-//     const csrfTokenValue = "${_csrf.token}"
-//
-//     $("#userLogin-submit").on('click', function(e) {
-//
-//     e.preventDefault()
-//     const form = $("#userLogin-form")
-//
-//     // if (check_pw(form.find("#pw").val()) !== check_pw(form.find("#pw2").val())) {
-//     //
-//     //     alert("비밀번호가 일치하지 않습니다")
-//     //     return
-//     //
-//     // }
-//
-//
-//
-//     //ajax form submit
-//     $.ajax({
-//     type: "POST",
-//     url: "/user/login.ajax",
-//     data: form.serialize(),
-//
-//     beforeSend: function(xhr){
-//     xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
-// },
-//
-//     dataType: "json",
-//
-//     success: function (res) {
-//     if (res.result === "fail") {
-//     alert(res.msg)
-// } else if (res.result === "success") {
-//     window.location.href = "/"
-// }
-// },
-//     error: function(error) {
-//     alert("error:" + error);
-// }
-// })
-// })
-// })
-//
-// </script>
+$('#profile-image-upload-button').click(function () {
+
+    $('#image').trigger('click')
+})
+
+// 이미지 업로드 함수. image input 변경 시 실행됨
+$('#image').on("change", function () {
+
+    // input 태그의 파일 데이터
+    const files = this.files
+
+    // ajax submit용 form data
+    const formData = new FormData()
+
+    // input 태그 파일을 데이터 순회하며 form data에 추가
+    // 첫번째 스트링 인자('image')는 서버에서 multipart file의 파라미터명으로 쓰이므로 주의
+    for (let i=0; i<files.length; i++) {
+
+        formData.append('image', files[i])
+    }
+
+    // ajax 호출
+    $.ajax({
+        // 요청 URL
+        url: "/file/upload",
+
+        // 파일 전송 시
+        enctype: "multipart/form-data",
+
+        // data의 스트링화(stringify) 방지
+        processData: false,
+
+        // contentType의 default 값 false
+        contentType: false,
+
+        // 전송할 데이터
+        data: formData,
+
+        // 데이터 전송 방식
+        type: 'POST',
+
+        beforeSend: function(xhr){
+            xhr.setRequestHeader(header, token)
+        },
+
+        // ajax 요청 성공 시 콜백함수
+        success: function (path) {
+
+            $('#profile-upload-image').attr('src', path)
+
+        },
+        error: function () {
+            alert("파일 유형을 확인해주세요.")
+        }
+    })
+})
+
+$('#register-button').click(function () {
+
+    $('#photoPath').val($('#image').val())
+    $('#signUp-form').submit()
+
+})
