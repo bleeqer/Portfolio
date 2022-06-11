@@ -47,7 +47,7 @@ $('#image').on("change", function () {
         // ajax 요청 성공 시 콜백함수
         success: function (path) {
 
-            $('#profile-upload-image').attr('src', path)
+            $('#profile-upload-image').attr('src', '/uploadedImages' + path)
 
         },
         error: function () {

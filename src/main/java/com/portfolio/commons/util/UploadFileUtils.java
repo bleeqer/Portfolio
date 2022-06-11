@@ -22,7 +22,7 @@ public class UploadFileUtils {
         // multipartFile 리스트
         List<MultipartFile> mtfs = mtfRequest.getFiles("image");
 
-        List<String> fileList = new ArrayList<>();
+        List<String> imagePathList = new ArrayList<>();
 
         for (MultipartFile mtf : mtfs) {
 
@@ -36,33 +36,47 @@ public class UploadFileUtils {
             // 공백문자를 언더스코어로 교체하기
             originalFileName = originalFileName.replace(' ', '_');
 
-            // 업로드 경로
-            String uploadPath = mtfRequest.getSession().getServletContext().getRealPath(File.separator + "WEB-INF" + File.separator);
-
             // 조회시 과부하를 막기 위한 경로 구분용 현재 날짜를 yyyyMMdd 형태로 반환받기
             String date = getTodayDate();
+
+            // 업로드 경로
+            String savePath = mtfRequest.getSession().getServletContext().getRealPath(File.separator + "WEB-INF" + File.separator + "uploadedImages" + File.separator + date + File.separator);
 
             // 파일 이름 중복문제를 해결하기 위한 UUID
             String uuid = UUID.randomUUID().toString();
 
-            // 데이터베이스에 기록될 경로 형태
             // 현재날짜 + UUID + "_" + 파일
-            String dbFile = File.separator + "uploadedImages" + File.separator + date + uuid + "_" + originalFileName;
+            String fileName = uuid + "_" + originalFileName;
 
-            // 위에서 생성했던 리스트에 첨부 이미지 데이터 담기
-            fileList.add(dbFile);
+            File saveFolder = new File(savePath);
 
-            // 파일 저장 경로
-            String saveFile = uploadPath + dbFile;
+            // 해당 경로가 없을경우 디렉토리를 생성
+            if (!saveFolder.exists()) {
+                try{
+                    if(saveFolder.mkdirs()) {
+                        System.out.println("폴더가 생성되었습니다.");
+                    } else {
+                        System.out.println("폴더 생성에 실패했습니다.");
+                    }
+                }
+                catch(Exception e){
+                    e.getStackTrace();
+                }
+            } else {
+                System.out.println("이미 폴더가 생성되어 있습니다.");
+            }
 
-
+            File saveFullPath = new File(savePath + File.separator + fileName);
 
             // 파일 경로에 저장하기
-            mtf.transferTo(new File(saveFile));
+            mtf.transferTo(saveFullPath);
+
+            // 반환할 이미지 url 경로 담기
+            imagePathList.add(File.separator + date + File.separator + fileName);
 
         }
 
-        return fileList;  // 파일 리스트 반환
+        return imagePathList;  // 이미지 url 경로 리스트 반환
 
     }
 
@@ -98,7 +112,7 @@ public class UploadFileUtils {
         String datePath;
 
         // 날짜 + 세퍼레이터 스트링
-        datePath = String.format("%04d%02d%02d%s", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH), File.separator);
+        datePath = String.format("%04d%02d%02d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH));
 
         return datePath;
     }

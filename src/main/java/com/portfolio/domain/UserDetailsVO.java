@@ -13,8 +13,11 @@ import java.util.List;
 public class UserDetailsVO implements UserDetails {
 
     private String username;
+    private String name;
     private String password;
+    private String photo;
     private String authority;
+    private String occupation;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
