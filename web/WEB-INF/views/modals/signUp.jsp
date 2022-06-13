@@ -1,5 +1,4 @@
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div id="signUp-modal" tabindex="-1" class="modal fade" aria-hidden="true" aria-labelledby="modal-title">
 

@@ -1,11 +1,8 @@
 package com.portfolio.security;
 
-import com.portfolio.mapper.UserMapper;
-import com.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -34,13 +31,15 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String userId = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
 
+        System.out.println(userId);
+
         CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(userId);
 
 //        if (!matchPassword(password, user.getPassword())) {
 //            throw new BadCredentialsException(userId);
 //        }
 
-        // 임시 로그인
+        // ?? ???
         if (!Objects.equals(password, "458512")) {
             throw new BadCredentialsException(userId);
         }

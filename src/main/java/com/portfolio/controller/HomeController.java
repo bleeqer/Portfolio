@@ -141,4 +141,10 @@ public class HomeController {
         return questionService.searchPairs(searchVO);
     }
 
+    @GetMapping("test/{str}")
+    public void searchPs(@PathVariable String str) {
+
+        System.out.println(str);
+    }
+
 }

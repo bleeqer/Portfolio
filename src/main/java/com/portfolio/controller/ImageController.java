@@ -19,7 +19,6 @@ public class ImageController {
         // 파일(들)을 지정된 경로에 저장 및 경로 리스트 반환
         try {
             List<String> attachedImgs = UploadFileUtils.uploadFile(mtfRequest);
-            System.out.println(attachedImgs);
             // Image DTO 리스트와 함께 OK status response code 반환
             return new ResponseEntity<>(attachedImgs, HttpStatus.OK);
 

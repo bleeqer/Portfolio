@@ -1,11 +1,13 @@
 package com.portfolio.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,21 +26,30 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
 
-        Map<String, String> map = new HashMap<>();
-        map.put("result", "fail");
+        AuthenticationFailureDTO failureDTO = new AuthenticationFailureDTO();
 
-        if (e instanceof BadCredentialsException) {
-            map.put("msg", "아이디 또는 비밀번호를 확인해주세요.");
+        if (e instanceof BadCredentialsException || e instanceof InternalAuthenticationServiceException) {
 
-        } else if (e instanceof InternalAuthenticationServiceException) {
-            map.put("msg", "아이디 또는 비밀번호를 확인해주세요.");
+            failureDTO.setSuccess(false);
+            failureDTO.setMessage("아이디 또는 비밀번호를 확인해주세요.");
+
+        } else if (e instanceof UsernameNotFoundException) {
+
+            failureDTO.setSuccess(false);
+            failureDTO.setMessage("존재하지 않는 아이디 입니다.");
+
         }
 
-        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        if (jsonConverter.canWrite(map.getClass(), MediaType.APPLICATION_JSON)) {
-            jsonConverter.write(map, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response));
-        }
+
+        String jsonString = objectMapper.writeValueAsString(failureDTO);
+
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+        response.getWriter().write(jsonString);
+
 
     }
 }
