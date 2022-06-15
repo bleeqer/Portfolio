@@ -31,9 +31,13 @@
 
     <authentication-manager>
         <authentication-provider ref="customAuthenticationProvider"/>
-        <authentication-provider user-service-ref="customUserDetailsService">
-            <password-encoder ref="passwordEncoder"/>
-        </authentication-provider>
     </authentication-manager>
+
+    <beans:bean id="customAuthenticationProvider"
+          class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <beans:property name="hideUserNotFoundExceptions" value="false" />
+        <beans:property name="userDetailsService" ref="customUserDetailsService" />
+        <beans:property name="passwordEncoder" ref="passwordEncoder" />
+    </beans:bean>
 
 </beans:beans>

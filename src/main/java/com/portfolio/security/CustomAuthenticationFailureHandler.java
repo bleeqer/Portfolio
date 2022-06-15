@@ -1,6 +1,7 @@
 package com.portfolio.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.javafx.fxml.PropertyNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.server.ServletServerHttpResponse;
@@ -28,13 +29,14 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 
         AuthenticationFailureDTO failureDTO = new AuthenticationFailureDTO();
 
+        System.out.println(e.toString());
+
         if (e instanceof BadCredentialsException || e instanceof InternalAuthenticationServiceException) {
 
             failureDTO.setSuccess(false);
             failureDTO.setMessage("아이디 또는 비밀번호를 확인해주세요.");
 
         } else if (e instanceof UsernameNotFoundException) {
-
             failureDTO.setSuccess(false);
             failureDTO.setMessage("존재하지 않는 아이디 입니다.");
 
@@ -44,12 +46,11 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 
 
         String jsonString = objectMapper.writeValueAsString(failureDTO);
-
+        System.out.println(jsonString);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
         response.getWriter().write(jsonString);
-
 
     }
 }

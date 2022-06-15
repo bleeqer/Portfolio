@@ -62,3 +62,26 @@ $('#register-button').click(function () {
     $('#signUp-form').submit()
 
 })
+
+$('#login-button').click(function (e) {
+
+    e.preventDefault()
+
+    $.ajax({
+        type: 'POST',
+        url: '/user/login',
+        data: $('#login-form').serialize(),
+        context: this,
+        beforeSend: function(xhr){
+            xhr.setRequestHeader(header, token)
+        },
+        success: function (success) {
+
+        },
+        error: function (error) {
+            // alert(success.responseJSON.success)
+
+
+        }
+    })
+})

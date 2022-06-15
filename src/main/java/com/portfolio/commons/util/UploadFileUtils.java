@@ -1,8 +1,6 @@
 package com.portfolio.commons.util;
 
-import com.portfolio.commons.exceptions.NotImageFileException;
 import com.portfolio.domain.ImageVO;
-import com.portfolio.domain.ImageDTO;
 import org.apache.tika.Tika;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -11,13 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.FileSystemException;
 import java.util.*;
 import java.util.List;
 
 public class UploadFileUtils {
 
-    public static List<String> uploadFile(MultipartHttpServletRequest mtfRequest) throws IOException, NotImageFileException {
+    public static List<String> uploadFile(MultipartHttpServletRequest mtfRequest) throws IOException {
 
         // multipartFile 리스트
         List<MultipartFile> mtfs = mtfRequest.getFiles("image");
@@ -27,7 +24,7 @@ public class UploadFileUtils {
         for (MultipartFile mtf : mtfs) {
 
             if (!detectFileType(mtf)) {
-                throw new NotImageFileException();
+                System.out.println("이미지 파일 아님");
             }
 
             // 파일 이름

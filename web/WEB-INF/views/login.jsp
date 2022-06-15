@@ -169,7 +169,7 @@
                                         </div>
 
                                         <%--Login button--%>
-                                        <button class="d-flex justify-content-center align-items-center rounded-pill btn btn-primary py-1 px-3" style="height: 38px; transition: background-color 250ms;">
+                                        <button id="login-button" class="d-flex justify-content-center align-items-center rounded-pill btn btn-primary py-1 px-3" style="height: 38px; transition: background-color 250ms;">
                                             <div style="line-height: 100%; font-size: 15px;">Login</div>
                                         </button>
                                     </div>
