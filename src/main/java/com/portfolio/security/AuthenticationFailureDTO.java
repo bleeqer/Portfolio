@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 public class AuthenticationFailureDTO {
 
-    private boolean success;
     private String message;
 
 }

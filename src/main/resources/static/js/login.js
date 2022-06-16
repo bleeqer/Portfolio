@@ -80,7 +80,8 @@ $('#login-button').click(function (e) {
         },
         error: function (error) {
             // alert(success.responseJSON.success)
-
+            $('#login-message .message').text(error.responseJSON.message)
+            $('#login-message').fadeOut(50).fadeIn(50)
 
         }
     })

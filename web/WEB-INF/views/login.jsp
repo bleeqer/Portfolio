@@ -156,6 +156,16 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="position-relative color-palette" style="height: 50px; font-size: 11px; line-height: 3;">
+                                    <div id="login-message" class="position-absolute" style="width: 100%; display: none;">
+                                        <div class="message position-absolute px-1 color-black-light" style="width: 100%; height: 50px;">
+
+                                        </div>
+                                        <div class="rounded-3 bg-danger bg-opacity-50 shadow-sm position-absolute" style="width: 100%; height: 33px;">
+
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <%--Login--%>
                                 <div class="mb-3">
@@ -169,9 +179,9 @@
                                         </div>
 
                                         <%--Login button--%>
-                                        <button id="login-button" class="d-flex justify-content-center align-items-center rounded-pill btn btn-primary py-1 px-3" style="height: 38px; transition: background-color 250ms;">
+                                        <span id="login-button" class="d-flex justify-content-center align-items-center rounded-pill btn btn-primary py-1 px-3" style="height: 38px; transition: background-color 250ms;">
                                             <div style="line-height: 100%; font-size: 15px;">Login</div>
-                                        </button>
+                                        </span>
                                     </div>
                                 </div>
                             </form>

@@ -29,24 +29,23 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 
         AuthenticationFailureDTO failureDTO = new AuthenticationFailureDTO();
 
-        System.out.println(e.toString());
+        if (e instanceof BadCredentialsException) {
 
-        if (e instanceof BadCredentialsException || e instanceof InternalAuthenticationServiceException) {
-
-            failureDTO.setSuccess(false);
-            failureDTO.setMessage("아이디 또는 비밀번호를 확인해주세요.");
+            failureDTO.setMessage("비밀번호를 확인해주세요.");
 
         } else if (e instanceof UsernameNotFoundException) {
-            failureDTO.setSuccess(false);
+
             failureDTO.setMessage("존재하지 않는 아이디 입니다.");
 
+        } else if (e instanceof InternalAuthenticationServiceException) {
+
+            failureDTO.setMessage("로그인에 실패했습니다.");
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
 
 
         String jsonString = objectMapper.writeValueAsString(failureDTO);
-        System.out.println(jsonString);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
