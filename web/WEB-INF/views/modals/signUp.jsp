@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                     <%--Name--%>
-                                    <div class="">
+                                    <div class="" style="width: 100%;">
 
                                         <%--Label--%>
                                         <div class="mb-1">
@@ -55,7 +55,7 @@
                                         </div>
 
                                         <%--Input--%>
-                                        <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                        <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="min-height: 35px; width: 100%; transition: border 250ms ease-in-out; border: 1px solid transparent;">
                                             <input class="input-focus" type="text" id="register-name" name="name" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your name" autocomplete="off">
                                         </div>
 
@@ -63,7 +63,7 @@
                                 </div>
 
                                 <%--Email--%>
-                                <div class="mb-3">
+                                <div class="mb-3" style="width: 100%;">
 
                                     <%--Label--%>
                                     <div class="mb-1">
@@ -73,8 +73,8 @@
                                     </div>
 
                                     <%--Input--%>
-                                    <div class="d-inline-flex align-items-center input-container color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                        <input class="input-focus" type="text" id="register-email" name="email" style="width: 100%;  outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your email" autocomplete="off">
+                                    <div class="d-inline-flex align-items-center input-container color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="width: 100%; min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                        <input class="input-focus" type="text" id="register-email" name="email" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your email" autocomplete="off">
                                     </div>
 
                                 </div>
@@ -90,14 +90,14 @@
                                     </div>
 
                                     <%--Input--%>
-                                    <div class="d-inline-flex align-items-center color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                    <div class="d-inline-flex align-items-center color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="width: 100%; min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
                                         <input class="input-focus" type="password" id="register-password" name="password" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your password" autocomplete="off">
                                     </div>
 
                                 </div>
 
                                 <%--Occupation--%>
-                                <div class="mb-3">
+                                <div class="mb-3" style="width: 100%;">
 
                                     <%--Label--%>
                                     <div class="mb-1">
@@ -107,8 +107,8 @@
                                     </div>
 
                                     <%--Input--%>
-                                    <div class="d-inline-flex align-items-center color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                        <input class="input-focus" type="text" id="register-occupation" name="occupation" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="describe your occupation concisely" autocomplete="off">
+                                    <div class="d-inline-flex align-items-center color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="width: 100%; min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
+                                        <input class="input-focus" type="text" id="register-occupation" name="occupation" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="What do you do?" autocomplete="off">
                                     </div>
 
                                 </div>
