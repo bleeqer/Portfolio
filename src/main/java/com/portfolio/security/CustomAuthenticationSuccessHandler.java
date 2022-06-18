@@ -36,15 +36,16 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
         Map<String, String> map = new HashMap<>();
+
         map.put("result", "success");
 
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
 
-//        if (jsonConverter.canWrite(map.getClass(), MediaType.APPLICATION_JSON)) {
-//            jsonConverter.write(map, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response));
-//        }
+        if (jsonConverter.canWrite(map.getClass(), MediaType.APPLICATION_JSON)) {
+            jsonConverter.write(map, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response));
+        }
 
-        resultRedirectStrategy(request, response, authentication);
+//        resultRedirectStrategy(request, response, authentication);
 
     }
 

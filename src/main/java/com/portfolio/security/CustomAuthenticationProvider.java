@@ -5,6 +5,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
@@ -34,7 +35,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String password = (String) authentication.getCredentials();
 
         CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(userId);
-
+        
         if (user == null) {
             throw new UsernameNotFoundException(userId);
         }
@@ -45,8 +46,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         // ?? ???
         if (!Objects.equals(password, "458512")) {
+
             throw new BadCredentialsException(userId);
         }
+
 
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(user.getAuthority()));

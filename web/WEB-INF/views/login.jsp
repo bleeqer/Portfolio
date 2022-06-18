@@ -152,7 +152,7 @@
                                     <%--Password input--%>
                                     <div>
                                         <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                            <input class="input-focus" name="password" type="password" id="login-password" style="width: 100%; outline: none; border: none; font-size: 15px;" placeholder="Password" autocomplete="off">
+                                            <input id="login-password" class="input-focus" name="password" type="password" style="width: 100%; outline: none; border: none; font-size: 15px;" placeholder="Password" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>

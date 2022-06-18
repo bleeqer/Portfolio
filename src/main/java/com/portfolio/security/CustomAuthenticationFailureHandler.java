@@ -33,13 +33,13 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
 
             failureDTO.setMessage("비밀번호를 확인해주세요.");
 
-        } else if (e instanceof UsernameNotFoundException) {
-
-            failureDTO.setMessage("존재하지 않는 아이디 입니다.");
-
         } else if (e instanceof InternalAuthenticationServiceException) {
 
             failureDTO.setMessage("로그인에 실패했습니다.");
+            
+        } else if (e instanceof UsernameNotFoundException) {
+
+            failureDTO.setMessage("아이디를 찾을 수 없습니다.");
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
