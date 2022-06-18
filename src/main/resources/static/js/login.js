@@ -75,10 +75,15 @@ $('#login-button').click(function (e) {
         beforeSend: function(xhr){
             xhr.setRequestHeader(header, token)
         },
-        success: function () {
-            window.location.href = '/'
+        success: function (success) {
+
+            if (success.message === 'success') {
+
+                window.location.href = '/'
+            }
         },
         error: function (error) {
+
             $('#login-message .message').text(error.responseJSON.message)
             $('#login-message').fadeOut(50).fadeIn(50)
 

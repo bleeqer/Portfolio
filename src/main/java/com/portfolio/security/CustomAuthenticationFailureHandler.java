@@ -27,25 +27,24 @@ public class CustomAuthenticationFailureHandler implements AuthenticationFailure
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
 
-        AuthenticationFailureDTO failureDTO = new AuthenticationFailureDTO();
+        AuthVO authVO = new AuthVO();
 
         if (e instanceof BadCredentialsException) {
 
-            failureDTO.setMessage("비밀번호를 확인해주세요.");
+            authVO.setMessage("비밀번호를 확인해주세요.");
 
         } else if (e instanceof InternalAuthenticationServiceException) {
 
-            failureDTO.setMessage("로그인에 실패했습니다.");
+            authVO.setMessage("로그인에 실패했습니다.");
             
         } else if (e instanceof UsernameNotFoundException) {
 
-            failureDTO.setMessage("아이디를 찾을 수 없습니다.");
+            authVO.setMessage("아이디를 찾을 수 없습니다.");
         }
 
         ObjectMapper objectMapper = new ObjectMapper();
 
-
-        String jsonString = objectMapper.writeValueAsString(failureDTO);
+        String jsonString = objectMapper.writeValueAsString(authVO);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setCharacterEncoding(StandardCharsets.UTF_8.toString());

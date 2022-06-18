@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AuthenticationFailureDTO {
+public class AuthVO {
 
     private String message;
 

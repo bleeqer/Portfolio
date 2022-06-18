@@ -35,15 +35,26 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
-        Map<String, String> map = new HashMap<>();
+//        Map<String, String> map = new HashMap<>();
+//
+//        map.put("result", "success");
+//
+//        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
+//
+//        if (jsonConverter.canWrite(map.getClass(), MediaType.APPLICATION_JSON)) {
+//            jsonConverter.write(map, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response));
+//        }
+        AuthVO authVO = new AuthVO();
 
-        map.put("result", "success");
+        authVO.setMessage("success");
 
-        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
+        ObjectMapper objectMapper = new ObjectMapper();
 
-        if (jsonConverter.canWrite(map.getClass(), MediaType.APPLICATION_JSON)) {
-            jsonConverter.write(map, MediaType.APPLICATION_JSON, new ServletServerHttpResponse(response));
-        }
+        String jsonString = objectMapper.writeValueAsString(authVO);
+        response.setStatus(HttpServletResponse.SC_ACCEPTED);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+        response.getWriter().write(jsonString);
 
 //        resultRedirectStrategy(request, response, authentication);
 
