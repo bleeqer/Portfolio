@@ -42,7 +42,8 @@ $('[data-toggle="description"]').each(function (idx, element) {
             trigger: 'hover',
             html: true,
             sanitize: false,
-            content: '<span class="py-5 px-2" style="line-height: 2.5;">' + $(element).data('content') + '</span>'
+            content: '<span class="py-5 px-2" style="line-height: 2.5;">' + $(element).data('content') + '</span>',
+            placement: 'bottom'
         })
     })
 })

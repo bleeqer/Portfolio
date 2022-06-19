@@ -18,7 +18,7 @@
             <div class="under-red rounded-left-top-pill rounded-right-top-pill bg-red position-absolute hidden" style="height: 3px; width: 44px; left: 50%; bottom: 0; transform: translateX(-50%);"></div>
         </a>
 
-        <%--Answer button--%>
+        <%--Qeustion button--%>
         <a href="/questions" class="nav-item d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px; min-width: 60px;" data-toggle="description" data-content="Questions">
             <div>
       <span class="d-inline-block">

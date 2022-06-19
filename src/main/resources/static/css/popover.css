@@ -10,6 +10,9 @@
     color: rgb(213, 214, 214) !important;
 }
 
+.popover-body span {
+    padding: 0 10px !important;
+}
 
 .bs-popover-auto[data-popper-placement^=top]>.popover-arrow::after, .bs-popover-top>.popover-arrow::after {
     border-top-color: #393839 !important;
