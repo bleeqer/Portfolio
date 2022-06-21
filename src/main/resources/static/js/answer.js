@@ -5,7 +5,7 @@ function initAnswerPopover() {
 
         $(function() {
             $(element).popover({
-                trigger: 'focus',
+                trigger: 'click',
                 html: true,
                 sanitize: false,
                 content: $(element).find('.answer-option-popover-content').html()
@@ -13,6 +13,7 @@ function initAnswerPopover() {
         })
     })
 }
+
 
 // 최초 조회된 답변 popover
 initAnswerPopover()
@@ -41,12 +42,12 @@ $('.fade-post').each(function() {
 // 답변글 popover 옵션
 $(document).on('click', '.answer-popover-item', function () {
 
+    $('.answer-option-button').popover('hide')
     // 질문글 답변 갯수 체크 목적
     const quesNo = $(this).data('ques-no')
 
     const ansNo = $(this).data('ans-no')
     const optionType = $(this).data('option-type')
-
     if (optionType === 'Delete') {
 
         $.ajax({
@@ -62,7 +63,7 @@ $(document).on('click', '.answer-popover-item', function () {
 
                 $('.answer[data-ans-no="' + ansNo + '"]').hide()
                 initAnswerPopover()
-                
+
                 // 보여지는 answer 엘레멘트가 없을 경우 no content 이미지 보여주기
                 if (!isExist('.answer:visible')) $('#no-content').show()
 
@@ -123,6 +124,7 @@ $('.answer-button').click(function () {
 
             if (answered) {
                 alert('이미 답변 하였습니다.')
+
             } else {
 
                 $.ajax({
@@ -171,14 +173,15 @@ $('#answer-modal').on('hidden.bs.modal', function () {
 
 // 답변 등록
 $('#add-answer-button').click(function () {
+
+    // text editor 컨텐트에서 inserted-image src 가져오기
     let editorContent = tinymce.activeEditor.getContent()
     $('#answer-images').append($.parseHTML(editorContent))
-
     let imagePaths = []
-
     $('#answer-images .inserted-image').each(function (idx, element) {
         imagePaths.push($(element).attr('src'))
     })
+    $('#answer-images').html('')
 
     const answer = $('#answer-textarea').val()
     const quesNo = $('#answer-form #ques-no').val()
@@ -223,11 +226,28 @@ $('#add-answer-button').click(function () {
 
 // 답변 수정
 $('#edit-answer-button').click(function () {
+    
+    // text editor 컨텐트에서 inserted-image src 가져오기
+    let editorContent = tinymce.activeEditor.getContent()
+    $('#answer-images').append($.parseHTML(editorContent))
+    let imagePaths = []
+    $('#answer-images .inserted-image').each(function (idx, element) {
+        imagePaths.push($(element).attr('src'))
+    })
+    $('#answer-images').html('')
+
+    const answer = $('#answer-textarea').val()
+    const quesNo = $('#answer-form #ques-no').val()
+    const ansNo = $('#answer-form #ans-no').val()
 
     $.ajax({
         url: '/answer/edit',
         type: 'POST',
-        data: $('#answer-form').serialize(),
+        data: JSON.stringify({ansNo: ansNo, answer: answer, quesNo: quesNo, imagePath: imagePaths}),
+        beforeSend: function(xhr){
+            xhr.setRequestHeader(header, token)
+        },
+        contentType: 'application/json',
         success: function (answer) {
 
             // 등록된 답변을 답변 리스트에 추가

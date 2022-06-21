@@ -2,7 +2,7 @@
 
 <div id="answer-modal" tabindex="-1" class="modal fade" aria-hidden="true" aria-labelledby="modal-title">
     <div class="modal-dialog border-grey rounded-3" style="top: calc(50% - 25px); transform: translateY(-50%); background-color: rgb(24, 24, 24) !important; min-height: 350px; max-height: 70vh; min-width: 680px; max-width: 90vw; width: 730px;">
-        <div class="modal-content px-3" style="background-color: transparent; height: 100%;">
+        <div class="modal-content px-3 pb-1" style="background-color: inherit; height: 100%;">
 
             <div class="pt-4 border-bottom-grey">
 
@@ -39,8 +39,8 @@
                 <%--Answer textarea--%>
                 <div>
                     <form id="answer-form" action="">
-                        <div class="d-flex justify-content-center align-items-start modal-body hover-border-bottom-color-blue border-top-0" style="width: 100%; min-height: 260px; height: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
-                            <textarea id="answer-textarea" name="answer" class="mt-3 mb-1 px-2" style="width: 100%; height: 260px; outline: none; border: none;" placeholder="답변을 입력해주세요."></textarea>
+                        <div class="d-flex justify-content-center align-items-start modal-body hover-border-bottom-color-blue border-top-0" style="width: 100%; min-height: 220px; height: 100%; padding: 0; transition: border-bottom 250ms; transition-timing-function: ease-in-out;">
+                            <textarea id="answer-textarea" name="answer" class="mt-3 mb-1 px-2" style="width: 100%; height: 220px; outline: none; border: none;" placeholder="답변을 입력해주세요."></textarea>
                         </div>
                         <input id="ans-no" type="hidden" name="ansNo">
                         <input id="ques-no" type="hidden" name="quesNo">
@@ -55,7 +55,7 @@
             </div>
 
 
-            <div class="modal-footer border-top-0 mt-auto" style="width: 100%;">
+            <div class="modal-footer border-top-0 mt-auto p-0" style="width: 100%;">
                 <div class="d-flex align-items-center justify-content-between" style="width: 100%;">
                     <%--Image upload--%>
                     <div>

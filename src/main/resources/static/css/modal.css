@@ -1,4 +1,8 @@
-/*.modal-dialog {*/
-/*    height: auto !important;*/
-/*    min-height: auto !important;*/
-/*}*/
+.modal-dialog {
+    height: auto !important;
+    min-height: auto !important;
+}
+
+.modal-content {
+    background-color: rgb(24, 24, 24) !important;
+}

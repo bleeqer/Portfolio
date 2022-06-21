@@ -21,7 +21,6 @@ $('.best-title').mouseenter(function () {
 
 // 질문글 url 복사
 $(document).on('click', '.share-button', function () {
-
     const url = window.location.origin + '/question/' + $(this).data('ques-no')
     navigator.clipboard.writeText(url)
 
@@ -29,7 +28,7 @@ $(document).on('click', '.share-button', function () {
 })
 
 // 숨기기 버튼 클릭
-$('body').on('click', '.hide-button', function () {
+$(document).on('click', '.hide-button', function () {
 
     $('.hide-object[data-ques-no="' + $(this).data('ques-no') + '"]').hide()
 

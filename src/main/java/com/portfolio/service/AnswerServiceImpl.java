@@ -50,6 +50,7 @@ public class AnswerServiceImpl implements AnswerService {
 
         for (String path : answerVO.getImagePath()) {
 
+            imageVO.setAnsNo(answerVO.getAnsNo());
             imageVO.setImagePath(path);
 
             imageMapper.insert(imageVO);
@@ -81,12 +82,31 @@ public class AnswerServiceImpl implements AnswerService {
         return answerMapper.selectAnsweredPairByUser(email);
     }
 
+    @Transactional
     @Override
     public void update(AnswerVO answerVO) {
 
+        // 답변 이미지 테이블에 새로운 이미지 저장에 앞서 등록되어 있던 사진 삭제
+        imageMapper.delete(answerVO);
+
+        // 새롭게 이미지 경로 저장
+        ImageVO imageVO = new ImageVO();
+
+        for (String path : answerVO.getImagePath()) {
+
+            imageVO.setAnsNo(answerVO.getAnsNo());
+            imageVO.setImagePath(path);
+
+            imageMapper.insert(imageVO);
+
+        }
+
         answerMapper.update(answerVO);
+
+
     }
 
+    @Transactional
     @Override
     public void delete(AnswerVO answerVO) {
 
@@ -102,6 +122,9 @@ public class AnswerServiceImpl implements AnswerService {
 
             questionMapper.updateAnswered(questionVO);
         }
+
+        // 등록되어있는 이미지 함께 삭제
+        imageMapper.delete(answerVO);
 
     }
 

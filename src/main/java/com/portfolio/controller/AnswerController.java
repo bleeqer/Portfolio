@@ -70,7 +70,7 @@ public class AnswerController {
 
     @PostMapping("edit")
     @ResponseBody
-    public AnswerVO updateAnswer(AnswerVO answerVO) {
+    public AnswerVO updateAnswer(@RequestBody AnswerVO answerVO) {
 
         answerService.update(answerVO);
 

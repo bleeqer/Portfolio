@@ -22,7 +22,6 @@ public class FileCheckTask {
 
     @Scheduled(cron="0 * * * * *")
     public void checkFiles() {
-        System.out.println("1");
         // Calendar 객체 생성
         Calendar cal = Calendar.getInstance();
 
@@ -30,11 +29,9 @@ public class FileCheckTask {
         String datePath;
 
         cal.add(Calendar.DATE, -1);
-        System.out.println(2);
 
         // 날짜
         datePath = String.format("/%04d%02d%02d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH));
-        System.out.println(datePath);
 
         List<ImageVO> oldFiles = imageMapper.selectOldFiles();
 

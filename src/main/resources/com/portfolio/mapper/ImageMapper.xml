@@ -11,17 +11,17 @@
             select image_seq.nextval from dual
         </selectKey>
 
-        INSERT INTO TB_IMAGE (img_no, image_path)
-        VALUES (#{imgNo}, #{imagePath})
+        INSERT INTO TB_ANSWER_IMAGE (img_no, ans_no, image_path)
+        VALUES (#{imgNo}, #{ansNo}, #{imagePath})
     </insert>
 
-<!--    <delete id="delete" parameterType="ImageVO">-->
-<!--        DELETE FROM TB_ANS_IMAGE WHERE ans_no = #{ansNo}-->
-<!--    </delete>-->
+    <delete id="delete" parameterType="AnswerVO">
+        DELETE FROM TB_ANSWER_IMAGE WHERE ans_no = #{ansNo}
+    </delete>
 
     <select id="selectOldFiles" resultMap="ImageResultMap">
         -- 하루전 업로드된 이미지
-        SELECT image_path FROM TB_IMAGE WHERE reg_date <![CDATA[<]]> (SELECT to_char(SYSDATE,'dd-mon-yy') FROM dual)
+        SELECT image_path FROM TB_ANSWER_IMAGE WHERE reg_date <![CDATA[<]]> (SELECT to_char(SYSDATE,'dd-mon-yy') FROM dual)
     </select>
 
     <resultMap id="ImageResultMap" type="ImageVO">

@@ -325,7 +325,7 @@
                                                                 <%--Share button--%>
                                                             <div>
                                                                 <div>
-                                                                    <a tabindex="0" class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
+                                                                    <a tabindex="0" class="share-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
                                                                           style="width: 38px; height: 38px;"
                                                                           data-toggle="description" data-content="Copy Link">
                                                                         <svg width="24" height="24" viewBox="0 0 24 24"
