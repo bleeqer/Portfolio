@@ -117,6 +117,16 @@
                             </form>
                         </div>
                     </div>
+                    <div class="position-relative color-palette mx-3" style="height: 50px; font-size: 11px; line-height: 3;">
+                        <div id="signUp-message" class="position-absolute" style="width: 100%; display: none; top: 15px;">
+                            <div class="message position-absolute px-1 color-black-light" style="width: 100%; height: 50px;">
+
+                            </div>
+                            <div class="rounded-3 bg-danger bg-opacity-50 shadow-sm position-absolute" style="width: 100%; height: 33px;">
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <%--Footer--%>

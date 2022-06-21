@@ -50,7 +50,7 @@
         }
 
         html, body {
-            box-sizing: border-box;
+            box-sizing: border-box !important;
             padding: 0;
             margin: 0;
             font-size: 16px;
