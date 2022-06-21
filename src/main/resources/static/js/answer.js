@@ -110,11 +110,13 @@ $(document).on('click', '.answer-popover-item', function () {
 // 답변 버튼 클릭 시 답변 modal에 유저정보, 질문글 띄우기
 $('.answer-button').click(function () {
 
+    const quesNo = $(this).data('ques-no')
+
 
     $.ajax({
         url: '/answer/checkAnswered',
         type: 'GET',
-        data: {quesNo: $(this).data('ques-no')},
+        data: {quesNo: quesNo},
         dataType: 'json',
         contentType: 'application/json',
         success: function (answered) {
@@ -139,8 +141,8 @@ $('.answer-button').click(function () {
                         $('#answer-modal #user-img').attr('src', user.photo)
                         $('#answer-modal #user-name').html(user.name)
                         $('#answer-modal #user-occupation').html(user.occupation)
-                        $('#answer-modal #asked-question').html($('.question[data-ques-no="' + $(this).data('ques-no') + '"]').find('.question-text').text())
-                        $('#answer-modal #ques-no').val($(this).data('ques-no'))
+                        $('#answer-modal #asked-question').html($('.question[data-ques-no="' + quesNo + '"]').find('.question-text').text())
+                        $('#answer-modal #ques-no').val(quesNo)
 
                         $('#answer-modal').modal('show')
 
@@ -169,12 +171,27 @@ $('#answer-modal').on('hidden.bs.modal', function () {
 
 // 답변 등록
 $('#add-answer-button').click(function () {
+    let editorContent = tinymce.activeEditor.getContent()
+    $('#answer-images').append($.parseHTML(editorContent))
+
+    let imagePaths = []
+
+    $('#answer-images .inserted-image').each(function (idx, element) {
+        imagePaths.push($(element).attr('src'))
+    })
+
+    const answer = $('#answer-textarea').val()
+    const quesNo = $('#answer-form #ques-no').val()
 
     $.ajax({
         url: '/answer/create',
         type: 'POST',
-        data: $('#answer-form').serialize(),
+        data: JSON.stringify({answer: answer, quesNo: quesNo, imagePath: imagePaths}),
+        contentType: 'application/json',
         context: this,
+        beforeSend: function(xhr){
+            xhr.setRequestHeader(header, token)
+        },
         success: function (answer) {
 
             const currentURL = window.location.pathname.split('/')[1]
@@ -277,10 +294,12 @@ $('#image').on("change", function () {
             for (const path of paths) {
 
                 // 이미지 태그 클릭하면 에러 발생함 나중에 삭제버튼 추가하기
-                tags = tags + '<div class="d-flex" style="width: 100%;"><img class="inserted-image px-auto" alt="photo" src= "' + path + '" style="width: 80%;"/></div></b>'
+                tags = tags + '<div class="d-flex" style="width: 100%;"><img class="inserted-image px-auto" alt="photo" src= "/uploadedImages' + path + '" style="width: 20%;"/></div></b>'
             }
 
             tinymce.activeEditor.insertContent(tags)
+
+            $('#image').val('')
 
             // 사진 클릭 시 태그 삭제후에 x 버튼으로 대신할 것
             // $("#content_ifr").contents().find(".inserted-image").bind('click', function () {

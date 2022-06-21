@@ -4,9 +4,10 @@ import com.portfolio.domain.ImageVO;
 
 import java.util.List;
 
-public interface AnswerImageMapper {
+public interface ImageMapper {
 
     void insert(ImageVO imageVO);
     void delete(ImageVO imageVO);
     List<ImageVO> selectAll(long bno);
+    List<ImageVO> selectOldFiles();
 }

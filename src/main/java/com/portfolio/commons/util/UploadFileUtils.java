@@ -81,9 +81,9 @@ public class UploadFileUtils {
 
         String uploadPath = request.getSession().getServletContext().getRealPath(File.separator + "WEB-INF");
 
-        for (ImageVO fileVO : atchList) {
+        for (ImageVO imageVO : atchList) {
 
-            String filePath = uploadPath + fileVO.getUploadPath();
+            String filePath = uploadPath + imageVO.getImagePath();
 
             File file = new File(filePath);
 
@@ -100,7 +100,7 @@ public class UploadFileUtils {
 
     }
 
-    private static String getTodayDate() {
+    public static String getTodayDate() {
 
         // Calendar 객체 생성
         Calendar cal = Calendar.getInstance();
@@ -108,29 +108,29 @@ public class UploadFileUtils {
         // 날짜 담을 변수
         String datePath;
 
-        // 날짜 + 세퍼레이터 스트링
+        // 날짜
         datePath = String.format("%04d%02d%02d", cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH));
 
         return datePath;
     }
-    private static void makeDir(String path) {
-
-        File dir = new File(path);
-
-        if (!dir.exists()) {
-            try {
-                boolean result = dir.mkdir();
-
-                if (result) {
-                    System.out.println("Directory created");
-                } else {
-                    System.out.println("Failed to create directory");
-                }
-            } catch (Exception e) {
-                e.getStackTrace();
-            }
-        }
-    }
+//    private static void makeDir(String path) {
+//
+//        File dir = new File(path);
+//
+//        if (!dir.exists()) {
+//            try {
+//                boolean result = dir.mkdir();
+//
+//                if (result) {
+//                    System.out.println("Directory created");
+//                } else {
+//                    System.out.println("Failed to create directory");
+//                }
+//            } catch (Exception e) {
+//                e.getStackTrace();
+//            }
+//        }
+//    }
 
     private static boolean detectFileType(MultipartFile mtf) throws IOException {
         Tika tika = new Tika();

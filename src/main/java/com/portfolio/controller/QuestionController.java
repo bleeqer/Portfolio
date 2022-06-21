@@ -5,7 +5,6 @@ import com.portfolio.domain.CategoryVO;
 import com.portfolio.domain.QuestionVO;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionService;
-import com.portfolio.service.QuestionImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +23,6 @@ public class QuestionController {
 
     @Autowired
     AnswerService answerService;
-
-    @Autowired
-    QuestionImageService imageService;
 
     @PostMapping("create")
     public String createQuestion(QuestionVO questionVO, Principal principal, Model model) {

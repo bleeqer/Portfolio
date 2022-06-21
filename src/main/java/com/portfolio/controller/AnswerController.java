@@ -1,7 +1,9 @@
 package com.portfolio.controller;
 
 import com.portfolio.domain.*;
+import com.portfolio.mapper.ImageMapper;
 import com.portfolio.service.AnswerService;
+import com.portfolio.service.ImageService;
 import com.portfolio.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +26,11 @@ public class AnswerController {
     @Autowired
     QuestionService questionService;
 
+    @Autowired
+    ImageService imageService;
+
     @PostMapping("create")
-    public String createAnswer(AnswerVO answerVO, Principal principal, Model model) {
+    public String createAnswer(@RequestBody AnswerVO answerVO, Principal principal, Model model) {
 
         // 작성자 셋팅
         answerVO.setUserEmail(principal.getName());

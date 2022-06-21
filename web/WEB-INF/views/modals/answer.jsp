@@ -45,8 +45,12 @@
                         <input id="ans-no" type="hidden" name="ansNo">
                         <input id="ques-no" type="hidden" name="quesNo">
                         <input id="image" type="file" style="display: none;">
+                        <input id="image-path" type="hidden" name="imagePath">
                         <sec:csrfInput/>
                     </form>
+                </div>
+                <div id="answer-images" style="visibility: hidden; height: 0 !important; width: 0 !important;">
+
                 </div>
             </div>
 

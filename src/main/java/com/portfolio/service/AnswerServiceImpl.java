@@ -1,8 +1,8 @@
 package com.portfolio.service;
 
 import com.portfolio.domain.*;
-import com.portfolio.mapper.AnswerImageMapper;
 import com.portfolio.mapper.AnswerMapper;
+import com.portfolio.mapper.ImageMapper;
 import com.portfolio.mapper.QuestionMapper;
 import com.portfolio.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class AnswerServiceImpl implements AnswerService {
     UserMapper userMapper;
 
     @Autowired
-    AnswerImageMapper answerImageMapper;
+    ImageMapper imageMapper;
 
     @Transactional
     @Override
@@ -34,7 +34,6 @@ public class AnswerServiceImpl implements AnswerService {
 
         // answerVO 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
         answerMapper.insert(answerVO);
-
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -46,15 +45,16 @@ public class AnswerServiceImpl implements AnswerService {
         // 답변여부 업데이트
         questionMapper.updateAnswered(questionVO);
 
-        // ImageVO에 해당 포스트 이미지정보 세팅 후 인서트
-//        for (String uploadPath : answerVO.getImageList()) {
-//            ImageVO imgVO = new ImageVO();
-//
-//            imgVO.setPostNo(answerVO.getAnsNo());
-//            imgVO.setUploadPath(uploadPath);
-//
-//            answerImageMapper.insert(imgVO);
-//        }
+        // 이미지 경로 저장
+        ImageVO imageVO = new ImageVO();
+
+        for (String path : answerVO.getImagePath()) {
+
+            imageVO.setImagePath(path);
+
+            imageMapper.insert(imageVO);
+
+        }
 
         return answerVO.getAnsNo();
     }

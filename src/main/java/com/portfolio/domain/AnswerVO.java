@@ -14,6 +14,7 @@ public class AnswerVO {
     private Long quesNo;
     private Long ansNo;
     private String answer;
+    private List<String> imagePath;
     private String regDate;
     private Long likes;
     private Long dislikes;
