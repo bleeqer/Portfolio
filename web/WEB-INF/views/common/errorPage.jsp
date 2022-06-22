@@ -10,6 +10,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page isErrorPage="true" %>
+<% response.setStatus(200); %>
 
 <!DOCTYPE HTML>
 <html>
@@ -86,7 +87,6 @@
                 <%--Error--%>
                 <div>
                     <div class="d-flex flex-column justify-content-center align-items-center" style="width: 300px;">
-
                         <c:choose>
                             <c:when test="${errorCode == 403}">
                                 <div class="font-bold color-gray text-center" style="line-height: 1.4; font-size: 18px;">

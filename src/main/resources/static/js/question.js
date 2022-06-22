@@ -13,14 +13,30 @@ function initQuestionPopover() {
 
 initQuestionPopover()
 
-$('#category-select').change(function () {
+function questionFormCheck() {
 
+    if ($('#question-textarea').val() === "") {
+
+        alert("질문을 입력해주세요.")
+        return false
+
+    } else if ($('#question-form #category-code').val() === "") {
+        alert("카테고리를 선택해주세요.")
+        return false
+
+    }
+    
+    return true
+}
+
+$('#category-select').change(function () {
     const categoryCode = $('#category-select option:selected').attr('value')
     $('#question-form #category-code').val(categoryCode)
 })
 
 // 질문하기 버튼 클릭 시 카테고리 조회하여 모달창에 셋팅
 $('#ask-question-button').click(function () {
+
 
     $.ajax({
         url: '/question/categories',
@@ -67,6 +83,10 @@ $('#question-modal').on('hidden.bs.modal', function () {
 
 // 질문 등록 버튼 클릭
 $('#add-question-button').click(function () {
+
+    if (!questionFormCheck()) {
+        return false
+    }
 
     $('#question-form').submit()
 

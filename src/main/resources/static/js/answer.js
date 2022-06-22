@@ -23,6 +23,17 @@ function isExist(selector) {
     return $(selector).length > 0
 }
 
+function answerFormCheck() {
+
+    if ($('#answer-textarea').val() === "") {
+        alert("답변을 입력해주세요.")
+
+        return false
+    }
+
+    return true
+}
+
 
 
 $('.readMore-button').on('click', function() {
@@ -174,8 +185,12 @@ $('#answer-modal').on('hidden.bs.modal', function () {
 // 답변 등록
 $('#add-answer-button').click(function () {
 
+    if (!answerFormCheck()) {
+        return false
+    }
     // text editor 컨텐트에서 inserted-image src 가져오기
     let editorContent = tinymce.activeEditor.getContent()
+
     $('#answer-images').append($.parseHTML(editorContent))
     let imagePaths = []
     $('#answer-images .inserted-image').each(function (idx, element) {

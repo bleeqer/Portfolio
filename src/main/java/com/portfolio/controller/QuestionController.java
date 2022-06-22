@@ -27,7 +27,7 @@ public class QuestionController {
     @PostMapping("create")
     public String createQuestion(QuestionVO questionVO, Principal principal, Model model) {
 
-//        questionVO.setUserEmail(principal.getName());
+        questionVO.setUserEmail(principal.getName());
 
         // 기존 질문 리스트 조회
         List<QuestionVO> questions = questionService.selectList(new QuestionVO());
