@@ -52,16 +52,22 @@
             (SELECT QUES.ques_no,
                 QUES.question,
                 (SELECT category_name FROM tb_category WHERE category_code = QUES.category_code) category_name,
+                (SELECT COUNT(*) FROM tb_answer WHERE ques_no = QUES.ques_no) answer_cnt,
                 QUES.category_code,
-                QUES.reg_date
+                QUES.answered,
+                U.email,
+                QUES.reg_date,
+                QUES.view_cnt
             FROM tb_question QUES, tb_user U
             WHERE QUES.user_email = U.email
-                AND QUES.answered = 'N'
+                <if test="answered != null and answered != ''">
+                    AND QUES.answered = #{answered}
+                </if>
                 <if test="quesNo != null and quesNo != ''">
                     AND QUES.ques_no <![CDATA[<]]> #{quesNo}
                 </if>
                 <if test="userEmail != null and userEmail != ''">
-                    AND QUES.userEmail = #{userEmail}
+                    AND QUES.user_email = #{userEmail}
                     AND U.email = QUES.user_email
                 </if>
                 <if test="categoryCode != null and categoryCode != ''">
@@ -72,7 +78,7 @@
 
     </select>
 
-    <select id="searchListByQuestions" parameterType="SearchVO" resultMap="QuestionResultMap">
+    <select id="searchList" parameterType="SearchVO" resultMap="QuestionResultMap">
 
         SELECT *
         FROM
@@ -127,6 +133,9 @@
                 </if>
                 <if test="categoryCode != null and categoryCode != ''">
                     AND QUES.category_code = #{categoryCode}
+                </if>
+                <if test="userEmail != null and userEmail != ''">
+                    AND U.email = #{userEmail}
                 </if>) PAIR
         ORDER BY ques_no DESC)
     WHERE RN = 1 AND ROWNUM BETWEEN 0 AND 10
@@ -151,6 +160,7 @@
         <id column="ques_no" property="quesNo"/>
         <id column="question" property="question"/>
         <id column="category_name" property="categoryName"/>
+        <id column="category_code" property="categoryCode"/>
         <id column="answered" property="answered"/>
         <id column="email" property="userEmail"/>
         <id column="reg_date" property="regDate"/>
@@ -167,6 +177,7 @@
         <id column="reg_date" property="answerRegDate"/>
         <id column="likes" property="likes"/>
         <id column="dislikes" property="dislikes"/>
+        <id column="answer_cnt" property="answerCnt"/>
         <id column="comment_cnt" property="commentCnt"/>
         <id column="email" property="userEmail"/>
         <id column="name" property="userName"/>

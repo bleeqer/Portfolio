@@ -124,7 +124,6 @@ $('.answer-button').click(function () {
 
     const quesNo = $(this).data('ques-no')
 
-
     $.ajax({
         url: '/answer/checkAnswered',
         type: 'GET',

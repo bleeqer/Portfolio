@@ -14,11 +14,11 @@ public class errorAdvice {
     public String errorException(Model model, Exception e) {
 
         System.out.println(e.getClass().getSimpleName());
+        System.out.println(e.getMessage());
 
         if (e instanceof MyBatisSystemException) {
             model.addAttribute("errorCode", 500);
         } else if (e instanceof MethodArgumentTypeMismatchException) {
-            System.out.println("미스매치");
             model.addAttribute("errorCode", 400);
         }
 

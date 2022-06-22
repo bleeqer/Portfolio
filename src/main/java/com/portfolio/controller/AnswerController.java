@@ -116,6 +116,7 @@ public class AnswerController {
     @ResponseBody
     public boolean checkAnswered(long quesNo, Principal principal) {
 
+        System.out.println("되냐");
         QuestionVO questionVO = new QuestionVO();
 
         questionVO.setQuesNo(quesNo);

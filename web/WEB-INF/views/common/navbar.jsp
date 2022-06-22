@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<sec:authentication property="principal" var="principal"/>
+
 <div class="navbar-container position-fixed container-fluid bg-dark border-bottom border-color-dark shadow" style="z-index: 3; top: 0;">
     <div class="bg-dark"></div>
     <nav class="navbar navbar-dark py-0 mx-auto flex-nowrap" style="max-width: 1002px; height: 50px;">
@@ -77,7 +83,7 @@
                 <img src="/static/img/user.png" alt="" style="width: 30px; height: 30px;"/>
             </div>
             <ul class="dropdown-menu dropdown-menu-center bg-dark border-gray" style="overflow: hidden; background-color: black;">
-                <li><a class="dropdown-item color-gray-light bg-hover-whiten-light d-flex justify-content-start align-items-center py-3" href="/user/profile/" style="line-height: 100%; font-size: 14px;">My Page</a></li>
+                <li><a class="dropdown-item color-gray-light bg-hover-whiten-light d-flex justify-content-start align-items-center py-3" href="/user/profile/${principal}" style="line-height: 100%; font-size: 14px;">My Page</a></li>
                 <div class="border-bottom-gray"></div>
                 <li><a class="dropdown-item color-gray-light bg-hover-whiten-light justify-content-start align-items-center py-2 font-bold" href="/user/logout" style="line-height: 100%; font-size: 11px;">Log out</a></li>
             </ul>

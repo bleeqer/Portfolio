@@ -154,7 +154,7 @@
                                             </div>
                                         </div>
 
-                                        <c:if test="${user.username == question.userEmail}">
+                                        <c:if test="${user == question.userEmail}">
 
                                         <%--Three dots--%>
                                         <div>

@@ -16,7 +16,7 @@
 <head>
     <title>Title</title>
 
-    <sec:authentication property="principal" var="user"/>
+    <sec:authentication property="principal" var="principal"/>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

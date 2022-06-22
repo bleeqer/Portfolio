@@ -226,7 +226,7 @@
                                            placeholder="Add a comment...">
                                     <input type="hidden" name="ansNo" value="${answer.ansNo}">
                                     <sec:authorize access="isAuthenticated()">
-                                        <input type="hidden" name="userEmail" value="${user.username}">
+                                        <input type="hidden" name="userEmail" value="${user}">
                                     </sec:authorize>
                                 </form>
                             </div>

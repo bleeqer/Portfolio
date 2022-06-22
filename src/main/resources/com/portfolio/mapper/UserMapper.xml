@@ -20,8 +20,11 @@
     </select>
 
     <update id="update" parameterType="UserVO">
-        UPDATE TB_USER SET password = #{userPW}
-        WHERE user_id=#{userNo}
+        UPDATE TB_USER SET password = #{password}
+                           AND name = #{name}
+                           AND photo = #{photo}
+                           AND occupation = #{occupation}
+        WHERE email = #{email}
     </update>
 
     <delete id="delete" parameterType="long">

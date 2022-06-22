@@ -18,8 +18,8 @@ public class QuestionVO {
     private String userEmail;
     private String regDate;
     private String answered;
-    private Long viewCnt;
     private Long answerCnt;
+    private Long viewCnt;
 
     public String getRegDate() {
         return regDate;

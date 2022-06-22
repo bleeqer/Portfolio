@@ -91,7 +91,7 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<QuestionVO> searchQuestions(SearchVO searchVO) {
-        return questionMapper.searchListByQuestions(searchVO);
+        return questionMapper.searchList(searchVO);
     }
 
     @Override

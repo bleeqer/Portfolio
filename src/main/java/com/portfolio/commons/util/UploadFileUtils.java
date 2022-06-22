@@ -77,11 +77,11 @@ public class UploadFileUtils {
 
     }
 
-    public static void deleteFile(HttpServletRequest request, List<ImageVO> atchList) {
+    public static void deleteFile(HttpServletRequest request, List<ImageVO> imgList) {
 
         String uploadPath = request.getSession().getServletContext().getRealPath(File.separator + "WEB-INF");
 
-        for (ImageVO imageVO : atchList) {
+        for (ImageVO imageVO : imgList) {
 
             String filePath = uploadPath + imageVO.getImagePath();
 

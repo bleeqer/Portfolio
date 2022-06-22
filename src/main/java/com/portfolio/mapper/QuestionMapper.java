@@ -19,7 +19,7 @@ public interface QuestionMapper {
     void addViewCnt(long quesNo);
     void updateAnswered(QuestionVO questionVO);
     List<CategoryVO> selectCategories();
-    List<QuestionVO> searchListByQuestions(SearchVO searchVO);
+    List<QuestionVO> searchList(SearchVO searchVO);
     List<QAPairVO> searchPairs(SearchVO searchVO);
 
 
