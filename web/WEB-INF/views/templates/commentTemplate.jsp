@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-<sec:authentication property="principal" var="user"/>
+<sec:authentication property="principal" var="principal"/>
 
 <%--마지막 댓글 체크--%>
 <span class="last-checker" style="display: none;" data-is-last="${isLast}"></span>
@@ -188,7 +188,7 @@
                                 </div>
                                     <%--Three dots--%>
                                 <sec:authorize access="isAuthenticated()">
-                                    <c:if test="${user.username == comment.userEmail}">
+                                    <c:if test="${principal == comment.userEmail}">
                                         <div>
                                             <a tabindex="0" class="comment-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
                                                 <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
