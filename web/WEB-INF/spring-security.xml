@@ -32,9 +32,9 @@
     <authentication-manager>
         <authentication-provider ref="customAuthenticationProvider">
         </authentication-provider>
+        <authentication-provider user-service-ref="customUserDetailsService">
+            <password-encoder ref="passwordEncoder"/>
+        </authentication-provider>
     </authentication-manager>
-
-
-
 
 </beans:beans>

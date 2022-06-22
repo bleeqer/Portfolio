@@ -92,7 +92,7 @@ public class UserController {
         // 해싱한 비밀번호로 교체
         userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
 
-        userVO.setAuthority("USER");
+        userVO.setAuthority("ROLE_USER");
         
         // 업로드한 이미지 경로 셋팅
         userVO.setPhoto(photoPath.get(0));

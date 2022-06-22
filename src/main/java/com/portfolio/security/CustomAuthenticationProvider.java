@@ -36,25 +36,18 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         CustomUserDetails user = (CustomUserDetails) userDetailsService.loadUserByUsername(userId);
         
-        if (user == null) {
-            throw new UsernameNotFoundException(userId);
-        }
-
         if (!matchPassword(password, user.getPassword())) {
             throw new BadCredentialsException(userId);
         }
 
-        List<GrantedAuthority> roles = new ArrayList<>();
-        roles.add(new SimpleGrantedAuthority(user.getAuthority()));
+        System.out.println(user.getAuthorities());
 
-//        System.out.println(roles.
-
-        return new UsernamePasswordAuthenticationToken(user, user, roles);
+        return new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
     }
 
     @Override
-    public boolean supports(Class<?> aClass) {
-        return UsernamePasswordAuthenticationToken.class.isAssignableFrom(aClass);
+    public boolean supports(Class<?> authentication) {
+        return true;
     }
 
     private boolean matchPassword(String loginPwd, String password) {

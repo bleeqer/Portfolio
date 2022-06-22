@@ -28,10 +28,4 @@
         DELETE FROM TB_USER WHERE user_id=#{userId}
     </delete>
 
-    <!--ResultMap-->
-<!--    <resultMap id="" type="">-->
-<!--        <result column="" property=""/>-->
-<!--    </resultMap>-->
-
-
 </mapper>
