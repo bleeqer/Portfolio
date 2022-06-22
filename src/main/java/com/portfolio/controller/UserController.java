@@ -51,8 +51,10 @@ public class UserController {
         // 유저 정보 가져오기
         UserVO user = userService.select(email);
 
+        QuestionVO questionVO = new QuestionVO();
         AnswerVO answerVO = new AnswerVO();
 
+        questionVO.setUserEmail(email);
         answerVO.setUserEmail(email);
 
         Map<String, Object> meta = new HashMap<>();
@@ -62,6 +64,9 @@ public class UserController {
         // 전달 객체 타입과 총 갯수
         meta.put("type", "answers");
         meta.put("total", answerService.countAnswers(answerVO));
+
+        // 유저가 작성한 답변-질문 페어 가져오기
+        model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
 
         model.addAttribute("user", user);
 
