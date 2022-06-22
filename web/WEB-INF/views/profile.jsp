@@ -129,23 +129,21 @@
                         <%--User profile tabs--%>
                         <div class="border-bottom-gray">
                             <div class="d-flex color-dark-gray">
-                                <div class="py-3 px-2 color-dark-gray bg-hover-whiten-light position-relative color-red"
-                                     style="font-size: 13px;">
-                                    <div><b>Profile</b></div>
-                                    <div class="rounded-left-top-pill rounded-right-top-pill bg-red position-absolute"
-                                         style="height: 3px; width: 100%; left: 50%; bottom: 0; transform: translateX(-50%);"></div>
-                                </div>
-                                <div class="py-3 px-2 color-dark-gray bg-hover-whiten-light position-relative"
+                                <div id="answer-tab" class="profile-tab py-3 px-2 color-dark-gray bg-hover-whiten-light position-relative color-red"
                                      style="font-size: 13px;">
                                     <a href="/user/profile/${user.email}/answers">
                                         <div><b>Answers</b></div>
                                     </a>
+                                    <div class="under-red rounded-left-top-pill rounded-right-top-pill bg-red position-absolute"
+                                         style="height: 3px; width: 100%; left: 50%; bottom: 0; transform: translateX(-50%);"></div>
                                 </div>
-                                <div class="py-3 px-2 color-dark-gray bg-hover-whiten-light position-relative"
+                                <div id="question-tab" class="profile-tab py-3 px-2 color-dark-gray bg-hover-whiten-light position-relative"
                                      style="font-size: 13px;">
                                     <a href="/user/profile/${user.email}/questions">
                                         <div><b>Questions</b></div>
                                     </a>
+                                    <div class="under-red rounded-left-top-pill rounded-right-top-pill bg-red position-absolute hidden"
+                                         style="height: 3px; width: 100%; left: 50%; bottom: 0; transform: translateX(-50%);"></div>
                                 </div>
                             </div>
                         </div>
@@ -833,7 +831,7 @@
     <script src="/static/js/answer.js"></script>
     <script src="/static/js/detailQuestion.js"></script>
     <script src="/static/js/liking.js"></script>
+    <script src="/static/js/profile.js"></script>
     <script src="/static/js/main.js"></script>
-    <script src="/static/js/getMoreAnswers.js"></script>
 </body>
 </html>
