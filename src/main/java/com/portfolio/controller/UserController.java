@@ -1,5 +1,6 @@
 package com.portfolio.controller;
 
+import com.portfolio.commons.util.UploadFileUtils;
 import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.UserVO;
 import com.portfolio.service.AnswerService;
@@ -11,8 +12,13 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -76,11 +82,12 @@ public class UserController {
     }
 
     @PostMapping("create")
-    public String createUser(UserVO userVO) {
+    public String createUser(UserVO userVO, MultipartHttpServletRequest multiRequest) throws IOException {
 
-        System.out.println(userVO.getEmail());
+        List<String> photoPath = UploadFileUtils.uploadFile(multiRequest);
 
         userVO.setAuthority("USER");
+        userVO.setPhoto(photoPath.get(0));
 
         userService.create(userVO);
 

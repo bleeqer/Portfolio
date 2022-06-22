@@ -21,7 +21,7 @@
                         <div class="p-3">
 
                             <%--Sign up form--%>
-                            <form id="signUp-form" action="/user/create" method="POST">
+                            <form id="signUp-form" action="/user/create" method="POST" enctype="multipart/form-data">
 
                                 <sec:csrfInput/>
 
@@ -29,7 +29,7 @@
                                 <div class="d-flex align-items-center pb-2" style="height: 74.5px;">
                                     <%--Image--%>
                                     <div href="" class="me-2">
-                                        <div class="rounded-circle position-relative" style="overflow: hidden; height: 100%;">
+                                        <div class="rounded-circle position-relative border-gray-light" style="overflow: hidden; height: 100%;">
                                             <img id="profile-upload-image" style="height: inherit;"
                                                  src="/static/img/user.png" alt="">
                                             <div id="profile-image-upload-button" class="d-flex justify-content-center align-items-center rounded-circle position-absolute hover-show" style="cursor: pointer; z-index: 999; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 100ms ease-in-out; height: 100%; width: 100%;">
@@ -112,8 +112,7 @@
                                     </div>
 
                                 </div>
-                                <input id="image" type="file" style="display: none;">
-                                <input id="photoPath" type="text" name="photo" style="display: none;">
+                                <input id="register-photo" type="file" name="image" style="display: none;">
                             </form>
                         </div>
                     </div>
