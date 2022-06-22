@@ -1,19 +1,15 @@
 package com.portfolio.controller;
 
 import com.portfolio.commons.util.UploadFileUtils;
-import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.UserVO;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionService;
 import com.portfolio.service.UserService;
-import oracle.ucp.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;

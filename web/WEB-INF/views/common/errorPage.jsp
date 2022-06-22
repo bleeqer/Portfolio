@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page isErrorPage="true" %>
 
 <!DOCTYPE HTML>
 <html>
@@ -82,16 +83,62 @@
 
             <%--Main content container--%>
             <div class="d-flex justify-content-center align-items-center" style="width: 636px;">
-
                 <%--Error--%>
                 <div>
-                    <div style="width: 300px;">
+                    <div class="d-flex flex-column justify-content-center align-items-center" style="width: 300px;">
 
-                        <%--Error header--%>
-                        <div class="font-bold color-gray" style="line-height: 1.4; font-size: 18px;">Page Not Found</div>
+                        <c:choose>
+                            <c:when test="${errorCode == 403}">
+                                <div class="font-bold color-gray text-center" style="line-height: 1.4; font-size: 18px;">
+                                    <b>${errorCode}</b>
+                                </div>
+                                <%--Error message--%>
+                                <div class="color-gray-light text-center pt-2" style="font-size: 11px; line-height: 1.4;">
+                                    접근할 수 없는 페이지입니다.
+                                </div>
+                            </c:when>
+                            <c:when test="${errorCode == 404}">
+                                <div class="font-bold color-gray text-center" style="line-height: 1.4; font-size: 18px;">
+                                    <b>${errorCode}</b>
+                                </div>
+                                <%--Error message--%>
+                                <div class="color-gray-light text-center pt-2" style="font-size: 11px; line-height: 1.4;">
+                                    페이지를 찾을 수 없습니다.
+                                </div>
+                            </c:when>
+                            <c:when test="${errorCode == 500}">
+                                <div class="font-bold color-gray text-center" style="line-height: 1.4; font-size: 18px;">
+                                    <b>${errorCode}</b>
+                                </div>
+                                <%--Error message--%>
+                                <div class="color-gray-light text-center pt-2" style="font-size: 11px; line-height: 1.4;">
+                                    서버 내부에서 오류가 발생했습니다.
+                                </div>
+                            </c:when>
+                            <c:when test="${errorCode == 400}">
+                                <div class="font-bold color-gray text-center" style="line-height: 1.4; font-size: 18px;">
+                                    <b>${errorCode}</b>
+                                </div>
+                                <%--Error message--%>
+                                <div class="color-gray-light text-center pt-2" style="font-size: 11px; line-height: 1.4;">
+                                    잘못된 요청입니다.
+                                </div>
+                            </c:when>
+                            <c:when test="${errorCode == 405}">
+                                <div class="font-bold color-gray text-center" style="line-height: 1.4; font-size: 18px;">
+                                    <b>${errorCode}</b>
+                                </div>
+                                <%--Error message--%>
+                                <div class="color-gray-light text-center pt-2" style="font-size: 11px; line-height: 1.4;">
+                                    존재하지 않는 요청입니다.
+                                </div>
+                            </c:when>
+                            <c:otherwise>
 
-                        <%--Error message--%>
-                        <div class="color-gray-light" style="font-size: 13px; line-height: 1.4;">We searched everywhere but couldn't find the page you were looking for.</div>
+                            </c:otherwise>
+                        </c:choose>
+
+
 
                         <%--Links--%>
                         <div class="d-flex" style="padding-top: 20px; font-size: 15px; color: rgb(72, 148, 253) !important;">
@@ -103,7 +150,7 @@
                             <span>&nbsp;·&nbsp;</span>
 
                             <%--Go to home page--%>
-                            <div class="hover-underline"><a href="">Quora Home</a></div>
+                            <div class="hover-underline"><a href="/">Quora Home</a></div>
                         </div>
                     </div>
                 </div>
