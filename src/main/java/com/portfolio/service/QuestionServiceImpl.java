@@ -99,4 +99,9 @@ public class QuestionServiceImpl implements QuestionService {
         return questionMapper.searchPairs(searchVO);
     }
 
+    @Override
+    public long countQuestions(QuestionVO questionVO) {
+        return questionMapper.countQuestions(questionVO);
+    }
+
 }

@@ -21,6 +21,7 @@ public interface QuestionMapper {
     List<CategoryVO> selectCategories();
     List<QuestionVO> searchList(SearchVO searchVO);
     List<QAPairVO> searchPairs(SearchVO searchVO);
+    long countQuestions(QuestionVO questionVO);
 
 
 }

@@ -18,6 +18,7 @@ public interface QuestionService {
     List<CategoryVO> selectCategories();
     List<QuestionVO> searchQuestions(SearchVO searchVO);
     List<QAPairVO> searchPairs(SearchVO searchVO);
+    long countQuestions(QuestionVO questionVO);
 
 
 }

@@ -12,7 +12,7 @@ public interface AnswerService {
     long create(AnswerVO answerVO);
     AnswerVO select(long ansNo);
     List<AnswerVO> selectAnswers(AnswerVO answerVO);
-    long countAnswers(long quesNo);
+    long countAnswers(AnswerVO answerVO);
     void update(AnswerVO answerVO);
     void delete(AnswerVO answerVO);
     Map<String, Long> addLike(AnswerLikeVO likeVO);

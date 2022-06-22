@@ -78,13 +78,6 @@ public class QuestionController {
         // 답변여부에 따라 답변글 조회
         if (question.getAnswered().equals("Y")) {
 
-//            HashMap<String, Long> map = new HashMap<>();
-//
-//            map.put("quesNo", quesNo);
-//
-//            // 더불러오기용 마지막 답변글 번호
-//            map.put("ansNo", null);
-
             AnswerVO answerVO = new AnswerVO();
 
             answerVO.setQuesNo(quesNo);

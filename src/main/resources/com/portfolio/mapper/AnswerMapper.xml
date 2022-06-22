@@ -80,8 +80,17 @@
 
     </select>
 
-    <select id="countAnswers" parameterType="long" resultType="long">
-        SELECT COUNT(*) FROM TB_ANSWER WHERE ques_no = #{quesNo}
+    <select id="countAnswers" parameterType="AnswerVO" resultType="long">
+        SELECT COUNT(*)
+        FROM TB_ANSWER
+        <where>
+            <if test="quesNo != null and quesNo != ''">
+                AND ques_no = #{quesNo}
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                AND user_email = #{userEmail}
+            </if>
+        </where>
     </select>
 
 

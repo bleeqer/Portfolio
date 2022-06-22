@@ -72,8 +72,8 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public long countAnswers(long quesNo) {
-        return answerMapper.countAnswers(quesNo);
+    public long countAnswers(AnswerVO answerVO) {
+        return answerMapper.countAnswers(answerVO);
     }
 
     @Transactional
@@ -107,7 +107,7 @@ public class AnswerServiceImpl implements AnswerService {
         answerMapper.delete(answerVO.getAnsNo());
 
         // 답변글 삭제 후 해당 질문글의 답변글 갯수가 0개일 때 답변여부 N 업데이트
-        if (answerMapper.countAnswers(answerVO.getQuesNo()) <= 0) {
+        if (answerMapper.countAnswers(answerVO) <= 0) {
 
             QuestionVO questionVO = new QuestionVO();
 

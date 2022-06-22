@@ -154,7 +154,7 @@
                             <%--Content name--%>
                             <div class="py-2 border-bottom-gray">
                                 <div class="d-flex align-items-center">
-                                    <b>0 Questions</b>
+                                    <strong>${meta.total} ${meta.type}</strong>
                                 </div>
                             </div>
 

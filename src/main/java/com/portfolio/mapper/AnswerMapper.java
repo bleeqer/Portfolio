@@ -12,7 +12,7 @@ public interface AnswerMapper {
     void update(AnswerVO answerVO);
     void delete(long ansNo);
     List<AnswerVO> selectAnswers(AnswerVO answerVO);
-    long countAnswers(long quesNo);
+    long countAnswers(AnswerVO answerVO);
 //    List<QAPairVO> selectAnsweredPairByUser(String email);
     long addLike(AnswerLikeVO likeVO);
     long deleteLike(AnswerLikeVO likeVO);

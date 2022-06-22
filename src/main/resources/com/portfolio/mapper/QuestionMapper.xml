@@ -142,6 +142,13 @@
 
     </select>
 
+    <select id="countQuestions" parameterType="QuestionVO" resultType="long">
+        SELECT COUNT(*)
+        FROM tb_question
+        WHERE user_email = #{userEmail}
+
+    </select>
+
     <update id="addViewCnt" parameterType="long">
         UPDATE tb_question SET view_cnt = view_cnt + 1
         WHERE ques_no = #{quesNo}

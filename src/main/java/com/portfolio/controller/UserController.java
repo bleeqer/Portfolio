@@ -1,6 +1,7 @@
 package com.portfolio.controller;
 
 import com.portfolio.commons.util.UploadFileUtils;
+import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.ImageVO;
 import com.portfolio.domain.QuestionVO;
 import com.portfolio.domain.UserVO;
@@ -21,9 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -52,6 +51,18 @@ public class UserController {
         // 유저 정보 가져오기
         UserVO user = userService.select(email);
 
+        AnswerVO answerVO = new AnswerVO();
+
+        answerVO.setUserEmail(email);
+
+        Map<String, Object> meta = new HashMap<>();
+
+        model.addAttribute("meta", meta);
+
+        // 전달 객체 타입과 총 갯수
+        meta.put("type", "answers");
+        meta.put("total", answerService.countAnswers(answerVO));
+
         model.addAttribute("user", user);
 
         return "profile";
@@ -64,8 +75,17 @@ public class UserController {
         model.addAttribute("user", userService.select(email));
 
         QuestionVO questionVO = new QuestionVO();
+        AnswerVO answerVO = new AnswerVO();
 
         questionVO.setUserEmail(email);
+        answerVO.setUserEmail(email);
+
+        Map<String, Object> meta = new HashMap<>();
+
+        meta.put("type", "answers");
+        meta.put("total", answerService.countAnswers(answerVO));
+
+        model.addAttribute("meta", meta);
 
         // 유저가 작성한 답변-질문 페어 가져오기
         model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
@@ -81,6 +101,13 @@ public class UserController {
 
         QuestionVO questionVO = new QuestionVO();
         questionVO.setUserEmail(email);
+
+        Map<String, Object> meta = new HashMap<>();
+
+        meta.put("type", "questions");
+        meta.put("total", questionService.countQuestions(questionVO));
+
+        model.addAttribute("meta", meta);
 
         // 유저가 작성한 질문 리스트 가져오기
         model.addAttribute("questions", questionService.selectList(questionVO));
