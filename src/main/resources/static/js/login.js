@@ -81,14 +81,11 @@ $('#register-button').click(function () {
             contentType: false,
             processData: false,
             context: this,
-            success: function (result) {
+            success: function () {
 
-                if (result) {
-                    alert("회원가입을 완료 했습니다.")
-                    $('#signUp-modal').modal('hide')
-                } else {
-                    alert("회원가입에 실패 했습니다.")
-                }
+                alert("회원가입을 완료 했습니다.")
+                $('#signUp-modal').modal('hide')
+
             },
             error: function () {
 

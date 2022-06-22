@@ -650,6 +650,24 @@
                                             </div>
                                         </c:forEach>
                                     </c:if>
+
+                                    <c:if test="${meta.type == 'answers' && fn:length(answerPairs) <= 0}">
+                                        <div id="no-content" class="pb-4" style="width: 100%;">
+                                            <div class="pt-4 pb-2 d-flex justify-content-center">
+                                                <img src="/static/img/noContent.png" alt="" height="100" width="100">
+                                            </div>
+                                            <div class="text-center color-gray-light" style="font-size: 13px;">등록한 답변이 없습니다.</div>
+                                        </div>
+                                    </c:if>
+
+                                    <c:if test="${meta.type == 'questions' && fn:length(questions) <= 0}">
+                                        <div id="no-content" class="pb-4" style="width: 100%;">
+                                            <div class="pt-4 pb-2 d-flex justify-content-center">
+                                                <img src="/static/img/noContent.png" alt="" height="100" width="100">
+                                            </div>
+                                            <div class="text-center color-gray-light" style="font-size: 13px;">등록한 질문이 없습니다.</div>
+                                        </div>
+                                    </c:if>
                                 </div>
                             </div>
 
