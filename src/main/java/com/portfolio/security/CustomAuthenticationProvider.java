@@ -40,16 +40,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
             throw new UsernameNotFoundException(userId);
         }
 
-//        if (!matchPassword(password, user.getPassword())) {
-//            throw new BadCredentialsException(userId);
-//        }
-
-        // ?? ???
-        if (!Objects.equals(password, "as458512")) {
-
+        if (!matchPassword(password, user.getPassword())) {
             throw new BadCredentialsException(userId);
         }
-
 
         List<GrantedAuthority> roles = new ArrayList<>();
         roles.add(new SimpleGrantedAuthority(user.getAuthority()));

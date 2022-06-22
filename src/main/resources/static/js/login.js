@@ -68,9 +68,34 @@ $('#register-photo').on('change', function (e) {
 
 $('#register-button').click(function () {
 
-    if (isValid()) {
-        $('#signUp-form').submit()
+    // if (isValid()) {
+    //     $('#signUp-form').submit()
+    //
+    // }
 
+    if (isValid()) {
+        $.ajax({
+            url: '/user/create',
+            type: 'POST',
+            data: new FormData($('#signUp-form')[0]),
+            contentType: false,
+            processData: false,
+            context: this,
+            success: function (result) {
+
+                if (result) {
+                    alert("회원가입을 완료 했습니다.")
+                    $('#signUp-modal').modal('hide')
+                } else {
+                    alert("회원가입에 실패 했습니다.")
+                }
+            },
+            error: function () {
+
+                alert("회원가입에 실패 했습니다.")
+
+            }
+        })
     }
 
 

@@ -9,6 +9,7 @@ import com.portfolio.service.UserService;
 import oracle.ucp.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,8 +31,12 @@ public class UserController {
     UserService userService;
     @Autowired
     AnswerService answerService;
+
     @Autowired
     QuestionService questionService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @GetMapping("login")
     public String userLogin() {
@@ -82,16 +87,28 @@ public class UserController {
     }
 
     @PostMapping("create")
-    public String createUser(UserVO userVO, MultipartHttpServletRequest multiRequest) throws IOException {
-
+    @ResponseBody
+    public int createUser(UserVO userVO, MultipartHttpServletRequest multiRequest) throws IOException {
+        
+        // 프로필 이미지 업로드 후 업로드한 이미지 경로 담기
         List<String> photoPath = UploadFileUtils.uploadFile(multiRequest);
+        
+        // 해싱한 비밀번호로 교체
+        userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
 
         userVO.setAuthority("USER");
+        
+        // 업로드한 이미지 경로 셋팅
         userVO.setPhoto(photoPath.get(0));
 
-        userService.create(userVO);
+        try {
+            userService.create(userVO);
+        }
+        catch(Exception e) {
+            return 0;
+        }
 
-        return "redirect:/";
+        return 1;
     }
 
 }
