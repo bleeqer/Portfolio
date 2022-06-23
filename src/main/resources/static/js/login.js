@@ -87,27 +87,29 @@ $('#register-button').click(function () {
     //
     // }
 
-    if (isValid()) {
-        $.ajax({
-            url: '/user/create',
-            type: 'POST',
-            data: new FormData($('#signUp-form')[0]),
-            contentType: false,
-            processData: false,
-            context: this,
-            success: function () {
-
-                alert("회원가입을 완료 했습니다.")
-                $('#signUp-modal').modal('hide')
-
-            },
-            error: function () {
-
-                alert("회원가입에 실패 했습니다.")
-
-            }
-        })
+    if (!isUserValid()) {
+        return false
     }
+
+    $.ajax({
+        url: '/user/create',
+        type: 'POST',
+        data: new FormData($('#signUp-form')[0]),
+        contentType: false,
+        processData: false,
+        context: this,
+        success: function () {
+
+            alert("회원가입을 완료 했습니다.")
+            $('#signUp-modal').modal('hide')
+
+        },
+        error: function () {
+
+            alert("회원가입에 실패 했습니다.")
+
+        }
+    })
 
 
 })
@@ -141,7 +143,7 @@ $('#login-button').click(function (e) {
 })
 
 
-function isValid(){
+function isUserValid(){
 
     const nameRegExp = RegExp(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g)
     const emailRegExp = RegExp(/^([\w\.\_\-])*[a-zA-Z\d]+([\w\.\_\-])*([a-zA-Z\d])+([\w\.\_\-])+@([a-zA-Z\d]+\.)+[a-zA-Z\d]{2,8}$/)

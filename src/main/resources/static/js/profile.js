@@ -55,7 +55,7 @@ $('#profile-edit-button').click(function () {
 
 $('#profile-edit-submit-button').click(function () {
 
-    if (isValid()) {
+    if (isUserValid()) {
         $.ajax({
             url: '/user/update',
             type: 'POST',

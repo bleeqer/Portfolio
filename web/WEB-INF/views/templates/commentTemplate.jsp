@@ -245,7 +245,7 @@
             <div class="d-flex align-items-center">
                 <div class="rounded-pill bg-black px-3 border-gray" style="width: 100%; padding-top: 7px; padding-bottom: 7px;">
                     <form class="comment-form" action="" style="line-height: 0;">
-                        <input type="text" name="answerComment" placeholder="Add a reply..." style="height: 22px; border: none; outline: none; width: 100%; font-size: 15px; line-height: 22px;">
+                        <input class="comment-text" type="text" name="answerComment" placeholder="Add a reply..." style="height: 22px; border: none; outline: none; width: 100%; font-size: 15px; line-height: 22px;">
                         <input type="hidden" name="ansNo" value="${comment.ansNo}">
                         <input type="hidden" name="parentCoNo" value="${comment.coNo}">
                         <sec:csrfInput/>

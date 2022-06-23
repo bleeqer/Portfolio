@@ -37,6 +37,10 @@ function getComments(data) {
     return comments
 }
 
+function isCommentValid(formEl) {
+    return typeof (formEl.find('.comment-text').val()) !== 'undefined';
+}
+
 // child comments 갯수 세기
 function countChildComments(coNo) {
 
@@ -186,11 +190,17 @@ $(document).on('click', '.comment-popover-item', function () {
 $('.comment-section').on('click', '.comment-edit-submit-button', function () {
 
     const coNo = $(this).data('co-no')
+    const commentForm = $('.comment-edit-form[data-co-no="' + coNo + '"]')
+
+    if (!isCommentValid(commentForm)) {
+        alert('내용을 입력해주세요.')
+        return false
+    }
 
     $.ajax({
         url: '/comment/update',
         type: 'POST',
-        data: $('.comment-edit-form[data-co-no="' + coNo + '"]').serialize(),
+        data: commentForm.serialize(),
         success: function (comment) {
 
             $('.comment-text[data-co-no="' + coNo + '"]').show()
@@ -312,10 +322,16 @@ $('.view-more-comments').click(function () {
 // 댓글 등록
 $('.comment-section').on('click', '.add-comment-button', function () {
 
+    const commentForm = $(this).parent().find('.comment-form')
+
+    if (!isCommentValid(commentForm)) {
+        alert('내용을 입력해주세요.')
+        return false
+    }
     $.ajax({
         url: '/comment/create',
         type: 'POST',
-        data : $(this).parent().find('.comment-form').serialize(),
+        data : commentForm.serialize(),
         context: this,
         beforeSend: function(xhr){
             xhr.setRequestHeader(header, token)
