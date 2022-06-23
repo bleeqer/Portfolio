@@ -169,7 +169,7 @@
 
                       <c:forEach var="question" items="${questions}">
 
-                      <%--질문글--%>
+                        <%--질문글--%>
                         <div class="question hide-object border-bottom-gray" data-ques-no="${question.quesNo}">
                           <div class=" pt-3 px-3" >
                             <div>

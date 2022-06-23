@@ -7,7 +7,8 @@
 <c:forEach var="answerPair" items="${answerPairs}">
 
     <%--질문글--%>
-    <div class="pair hide-object mb-3 mx-1" data-ques-no="${answerPair.quesNo}" data-ans-no="${answerPair.ansNo}">
+    <div class="pair hide-object mb-3 mx-1" data-ques-no="${answerPair.quesNo}"
+         data-ans-no="${answerPair.ansNo}">
 
             <%--배경색--%>
         <div class="rounded-3 shadow-sm border border-color-dark bg-dark position-relative bg-hover-whiten position-relative">
@@ -57,14 +58,29 @@
                                     <div class="d-flex justify-content-between">
                                             <%--Question title--%>
                                         <div class="question-text pe-2">
-                                            <a class="hover-underline" href="/question/${answerPair.quesNo}"><strong style="line-height: 1.6;">${answerPair.question}</strong></a>
+                                            <a class="hover-underline"
+                                               href="/question/${answerPair.quesNo}"><strong
+                                                    style="line-height: 1.6;">${answerPair.question}</strong></a>
                                         </div>
                                             <%--Question close--%>
-                                        <div class="position-absolute" style="top: 4px; right: 4px;">
+                                        <div class="position-absolute"
+                                             style="top: 4px; right: 4px;">
                                             <div>
-                                                                                    <span class="hide-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" data-ques-no="${answerPair.quesNo}">
-                                                                                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                                                        <path d="m16.243 7.757-8.486 8.486m8.486 0L7.757 7.757" class="icon_svg-stroke" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke="#666" stroke-width="1.5"></path>
+                                                                                    <span class="hide-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
+                                                                                          style="width: 38px; height: 38px;"
+                                                                                          data-ques-no="${answerPair.quesNo}"
+                                                                                          data-toggle="description"
+                                                                                          data-content="Hide">
+                                                                                      <svg width="24" height="24"
+                                                                                           viewBox="0 0 24 24"
+                                                                                           xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path d="m16.243 7.757-8.486 8.486m8.486 0L7.757 7.757"
+                                                                                              class="icon_svg-stroke"
+                                                                                              fill="none"
+                                                                                              fill-rule="evenodd"
+                                                                                              stroke-linecap="round"
+                                                                                              stroke="#666"
+                                                                                              stroke-width="1.5"></path>
                                                                                       </svg>
                                                                                     </span>
                                             </div>
@@ -74,13 +90,13 @@
 
                                     <%--답변글 내용--%>
                                 <div class="position-relative">
-                                    <div class="fade-post" style="">
-                                        <div class="answer-text" style="font-size: 15px; line-height: 1.5rem;">
+                                    <div class="fade-post">
+                                        <div class="" style="line-height: 1.5rem;">
                                                 ${answerPair.answer}
-                                            <div class="overflow-fade hidden" style="background: linear-gradient(to bottom, transparent 60%, rgb(24, 24, 24) 100%) !important;"></div>
                                         </div>
-                                        <span class="readMore-button btn btn-primary rounded-pill hidden">More</span>
+                                        <div class="overflow-fade hidden"></div>
                                     </div>
+                                    <span class="readMore-button btn btn-primary rounded-pill hidden">More</span>
                                 </div>
                             </div>
                         </div>
@@ -108,10 +124,12 @@
                                         <%--Container--%>
                                     <div class="d-flex rounded-pill" role="button"
                                          style="background-color: rgba(255, 255, 255, 0.05); height: 30px;">
+                                        <sec:authorize access="isAuthenticated()">
                                             <%--Like 버튼--%>
-                                        <div class="answer-like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" data-ans-no="${answerPair.ansNo}">
-                                            <div class="d-flex">
-                                                <div>
+                                            <div class="answer-like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill"
+                                                 data-ans-no="${answerPair.ansNo}">
+                                                <div class="d-flex">
+                                                    <div>
                                                                                 <span class="d-inline-block d-flex align-items-center justify-content-center">
                                                                                     <svg width="20" height="20"
                                                                                          viewBox="0 0 24 24"
@@ -123,19 +141,21 @@
                                                                                               stroke-linejoin="round"></path>
                                                                                     </svg>
                                                                                 </span>
-                                                </div>
-                                                <div class="answer-like-cnt d-flex align-items-center justify-content-center"
-                                                     style="font-size: 13px; margin-left: 2px;" data-ans-no="${answerPair.ansNo}">
-                                                    <c:if test="${answerPair.likes > 0}">
-                                                        ${answerPair.likes}
-                                                    </c:if>
+                                                    </div>
+                                                    <div class="answer-like-cnt d-flex align-items-center justify-content-center"
+                                                         style="font-size: 13px; margin-left: 2px;"
+                                                         data-ans-no="${answerPair.ansNo}">
+                                                        <c:if test="${answerPair.likes > 0}">
+                                                            ${answerPair.likes}
+                                                        </c:if>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                             <%--Unlike 버튼--%>
-                                        <div class="answer-dislike-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill" data-ans-no="${answerPair.ansNo}">
-                                            <div class="d-flex">
-                                                <div>
+                                            <div class="answer-dislike-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill"
+                                                 data-ans-no="${answerPair.ansNo}">
+                                                <div class="d-flex">
+                                                    <div>
                                                                                 <span class="d-inline-block d-flex align-items-center justify-content-center">
                                                                                     <svg width="20" height="20"
                                                                                          viewBox="0 0 24 24"
@@ -147,15 +167,73 @@
                                                                                               stroke-linejoin="round"></path>
                                                                                     </svg>
                                                                                 </span>
-                                                </div>
-                                                <div class="answer-dislike-cnt d-flex align-items-center justify-content-center"
-                                                     style="font-size: 13px; margin-left: 2px;" data-ans-no="${answerPair.ansNo}">
-                                                    <c:if test="${answerPair.dislikes > 0}">
-                                                        ${answerPair.dislikes}
-                                                    </c:if>
+                                                    </div>
+                                                    <div class="answer-dislike-cnt d-flex align-items-center justify-content-center"
+                                                         style="font-size: 13px; margin-left: 2px;"
+                                                         data-ans-no="${answerPair.ansNo}">
+                                                        <c:if test="${answerPair.dislikes > 0}">
+                                                            ${answerPair.dislikes}
+                                                        </c:if>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+
+                                        </sec:authorize>
+                                        <sec:authorize access="isAnonymous()">
+                                            <%--Like 버튼--%>
+                                            <div class="login-first d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill"
+                                                 data-ans-no="${answerPair.ansNo}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                                                <span class="d-inline-block d-flex align-items-center justify-content-center">
+                                                                                    <svg width="20" height="20"
+                                                                                         viewBox="0 0 24 24"
+                                                                                         xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path d="M12 4 3 15h6v5h6v-5h6z"
+                                                                                              stroke-width="1.5"
+                                                                                              stroke="rgb(72, 148, 253)"
+                                                                                              fill="none"
+                                                                                              stroke-linejoin="round"></path>
+                                                                                    </svg>
+                                                                                </span>
+                                                    </div>
+                                                    <div class="answer-like-cnt d-flex align-items-center justify-content-center"
+                                                         style="font-size: 13px; margin-left: 2px;"
+                                                         data-ans-no="${answerPair.ansNo}">
+                                                        <c:if test="${answerPair.likes > 0}">
+                                                            ${answerPair.likes}
+                                                        </c:if>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <%--Unlike 버튼--%>
+                                            <div class="login-first d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill"
+                                                 data-ans-no="${answerPair.ansNo}">
+                                                <div class="d-flex">
+                                                    <div>
+                                                                                <span class="d-inline-block d-flex align-items-center justify-content-center">
+                                                                                    <svg width="20" height="20"
+                                                                                         viewBox="0 0 24 24"
+                                                                                         xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path d="m12 20 9-11h-6V4H9v5H3z"
+                                                                                              class="icon_svg-stroke icon_svg-fill"
+                                                                                              stroke="#666" fill="none"
+                                                                                              stroke-width="1.5"
+                                                                                              stroke-linejoin="round"></path>
+                                                                                    </svg>
+                                                                                </span>
+                                                    </div>
+                                                    <div class="answer-dislike-cnt d-flex align-items-center justify-content-center"
+                                                         style="font-size: 13px; margin-left: 2px;"
+                                                         data-ans-no="${answerPair.ansNo}">
+                                                        <c:if test="${answerPair.dislikes > 0}">
+                                                            ${answerPair.dislikes}
+                                                        </c:if>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </sec:authorize>
                                     </div>
                                 </div>
 
@@ -197,16 +275,19 @@
                                     <%--Share button--%>
                                 <div>
                                     <div>
-                                                                    <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
-                                                                          style="width: 38px; height: 38px;">
-                                                                        <svg width="24" height="24" viewBox="0 0 24 24"
-                                                                             xmlns="http://www.w3.org/2000/svg">
-                                                                            <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z"
-                                                                                  class="icon_svg-stroke" stroke="#666"
-                                                                                  fill="none" stroke-width="1.5"
-                                                                                  stroke-linejoin="round"></path>
-                                                                        </svg>
-                                                                    </span>
+                                        <a tabindex="0"
+                                           class="share-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
+                                           style="width: 38px; height: 38px;"
+                                           data-toggle="description"
+                                           data-content="Copy Link">
+                                            <svg width="24" height="24" viewBox="0 0 24 24"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z"
+                                                      class="icon_svg-stroke" stroke="#666"
+                                                      fill="none" stroke-width="1.5"
+                                                      stroke-linejoin="round"></path>
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
                                     <%--                                                                &lt;%&ndash;Three dots&ndash;%&gt;--%>
@@ -266,20 +347,29 @@
                                    style="width: 100%; outline: none; border: none;"
                                    placeholder="Add a comment...">
                             <input type="hidden" name="ansNo" value="${answerPair.ansNo}">
+                            <input type="hidden" name="parentCoNo" value="0">
                             <sec:csrfInput/>
-                                <%--                                                        <sec:authorize access="isAuthenticated()">--%>
-                                <%--                                                            <input type="hidden" name="userEmail" value="${user.username}">--%>
-                                <%--                                                        </sec:authorize>--%>
                         </form>
                     </div>
-
-                        <%--Add button--%>
-                    <span class="add-comment-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
-                          style="font-size: 13px; height: 30px; margin-left: 4px;"
-                          data-co-level="0" data-co-no="0" data-parent-co-no="0" data-ans-no="${answerPair.ansNo}">
-                                                    <div style="white-space: nowrap;">Add comment
-                                                    </div>
+                    <sec:authorize access="isAuthenticated()">
+                                                <span class="add-comment-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
+                                                      style="font-size: 13px; height: 30px; margin-left: 4px;"
+                                                      data-co-level="0" data-co-no="0" data-parent-co-no="0"
+                                                      data-ans-no="${answerPair.ansNo}">
+                                                    <div style="white-space: nowrap;">Add comment</div>
                                                 </span>
+                    </sec:authorize>
+
+                    <sec:authorize access="isAnonymous()">
+                                                <span class="login-first btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
+                                                      style="font-size: 13px; height: 30px; margin-left: 4px;"
+                                                      data-co-level="0" data-co-no="0" data-parent-co-no="0"
+                                                      data-ans-no="${answerPair.ansNo}">
+                                                    <div style="white-space: nowrap;">Add comment</div>
+                                                </span>
+                    </sec:authorize>
+                        <%--Add button--%>
+
                 </div>
 
                     <%--Comments--%>
@@ -295,7 +385,9 @@
                         <div>
                             <div class="pb-3 px-3">
                                 <button class="view-more-comments btn d-flex justify-content-center align-items-center border-gray rounded-pill bg-black-light bg-hover-darken-strong py-0 px-3"
-                                        style="height: 30px; width: 100%; font-weight: 500;" data-ans-no="${answerPair.ansNo}">
+                                        style="height: 30px; width: 100%; font-weight: 500;"
+                                        data-ans-no="${answerPair.ansNo}"
+                                        data-parent-co-no="0">
                                     <div class="d-flex align-items-center">
 
                                             <%--Text--%>
@@ -306,15 +398,18 @@
 
                                             <%--Arrow--%>
                                         <span>
-                                            <span>
-                                                <svg class="d-flex" width="16" height="16" viewBox="0 0 24 24"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke"
-                                                          stroke="#666" stroke-width="1.5" fill="none"
-                                                          stroke-linecap="round"></path>
-                                                </svg>
-                                            </span>
-                                        </span>
+                                                                        <span>
+                                                                            <svg class="d-flex" width="16" height="16"
+                                                                                 viewBox="0 0 24 24"
+                                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                                <path d="m5 8.5 7 7 7.005-7"
+                                                                                      class="icon_svg-stroke"
+                                                                                      stroke="#666" stroke-width="1.5"
+                                                                                      fill="none"
+                                                                                      stroke-linecap="round"></path>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </span>
                                     </div>
                                 </button>
                             </div>
@@ -324,5 +419,4 @@
             </div>
         </div>
     </div>
-
 </c:forEach>
