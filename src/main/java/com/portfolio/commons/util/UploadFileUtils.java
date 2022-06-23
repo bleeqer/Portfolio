@@ -19,6 +19,8 @@ public class UploadFileUtils {
         // multipartFile 리스트
         List<MultipartFile> mtfs = mtfRequest.getFiles("image");
 
+        System.out.println("사이즈: " + mtfs.size());
+
         List<String> imagePathList = new ArrayList<>();
 
         for (MultipartFile mtf : mtfs) {
@@ -29,7 +31,7 @@ public class UploadFileUtils {
 
             // 파일 이름
             String originalFileName = mtf.getOriginalFilename();
-
+            System.out.println("파일이름: " + originalFileName);
             // 공백문자를 언더스코어로 교체하기
             originalFileName = originalFileName.replace(' ', '_');
 

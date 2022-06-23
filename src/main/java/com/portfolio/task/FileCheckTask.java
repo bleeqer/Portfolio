@@ -20,7 +20,7 @@ public class FileCheckTask {
     @Autowired
     ImageMapper imageMapper;
 
-    @Scheduled(cron="* * 5 * * *")
+    @Scheduled(cron="0 0 5 * * *")
     public void checkFiles() {
         // Calendar 객체 생성
         Calendar cal = Calendar.getInstance();

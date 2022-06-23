@@ -21,7 +21,7 @@
                         <div class="p-3">
 
                             <%--Sign up form--%>
-                            <form id="signUp-form" action="/user/create" method="POST" enctype="multipart/form-data">
+                            <form id="signUp-form" style="color: rgb(40, 40, 41) !important;" action="/user/create" method="POST" enctype="multipart/form-data">
 
                                 <sec:csrfInput/>
 
@@ -30,7 +30,7 @@
                                     <%--Image--%>
                                     <div href="" class="me-2">
                                         <div class="rounded-circle position-relative border-gray-light" style="overflow: hidden; height: 100%;">
-                                            <img id="profile-upload-image" style="height: inherit;"
+                                            <img id="profile-upload-image" style="height: 63px; width: 63px;"
                                                  src="/static/img/user.png" alt="">
                                             <div id="profile-image-upload-button" class="d-flex justify-content-center align-items-center rounded-circle position-absolute hover-show" style="cursor: pointer; z-index: 999; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 100ms ease-in-out; height: 100%; width: 100%;">
                                                 <span class="d-flex justify-content-center align-items-center rounded-circle" style="background-color: rgb(20, 113, 255); width: 30px; height: 30px;">
@@ -56,7 +56,7 @@
 
                                         <%--Input--%>
                                         <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="min-height: 35px; width: 100%; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                            <input class="input-focus" type="text" id="register-name" name="name" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your name" autocomplete="off">
+                                            <input class="input-focus" type="text" id="register-name" name="name" style="color: inherit; width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your name" autocomplete="off">
                                         </div>
 
                                     </div>
@@ -91,7 +91,7 @@
 
                                     <%--Input--%>
                                     <div class="d-inline-flex align-items-center color-gray-dark rounded-1 p-1 border-gray-light hover-border-color-blue" style="width: 100%; min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                        <input class="input-focus" type="password" id="register-password" name="password" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your password" autocomplete="off">
+                                        <input class="input-focus" type="password" id="register-password" name="password" style="color: inherit; width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your password" autocomplete="off">
                                     </div>
 
                                 </div>
@@ -108,7 +108,7 @@
 
                                     <%--Input--%>
                                     <div class="d-inline-flex align-items-center color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="width: 100%; min-height: 35px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                        <input class="input-focus" type="text" id="register-occupation" name="occupation" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="What do you do?" autocomplete="off">
+                                        <input class="input-focus" type="text" id="register-occupation" name="occupation" style="color: inherit; width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="What do you do?" autocomplete="off">
                                     </div>
 
                                 </div>
@@ -133,6 +133,9 @@
                     <div class="d-flex justify-content-end align-items-center">
                         <button id="register-button" class="btn btn-primary rounded-pill" style="height: 38px; font-size: 14px; padding: 0 20px;">
                             <div>Register</div>
+                        </button>
+                        <button id="profile-edit-submit-button" class="btn btn-primary rounded-pill" style="height: 38px; font-size: 14px; padding: 0 20px;">
+                            <div>Edit</div>
                         </button>
                     </div>
                 </div>

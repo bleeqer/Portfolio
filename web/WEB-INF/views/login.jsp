@@ -100,7 +100,7 @@
                         <%--Left side--%>
                         <div class="px-4 border-right-gray-light" style="width: 50%;">
                             <div class="border-bottom-gray-light" style="padding-bottom: 8px;">
-                                <div class="rounded-pill bg-hover-darken-light" data-bs-toggle="modal" data-bs-target="#signUp-modal">
+                                <div id="sign-up-button" class="rounded-pill bg-hover-darken-light">
                                     <div class="d-flex justify-content-center">
                                         <span class="text-center color-gray-dark" style="line-height: 30px; font-size: 13px;">Sign up</span>
                                     </div>

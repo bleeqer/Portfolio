@@ -26,3 +26,54 @@ $('a').each(function () {
     }
 
 })
+
+$('#profile-edit-button').click(function () {
+
+    $.ajax({
+        url: '/user/get',
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+        context: this,
+        success: function (user) {
+
+            $('#signUp-modal #register-button').hide()
+            $('#signUp-modal #profile-edit-submit-button').show()
+            $('#signUp-modal #register-email').val(user.email)
+            $('#signUp-modal #profile-upload-image').attr('src', '/uploadedImages' + user.photo)
+            $('#register-email').prop('readonly', true)
+            // $('#signUp-modal #register-photo').filen(user.photo)
+            $('#signUp-modal #register-name').val(user.name)
+            $('#signUp-modal #register-occupation').val(user.occupation)
+
+            $('#signUp-modal').modal('show')
+
+        }
+    })
+
+})
+
+$('#profile-edit-submit-button').click(function () {
+
+    if (isValid()) {
+        $.ajax({
+            url: '/user/update',
+            type: 'POST',
+            data: new FormData($('#signUp-form')[0]),
+            contentType: false,
+            processData: false,
+            context: this,
+            success: function () {
+
+                alert("업데이트를 완료 했습니다.")
+                $('#signUp-modal').modal('hide')
+
+            },
+            error: function () {
+
+                alert("업데이트를 실패 했습니다.")
+
+            }
+        })
+    }
+})

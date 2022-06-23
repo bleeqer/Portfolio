@@ -123,14 +123,15 @@ public class UserController {
     @GetMapping("get")
     @ResponseBody
     public ResponseEntity<UserVO> getUser(Principal principal) {
-
         UserVO userVO;
 
         try {
             userVO = userService.select(principal.getName());
 
         } catch(Exception e) {
+            e.getStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
         }
 
         return new ResponseEntity<>(userVO, HttpStatus.OK);
@@ -168,30 +169,42 @@ public class UserController {
         String message = "";
 
         // 유저 불일치 시
-        if (principal.getName().equals(userVO.getEmail())) {
+        if (!principal.getName().equals(userVO.getEmail())) {
             message = "사용자가 일치하지 않습니다.";
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
 
         UserVO prevUser = userService.select(userVO.getEmail());
 
-        // 기존 프로필 이미지 파일 삭제
-        ImageVO imageVO = new ImageVO();
-        imageVO.setImagePath(prevUser.getPhoto());
-        List<ImageVO> imgList = new ArrayList<>();
-        imgList.add(imageVO);
-        UploadFileUtils.deleteFile(multiRequest, imgList);
-
         // 새로운 프로필 사진 업로드 후 경로 담기
         List<String> photoPath = UploadFileUtils.uploadFile(multiRequest);
+
+
+        // 프로필 이미지 변경했을 경우
+        if (!photoPath.isEmpty()) {
+
+            // 기존 프로필 이미지 파일 삭제
+            ImageVO imageVO = new ImageVO();
+            imageVO.setImagePath(prevUser.getPhoto());
+            List<ImageVO> imgList = new ArrayList<>();
+            imgList.add(imageVO);
+            UploadFileUtils.deleteFile(multiRequest, imgList);
+            userVO.setPhoto(photoPath.get(0));
+
+        } else {
+
+            userVO.setPhoto(prevUser.getPhoto());
+
+        }
 
         // 해싱한 비밀번호로 교체
         userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
 
-        // 업로드한 이미지 경로 셋팅
-        userVO.setPhoto(photoPath.get(0));
-
         try {
+            System.out.println(userVO.getEmail());
+            System.out.println(userVO.getName());
+            System.out.println(userVO.getOccupation());
+            System.out.println(userVO.getPhoto());
             userService.update(userVO);
         }
 

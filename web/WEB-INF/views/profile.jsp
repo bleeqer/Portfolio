@@ -99,8 +99,18 @@
                     <div class="d-flex">
                         <%--Profile picture--%>
                         <div class="d-inline-block" style="margin-right: 24px;">
-                            <div class="rounded-circle overflow-hidden d-inline-block">
+                            <div class="rounded-circle position-relative overflow-hidden d-inline-block">
                                 <img src="/static/img/user.png" alt="" width="120" height="120">
+                                <div id="profile-edit-button" class="d-flex justify-content-center align-items-center rounded-circle position-absolute hover-show" style="cursor: pointer; z-index: 999; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 100ms ease-in-out; height: 100%; width: 100%;">
+                                                <span class="d-flex justify-content-center align-items-center rounded-circle" style="background-color: rgb(20, 113, 255); width: 30px; height: 30px;">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <g fill="none" fill-rule="evenodd">
+                                                            <path d="M18.571 5.429h0a2 2 0 0 1 0 2.828l-9.9 9.9-4.24 1.416 1.412-4.245 9.9-9.9a2 2 0 0 1 2.828 0Z" stroke="rgb(255, 255, 255)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path class="" fill="rgb(255, 255, 255)" d="m4.429 19.571 2.652-.884-1.768-1.768z"></path>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                </div>
                             </div>
                         </div>
                         <%--Profile description--%>
@@ -194,7 +204,7 @@
 
                                                                         <%--Profile pic--%>
                                                                     <div class="me-3 position-relative">
-                                                                        <div>
+                                                                        <div class="position-relative">
                                                                             <img class="rounded-circle border border-color-whiten" src="${answerPair.userPhoto}" alt="" width="36" height="36">
                                                                         </div>
                                                                         <div class="bg-hover-darken position-absolute" style="inset: 0;">
@@ -846,6 +856,7 @@
 <%--    </div>--%>
     <%@ include file="/WEB-INF/views/modals/question.jsp" %>
     <%@ include file="/WEB-INF/views/modals/answer.jsp" %>
+    <%@ include file="/WEB-INF/views/modals/signUp.jsp" %>
 
     <script src="/static/js/utils.js"></script>
     <script src="/static/js/comment.js"></script>
@@ -856,5 +867,6 @@
     <script src="/static/js/liking.js"></script>
     <script src="/static/js/profile.js"></script>
     <script src="/static/js/main.js"></script>
+    <script src="/static/js/login.js"></script>
 </body>
 </html>

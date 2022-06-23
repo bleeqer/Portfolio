@@ -4,6 +4,20 @@ $('#profile-image-upload-button').click(function () {
     $('#register-photo').trigger('click')
 })
 
+$('#sign-up-button').click(function () {
+    $('#signUp-modal #profile-edit-submit-button').hide()
+    $('#signUp-modal #register-button').show()
+
+    $('#signUp-form #register-email').val('')
+    $('#signUp-form #register-name').val('')
+    $('#signUp-form #register-password').val('')
+    $('#signUp-form #register-occupation').val('')
+
+    $('#signUp-modal').modal('show')
+
+
+})
+
 // 이미지 업로드 함수. image input 변경 시 실행됨
 $('#register-photo').on('change', function (e) {
 
