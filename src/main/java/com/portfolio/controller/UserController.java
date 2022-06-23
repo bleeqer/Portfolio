@@ -77,7 +77,10 @@ public class UserController {
     public String userAnswers(@PathVariable String email, Model model) {
 
         // 유저 정보 가져오기
-        model.addAttribute("user", userService.select(email));
+        UserVO userVO = userService.select(email);
+
+
+        model.addAttribute("user", userVO);
 
         QuestionVO questionVO = new QuestionVO();
         AnswerVO answerVO = new AnswerVO();

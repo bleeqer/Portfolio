@@ -12,12 +12,13 @@ $('.input-focus').focusout(function () {
     $(this).parents('.input-container').css('min-width', 150)
 })
 
-$('.best-title').mouseenter(function () {
-        $(this).css('height', $(this).prop('scrollHeight'))
-    })
-    .mouseleave(function () {
-        $(this).css('height', 32)
-    })
+$('.login-first').click(function () {
+    result = confirm('로그인 화면으로 이동하시겠어요? (임시 계정이 제공 됩니다.)')
+
+    if (result) {
+        window.location.href = '/user/login'
+    }
+})
 
 // 질문글 url 복사
 $(document).on('click', '.share-button', function () {

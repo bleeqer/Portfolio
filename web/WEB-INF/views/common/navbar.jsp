@@ -80,40 +80,39 @@
         <%--User dropdown--%>
         <div class="dropdown cursor-pointer bg-hover-whiten rounded-2 position-relative d-flex justify-content-center align-items-center user-profile" style="height: 45px; width: 60px; min-width: 60px; transition: background-color 250ms;">
             <div id="user-dropdown" class="d-flex justify-content-center align-items-center" data-bs-toggle="dropdown" style="width: 100%; height: 100%;">
-                <img id="navbar-profile" class="rounded-circle overflow-hidden" src="" alt="" style="width: 36px; height: 36px;"/>
+                <img id="navbar-profile" class="rounded-circle overflow-hidden" src="/static/img/user.png" alt="" style="width: 36px; height: 36px;"/>
             </div>
             <ul class="dropdown-menu dropdown-menu-center bg-dark border-gray" style="overflow: hidden; background-color: black;">
-                <li><a class="dropdown-item color-gray-light bg-hover-whiten-light d-flex justify-content-start align-items-center py-3" href="/user/profile/${principal}" style="line-height: 100%; font-size: 14px;">My Page</a></li>
-                <div class="border-bottom-gray"></div>
-                <li><a class="dropdown-item color-gray-light bg-hover-whiten-light justify-content-start align-items-center py-2 font-bold" href="/user/logout" style="line-height: 100%; font-size: 11px;">Log out</a></li>
-            </ul>
+                <sec:authorize access="isAuthenticated()">
+                    <li><a class="dropdown-item color-gray-light bg-hover-whiten-light d-flex justify-content-start align-items-center py-3" href="/user/profile/${principal}" style="line-height: 100%; font-size: 14px;">My Page</a></li>
+                    <div class="border-bottom-gray"></div>
+                    <li><a class="dropdown-item color-gray-light bg-hover-whiten-light justify-content-start align-items-center py-2 font-bold" href="/user/logout" style="line-height: 100%; font-size: 11px;">Log out</a></li>
+
+                </sec:authorize>
+                <sec:authorize access="isAnonymous()">
+                    <li><a class="dropdown-item color-gray-light bg-hover-whiten-light d-flex justify-content-start align-items-center py-3" href="/user/login" style="line-height: 100%; font-size: 14px;">Login</a></li>
+
+                </sec:authorize>
+                 </ul>
 <%--            <div class="bg-hover-whiten position-absolute rounded-2" style="height: 45px; min-width: 60px; transition-property: background-color; transition-duration: 250ms;"></div>--%>
         </div>
-
+        <sec:authorize access="isAuthenticated()">
+            <div class="px-2">
+                <a id="ask-question-button" class="btn btn-danger rounded-pill py-1 font-bold" data-bs-toggle="modal" data-bs-target="#question-modal" style="font-size: 15px; min-width: 120px;">Ask question</a>
+            </div>
+        </sec:authorize>
+        <sec:authorize access="isAnonymous()">
+            <div class="px-2">
+                <a id="" class="login-first btn btn-danger rounded-pill py-1 font-bold" style="font-size: 15px; min-width: 120px;">Ask question</a>
+            </div>
+        </sec:authorize>
         <%--Ask question button--%>
-        <div class="px-2">
-            <a id="ask-question-button" class="btn btn-danger rounded-pill py-1 font-bold" data-bs-toggle="modal" data-bs-target="#question-modal" style="font-size: 15px; min-width: 120px;">Ask question</a>
-        </div>
+
 
     </nav>
 </div>
 
 <%--Popover--%>
-<div id="user-popover-content" style="display: none;">
 
-    <div class="d-flex user-popover-item">
-        <div class="py-1 px-3">My Page</div>
-        <div class="position-relative">
-            <div class="user-mini-checker hidden"></div>
-        </div>
-    </div>
-    <div class="border-bottom-gray"></div>
-    <div class="d-flex user-popover-item">
-        <div class="py-1 px-3">Log out</div>
-        <div class="position-relative">
-            <div class="user-mini-checker hidden"></div>
-        </div>
-    </div>
-</div>
 
 <script src="/static/js/navbar.js"></script>

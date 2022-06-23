@@ -17,9 +17,13 @@ public class errorAdvice {
         System.out.println(e.getMessage());
 
         if (e instanceof MyBatisSystemException) {
+
             model.addAttribute("errorCode", 500);
-        } else if (e instanceof MethodArgumentTypeMismatchException) {
+
+        } else if (e instanceof MethodArgumentTypeMismatchException || e instanceof NullPointerException) {
+
             model.addAttribute("errorCode", 400);
+
         }
 
 

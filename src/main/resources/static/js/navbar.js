@@ -57,9 +57,8 @@ $('#search-button').click(function () {
 //     $('#question-modal').modal('show')
 // })
 
-let user = getUser()
+$('#navbar-profile').attr('src', '/uploadedImages' + getUser().photo)
 
-$('#navbar-profile').attr('src', '/uploadedImages' + user.photo)
 
 function getUser() {
 
@@ -71,11 +70,12 @@ function getUser() {
         dataType: 'json',
         async: false,
         contentType: 'application/json',
-        success: function (user) {
-            userInfo = user
+        success: function (fetchedUser) {
+            userInfo = fetchedUser
 
         },
         error: function () {
+            userInfo = {photo: '/static/img/user.png'}
         }
     })
 
