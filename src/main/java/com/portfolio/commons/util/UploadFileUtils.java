@@ -19,7 +19,6 @@ public class UploadFileUtils {
         // multipartFile 리스트
         List<MultipartFile> mtfs = mtfRequest.getFiles("image");
 
-        System.out.println("사이즈: " + mtfs.size());
 
         List<String> imagePathList = new ArrayList<>();
 
@@ -85,7 +84,7 @@ public class UploadFileUtils {
 
         for (ImageVO imageVO : imgList) {
 
-            String filePath = uploadPath + imageVO.getImagePath();
+            String filePath = uploadPath + "/uploadedImages" + imageVO.getImagePath();
 
             File file = new File(filePath);
 

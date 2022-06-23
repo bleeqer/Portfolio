@@ -201,10 +201,7 @@ public class UserController {
         userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
 
         try {
-            System.out.println(userVO.getEmail());
-            System.out.println(userVO.getName());
-            System.out.println(userVO.getOccupation());
-            System.out.println(userVO.getPhoto());
+
             userService.update(userVO);
         }
 
