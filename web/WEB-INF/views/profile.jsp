@@ -522,39 +522,82 @@
                                                                     <div style="padding-top: 1px; padding-bottom: 1px;">
                                                                         <div class="d-flex justify-content-between align-items-center">
                                                                             <div class="d-flex">
-                                                                                    <%--Answer button--%>
-                                                                                <button class="answer-button px-2 rounded-pill bg-hover-whiten-light"
-                                                                                        style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;"
-                                                                                        data-ques-no="${question.quesNo}">
-                                                                                    <div class="d-flex justify-content-center align-items-center">
-                                                                                            <%--Answer icon--%>
-                                                                                        <div>
-                                                                                            <svg width="24" height="24"
-                                                                                                 viewBox="0 0 24 24"
-                                                                                                 xmlns="http://www.w3.org/2000/svg">
-                                                                                                <g stroke-width="1.5"
-                                                                                                   fill="none"
-                                                                                                   fill-rule="evenodd">
-                                                                                                    <path d="M18.571 5.429h0a2 2 0 0 1 0 2.828l-9.9 9.9-4.24 1.416 1.412-4.245 9.9-9.9h0a2 2 0 0 1 2.828 0Z"
-                                                                                                          stroke="rgb(72, 148, 253)"
-                                                                                                          stroke-linecap="round"
-                                                                                                          stroke-linejoin="round"></path>
-                                                                                                    <path fill="#666"
-                                                                                                          d="m4.429 19.571 2.652-.884-1.768-1.768z"></path>
-                                                                                                    <path d="M14.5 19.5h5v-5m-10-10h-5v5"
-                                                                                                          stroke="rgb(72, 148, 253)"
-                                                                                                          stroke-linecap="round"
-                                                                                                          stroke-linejoin="round"></path>
-                                                                                                </g>
-                                                                                            </svg>
-                                                                                        </div>
-                                                                                            <%--Answer text--%>
-                                                                                        <div class="color-gray ms-1"
-                                                                                             style="font-size: 14px;">
-                                                                                            <div>Answer</div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </button>
+
+                                                                                <sec:authorize access="isAuthenticated()">
+                                                                                    <c:if test="${principal != question.userEmail}">
+                                                                                        <%--Answer button--%>
+                                                                                        <button class="answer-button px-2 rounded-pill bg-hover-whiten-light"
+                                                                                                style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;"
+                                                                                                data-ques-no="${question.quesNo}">
+                                                                                            <div class="d-flex justify-content-center align-items-center">
+                                                                                                    <%--Answer icon--%>
+                                                                                                <div>
+                                                                                                    <svg width="24" height="24"
+                                                                                                         viewBox="0 0 24 24"
+                                                                                                         xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <g stroke-width="1.5"
+                                                                                                           fill="none"
+                                                                                                           fill-rule="evenodd">
+                                                                                                            <path d="M18.571 5.429h0a2 2 0 0 1 0 2.828l-9.9 9.9-4.24 1.416 1.412-4.245 9.9-9.9h0a2 2 0 0 1 2.828 0Z"
+                                                                                                                  stroke="rgb(72, 148, 253)"
+                                                                                                                  stroke-linecap="round"
+                                                                                                                  stroke-linejoin="round"></path>
+                                                                                                            <path fill="#666"
+                                                                                                                  d="m4.429 19.571 2.652-.884-1.768-1.768z"></path>
+                                                                                                            <path d="M14.5 19.5h5v-5m-10-10h-5v5"
+                                                                                                                  stroke="rgb(72, 148, 253)"
+                                                                                                                  stroke-linecap="round"
+                                                                                                                  stroke-linejoin="round"></path>
+                                                                                                        </g>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                    <%--Answer text--%>
+                                                                                                <div class="color-gray ms-1"
+                                                                                                     style="font-size: 14px;">
+                                                                                                    <div>Answer</div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </button>
+                                                                                    </c:if>
+                                                                                </sec:authorize>
+                                                                                <sec:authorize access="isAnonymous()">
+                                                                                    <c:if test="${principal != question.userEmail}">
+                                                                                        <%--Answer button--%>
+                                                                                        <button class="login-first px-2 rounded-pill bg-hover-whiten-light"
+                                                                                                style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;"
+                                                                                                data-ques-no="${question.quesNo}">
+                                                                                            <div class="d-flex justify-content-center align-items-center">
+                                                                                                    <%--Answer icon--%>
+                                                                                                <div>
+                                                                                                    <svg width="24" height="24"
+                                                                                                         viewBox="0 0 24 24"
+                                                                                                         xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <g stroke-width="1.5"
+                                                                                                           fill="none"
+                                                                                                           fill-rule="evenodd">
+                                                                                                            <path d="M18.571 5.429h0a2 2 0 0 1 0 2.828l-9.9 9.9-4.24 1.416 1.412-4.245 9.9-9.9h0a2 2 0 0 1 2.828 0Z"
+                                                                                                                  stroke="rgb(72, 148, 253)"
+                                                                                                                  stroke-linecap="round"
+                                                                                                                  stroke-linejoin="round"></path>
+                                                                                                            <path fill="#666"
+                                                                                                                  d="m4.429 19.571 2.652-.884-1.768-1.768z"></path>
+                                                                                                            <path d="M14.5 19.5h5v-5m-10-10h-5v5"
+                                                                                                                  stroke="rgb(72, 148, 253)"
+                                                                                                                  stroke-linecap="round"
+                                                                                                                  stroke-linejoin="round"></path>
+                                                                                                        </g>
+                                                                                                    </svg>
+                                                                                                </div>
+                                                                                                    <%--Answer text--%>
+                                                                                                <div class="color-gray ms-1"
+                                                                                                     style="font-size: 14px;">
+                                                                                                    <div>Answer</div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </button>
+                                                                                    </c:if>
+                                                                                </sec:authorize>
+
 
                                                                                     <%--Comment 버튼--%>
                                                                                     <%--          <div role="button">--%>

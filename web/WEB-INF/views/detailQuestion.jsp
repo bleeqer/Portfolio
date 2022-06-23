@@ -121,6 +121,7 @@
                                     <div class="d-flex">
                                         <sec:authorize access="isAuthenticated()">
                                         <%--Answer button--%>
+                                        <c:if test="${principal != question.userEmail}">
                                         <button class="answer-button px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-ques-no="${question.quesNo}">
                                             <div class="d-flex justify-content-center align-items-center">
                                                     <%--Answer icon--%>
@@ -139,6 +140,8 @@
                                                 </div>
                                             </div>
                                         </button>
+
+                                        </c:if>
 
                                         </sec:authorize>
                                         <sec:authorize access="isAnonymous()">
