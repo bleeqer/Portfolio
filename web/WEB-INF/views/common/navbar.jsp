@@ -80,7 +80,7 @@
         <%--User dropdown--%>
         <div class="dropdown cursor-pointer bg-hover-whiten rounded-2 position-relative d-flex justify-content-center align-items-center user-profile" style="height: 45px; width: 60px; min-width: 60px; transition: background-color 250ms;">
             <div id="user-dropdown" class="d-flex justify-content-center align-items-center" data-bs-toggle="dropdown" style="width: 100%; height: 100%;">
-                <img src="/static/img/user.png" alt="" style="width: 30px; height: 30px;"/>
+                <img id="navbar-profile" class="rounded-circle overflow-hidden" src="" alt="" style="width: 36px; height: 36px;"/>
             </div>
             <ul class="dropdown-menu dropdown-menu-center bg-dark border-gray" style="overflow: hidden; background-color: black;">
                 <li><a class="dropdown-item color-gray-light bg-hover-whiten-light d-flex justify-content-start align-items-center py-3" href="/user/profile/${principal}" style="line-height: 100%; font-size: 14px;">My Page</a></li>

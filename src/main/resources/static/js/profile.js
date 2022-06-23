@@ -77,3 +77,4 @@ $('#profile-edit-submit-button').click(function () {
         })
     }
 })
+

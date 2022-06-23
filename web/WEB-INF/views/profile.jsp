@@ -100,7 +100,7 @@
                         <%--Profile picture--%>
                         <div class="d-inline-block" style="margin-right: 24px;">
                             <div class="rounded-circle position-relative overflow-hidden d-inline-block">
-                                <img src="/static/img/user.png" alt="" width="120" height="120">
+                                <img src="/uploadedImages${user.photo}" alt="" width="120" height="120">
                                 <div id="profile-edit-button" class="d-flex justify-content-center align-items-center rounded-circle position-absolute hover-show" style="cursor: pointer; z-index: 999; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 100ms ease-in-out; height: 100%; width: 100%;">
                                                 <span class="d-flex justify-content-center align-items-center rounded-circle" style="background-color: rgb(20, 113, 255); width: 30px; height: 30px;">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -249,7 +249,7 @@
                                                         <%--Profile pic--%>
                                                     <div class="me-3 position-relative">
                                                         <div>
-                                                            <img class="rounded-circle border border-color-whiten" src="${answer.userPhoto}" alt="" width="36" height="36">
+                                                            <img class="rounded-circle border border-color-whiten" src="/uploadedImages${answer.userPhoto}" alt="" width="36" height="36">
                                                         </div>
                                                         <div class="bg-hover-darken position-absolute" style="inset: 0;">
                                                         </div>

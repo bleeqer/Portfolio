@@ -123,6 +123,7 @@ public class UserController {
     @GetMapping("get")
     @ResponseBody
     public ResponseEntity<UserVO> getUser(Principal principal) {
+
         UserVO userVO;
 
         try {

@@ -56,3 +56,28 @@ $('#search-button').click(function () {
 // $('#ask-question-button').click(function () {
 //     $('#question-modal').modal('show')
 // })
+
+let user = getUser()
+
+$('#navbar-profile').attr('src', '/uploadedImages' + user.photo)
+
+function getUser() {
+
+    let userInfo = ''
+    $.ajax({
+
+        url: '/user/get',
+        type: 'GET',
+        dataType: 'json',
+        async: false,
+        contentType: 'application/json',
+        success: function (user) {
+            userInfo = user
+
+        },
+        error: function () {
+        }
+    })
+
+    return userInfo
+}
