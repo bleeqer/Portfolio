@@ -100,7 +100,7 @@
                         <%--Profile picture--%>
                         <div class="d-inline-block" style="margin-right: 24px;">
                             <div class="rounded-circle position-relative overflow-hidden d-inline-block">
-                                <img src="/uploadedImages${user.photo}" alt="" width="120" height="120">
+                                <img id="profile-photo" src="/uploadedImages${user.photo}" alt="" width="120" height="120">
                                 <div id="profile-edit-button" class="d-flex justify-content-center align-items-center rounded-circle position-absolute hover-show" style="cursor: pointer; z-index: 999; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; transition: opacity 100ms ease-in-out; height: 100%; width: 100%;">
                                                 <span class="d-flex justify-content-center align-items-center rounded-circle" style="background-color: rgb(20, 113, 255); width: 30px; height: 30px;">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -119,13 +119,13 @@
                             <%--User name--%>
                             <div>
                                 <div>
-                                    <h1 class="m-0">${user.name}</h1>
+                                    <h1 id="profile-username" class="m-0">${user.name}</h1>
                                 </div>
                             </div>
 
                             <%--User credential--%>
                             <div class="mt-2 color-dark-gray">
-                                <div>
+                                <div id="profile-occupation">
                                     ${user.occupation}
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
                                                                         <%--Profile pic--%>
                                                                     <div class="me-3 position-relative">
                                                                         <div class="position-relative">
-                                                                            <img class="rounded-circle border border-color-whiten" src="${answerPair.userPhoto}" alt="" width="36" height="36">
+                                                                            <img class="rounded-circle border border-color-whiten" src="/uploadedImages${answerPair.userPhoto}" alt="" width="36" height="36">
                                                                         </div>
                                                                         <div class="bg-hover-darken position-absolute" style="inset: 0;">
                                                                         </div>
@@ -215,7 +215,7 @@
                                                                     <div class="d-flex flex-column">
 
                                                                             <%--이름--%>
-                                                                        <div class="my-auto"><a class="text-decoration-none link-default-color hover-underline h6" href="" style="font-size: 13px;"><b>${answerPair.userName}</b></a></div>
+                                                                        <div class="my-auto"><a class="text-decoration-none link-default-color hover-underline h6" href="" style="font-size: 13px;"><strong>${answerPair.userName}</strong></a></div>
 
                                                                             <%--상세--%>
                                                                         <div class="my-auto color-gray" style="font-size: 13px;">${answerPair.userOccupation} <span> · </span> ${answerPair.answerRegDate}</div>

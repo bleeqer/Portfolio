@@ -68,6 +68,13 @@ $('#profile-edit-submit-button').click(function () {
                 alert("업데이트를 완료 했습니다.")
                 $('#signUp-modal').modal('hide')
 
+                const user = getUser()
+
+                $('#navbar-profile').attr('src', '/uploadedImages' + user.photo)
+                $('#profile-photo').attr('src', '/uploadedImages' + user.photo)
+                $('#profile-username').text(user.name)
+                $('#profile-occupation').text(user.occupation)
+
             },
             error: function () {
 
