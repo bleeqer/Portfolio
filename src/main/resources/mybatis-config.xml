@@ -9,7 +9,7 @@
 
     <typeAliases>
         <typeAlias type="com.portfolio.domain.QuestionVO" alias="QuestionVO"/>
-        <typeAlias type="com.portfolio.domain.UserVO" alias="UserVO"/>
+        <typeAlias type="com.portfolio.domain.CustomUserDetailsVO" alias="UserVO"/>
         <typeAlias type="com.portfolio.domain.AnswerVO" alias="AnswerVO"/>
         <typeAlias type="com.portfolio.domain.CommentVO" alias="CommentVO"/>
         <typeAlias type="com.portfolio.domain.AnswerLikeVO" alias="AnswerLikeVO"/>
@@ -18,6 +18,5 @@
         <typeAlias type="com.portfolio.domain.QAPairVO" alias="QAPairVO"/>
         <typeAlias type="com.portfolio.domain.SearchVO" alias="SearchVO"/>
         <typeAlias type="com.portfolio.domain.ImageVO" alias="ImageVO"/>
-        <typeAlias type="com.portfolio.security.CustomUserDetails" alias="CustomUserDetails"/>
     </typeAliases>
 </configuration>

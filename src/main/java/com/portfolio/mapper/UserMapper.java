@@ -1,16 +1,13 @@
 package com.portfolio.mapper;
 
-import com.portfolio.domain.UserDetailsVO;
-import com.portfolio.domain.UserVO;
-import com.portfolio.security.CustomUserDetails;
-import org.springframework.security.core.userdetails.UserDetails;
+import com.portfolio.domain.CustomUserDetailsVO;
 
 public interface UserMapper {
 
-    void insert(UserVO userVO);
-    CustomUserDetails selectForAuth(String username);
-    UserVO select(String email);
-    void update(UserVO userVO);
+    void insert(CustomUserDetailsVO userVO);
+    CustomUserDetailsVO selectForAuth(String username);
+    CustomUserDetailsVO select(String email);
+    void update(CustomUserDetailsVO userVO);
     void delete(String userNo);
 
 }

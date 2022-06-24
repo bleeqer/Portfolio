@@ -134,7 +134,7 @@
                                     <%--Email input--%>
                                     <div>
                                         <div class="d-flex align-items-center input-container color-gray-dark rounded-1 p-2 border-gray-light hover-border-color-blue" style="min-height: 45px; transition: border 250ms ease-in-out; border: 1px solid transparent;">
-                                            <input class="input-focus"name="username" type="text" id="login-email" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your ID" autocomplete="off">
+                                            <input class="input-focus"name="email" type="text" id="login-email" style="width: 100%; outline: none; border: none; font-size: 15px; line-height: 1.4;" placeholder="Your ID" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>

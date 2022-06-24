@@ -1,4 +1,4 @@
-package com.portfolio.security;
+package com.portfolio.domain;
 
 
 import lombok.Getter;

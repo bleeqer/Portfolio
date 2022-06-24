@@ -4,12 +4,11 @@ import com.portfolio.commons.util.UploadFileUtils;
 import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.ImageVO;
 import com.portfolio.domain.QuestionVO;
-import com.portfolio.domain.UserVO;
+import com.portfolio.domain.CustomUserDetailsVO;
 import com.portfolio.service.AnswerService;
+import com.portfolio.service.CustomUserDetailsServiceImpl;
 import com.portfolio.service.QuestionService;
-import com.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ReactiveAdapterRegistry;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,8 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.*;
@@ -30,7 +27,7 @@ import java.util.*;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    CustomUserDetailsServiceImpl userService;
     @Autowired
     AnswerService answerService;
 
@@ -49,7 +46,7 @@ public class UserController {
     public String userProfile(@PathVariable String email, Model model) {
 
         // 유저 정보 가져오기
-        UserVO user = userService.select(email);
+        CustomUserDetailsVO user = userService.select(email);
 
         QuestionVO questionVO = new QuestionVO();
         AnswerVO answerVO = new AnswerVO();
@@ -77,7 +74,7 @@ public class UserController {
     public String userAnswers(@PathVariable String email, Model model) {
 
         // 유저 정보 가져오기
-        UserVO userVO = userService.select(email);
+        CustomUserDetailsVO userVO = userService.select(email);
 
 
         model.addAttribute("user", userVO);
@@ -125,10 +122,9 @@ public class UserController {
 
     @GetMapping("get")
     @ResponseBody
-    public ResponseEntity<UserVO> getUser(Principal principal) {
+    public ResponseEntity<CustomUserDetailsVO> getUser(Principal principal) {
 
-        UserVO userVO;
-
+        CustomUserDetailsVO userVO;
         try {
             userVO = userService.select(principal.getName());
 
@@ -138,12 +134,15 @@ public class UserController {
 
         }
 
+        System.out.println(userVO.getEmail());
+        System.out.println(userVO.getPhoto());
+
         return new ResponseEntity<>(userVO, HttpStatus.OK);
     }
 
     @PostMapping("create")
     @ResponseBody
-    public ResponseEntity<Void> createUser(UserVO userVO, MultipartHttpServletRequest multiRequest) throws IOException {
+    public ResponseEntity<Void> createUser(CustomUserDetailsVO userVO, MultipartHttpServletRequest multiRequest) throws IOException {
 
         // 프로필 이미지 업로드 후 업로드한 이미지 경로 담기
         List<String> photoPath = UploadFileUtils.uploadFile(multiRequest);
@@ -168,9 +167,12 @@ public class UserController {
     }
     @PostMapping("update")
     @ResponseBody
-    public ResponseEntity<String> editUser(UserVO userVO, MultipartHttpServletRequest multiRequest, Principal principal) throws IOException {
+    public ResponseEntity<String> editUser(CustomUserDetailsVO userVO, MultipartHttpServletRequest multiRequest, Principal principal) throws IOException {
 
         String message = "";
+
+    System.out.println(userVO.getEmail());
+    System.out.println(principal.getName());
 
         // 유저 불일치 시
         if (!principal.getName().equals(userVO.getEmail())) {
@@ -178,7 +180,7 @@ public class UserController {
             return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
         }
 
-        UserVO prevUser = userService.select(userVO.getEmail());
+        CustomUserDetailsVO prevUser = userService.select(userVO.getEmail());
 
         // 새로운 프로필 사진 업로드 후 경로 담기
         List<String> photoPath = UploadFileUtils.uploadFile(multiRequest);

@@ -1,4 +1,4 @@
-package com.portfolio.security;
+package com.portfolio.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,11 +11,14 @@ import java.util.Collection;
 
 @Setter
 @Getter
-public class CustomUserDetails implements UserDetails {
+public class CustomUserDetailsVO implements UserDetails {
 
     private String username;
     private String password;
+    private String name;
+    private String photo;
     private String authority;
+    private String occupation;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -46,4 +49,13 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public String getEmail() {
+        return username;
+    }
+
+    public void setEmail(String email) {
+        this.username = email;
+    }
+
 }

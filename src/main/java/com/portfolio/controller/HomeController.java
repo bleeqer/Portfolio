@@ -2,8 +2,8 @@ package com.portfolio.controller;
 
 import com.portfolio.domain.*;
 import com.portfolio.service.AnswerService;
+import com.portfolio.service.CustomUserDetailsServiceImpl;
 import com.portfolio.service.QuestionService;
-import com.portfolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +22,7 @@ public class HomeController {
     AnswerService answerService;
 
     @Autowired
-    UserService userService;
+    CustomUserDetailsServiceImpl userService;
 
     @GetMapping("/search")
     public String getSearchResults(@RequestParam String keyword, Model model) {

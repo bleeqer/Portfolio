@@ -11,12 +11,12 @@
         VALUES (#{email}, #{password}, #{name}, #{photo}, #{authority}, #{occupation})
     </insert>
 
-    <select id="selectForAuth" parameterType="String" resultType="CustomUserDetails">
+    <select id="selectForAuth" parameterType="String" resultType="UserVO">
         SELECT email as username, password, authority FROM TB_USER WHERE email=#{username}
     </select>
 
     <select id="select" parameterType="String" resultType="UserVO">
-        SELECT email, name, photo, occupation FROM TB_USER WHERE email = #{email}
+        SELECT email as username, name, photo, authority, occupation FROM TB_USER WHERE email = #{username}
     </select>
 
     <update id="update" parameterType="UserVO">

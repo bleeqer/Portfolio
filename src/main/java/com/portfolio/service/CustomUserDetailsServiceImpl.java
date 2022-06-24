@@ -1,21 +1,16 @@
-package com.portfolio.security;
+package com.portfolio.service;
 
 import com.portfolio.mapper.UserMapper;
+import com.portfolio.domain.CustomUserDetailsVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AccountExpiredException;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     UserMapper userMapper;
@@ -23,13 +18,35 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userId) throws AuthenticationException {
 
-        CustomUserDetails user = userMapper.selectForAuth(userId);
+        CustomUserDetailsVO user = userMapper.selectForAuth(userId);
 
         if (user == null) {
             throw new UsernameNotFoundException(userId);
         }
 
         return user;
+
+    }
+
+    public void create(CustomUserDetailsVO userVO) {
+
+        userMapper.insert(userVO);
+
+    }
+
+    public CustomUserDetailsVO select(String email) {
+        return userMapper.select(email);
+    }
+
+    public void update(CustomUserDetailsVO userVO) {
+
+        userMapper.update(userVO);
+
+    }
+
+    public void delete(String userNo) {
+
+        userMapper.delete(userNo);
 
     }
 

@@ -57,7 +57,7 @@ $('#search-button').click(function () {
 //     $('#question-modal').modal('show')
 // })
 
-$('#navbar-profile').attr('src', '/uploadedImages' + getUser().photo)
+$('#navbar-profile').attr('src', getUser().photo)
 
 
 function getUser() {
@@ -71,6 +71,8 @@ function getUser() {
         async: false,
         contentType: 'application/json',
         success: function (fetchedUser) {
+
+            fetchedUser.photo = '/uploadedImages' + fetchedUser.photo
             userInfo = fetchedUser
 
         },
