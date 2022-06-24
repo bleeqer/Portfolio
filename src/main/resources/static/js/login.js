@@ -98,15 +98,16 @@ $('#register-button').click(function () {
         contentType: false,
         processData: false,
         context: this,
-        success: function () {
+        success: function (resultMsg) {
 
-            alert("회원가입을 완료 했습니다.")
+            alert(resultMsg)
             $('#signUp-modal').modal('hide')
 
         },
-        error: function () {
+        error: function (resultMsg) {
 
-            alert("회원가입에 실패 했습니다.")
+            alert(resultMsg.responseText)
+
 
         }
     })

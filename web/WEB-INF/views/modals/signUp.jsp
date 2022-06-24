@@ -1,5 +1,3 @@
-
-
 <div id="signUp-modal" tabindex="-1" class="modal fade" aria-hidden="true" aria-labelledby="modal-title">
 
     <div class="d-flex flex-column modal-dialog border-grey rounded-6 border-all" style="top: calc(50% - 25px); transform: translateY(-50%); background-color: white !important; min-height: 400px; max-width: 90vw; width: 620px;">

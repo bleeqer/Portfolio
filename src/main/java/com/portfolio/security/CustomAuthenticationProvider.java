@@ -30,7 +30,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         CustomUserDetailsVO user = (CustomUserDetailsVO) userDetailsService.loadUserByUsername(userId);
         
         if (!matchPassword(password, user.getPassword())) {
+
             throw new BadCredentialsException(userId);
+
         }
 
         System.out.println(user.getAuthorities());

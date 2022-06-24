@@ -31,4 +31,12 @@
         DELETE FROM TB_USER WHERE user_id=#{userId}
     </delete>
 
+    <select id="checkExist" parameterType="string" resultType="boolean">
+
+        SELECT CASE WHEN COUNT(*) > 0 THEN 1 ELSE 0 END result
+        FROM tb_user
+        WHERE email = #{email}
+
+    </select>
+
 </mapper>

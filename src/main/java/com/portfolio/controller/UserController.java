@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.sql.SQLException;
 import java.util.*;
 
 
@@ -43,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping("profile/{email}")
-    public String userProfile(@PathVariable String email, Model model) {
+    public String userProfile(@PathVariable String email, Model model) throws SQLException, IllegalArgumentException {
 
         // 유저 정보 가져오기
         CustomUserDetailsVO user = userService.select(email);
@@ -60,6 +61,7 @@ public class UserController {
 
         // 전달 객체 타입과 총 갯수
         meta.put("type", "answers");
+
         meta.put("total", answerService.countAnswers(answerVO));
 
         // 유저가 작성한 답변-질문 페어 가져오기
@@ -71,11 +73,10 @@ public class UserController {
     }
 
     @GetMapping("profile/{email}/answers")
-    public String userAnswers(@PathVariable String email, Model model) {
+    public String userAnswers(@PathVariable String email, Model model) throws SQLException, IllegalArgumentException {
 
         // 유저 정보 가져오기
         CustomUserDetailsVO userVO = userService.select(email);
-
 
         model.addAttribute("user", userVO);
 
@@ -99,7 +100,7 @@ public class UserController {
     }
 
     @GetMapping("profile/{email}/questions")
-    public String userQuestions(@PathVariable String email, Model model) {
+    public String userQuestions(@PathVariable String email, Model model) throws SQLException, IllegalArgumentException {
 
         // 유저 정보 가져오기
         model.addAttribute("user", userService.select(email));
@@ -120,70 +121,96 @@ public class UserController {
         return "profile";
     }
 
-    @GetMapping("get")
+    @GetMapping(value="get", produces="application/json; charset=UTF-8")
     @ResponseBody
-    public ResponseEntity<CustomUserDetailsVO> getUser(Principal principal) {
+    public ResponseEntity<Object> getUser(Principal principal) {
+
+        if (principal.getName() == null) {
+            return new ResponseEntity<>("먼저 로그인 해주세요.", HttpStatus.BAD_REQUEST);
+        }
 
         CustomUserDetailsVO userVO;
+
         try {
+
             userVO = userService.select(principal.getName());
 
         } catch(Exception e) {
-            e.getStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+
 
         }
-
-        System.out.println(userVO.getEmail());
-        System.out.println(userVO.getPhoto());
 
         return new ResponseEntity<>(userVO, HttpStatus.OK);
     }
 
-    @PostMapping("create")
+    @PostMapping(value="create", produces="application/json; charset=UTF-8")
     @ResponseBody
-    public ResponseEntity<Void> createUser(CustomUserDetailsVO userVO, MultipartHttpServletRequest multiRequest) throws IOException {
+    public ResponseEntity<String> createUser(CustomUserDetailsVO userVO, MultipartHttpServletRequest multiRequest) {
 
         // 프로필 이미지 업로드 후 업로드한 이미지 경로 담기
-        List<String> photoPath = UploadFileUtils.uploadFile(multiRequest);
-        
+        try {
+            List<String> photoPath = UploadFileUtils.uploadFile(multiRequest);
+
+            // 업로드한 이미지 경로 셋팅
+            userVO.setPhoto(photoPath.get(0));
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
         // 해싱한 비밀번호로 교체
         userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
 
         userVO.setAuthority("ROLE_USER");
-        
-        // 업로드한 이미지 경로 셋팅
-        userVO.setPhoto(photoPath.get(0));
 
         try {
             userService.create(userVO);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
         }
 
-        catch(Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("회원가입에 성공했습니다.", HttpStatus.OK);
     }
-    @PostMapping("update")
+    @PostMapping(value="update", produces="application/json; charset=UTF-8")
     @ResponseBody
-    public ResponseEntity<String> editUser(CustomUserDetailsVO userVO, MultipartHttpServletRequest multiRequest, Principal principal) throws IOException {
+    public ResponseEntity<String> editUser(CustomUserDetailsVO userVO, MultipartHttpServletRequest multiRequest, Principal principal) {
 
-        String message = "";
-
-    System.out.println(userVO.getEmail());
-    System.out.println(principal.getName());
+        if (principal.getName() == null) {
+            return new ResponseEntity<>("먼저 로그인 해주세요.", HttpStatus.BAD_REQUEST);
+        }
 
         // 유저 불일치 시
         if (!principal.getName().equals(userVO.getEmail())) {
-            message = "사용자가 일치하지 않습니다.";
-            return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("사용자가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
         }
 
-        CustomUserDetailsVO prevUser = userService.select(userVO.getEmail());
+        CustomUserDetailsVO prevUser;
 
-        // 새로운 프로필 사진 업로드 후 경로 담기
-        List<String> photoPath = UploadFileUtils.uploadFile(multiRequest);
+        List<String> photoPath;
+
+        try {
+
+            prevUser = userService.select(userVO.getEmail());
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        try {
+
+            // 프로필 사진 업로드 후 경로 담기 (프로필 사진 업데이트 안했을 경우 빈 리스트 반환)
+            photoPath = UploadFileUtils.uploadFile(multiRequest);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
 
 
         // 프로필 이미지 변경했을 경우
@@ -194,7 +221,17 @@ public class UserController {
             imageVO.setImagePath(prevUser.getPhoto());
             List<ImageVO> imgList = new ArrayList<>();
             imgList.add(imageVO);
-            UploadFileUtils.deleteFile(multiRequest, imgList);
+
+            try {
+
+                // 프로필 사진 업로드 후 경로 담기 (프로필 사진 업데이트 안했을 경우 빈 리스트 반환)
+                UploadFileUtils.deleteFile(multiRequest, imgList);
+
+            } catch (Exception e) {
+
+                return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+            }
             userVO.setPhoto(photoPath.get(0));
 
         } else {
@@ -209,13 +246,13 @@ public class UserController {
         try {
 
             userService.update(userVO);
+
+        } catch (Exception e) {
+
+            new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+
         }
 
-        catch(Exception e) {
-            message = "사용자 정보 업데이트에 실패했습니다.";
-            new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("사용자 정보가 업데이트 되었습니다.", HttpStatus.OK);
     }
 }

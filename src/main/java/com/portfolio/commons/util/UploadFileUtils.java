@@ -1,6 +1,7 @@
 package com.portfolio.commons.util;
 
 import com.portfolio.domain.ImageVO;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.apache.tika.Tika;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -25,12 +26,16 @@ public class UploadFileUtils {
         for (MultipartFile mtf : mtfs) {
 
             if (!detectFileType(mtf)) {
-                System.out.println("이미지 파일 아님");
+                throw new IllegalArgumentException("이미지 파일이 아닙니다.");
             }
 
             // 파일 이름
             String originalFileName = mtf.getOriginalFilename();
-            System.out.println("파일이름: " + originalFileName);
+
+            if (originalFileName == null) {
+                throw new InternalException("이미지 업로드에 실패했습니다.");
+            }
+
             // 공백문자를 언더스코어로 교체하기
             originalFileName = originalFileName.replace(' ', '_');
 
@@ -51,17 +56,11 @@ public class UploadFileUtils {
             // 해당 경로가 없을경우 디렉토리를 생성
             if (!saveFolder.exists()) {
                 try{
-                    if(saveFolder.mkdirs()) {
-                        System.out.println("폴더가 생성되었습니다.");
-                    } else {
-                        System.out.println("폴더 생성에 실패했습니다.");
-                    }
+                    saveFolder.mkdirs();
                 }
                 catch(Exception e){
-                    e.getStackTrace();
+                    throw new IOException("이미지 업로드에 실패했습니다.");
                 }
-            } else {
-                System.out.println("이미 폴더가 생성되어 있습니다.");
             }
 
             File saveFullPath = new File(savePath + File.separator + fileName);
@@ -78,7 +77,7 @@ public class UploadFileUtils {
 
     }
 
-    public static void deleteFile(HttpServletRequest request, List<ImageVO> imgList) {
+    public static void deleteFile(HttpServletRequest request, List<ImageVO> imgList) throws IOException {
 
         String uploadPath = request.getSession().getServletContext().getRealPath(File.separator + "WEB-INF");
 
@@ -89,12 +88,13 @@ public class UploadFileUtils {
             File file = new File(filePath);
 
             if (file.exists()) {
-                boolean res = file.delete();
 
-                if (res) {
-                    System.out.println("파일 삭제 성공");
-                } else {
-                    System.out.println("파일 삭제 실패");
+                try{
+                    file.delete();
+
+                }
+                catch(Exception e){
+                    throw new IOException("이미지 업로드에 실패했습니다.");
                 }
             }
         }
@@ -114,26 +114,9 @@ public class UploadFileUtils {
 
         return datePath;
     }
-//    private static void makeDir(String path) {
-//
-//        File dir = new File(path);
-//
-//        if (!dir.exists()) {
-//            try {
-//                boolean result = dir.mkdir();
-//
-//                if (result) {
-//                    System.out.println("Directory created");
-//                } else {
-//                    System.out.println("Failed to create directory");
-//                }
-//            } catch (Exception e) {
-//                e.getStackTrace();
-//            }
-//        }
-//    }
 
     private static boolean detectFileType(MultipartFile mtf) throws IOException {
+
         Tika tika = new Tika();
 
         InputStream fileInputStream = mtf.getInputStream();
