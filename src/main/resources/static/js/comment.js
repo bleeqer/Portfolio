@@ -333,10 +333,10 @@ $('body').on('click', '.add-comment-button', function () {
         parentCoNo = 0
     }
 
-    const commentForm = $('.comment-form[data-ans-no="' + ansNo + '"]')
+    const commentForm = $('.comment-form[data-co-no="' + parentCoNo + '"][data-ans-no="' + ansNo + '"]')
 
     commentForm.find('input[name="parentCoNo"]').val(parentCoNo)
-
+    alert(commentForm.find('input[name="answerComment"]').val())
     if (!isCommentValid(commentForm)) {
         alert('내용을 입력해주세요.')
         return false
@@ -363,6 +363,11 @@ $('body').on('click', '.add-comment-button', function () {
             template.find('.comment').attr('data-ans-no', comment.ansNo)
             template.find('.comment').attr('data-co-no', comment.coNo)
             template.find('.comment').attr('data-parent-co-no', comment.parentCoNo)
+
+            template.find('.comment-form').attr('data-co-no', comment.coNo)
+            template.find('.comment-form').attr('data-ans-no', comment.ansNo)
+
+
 
             if (comment.level === 1) {
                 template.find('.comment-user-photo').css('width', 36)
@@ -395,9 +400,6 @@ $('body').on('click', '.add-comment-button', function () {
 
             }
 
-
-
-
             if (comment.parentCoNo === 0) { // 부모 댓글 없을 때 댓글리스트 맨 위에 추가
 
                 $(this).closest('.answer').find('.comment-list').prepend(template.html())
@@ -409,7 +411,8 @@ $('body').on('click', '.add-comment-button', function () {
                 $(this).parents('.comment-section').find('.comment').first().removeClass('border-top-gray')
 
             } else { // 부모 댓글 있을 때 부모 댓글의 바로 아래에 추가
-
+                console.log('parentCoNo 있음')
+                console.log(comment.parentCoNo)
                 // 댓글 추가
                 $('.comment[data-co-no="' + comment.parentCoNo + '"]').after(template.html())
 

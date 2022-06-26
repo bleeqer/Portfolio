@@ -34,6 +34,10 @@ public class CommentController {
 
         answerCommentService.insert(commentVO);
 
+        CommentVO comment = answerCommentService.select(commentVO.getCoNo());
+
+        System.out.println(comment.getAnswerComment());
+        System.out.println(comment.getParentCoNo());
 
         return new ResponseEntity<>(answerCommentService.select(commentVO.getCoNo()), HttpStatus.OK);
     }

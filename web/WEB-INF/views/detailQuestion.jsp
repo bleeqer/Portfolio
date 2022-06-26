@@ -517,7 +517,7 @@
                                                     <%--Comment input--%>
                                                 <div class="rounded-3 bg-black ms-2 py-1 px-3"
                                                      style="width: 100%;">
-                                                    <form class="comment-form" action="" data-ans-no="${answer.ansNo}">
+                                                    <form class="comment-form" action="" data-co-no="0" data-ans-no="${answer.ansNo}">
                                                         <input class="comment-text" type="text"
                                                                name="answerComment"
                                                                style="width: 100%; outline: none; border: none;"
