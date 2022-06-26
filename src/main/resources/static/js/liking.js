@@ -71,7 +71,7 @@ answerLikeHighlight('.answer')
 
 $('body').on('click', '.answer-like-button', function () {
 
-    const ansNo = $(this).data('ans-no')
+    const ansNo = $(this).closest('.answer').data('ans-no')
 
     $.ajax({
         url: '/answer/like',
@@ -83,20 +83,19 @@ $('body').on('click', '.answer-like-button', function () {
         context: this,
         success: function (result) {
 
-            if (result.likes === 0) {
+            if (result.likes <= 0) {
                 result.likes = ''
             }
 
-            if (result.dislikes === 0) {
+            if (result.dislikes <= 0) {
                 result.dislikes = ''
             }
 
             answerLikeHighlight('.pair')
             answerLikeHighlight('.answer')
 
-            $('.answer-like-cnt[data-ans-no="' + ansNo + '"]').html(result.likes)
-
-            $('.answer-dislike-cnt[data-ans-no="' + ansNo + '"]').html(result.dislikes)
+            $(this).find('.answer-like-cnt').html(result.likes)
+            $(this).find('.answer-dislike-cnt').html(result.dislikes)
 
         },
         error: function () {
@@ -108,7 +107,7 @@ $('body').on('click', '.answer-like-button', function () {
 
 $('body').on('click', '.answer-dislike-button', function () {
 
-    const ansNo = $(this).data('ans-no')
+    const ansNo = $(this).closest('.answer').data('ans-no')
 
     $.ajax({
         url: '/answer/dislike',
@@ -120,20 +119,19 @@ $('body').on('click', '.answer-dislike-button', function () {
         context: this,
         success: function (result) {
 
-            if (result.likes === 0) {
+            if (result.likes <= 0) {
                 result.likes = ''
             }
 
-            if (result.dislikes === 0) {
+            if (result.dislikes <= 0) {
                 result.dislikes = ''
             }
 
             answerLikeHighlight('.pair')
             answerLikeHighlight('.answer')
 
-            $('.answer-like-cnt[data-ans-no="' + ansNo + '"]').html(result.likes)
-
-            $('.answer-dislike-cnt[data-ans-no="' + ansNo + '"]').html(result.dislikes)
+            $(this).find('.answer-like-cnt').html(result.likes)
+            $(this).find('.answer-dislike-cnt').html(result.dislikes)
 
         },
         error: function () {
@@ -144,7 +142,7 @@ $('body').on('click', '.answer-dislike-button', function () {
 
 $('body').on('click', '.comment-like-button', function () {
 
-    const coNo = $(this).data('co-no')
+    const coNo = $(this).closest('.comment').data('co-no')
 
     $.ajax({
         url: '/comment/like',
@@ -164,10 +162,8 @@ $('body').on('click', '.comment-like-button', function () {
 
             commentLikeHighlight()
 
-            $('.comment-like-cnt[data-co-no="' + coNo + '"]').html(result.likes)
-
-            $('.comment-dislike-cnt[data-co-no="' + coNo + '"]').html(result.dislikes)
-
+            $(this).closest('.comment').find('.comment-like-cnt').html(result.likes)
+            $(this).closest('.comment').find('.comment-dislike-cnt').html(result.dislikes)
 
         },
         error: function () {
@@ -179,7 +175,7 @@ $('body').on('click', '.comment-like-button', function () {
 
 $('body').on('click', '.comment-dislike-button', function () {
 
-    const coNo = $(this).data('co-no')
+    const coNo = $(this).closest('.comment').data('co-no')
 
     $.ajax({
         url: '/comment/dislike',
@@ -201,9 +197,8 @@ $('body').on('click', '.comment-dislike-button', function () {
 
             commentLikeHighlight()
 
-            $('.comment-like-cnt[data-co-no="' + coNo + '"]').html(result.likes)
-
-            $('.comment-dislike-cnt[data-co-no="' + coNo + '"]').html(result.dislikes)
+            $(this).closest('.comment').find('.comment-like-cnt').html(result.likes)
+            $(this).closest('.comment').find('.comment-dislike-cnt').html(result.dislikes)
 
         },
         error: function () {

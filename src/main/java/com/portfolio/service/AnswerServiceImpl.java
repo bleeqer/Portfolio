@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -30,10 +31,15 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Transactional
     @Override
-    public long create(AnswerVO answerVO) {
+    public long create(AnswerVO answerVO) throws SQLException {
 
         // answerVO 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
-        answerMapper.insert(answerVO);
+        try {
+            answerMapper.insert(answerVO);
+
+        } catch (Exception e) {
+            throw new SQLException("답변 등록에 실패했습니다.");
+        }
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -42,8 +48,17 @@ public class AnswerServiceImpl implements AnswerService {
         // 답변여부 Y
         questionVO.setAnswered("Y");
 
+        try {
+
+            questionMapper.updateAnswered(questionVO);
+
+        } catch (Exception e) {
+
+            throw new SQLException("답변 등록에 실패했습니다.");
+
+        }
+
         // 답변여부 업데이트
-        questionMapper.updateAnswered(questionVO);
 
         // 이미지 경로 저장
         ImageVO imageVO = new ImageVO();
@@ -52,8 +67,15 @@ public class AnswerServiceImpl implements AnswerService {
 
             imageVO.setAnsNo(answerVO.getAnsNo());
             imageVO.setImagePath(path);
+            try {
 
-            imageMapper.insert(imageVO);
+                imageMapper.insert(imageVO);
+
+            } catch (Exception e) {
+
+                throw new SQLException("이미지를 첨부할 수 없습니다.");
+
+            }
 
         }
 
@@ -62,6 +84,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Override
     public AnswerVO select(long ansNo) {
+
         return answerMapper.select(ansNo);
     }
 

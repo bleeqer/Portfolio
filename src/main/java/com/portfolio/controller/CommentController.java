@@ -6,6 +6,8 @@ import com.portfolio.domain.CommentVO;
 import com.portfolio.domain.CommentLikeVO;
 import com.portfolio.service.AnswerCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,20 +25,17 @@ public class CommentController {
     AnswerCommentService answerCommentService;
 
     @PostMapping("create")
-    public String createComment(CommentVO commentVO, Principal principal, Model model) {
+    @ResponseBody
+    public ResponseEntity<Object> createComment(CommentVO commentVO, Principal principal) {
 
         commentVO.setUserEmail(principal.getName());
+        System.out.println(commentVO.getAnswerComment());
+        System.out.println(commentVO.getAnsNo());
 
         answerCommentService.insert(commentVO);
 
-        // commentTemplate 사용을 위해 comments list에 넣기
-        List<CommentVO> comments = new ArrayList<>();
 
-        comments.add(answerCommentService.select(commentVO.getCoNo()));
-
-        model.addAttribute("comments", comments);
-
-        return "templates/commentTemplate";
+        return new ResponseEntity<>(answerCommentService.select(commentVO.getCoNo()), HttpStatus.OK);
     }
 
     @GetMapping("select")

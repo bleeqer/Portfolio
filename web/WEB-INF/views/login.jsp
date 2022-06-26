@@ -63,6 +63,7 @@
 
 <%--<%@ include file="/WEB-INF/views/modals/userRegisterForm.jsp" %>--%>
 <body>
+
 <div>
     <div class="color-light-black" style="height: 100%; width: 100%; background-image: url('/static/img/login-background.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
         <div class="d-flex justify-content-center align-items-center" style="padding: 237px 0; height: 100%; width: 100%;">

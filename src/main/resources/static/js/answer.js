@@ -210,26 +210,47 @@ $('#add-answer-button').click(function () {
             xhr.setRequestHeader(header, token)
         },
         success: function (answer) {
+            let template = $('#answer-template')
 
-            const currentURL = window.location.pathname.split('/')[1]
+            template.attr('data-ans-no', answer.ansNo)
+            template.find('.comment-form').attr('data-ans-no', answer.ansNo)
 
-            if (currentURL === 'question') {
+            template.find('.answer-user-name').prepend(answer.userName)
+            template.find('.answer-user-occupation').prepend(answer.userOccupation)
+            template.find('.answer-reg-date').prepend(answer.regDate)
+            template.find('.answer-text').prepend(answer.answer)
+            template.find('.answer-user-photo').attr('src', '/uploadedImages' + answer.userPhoto)
 
-                // 등록된 답변을 답변 리스트에 추가
-                $('#answer-list').prepend(answer)
-                initAnswerPopover()
+            $('#answer-list').prepend(template.html())
 
-                // 답변글 존재여부 체크 후 no content 이미지 숨기기
-                if (isExist('.answer')) {
-                    $('#no-content').hide()
-                }
-
-            } else if (currentURL === 'questions') {
-
-                // 답변 등록된 질문글 숨기기
-                $('.question[data-ques-no="' + $('#answer-form #ques-no').val() + '"]').hide()
-                alert('답변이 성공적으로 등록되었습니다.')
+            if (answer.likes > 0) {
+                addedAnswer.find('.answer-like-cnt').prepend(answer.likes)
             }
+            if (answer.dislikes > 0) {
+                addedAnswer.find('.answer-dislike-cnt').prepend(answer.dislikes)
+            }
+
+            initAnswerPopover()
+
+            // const currentURL = window.location.pathname.split('/')[1]
+            //
+            // if (currentURL === 'question') {
+            //
+            //     // 등록된 답변을 답변 리스트에 추가
+            //     $('#answer-list').prepend(answer)
+            //     initAnswerPopover()
+            //
+            //     // 답변글 존재여부 체크 후 no content 이미지 숨기기
+            //     if (isExist('.answer')) {
+            //         $('#no-content').hide()
+            //     }
+            //
+            // } else if (currentURL === 'questions') {
+            //
+            //     // 답변 등록된 질문글 숨기기
+            //     $('.question[data-ques-no="' + $('#answer-form #ques-no').val() + '"]').hide()
+            //     alert('답변이 성공적으로 등록되었습니다.')
+            // }
 
             // 모달창 종료
             $('#answer-modal').modal('toggle')

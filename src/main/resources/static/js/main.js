@@ -31,7 +31,7 @@ $(document).on('click', '.share-button', function () {
 // 숨기기 버튼 클릭
 $(document).on('click', '.hide-button', function () {
 
-    $('.hide-object[data-ques-no="' + $(this).data('ques-no') + '"]').hide()
+    $('.hide-object[data-ques-no="' + $(this).closest('.pair').data('ques-no') + '"]').hide()
 
 })
 

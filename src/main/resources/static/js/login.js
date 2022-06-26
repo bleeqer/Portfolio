@@ -100,8 +100,8 @@ $('#register-button').click(function () {
         context: this,
         success: function (resultMsg) {
 
-            alert(resultMsg)
-            $('#signUp-modal').modal('hide')
+            // alert(resultMsg)
+            // $('#signUp-modal').modal('hide')
 
         },
         error: function (resultMsg) {

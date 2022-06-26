@@ -6,12 +6,15 @@ import com.portfolio.service.AnswerService;
 import com.portfolio.service.ImageService;
 import com.portfolio.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +33,8 @@ public class AnswerController {
     ImageService imageService;
 
     @PostMapping("create")
-    public String createAnswer(@RequestBody AnswerVO answerVO, Principal principal, Model model) {
+    @ResponseBody
+    public ResponseEntity<AnswerVO> createAnswer(@RequestBody AnswerVO answerVO, Principal principal) throws SQLException {
 
         // 작성자 셋팅
         answerVO.setUserEmail(principal.getName());
@@ -38,17 +42,8 @@ public class AnswerController {
         // 답변 생성 후 ansNo 받기
         long ansNo = answerService.create(answerVO);
 
-        // 생성된 답변 가져오기
-        AnswerVO createdAnswer = answerService.select(ansNo);
 
-        // answerTemplate 사용을 위해 answers list에 넣기
-        List<AnswerVO> answers = new ArrayList<>();
-
-        answers.add(createdAnswer);
-
-        model.addAttribute("answers", answers);
-
-        return "templates/answerTemplate";
+        return new ResponseEntity<>(answerService.select(ansNo), HttpStatus.OK);
 
     }
 

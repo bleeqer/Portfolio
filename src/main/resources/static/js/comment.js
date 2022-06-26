@@ -85,9 +85,10 @@ function deleteCommentTree (rootCoNo) {
 // 답변글의 댓글 보기
 $('body').on('click', '.comment-button', function () {
 
-    const ansNo = $(this).data('ans-no')
+    const ansNo = $(this).closest('.answer').data('ans-no')
 
-    const commentSection = $('.comment-section[data-ans-no="' + ansNo + '"]')
+    // const commentSection = $('.comment-section[data-ans-no="' + ansNo + '"]')
+    const commentSection = $(this).parents('.answer').find('.comment-section')
 
     commentSection.toggle()
 
@@ -320,14 +321,27 @@ $('.view-more-comments').click(function () {
 })
 
 // 댓글 등록
-$('.comment-section').on('click', '.add-comment-button', function () {
+$('body').on('click', '.add-comment-button', function () {
 
-    const commentForm = $(this).parent().find('.comment-form')
+
+    const ansNo = $(this).parents('.answer').data('ans-no')
+
+    let parentCoNo = $(this).closest('.comment').data('co-no')
+
+    if (typeof (parentCoNo) === 'undefined') {
+
+        parentCoNo = 0
+    }
+
+    const commentForm = $('.comment-form[data-ans-no="' + ansNo + '"]')
+
+    commentForm.find('input[name="parentCoNo"]').val(parentCoNo)
 
     if (!isCommentValid(commentForm)) {
         alert('내용을 입력해주세요.')
         return false
     }
+
     $.ajax({
         url: '/comment/create',
         type: 'POST',
@@ -339,26 +353,67 @@ $('.comment-section').on('click', '.add-comment-button', function () {
         success: function (comment) {
 
             // comment input 초기화
-            $(this).parent().find('.comment-form input[name="answerComment"]').val('')
+            commentForm.val('')
 
-            const parentCoNo = $(this).data('co-no')
+            const parentCoNo = $(this).closest('.comment').data('co-no')
 
-            if (parentCoNo === 0) { // 부모 댓글 없을 때 댓글리스트 맨 위에 추가
+            let template = $('#comment-template')
 
-                $(this).parents('.comment-section').find('.comment-list').prepend(comment)
+            template.find('.comment').attr('data-co-level', comment.level)
+            template.find('.comment').attr('data-ans-no', comment.ansNo)
+            template.find('.comment').attr('data-co-no', comment.coNo)
+            template.find('.comment').attr('data-parent-co-no', comment.parentCoNo)
 
-                // 모든 루트 댓글 border-top 추가 (border-top이 없던 첫번째 댓글이 두번째 댓글이 되므로)
+            if (comment.level === 1) {
+                template.find('.comment-user-photo').css('width', 36)
+                template.find('.comment-user-photo').css('height', 36)
+
+            } else {
+                template.find('.comment-user-photo').css('width', 24)
+                template.find('.comment-user-photo').css('height', 24)
+
+            }
+
+            template.find('.comment-user-photo').attr('src', '/uploadedImages' + comment.userPhoto)
+            template.find('.comment-text p').html(comment.answerComment)
+            template.find('.comment-user-name').html(comment.userName)
+            template.find('.comment-reg-date').html(comment.regDate)
+
+            if (comment.level === 2) {
+
+                template.find('.comment').css('padding-left', '42px')
+
+            } else if (comment.level > 2) {
+
+                const padding = (comment.level - 2) * 36 + 42
+                template.find('.comment').css('padding-left', padding + 'px')
+
+            } else {
+
+                template.find('.comment-user-photo').css('height', '36px')
+                template.find('.comment-user-photo').css('width', '36px')
+
+            }
+
+
+
+
+            if (comment.parentCoNo === 0) { // 부모 댓글 없을 때 댓글리스트 맨 위에 추가
+
+                $(this).closest('.answer').find('.comment-list').prepend(template.html())
+
+                // 모든 루트 댓글 border-top 추가 (border-top이 없던 첫번째 댓글이 두번째 댓글이 되므로 기존 첫번째 댓글에 border-top 추가
                 $(this).parents('.comment-section').find('.comment').addClass('border-top-gray')
 
-                // 첫번째 댓글 border-top 삭제
+                // 새로 추가된 첫번째 댓글 border-top 삭제
                 $(this).parents('.comment-section').find('.comment').first().removeClass('border-top-gray')
 
             } else { // 부모 댓글 있을 때 부모 댓글의 바로 아래에 추가
 
                 // 댓글 추가
-                $('.comment[data-co-no="' + parentCoNo + '"]').after(comment)
+                $('.comment[data-co-no="' + comment.parentCoNo + '"]').after(template.html())
 
-                // 추가한 댓글의 level이 1보다 크면 숨겨지므로 수동으로 보여주기
+                // // 추가한 댓글의 level이 1보다 크면 숨겨지므로 수동으로 보여주기
                 $('.comment[data-parent-co-no="' + parentCoNo + '"]').show()
 
             }

@@ -5,11 +5,12 @@ import com.portfolio.domain.AnswerLikeVO;
 import com.portfolio.domain.QAPairVO;
 import com.portfolio.domain.QuestionVO;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
 public interface AnswerService {
-    long create(AnswerVO answerVO);
+    long create(AnswerVO answerVO) throws SQLException;
     AnswerVO select(long ansNo);
     List<AnswerVO> selectAnswers(AnswerVO answerVO);
     long countAnswers(AnswerVO answerVO);
