@@ -149,6 +149,13 @@ function addComment (comment) {
     template.find('.comment-popover-item').attr('data-co-no', comment.coNo)
     template.find('.comment-popover-item').attr('data-ans-no', comment.ansNo)
 
+    // 로그인 유저와 댓글 작성자가 같을 때 옵션 버튼 활성화
+    if ($('#logged-in-user').val() !== comment.userEmail) {
+        template.find('.comment-option-button').hide()
+    } else {
+        template.find('.comment-option-button').show()
+    }
+
     // 계층에 따른 설정
     if (comment.level === 1) {
 

@@ -1058,22 +1058,22 @@
                                     </div>
                                 </div>
                                 <%--Three dots--%>
-                                <div>
-                                    <a tabindex="0" class="comment-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
-                                        <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
-                                            </path>
-                                        </svg>
-                                        <div class="comment-option-popover-content" style="display: none;">
-                                            <div class="d-flex comment-popover-item" data-co-level="" data-ans-no="" data-co-no="" data-parent-co-no="" data-option-type="Edit">
-                                                <div class="py-1 px-3">Edit</div>
+                                <div class="comment-option-button">
+                                        <a tabindex="0" class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                            <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z" class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
+                                                </path>
+                                            </svg>
+                                            <div class="comment-option-popover-content" style="display: none;">
+                                                <div class="d-flex comment-popover-item" data-co-level="" data-ans-no="" data-co-no="" data-parent-co-no="" data-option-type="Edit">
+                                                    <div class="py-1 px-3">Edit</div>
+                                                </div>
+                                                <div class="d-flex comment-popover-item" data-co-level="" data-ans-no="" data-co-no="" data-parent-co-no="" data-option-type="Delete">
+                                                    <div class="py-1 px-3">Delete</div>
+                                                </div>
                                             </div>
-                                            <div class="d-flex comment-popover-item" data-co-level="" data-ans-no="" data-co-no="" data-parent-co-no="" data-option-type="Delete">
-                                                <div class="py-1 px-3">Delete</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                        </a>
+                                    </div>
 
                             </div>
                         </div>
@@ -1158,6 +1158,9 @@
 
 <%@ include file="/WEB-INF/views/modals/question.jsp" %>
 <%@ include file="/WEB-INF/views/modals/answer.jsp" %>
+
+<input id="logged-in-user" type="hidden" value="${user}">
+
 
 <script src="/static/js/utils.js"></script>
 <script src="/static/js/comment.js"></script>
