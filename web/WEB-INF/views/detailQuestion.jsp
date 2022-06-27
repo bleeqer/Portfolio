@@ -898,17 +898,7 @@
 
 </div>
 <div id="comment-template" style="display: none;">
-    <div class="comment py-1"
-         data-co-level=""
-         data-ans-no=""
-         data-co-no=""
-         data-parent-co-no=""
-         style="
-         <c:if test="${comment.level > 1}">display: none;</c:if>
-         <c:choose>
-         <c:when test="${comment.level == 2}">padding-left: 42px</c:when>
-         <c:when test="${comment.level > 2}">padding-left: calc(${(comment.level - 2) * 36}px + 42px)</c:when>
-         </c:choose>;">
+    <div class="comment py-1">
 
         <%--Comment node--%>
         <div class="d-flex flex-column">
@@ -1128,11 +1118,9 @@
                     </form>
                 </div>
 
-                <sec:authorize access="isAuthenticated()">
-                    <div class="add-comment-button rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;" data-co-level="" data-co-no="" data-parent-co-no="" data-ans-no="">
-                        Reply
-                    </div>
-                </sec:authorize>
+                <div class="add-comment-button rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;" data-co-level="" data-co-no="" data-parent-co-no="" data-ans-no="">
+                    Reply
+                </div>
             </div>
         </div>
 

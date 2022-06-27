@@ -29,15 +29,8 @@ public class CommentController {
     public ResponseEntity<Object> createComment(CommentVO commentVO, Principal principal) {
 
         commentVO.setUserEmail(principal.getName());
-        System.out.println(commentVO.getAnswerComment());
-        System.out.println(commentVO.getAnsNo());
 
         answerCommentService.insert(commentVO);
-
-        CommentVO comment = answerCommentService.select(commentVO.getCoNo());
-
-        System.out.println(comment.getAnswerComment());
-        System.out.println(comment.getParentCoNo());
 
         return new ResponseEntity<>(answerCommentService.select(commentVO.getCoNo()), HttpStatus.OK);
     }
@@ -74,22 +67,27 @@ public class CommentController {
     }
 
     @GetMapping("")
-    public String getComments(CommentVO commentVO, Model model) {
+    public ResponseEntity<List<CommentVO>> getComments(CommentVO commentVO) {
 
         List<CommentVO> comments = answerCommentService.selectList(commentVO);
 
-        long lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
-
-        model.addAttribute("comments", comments);
-
-        model.addAttribute("isLast", "N");
-
-        // 마지막 댓글일 시 isLast = Y
-        if (!comments.isEmpty() && comments.get(comments.size() - 1).getCoNo() >= lastCoNo) {
-            model.addAttribute("isLast", "Y");
+        for (CommentVO co : comments) {
+            System.out.println(co.getAnswerComment());
+            System.out.println(co.getUserEmail());
+            System.out.println(co.getParentCoNo());
         }
 
-        return "templates/commentTemplate";
+//        long lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
+
+
+//        model.addAttribute("isLast", "N");
+//
+//        // 마지막 댓글일 시 isLast = Y
+//        if (!comments.isEmpty() && comments.get(comments.size() - 1).getCoNo() >= lastCoNo) {
+//            model.addAttribute("isLast", "Y");
+//        }
+
+        return new ResponseEntity<>(comments, HttpStatus.OK);
 
     }
 
