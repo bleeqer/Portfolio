@@ -457,7 +457,7 @@
 
                                                                                 <%--Comment count--%>
                                                                             <div class="d-flex align-items-center justify-content-center color-gray">
-    <%--                                                                                ${answer.answerCommentCnt}--%>
+                                                                                ${answer.commentCnt}
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -1034,6 +1034,7 @@
 
                                             <%--Comment count--%>
                                             <div class="comment-count d-flex align-items-center justify-content-center color-gray">
+
                                             </div>
                                         </div>
                                     </div>

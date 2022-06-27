@@ -39,6 +39,9 @@ function getComments(data) {
             // option popover 초기화
             initCommentPopover()
 
+            // 댓글마다 like/dislike 여부 조회해서 highlight 하기
+            commentLikeHighlight()
+
             // 자식 댓글 카운트 및 셋팅
             countChildComments()
 
@@ -144,6 +147,14 @@ function addComment (comment) {
     template.find('.comment-text p').html(comment.answerComment)
     template.find('.comment-user-name').html(comment.userName)
     template.find('.comment-reg-date').html(comment.regDate)
+
+    if (comment.likeCnt > 0) {
+        template.find('.comment-like-cnt').html(comment.likeCnt)
+    }
+
+    if (comment.dislikeCnt > 0) {
+        template.find('.comment-dislike-cnt').html(comment.dislikeCnt)
+    }
 
     // comment option popover 셋팅
     template.find('.comment-popover-item').attr('data-co-no', comment.coNo)
