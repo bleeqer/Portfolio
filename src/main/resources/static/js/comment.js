@@ -71,7 +71,7 @@ function recursiveCountChildComments(coNo) {
 
     // 자식 댓글 있다면 순회하며 함수 재귀 실행(자식 댓글이 0개일 때까지)
     $.each(childComments, function () {
-        countChildComments($(this).data('co-no'))
+        recursiveCountChildComments($(this).data('co-no'))
     })
 }
 
@@ -87,6 +87,7 @@ function deleteCommentTree (rootCoNo) {
     }
 }
 
+// 댓글 보기, 추가 시 border-top-gray 리셋
 function resetBorderTop () {
 
     $('.comment[data-co-level="1"]').addClass('border-top-gray')
@@ -97,55 +98,56 @@ function resetBorderTop () {
 function addComment (comment) {
 
     let template = $('#comment-template')
-
+    
+    // comment data 속성 셋팅
     template.find('.comment').attr('data-co-level', comment.level)
     template.find('.comment').attr('data-ans-no', comment.ansNo)
     template.find('.comment').attr('data-co-no', comment.coNo)
     template.find('.comment').attr('data-parent-co-no', comment.parentCoNo)
-
     template.find('.comment-form').attr('data-co-no', comment.coNo)
     template.find('.comment-form').attr('data-ans-no', comment.ansNo)
+    
+    // comment 셋팅
     template.find('.comment-user-photo').attr('src', '/uploadedImages' + comment.userPhoto)
     template.find('.comment-text p').html(comment.answerComment)
     template.find('.comment-user-name').html(comment.userName)
     template.find('.comment-reg-date').html(comment.regDate)
 
-
-    // 계층에 따른 사진 크기 조절
+    // 계층에 따른 설정
     if (comment.level === 1) {
+
+        // 사진 크기 조절
         template.find('.comment-user-photo').css('width', 36)
         template.find('.comment-user-photo').css('height', 36)
 
-    } else {
-        template.find('.comment-user-photo').css('width', 24)
-        template.find('.comment-user-photo').css('height', 24)
-    }
-
-    // 계층에 따른 left padding 조절
-    if (comment.level === 1) {
+        // 왼쪽 패딩 조절
         template.find('.comment').show()
         template.find('.comment').css('padding-left', 0)
-        template.find('.comment-user-photo').css('width', 36)
-        template.find('.comment-user-photo').css('height', 36)
 
+        // 댓글 추가
         const answer = $('.answer[data-ans-no="' + comment.ansNo + '"]')
         answer.find('.comment-list').prepend(template.html())
 
-    } else if (comment.level > 1) {
+    } else {
+        
+        // 사진 크기 조절
+        template.find('.comment-user-photo').css('width', 24)
+        template.find('.comment-user-photo').css('height', 24)
+        
+        // 왼쪽 패딩 조절
         const padding = (comment.level - 2) * 36 + 42
         template.find('.comment').css('padding-left', padding + 'px')
-
+        
+        // 하위 댓글이므로 숨김 후 추가
         template.find('.comment').hide()
         $('.comment[data-co-no="' + comment.parentCoNo + '"]').after(template.html())
     }
 
-    // popover 초기화
+    // option popover 초기화
     initCommentPopover()
 
     // 해당 댓글의 부모 댓글의 comment-count 업데이트
     countChildComments(comment.parentCoNo)
-
-
 
 }
 
@@ -165,20 +167,7 @@ $('body').on('click', '.comment-button', function () {
 
         commentSection.find('.comment-list').html(getComments(data))
 
-        // 첫번째 댓글 border-top 지우기
-        // commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
-
-        // commentSection.find('.view-more-comments').parent().removeClass('hidden')
-        //
-        // // 마지막 댓글일 경우, 댓글이 없을 경우 댓글 더보기 버튼 숨기기
-        // if (commentSection.find('.last-checker').last().data('is-last') === "Y" || commentSection.find('.comment').length < 1) {
-        //
-        //     commentSection.find('.view-more-comments').parent().addClass('hidden')
-        // }
-
-        $.each(commentSection.find('.comment'), function (index, item) {
-            recursiveCountChildComments($(item).data('co-no'))
-        })
+        recursiveCountChildComments($('.comment').data('co-no'))
 
         // popover 초기화
         initCommentPopover()
