@@ -56,7 +56,7 @@ function getComments(data, more=false) {
 }
 
 function isCommentValid(formEl) {
-    return typeof (formEl.find('.comment-text').val()) !== 'undefined';
+    return typeof (formEl.find('input[name="answerComment"]').val()) !== 'undefined';
 }
 
 // 자식 댓글 갯수 업데이트
@@ -147,6 +147,9 @@ function addComment (comment, more=false) {
     template.find('.comment-user-name').html(comment.userName)
     template.find('.comment-reg-date').html(comment.regDate)
 
+    // comment option popover 셋팅
+    template.find('.comment-popover-item').attr('data-co-no', comment.coNo)
+
     // 계층에 따른 설정
     if (comment.level === 1) {
 
@@ -160,7 +163,9 @@ function addComment (comment, more=false) {
 
         // 댓글의 답변글
         const answer = $('.answer[data-ans-no="' + comment.ansNo + '"]')
-        
+
+        template.find('.comment .reply-input-container').hide()
+
         // 더보기일 경우 코멘트 리스트 맨 마지막에 추가
         if (more) {
             answer.find('.comment-list').append(template.html())
@@ -182,6 +187,7 @@ function addComment (comment, more=false) {
         
         // 하위 댓글이므로 숨김 후 부모댓글 바로 아래에 추가
         template.find('.comment').hide()
+        template.find('.comment .reply-input-container').hide()
         $('.comment[data-co-no="' + comment.parentCoNo + '"]').after(template.html())
     }
 
@@ -249,20 +255,22 @@ $(document).on('click', '.comment-popover-item', function () {
 
     else if (optionType === 'Edit') {
 
-        $('.comment-text[data-co-no="' + coNo + '"]').hide()
-        $('.comment-footer[data-co-no="' + coNo + '"]').hide()
-        $('.comment-edit-container[data-co-no="' + coNo + '"]').show()
+        const comment = $('.comment[data-co-no="' + coNo + '"]')
+
+        comment.find('.comment-text').hide()
+        comment.find('.comment-footer').hide()
+        comment.find('.comment-edit-container').show()
 
         $.ajax({
             type: 'GET',
             url: '/comment/select',
             data: {coNo: coNo},
             contentType: 'application/json',
-            success: function (comment) {
+            success: function (originalComment) {
 
-                $('.comment-edit-form[data-co-no="' + comment.coNo + '"] input#comment-edit-input').val(comment.answerComment)
-                $('.comment-edit-form[data-co-no="' + comment.coNo + '"] input#co-no').val(comment.coNo)
-                $('.comment-edit-form[data-co-no="' + comment.coNo + '"] input#user-email').val(comment.userEmail)
+                comment.find('.edit-comment-text').val(originalComment.answerComment)
+                comment.find('.co-no').val(originalComment.coNo)
+                comment.find('.user-email').val(originalComment.userEmail)
 
             },
             error: function () {
@@ -277,8 +285,9 @@ $(document).on('click', '.comment-popover-item', function () {
 
 $('.comment-section').on('click', '.comment-edit-submit-button', function () {
 
-    const coNo = $(this).data('co-no')
-    const commentForm = $('.comment-edit-form[data-co-no="' + coNo + '"]')
+    const comment = $(this).closest('.comment')
+    const commentForm = comment.find('.comment-edit-form')
+
 
     if (!isCommentValid(commentForm)) {
         alert('내용을 입력해주세요.')
@@ -289,14 +298,13 @@ $('.comment-section').on('click', '.comment-edit-submit-button', function () {
         url: '/comment/update',
         type: 'POST',
         data: commentForm.serialize(),
-        success: function (comment) {
-
-            $('.comment-text[data-co-no="' + coNo + '"]').show()
-            $('.comment-footer[data-co-no="' + coNo + '"]').show()
-            $('.comment-edit-container[data-co-no="' + coNo + '"]').hide()
+        success: function (updatedComment) {
+            comment.find('.comment-text').show()
+            comment.find('.comment-footer').show()
+            comment.find('.comment-edit-container').hide()
 
             // 수정된 댓글 내용으로 바꾸기
-            $('.comment-text[data-co-no="' + coNo + '"] p').html(comment.answerComment)
+            comment.find('.comment-text').html(updatedComment.answerComment)
 
         }
     })
@@ -381,12 +389,13 @@ $('body').on('click', '.view-more-comments', function () {
 
     const lastCoNo = getLastCoNo(ansNo)
 
-    console.log(isLastComment(lastCoNo, ansNo))
+    // 마지막 댓글 여부 체크 후 맞다면 더보기 버튼 숨김
     if (isLastComment(lastCoNo, ansNo) === true) {
         $(this).addClass('hidden')
+
+        return false
     }
 
-    console.log(lastCoNo)
     getComments({ansNo: ansNo,
                  coNo: lastCoNo},
                 true)
@@ -429,6 +438,9 @@ $('body').on('click', '.add-comment-button', function () {
 
             // 댓글 border-top-gray 리셋
             resetBorderTop()
+
+            // option popover 초기화
+            initCommentPopover()
 
             // 자식 댓글 카운트 및 셋팅
             countChildComments()

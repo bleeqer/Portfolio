@@ -907,7 +907,7 @@
             <div class="d-flex">
 
                 <%--Profile pic--%>
-                <div>
+                <div class="pt-1">
                     <div>
                         <img class="comment-user-photo rounded-circle" src="" alt="" style="height: 36px; width: 36px;">
                     </div>
@@ -1083,9 +1083,9 @@
                         <div>
                             <div class="rounded-6 bg-black px-3 border-gray mt-1" style="width: 100%; padding-top: 7px; padding-bottom: 7px;">
                                 <form class="comment-edit-form" action="" style="line-height: 0;" data-co-no="">
-                                    <input id="comment-edit-input" type="text" name="answerComment" style="height: 22px; border: none; outline: none; width: 100%; font-size: 15px; line-height: 22px;">
-                                    <input id="co-no" type="hidden" name="coNo" value="">
-                                    <input id="user-email" type="hidden" name="userEmail" value="">
+                                    <input class="edit-comment-text" type="text" name="answerComment" style="height: 22px; border: none; outline: none; width: 100%; font-size: 15px; line-height: 22px;">
+                                    <input class="co-no" type="hidden" name="coNo" value="">
+                                    <input class="user-email" type="hidden" name="userEmail" value="">
                                     <sec:csrfInput/>
                                 </form>
                             </div>
