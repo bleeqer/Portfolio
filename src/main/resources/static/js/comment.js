@@ -16,9 +16,8 @@ function initCommentPopover() {
 
 
 // 댓글 가져오기
-function getComments(data, more=false) {
+function getComments(data) {
 // 댓글 더 불러오기에서 사용 시 more에 true 전달할 것(더 불러오기는 댓글 리스트 맨 아래에 추가)
-
     let comments
 
     console.log(data)
@@ -31,9 +30,8 @@ function getComments(data, more=false) {
         data : data,
         // data : data,
         success: function (comments) {
-            console.log(comments)
             comments.forEach(function (comment) {
-                addComment(comment, more)
+                addComment(comment)
             })
 
             resetBorderTop()
@@ -129,7 +127,7 @@ function resetBorderTop () {
 }
 
 // 템플릿에 전달받은 댓글 데이터 세팅 후 화면에 삽입
-function addComment (comment, more=false) {
+function addComment (comment) {
 
     let template = $('#comment-template')
     
@@ -168,13 +166,13 @@ function addComment (comment, more=false) {
         template.find('.comment .reply-input-container').hide()
 
         // 더보기일 경우 코멘트 리스트 맨 마지막에 추가
-        if (more) {
-            answer.find('.comment-list').append(template.html())
-
-        // 더보기 아닐 경우 코멘트 리스트 맨 위에 추가
-        } else {
-            answer.find('.comment-list').prepend(template.html())
-        }
+        // if (more) {
+        answer.find('.comment-list').append(template.html())
+        //
+        // // 더보기 아닐 경우 코멘트 리스트 맨 위에 추가
+        // } else {
+        //     answer.find('.comment-list').prepend(template.html())
+        // }
 
     } else {
         
