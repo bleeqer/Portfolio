@@ -35,9 +35,6 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
         // comment_cnt 더하기 갯수 1
         map.put("coCnt", 1L);
 
-        // 코멘트 갯수 업데이트
-        answerMapper.updateCommentCnt(map);
-
         answerCommentMapper.insert(commentVO);
 
     }
@@ -70,18 +67,8 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     @Override
     public void delete(CommentVO commentVO) {
 
-        // 코멘트 트리 삭제하고 삭제된 row 갯수 반환
-        long res = answerCommentMapper.delete(commentVO.getCoNo());
+        answerCommentMapper.delete(commentVO.getCoNo());
 
-        HashMap<String, Long> map = new HashMap<>();
-
-        // 답변글 번호
-        map.put("ansNo", commentVO.getAnsNo());
-
-        // 삭제된 댓글 갯수 음수 변환하여 매핑
-        map.put("coCnt", -res);
-
-        answerMapper.updateCommentCnt(map);
     }
     public Map<String, Long> addLike(CommentLikeVO likeVO) {
 

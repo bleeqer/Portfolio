@@ -36,7 +36,6 @@ function getComments(data, more=false) {
                 addComment(comment, more)
             })
 
-
             resetBorderTop()
 
             // option popover 초기화
@@ -83,13 +82,14 @@ function countChildComments() {
 // root 댓글 및 하위댓글 모두 지우기
 function deleteCommentTree (rootCoNo) {
 
-    // 해당 댓글 지우기
-    $('.comment[data-co-no="' + rootCoNo + '"]').remove()
-
-    // 해당 댓글을 부모 댓글로 가지는 댓글 지우기
-    if (typeof rootCoNo !== 'undefined') {
-        deleteCommentTree($('.comment[data-parent-co-no="' + rootCoNo + '"]').data('co-no'))
+    if (typeof rootCoNo === 'undefined') {
+        return
     }
+
+    // 해당 댓글 지우기
+    $('.comment-section .comment[data-co-no="' + rootCoNo + '"]').remove()
+
+    deleteCommentTree($('.comment-section .comment[data-parent-co-no="' + rootCoNo + '"]').data('co-no'))
 }
 
 // 마지막 댓글 번호 반환
@@ -149,6 +149,7 @@ function addComment (comment, more=false) {
 
     // comment option popover 셋팅
     template.find('.comment-popover-item').attr('data-co-no', comment.coNo)
+    template.find('.comment-popover-item').attr('data-ans-no', comment.ansNo)
 
     // 계층에 따른 설정
     if (comment.level === 1) {

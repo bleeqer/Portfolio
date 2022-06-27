@@ -129,52 +129,6 @@
 
     </select>
 
-<!--    <select id="selectMoreList" parameterType="map" resultMap="AnswerReplyResultMap">-->
-<!--        SELECT LEVEL, ANS_NO, COMMENT_NO, PARENT_COMMENT_NO, CONTENT, WRITER, LIKE_CNT, REG_DATE FROM TB_ANS_COMMENT-->
-<!--            START WITH COMMENT_NO IN (-->
-<!--                                        SELECT COMMENT_NO-->
-<!--                                        FROM (-->
-<!--                                                SELECT COMMENT_NO-->
-<!--                                                FROM TB_ANS_COMMENT-->
-<!--                                                WHERE co_no=#{coNo} AND COMMENT_NO<![CDATA[>]]>#{replyNo} AND PARENT_COMMENT_NO=0-->
-<!--                                                ORDER BY COMMENT_NO-->
-<!--                                             )-->
-<!--                                        WHERE rownum<![CDATA[<=]]>4-->
-<!--                                        )-->
-<!--            CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO-->
-<!--            ORDER SIBLINGS BY COMMENT_NO ASC-->
-<!--    </select>-->
-
-<!--&lt;!&ndash;    <select id="selectNestedMaxOrder" resultType="long" parameterType="long">&ndash;&gt;-->
-<!--&lt;!&ndash;        SELECT NVL(MAX(comment_order), 0) FROM TB_ANS_COMMENT WHERE parent_comment_no=#{parentCommentNo}&ndash;&gt;-->
-<!--&lt;!&ndash;    </select>&ndash;&gt;-->
-
-<!--&lt;!&ndash;    <select id="selectMaxOrder" resultType="long" parameterType="long">&ndash;&gt;-->
-<!--&lt;!&ndash;        SELECT NVL(MAX(comment_order), 0) FROM TB_ANS_COMMENT&ndash;&gt;-->
-<!--&lt;!&ndash;    </select>&ndash;&gt;-->
-
-<!--    <update id="update" parameterType="AnswerReplyVO">-->
-<!--        UPDATE TB_ANS_COMMENT SET content = #{content}-->
-<!--        WHERE comment_no=#{replyNo}-->
-<!--    </update>-->
-
-<!--    <delete id="delete" statementType="CALLABLE" parameterType="hashmap">-->
-<!--        {-->
-<!--            CALL PROC_DELETE_COMMENT(-->
-<!--                #{replyNo}-->
-<!--            )-->
-<!--        }-->
-<!--    </delete>-->
-
-<!--    <select id="selectAll" resultType="AnswerReplyVO">-->
-<!--        SELECT * FROM TB_ANS_COMMENT-->
-<!--    </select>-->
-
-<!--    <update id="addLike" parameterType="long">-->
-<!--        UPDATE TB_ANS_COMMENT SET like_cnt=like_cnt + 1-->
-<!--        WHERE comment_no=#{replyNo}-->
-<!--    </update>-->
-
     <resultMap id="AnswerCommentResultMap" type="CommentVO">
         <id column="level" property="level"/>
         <id column="co_no" property="coNo"/>

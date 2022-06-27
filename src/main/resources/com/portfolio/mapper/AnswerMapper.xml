@@ -66,7 +66,7 @@
             ANS.ques_no,
             ANS.answer,
             ANS.reg_date,
-            ANS.comment_cnt,
+            (SELECT COUNT(*) FROM tb_answer_comment WHERE ans_no = ANS.ans_no) comment_cnt,
             (SELECT NVL(SUM(CASE WHEN REC.like_type = 'UP' THEN 1 ELSE 0 END), 0) likes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) likes,
             (SELECT NVL(SUM(CASE WHEN REC.like_type = 'DOWN' THEN 1 ELSE 0 END), 0) likes FROM tb_answer_like_rec REC WHERE REC.ans_no = ANS.ans_no) dislikes,
             U.email,
@@ -139,11 +139,6 @@
                NVL(SUM(CASE WHEN like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes
         FROM tb_answer_like_rec WHERE ans_no = #{ansNo}
     </select>
-
-    <update id="updateCommentCnt" parameterType="map">
-        UPDATE tb_answer SET comment_cnt = comment_cnt + #{coCnt}
-        WHERE ans_no = #{ansNo}
-    </update>
 
     <select id="checkAnswered" parameterType="QuestionVO" resultType="boolean">
 

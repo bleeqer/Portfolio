@@ -13,13 +13,11 @@ public interface AnswerMapper {
     void delete(long ansNo);
     List<AnswerVO> selectAnswers(AnswerVO answerVO);
     long countAnswers(AnswerVO answerVO);
-//    List<QAPairVO> selectAnsweredPairByUser(String email);
     long addLike(AnswerLikeVO likeVO);
     long deleteLike(AnswerLikeVO likeVO);
     AnswerLikeVO findLike(AnswerLikeVO likeVO);
     long updateLike(AnswerLikeVO likeVO);
     Map<String, Long> countLike(long ansNo);
-    void updateCommentCnt(Map<String, Long> map);
     boolean checkAnswered(QuestionVO questionVO);
     AnswerLikeVO checkLiked(AnswerVO answerVO);
 
