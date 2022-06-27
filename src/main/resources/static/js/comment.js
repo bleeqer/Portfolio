@@ -31,7 +31,15 @@ function getComments(data) {
             comments.forEach(function (comment) {
                 addComment(comment)
             })
+
+
             resetBorderTop()
+
+            // option popover 초기화
+            initCommentPopover()
+
+            // 자식 댓글 카운트 및 셋팅
+            countChildComments()
 
 
         },
@@ -47,32 +55,24 @@ function isCommentValid(formEl) {
     return typeof (formEl.find('.comment-text').val()) !== 'undefined';
 }
 
-// child comments 갯수 세기
-function countChildComments(coNo) {
+function countChildComments() {
 
-    // 자식 댓글들
-    const childComments = $('.comment[data-parent-co-no="' + coNo + '"]')
+    const comments = $('.comment')
 
-    // 부모 댓글 댓글수 엘레멘트에 자식 댓글 갯수 넣기
-    $('.comment[data-co-no="' + coNo + '"] .comment-count').html(childComments.length)
+    comments.each(function (idx, comment) {
 
-}
+        const coNo = $(comment).data('co-no')
 
-function recursiveCountChildComments(coNo) {
+        const childComments = $('.comment[data-parent-co-no="' + coNo + '"]')
 
-    // 자식 댓글들
-    const childComments = $('.comment[data-parent-co-no="' + coNo + '"]')
+        if (childComments.length > 0) {
 
-    // 부모 댓글 댓글수 엘레멘트에 자식 댓글 갯수 넣기
-    $('.comment[data-co-no="' + coNo + '"] .comment-count').html(childComments.length)
+            $(comment).find('.comment-count').html(childComments.length)
 
-    // 자식 댓글 0개면 함수 종료
-    if (childComments.length <= 0) return
+        }
 
-    // 자식 댓글 있다면 순회하며 함수 재귀 실행(자식 댓글이 0개일 때까지)
-    $.each(childComments, function () {
-        recursiveCountChildComments($(this).data('co-no'))
     })
+
 }
 
 // root 댓글 및 하위댓글 모두 지우기
@@ -90,8 +90,10 @@ function deleteCommentTree (rootCoNo) {
 // 댓글 보기, 추가 시 border-top-gray 리셋
 function resetBorderTop () {
 
-    $('.comment[data-co-level="1"]').addClass('border-top-gray')
-    $('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
+    const rootComments = $('.comment[data-co-level="1"]')
+
+    rootComments.addClass('border-top-gray')
+    rootComments.first().removeClass('border-top-gray')
 }
 
 // 템플릿에 전달받은 댓글 데이터 세팅 후 화면에 삽입
@@ -138,42 +140,28 @@ function addComment (comment) {
         const padding = (comment.level - 2) * 36 + 42
         template.find('.comment').css('padding-left', padding + 'px')
         
-        // 하위 댓글이므로 숨김 후 추가
+        // 하위 댓글이므로 숨김 후 부모댓글 바로 아래에 추가
         template.find('.comment').hide()
         $('.comment[data-co-no="' + comment.parentCoNo + '"]').after(template.html())
     }
-
-    // option popover 초기화
-    initCommentPopover()
-
-    // 해당 댓글의 부모 댓글의 comment-count 업데이트
-    countChildComments(comment.parentCoNo)
 
 }
 
 // 답변글의 댓글 보기
 $('body').on('click', '.comment-button', function () {
 
-    const ansNo = $(this).closest('.answer').data('ans-no')
+    const answer = $(this).closest('.answer')
+
+    const ansNo = answer.data('ans-no')
 
     // const commentSection = $('.comment-section[data-ans-no="' + ansNo + '"]')
-    const commentSection = $(this).parents('.answer').find('.comment-section')
+    const commentSection = answer.find('.comment-section')
 
     commentSection.toggle()
 
     if (commentSection.css('display') === 'block') {
         
-        const data = {ansNo: ansNo}
-
-        commentSection.find('.comment-list').html(getComments(data))
-
-        recursiveCountChildComments($('.comment').data('co-no'))
-
-        // popover 초기화
-        initCommentPopover()
-
-        // 댓글마다 like/dislike 여부 조회해서 highlight 하기
-        commentLikeHighlight()
+        answer.find('.comment-list').html(getComments({ansNo: ansNo}))
 
     } else {
 
@@ -204,17 +192,14 @@ $(document).on('click', '.comment-popover-item', function () {
             },
             success: function (deletedCoNo) {
 
-                // 댓글 포함된 comment-section
-                const commentSection = $('.comment[data-co-no="' + deletedCoNo + '"]').parents('.comment-section')
-
                 // 해당 댓글 포함 하위 댓글 모두 화면에서 지우기
                 deleteCommentTree(deletedCoNo)
 
-                // 첫번째 댓글 border-top 지우기
-                commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
+                // 댓글 border-top-gray 리셋
+                resetBorderTop()
 
-                // 해당 댓글의 부모 댓글의 자식 댓글 카운트 업데이트
-                countChildComments($(this).data('parent-co-no'))
+                // 자식 댓글 카운트 및 셋팅
+                countChildComments()
 
             },
             error: function () {
@@ -388,7 +373,15 @@ $('body').on('click', '.add-comment-button', function () {
         },
         success: function (comment) {
             addComment(comment)
+
+            // 댓글 border-top-gray 리셋
             resetBorderTop()
+
+            // 자식 댓글 카운트 및 셋팅
+            countChildComments()
+
+            // 댓글마다 like/dislike 여부 조회해서 highlight 하기
+            commentLikeHighlight()
 
             // 새로 등록된 댓글은 level에 관계없이 보이기
             $('.comment[data-co-no="' + comment.coNo + '"]').show()
