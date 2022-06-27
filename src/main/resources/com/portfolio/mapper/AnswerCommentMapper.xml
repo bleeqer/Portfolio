@@ -81,8 +81,8 @@
                                       FROM tb_answer_comment
                                       WHERE parent_co_no = 0
                                             AND ans_no = #{ansNo}
-                                        <if test="lastCoNo != null and lastCoNo != ''">
-                                            AND co_no <![CDATA[>]]> #{lastCoNo}
+                                        <if test="coNo != null and coNo != ''">
+                                            AND co_no <![CDATA[>]]> #{coNo}
                                         </if>
                                       ORDER BY co_no)
                                 WHERE RN <![CDATA[<=]]> 3)

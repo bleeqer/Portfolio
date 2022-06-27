@@ -16,7 +16,6 @@ public class CommentVO {
     private Long ansNo;
     private String answerComment;
     private Long parentCoNo;
-    private Long lastCoNo;
     private String regDate;
     private Long likes;
     private Long dislikes;

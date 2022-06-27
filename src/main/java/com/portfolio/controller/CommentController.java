@@ -67,25 +67,10 @@ public class CommentController {
     }
 
     @GetMapping("")
+    @ResponseBody
     public ResponseEntity<List<CommentVO>> getComments(CommentVO commentVO) {
 
         List<CommentVO> comments = answerCommentService.selectList(commentVO);
-
-        for (CommentVO co : comments) {
-            System.out.println(co.getAnswerComment());
-            System.out.println(co.getUserEmail());
-            System.out.println(co.getParentCoNo());
-        }
-
-//        long lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
-
-
-//        model.addAttribute("isLast", "N");
-//
-//        // 마지막 댓글일 시 isLast = Y
-//        if (!comments.isEmpty() && comments.get(comments.size() - 1).getCoNo() >= lastCoNo) {
-//            model.addAttribute("isLast", "Y");
-//        }
 
         return new ResponseEntity<>(comments, HttpStatus.OK);
 
@@ -134,5 +119,16 @@ public class CommentController {
         return likeVO;
     }
 
+    @GetMapping("checkLast")
+    @ResponseBody
+    public boolean checkLast(CommentVO commentVO) {
+
+        long lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
+
+        if (commentVO.getCoNo() == lastCoNo) {
+            return true;
+        }
+        return false;
+    }
 
 }
