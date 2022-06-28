@@ -72,7 +72,7 @@ function countChildComments() {
 
         if (childComments.length > 0) {
 
-            $(comment).find('.comment-count').html(childComments.length)
+            $(comment).find('.comment-count').html(childComments.length-1)
 
         }
 
