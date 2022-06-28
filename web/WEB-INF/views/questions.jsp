@@ -327,6 +327,7 @@
   <%@ include file="/WEB-INF/views/modals/answer.jsp" %>
   <%@ include file="/WEB-INF/views/templates/questionTemplate.jsp" %>
 
+<input id="logged-in-user" type="hidden" value="${principal}">
 
   <%--JS--%>
   <script type="text/javascript" src="/static/js/main.js"></script>

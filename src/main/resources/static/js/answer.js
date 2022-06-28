@@ -128,7 +128,7 @@ $(document).on('click', '.answer-popover-item', function () {
 })
 
 // 답변 버튼 클릭 시 답변 modal에 유저정보, 질문글 띄우기
-$('.answer-button').click(function () {
+$('body').on('click', '.answer-button', function() {
 
     const quesNo = $(this).data('ques-no')
 

@@ -16,7 +16,7 @@
 <head>
     <title>Title</title>
 
-    <sec:authentication property="principal" var="user"/>
+    <sec:authentication property="principal" var="principal"/>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -640,7 +640,7 @@
 <%@ include file="/WEB-INF/views/templates/answerTemplate.jsp" %>
 <%@ include file="/WEB-INF/views/templates/commentTemplate.jsp" %>
 
-<input id="logged-in-user" type="hidden" value="${user}">
+<input id="logged-in-user" type="hidden" value="${principal}">
 
 <script src="/static/js/main.js"></script>
 <script src="/static/js/utils.js"></script>

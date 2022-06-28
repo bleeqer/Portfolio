@@ -20,24 +20,30 @@ function addQuestion (question) {
 
     // comment data 속성 셋팅
     template.find('.question').attr('data-ques-no', question.quesNo)
+    template.find('.question').addClass('border-bottom-gray')
 
     // comment 셋팅
     template.find('.question-text').html(question.question)
     template.find('.question-reg-date').html(question.regDate)
+    template.find('.answer-button').attr('data-ques-no', question.quesNo)
 
     // comment option popover 셋팅
     template.find('.question-popover-item').attr('data-ques-no', question.quesNo)
 
-    // 로그인 유저와 댓글 작성자가 같지 않을 때 옵션 버튼 활성화
     if ($('#logged-in-user').val() !== question.userEmail) {
+        template.find('.answer-button').show()
         template.find('.question-option-button').hide()
     } else {
+        template.find('.answer-button').hide()
         template.find('.question-option-button').show()
+
+
+
+
     }
 
     return template.html()
 }
-
 
 function questionFormCheck() {
 
@@ -58,6 +64,10 @@ function questionFormCheck() {
 $('#category-select').change(function () {
     const categoryCode = $('#category-select option:selected').attr('value')
     $('#question-form #category-code').val(categoryCode)
+})
+
+$('body').on('click', '.my-answer', function () {
+    alert('자신의 질문에는 답변할 수 없습니다.')
 })
 
 // 질문하기 버튼 클릭 시 카테고리 조회하여 모달창에 셋팅
