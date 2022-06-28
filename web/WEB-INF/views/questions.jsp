@@ -325,6 +325,8 @@
 
   <%@ include file="/WEB-INF/views/modals/question.jsp" %>
   <%@ include file="/WEB-INF/views/modals/answer.jsp" %>
+  <%@ include file="/WEB-INF/views/templates/questionTemplate.jsp" %>
+
 
   <%--JS--%>
   <script type="text/javascript" src="/static/js/main.js"></script>

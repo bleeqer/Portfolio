@@ -5,6 +5,8 @@ import com.portfolio.service.AnswerService;
 import com.portfolio.service.CustomUserDetailsServiceImpl;
 import com.portfolio.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -73,18 +75,15 @@ public class HomeController {
     }
 
     @GetMapping("questions/more") // 미답변 질문글 목록 더보기
-    public String getMoreQuestions(@RequestParam Integer quesNo, Model model) {
+    @ResponseBody
+    public ResponseEntity<List<QuestionVO>> getMoreQuestions(Integer quesNo) {
 
         QuestionVO questionVO = new QuestionVO();
 
         questionVO.setQuesNo(quesNo);
         questionVO.setAnswered("N");
 
-        List<QuestionVO> questions = questionService.selectList(questionVO);
-
-        model.addAttribute("questions", questions);
-
-        return "templates/questionTemplate";
+        return new ResponseEntity<>(questionService.selectList(questionVO), HttpStatus.OK);
     }
 
     @GetMapping("category/{categoryCode}")

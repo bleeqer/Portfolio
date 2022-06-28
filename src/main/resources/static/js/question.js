@@ -13,6 +13,32 @@ function initQuestionPopover() {
 
 initQuestionPopover()
 
+// 템플릿에 전달받은 댓글 데이터 세팅 후 화면에 삽입
+function addQuestion (question) {
+
+    let template = $('#question-template')
+
+    // comment data 속성 셋팅
+    template.find('.question').attr('data-ques-no', question.quesNo)
+
+    // comment 셋팅
+    template.find('.question-text').html(question.question)
+    template.find('.question-reg-date').html(question.regDate)
+
+    // comment option popover 셋팅
+    template.find('.question-popover-item').attr('data-ques-no', question.quesNo)
+
+    // 로그인 유저와 댓글 작성자가 같지 않을 때 옵션 버튼 활성화
+    if ($('#logged-in-user').val() !== question.userEmail) {
+        template.find('.question-option-button').hide()
+    } else {
+        template.find('.question-option-button').show()
+    }
+
+    return template.html()
+}
+
+
 function questionFormCheck() {
 
     if ($('#question-textarea').val() === "") {

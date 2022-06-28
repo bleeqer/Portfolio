@@ -220,11 +220,8 @@ $('#add-answer-button').click(function () {
         success: function (answer) {
             let template = $('#answer-template')
 
-            template.attr('data-ans-no', answer.ansNo)
             template.find('.comment-form').attr('data-ans-no', answer.ansNo)
-
             template.find('.answer').attr('data-ans-no', answer.ansNo)
-
             template.find('.answer-user-name').prepend(answer.userName)
             template.find('.answer-user-occupation').prepend(answer.userOccupation)
             template.find('.answer-reg-date').prepend(answer.regDate)
