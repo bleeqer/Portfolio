@@ -236,7 +236,7 @@
                                         </div>
                                     </div>
                                     <div style="font-size: 15px; line-height: 26px;">
-                                        ${question.answerCnt} Answers
+                                        <span id="answer-count">${question.answerCnt}</span> Answers
                                     </div>
                                 </div>
                             </div>
@@ -482,7 +482,7 @@
                                                                         </svg>
                                                                         <div class="answer-option-popover-content" style="display: none;">
 
-                                                                            <div class="d-flex answer-popover-item" style="z-index: 999;" data-bs-toggle="modal" data-bs-target="#answer-modal" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Edit">
+                                                                            <div class="d-flex answer-popover-item" data-bs-toggle="modal" data-bs-target="#answer-modal" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Edit">
                                                                                 <div class="py-1 px-3">Edit</div>
                                                                             </div>
                                                                             <div class="d-flex answer-popover-item" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Delete">
@@ -603,14 +603,12 @@
 
                         </c:forEach>
 
-                        <c:if test="${fn:length(answers) <= 0}">
-                            <div id="no-content" class="" style="width: 100%;">
-                                <div class="pt-4 pb-2 d-flex justify-content-center">
-                                    <img src="/static/img/noContent.png" alt="" height="100" width="100">
-                                </div>
-                                <div class="text-center color-gray-light" style="font-size: 13px;">등록된 답변이 없습니다.</div>
+                        <div id="no-content" class="" style="width: 100%; display: none;">
+                            <div class="pt-4 pb-2 d-flex justify-content-center">
+                                <img src="/static/img/noContent.png" alt="" height="100" width="100">
                             </div>
-                        </c:if>
+                            <div class="text-center color-gray-light" style="font-size: 13px;">등록된 답변이 없습니다.</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -793,10 +791,10 @@
                                                     </svg>
                                                     <div class="answer-option-popover-content" style="display: none;">
 
-                                                        <div class="d-flex answer-popover-item" style="z-index: 999;" data-bs-toggle="modal" data-bs-target="#answer-modal" data-ans-no="${answer.ansNo}" data-ques-no="${answer.quesNo}" data-option-type="Edit">
+                                                        <div class="d-flex answer-popover-item" data-bs-toggle="modal" data-bs-target="#answer-modal" data-option-type="Edit">
                                                             <div class="py-1 px-3">Edit</div>
                                                         </div>
-                                                        <div class="d-flex answer-popover-item" data-ans-no="" data-ques-no="" data-option-type="Delete">
+                                                        <div class="d-flex answer-popover-item" data-option-type="Delete">
                                                             <div class="py-1 px-3">Delete</div>
                                                         </div>
                                                     </div>
@@ -1149,7 +1147,7 @@
 
 <input id="logged-in-user" type="hidden" value="${user}">
 
-
+<script src="/static/js/main.js"></script>
 <script src="/static/js/utils.js"></script>
 <script src="/static/js/comment.js"></script>
 <script src="/static/js/question.js"></script>
@@ -1157,7 +1155,6 @@
 <script src="/static/js/answer.js"></script>
 <script src="/static/js/detailQuestion.js"></script>
 <script src="/static/js/liking.js"></script>
-<script src="/static/js/main.js"></script>
 <script src="/static/js/getMoreAnswers.js"></script>
 </body>
 </html>

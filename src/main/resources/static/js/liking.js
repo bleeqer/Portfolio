@@ -74,7 +74,7 @@ $('body').on('click', '.answer-like-button', function () {
 
     const answer = $(this).closest('.answer')
     const ansNo = answer.data('ans-no')
-
+    console.log(ansNo)
     $.ajax({
         url: '/answer/like',
         type: 'GET',

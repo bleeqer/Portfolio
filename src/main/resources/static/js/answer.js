@@ -14,14 +14,16 @@ function initAnswerPopover() {
     })
 }
 
+// answer 엘레멘트가 없을 경우 no content 이미지 보여주기
+if (!isExist('.answer')) {
+    $('#no-content').show()
+}
+
 
 // 최초 조회된 답변 popover
 initAnswerPopover()
 
-// 엘레멘트 존재 여부 체커
-function isExist(selector) {
-    return $(selector).length > 0
-}
+
 
 function answerFormCheck() {
 
@@ -33,7 +35,6 @@ function answerFormCheck() {
 
     return true
 }
-
 
 
 $('.readMore-button').on('click', function() {
@@ -59,6 +60,8 @@ $(document).on('click', '.answer-popover-item', function () {
 
     const ansNo = $(this).data('ans-no')
     const optionType = $(this).data('option-type')
+
+
     if (optionType === 'Delete') {
 
         $.ajax({
@@ -72,11 +75,16 @@ $(document).on('click', '.answer-popover-item', function () {
             },
             success: function (ansNo) {
 
-                $('.answer[data-ans-no="' + ansNo + '"]').hide()
+                const answer = $('.answer[data-ans-no="' + ansNo + '"]')
+                answer.remove()
+
+                $('#answer-count').html(parseInt($('#answer-count').html()) - 1)
+
                 initAnswerPopover()
 
-                // 보여지는 answer 엘레멘트가 없을 경우 no content 이미지 보여주기
-                if (!isExist('.answer:visible')) $('#no-content').show()
+                // answer 엘레멘트가 없을 경우 no content 이미지 보여주기
+                if (!isExist('.answer')) $('#no-content').show()
+
 
             },
             error: function () {
@@ -215,6 +223,8 @@ $('#add-answer-button').click(function () {
             template.attr('data-ans-no', answer.ansNo)
             template.find('.comment-form').attr('data-ans-no', answer.ansNo)
 
+            template.find('.answer').attr('data-ans-no', answer.ansNo)
+
             template.find('.answer-user-name').prepend(answer.userName)
             template.find('.answer-user-occupation').prepend(answer.userOccupation)
             template.find('.answer-reg-date').prepend(answer.regDate)
@@ -225,8 +235,6 @@ $('#add-answer-button').click(function () {
                 template.find('.comment-count').html(answer.commentCnt)
             }
 
-            $('#answer-list').prepend(template.html())
-
             if (answer.likes > 0) {
                 addedAnswer.find('.answer-like-cnt').prepend(answer.likes)
             }
@@ -235,28 +243,17 @@ $('#add-answer-button').click(function () {
             }
 
             template.find('.answer-popover-item').attr('data-ans-no', answer.ansNo)
+            template.find('.answer-popover-item').attr('data-ques-no', answer.quesNo)
+
+            $('#answer-list').prepend(template.html())
+
+            $('#answer-count').html(parseInt($('#answer-count').html()) + 1)
+
+            // answer 엘레멘트가 없을 경우 no content 이미지 보여주기
+            if (isExist('.answer')) $('#no-content').hide()
 
             initAnswerPopover()
 
-            // const currentURL = window.location.pathname.split('/')[1]
-            //
-            // if (currentURL === 'question') {
-            //
-            //     // 등록된 답변을 답변 리스트에 추가
-            //     $('#answer-list').prepend(answer)
-            //     initAnswerPopover()
-            //
-            //     // 답변글 존재여부 체크 후 no content 이미지 숨기기
-            //     if (isExist('.answer')) {
-            //         $('#no-content').hide()
-            //     }
-            //
-            // } else if (currentURL === 'questions') {
-            //
-            //     // 답변 등록된 질문글 숨기기
-            //     $('.question[data-ques-no="' + $('#answer-form #ques-no').val() + '"]').hide()
-            //     alert('답변이 성공적으로 등록되었습니다.')
-            // }
 
             // 모달창 종료
             $('#answer-modal').modal('toggle')

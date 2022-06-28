@@ -48,3 +48,7 @@ $('[data-toggle="description"]').each(function (idx, element) {
     })
 })
 
+function isExist(selector) {
+
+    return $(selector).length-1 > 0
+}

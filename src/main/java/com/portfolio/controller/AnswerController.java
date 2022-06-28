@@ -51,6 +51,8 @@ public class AnswerController {
     @ResponseBody
     public AnswerVO selectAnswer(Integer ansNo) {
 
+        System.out.println("외않" + ansNo);
+
         return answerService.select(ansNo);
     }
 
