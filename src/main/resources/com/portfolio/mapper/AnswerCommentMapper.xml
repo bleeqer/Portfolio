@@ -7,7 +7,7 @@
 
     <insert id="insert" parameterType="CommentVO">
 
-        <selectKey keyProperty="coNo" resultType="long" order="BEFORE">
+        <selectKey keyProperty="coNo" resultType="int" order="BEFORE">
             SELECT COMMENT_SEQ.NEXTVAL FROM dual
         </selectKey>
 
@@ -16,7 +16,7 @@
 
     </insert>
 
-    <select id="select" parameterType="long" resultMap="AnswerCommentResultMap">
+    <select id="select" parameterType="int" resultMap="AnswerCommentResultMap">
 
         SELECT level,
                CO.co_no,
@@ -43,7 +43,7 @@
 
     </update>
 
-    <delete id="delete" parameterType="long">
+    <delete id="delete" parameterType="int">
 
         DELETE FROM TB_ANSWER_COMMENT
         WHERE co_no IN (SELECT co_no
@@ -53,7 +53,7 @@
 
     </delete>
 
-    <select id="selectLastCoNo" parameterType="long" resultType="long">
+    <select id="selectLastCoNo" parameterType="int" resultType="int">
 
         SELECT NVL(MAX(co_no), 0) co_no
         FROM TB_ANSWER_COMMENT
@@ -92,7 +92,7 @@
     </select>
 
     <insert id="addLike" parameterType="CommentLikeVO">
-        <selectKey keyProperty="likeNo" resultType="long" order="BEFORE">
+        <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
             SELECT comment_like_seq.nextval FROM dual
         </selectKey>
 
@@ -151,8 +151,8 @@
     </resultMap>
 
     <resultMap id="likeCountMap" type="Hashmap">
-        <id column="likes" property="likes" javaType="long"/>
-        <id column="dislikes" property="dislikes" javaType="long"/>
+        <id column="likes" property="likes" javaType="int"/>
+        <id column="dislikes" property="dislikes" javaType="int"/>
     </resultMap>
 
 </mapper>

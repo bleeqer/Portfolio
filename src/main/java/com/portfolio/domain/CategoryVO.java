@@ -9,7 +9,7 @@ import lombok.Setter;
 public class CategoryVO {
 
     private String space;
-    private int categoryCode;
+    private Integer categoryCode;
     private String categoryName;
     private String categoryPhoto;
 

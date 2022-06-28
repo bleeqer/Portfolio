@@ -12,7 +12,7 @@ $('.input-focus').focusout(function () {
     $(this).parents('.input-container').css('min-width', 150)
 })
 
-$('.login-first').click(function () {
+$('body').on('click', '.login-first', function () {
     result = confirm('로그인 화면으로 이동하시겠어요? (임시 계정이 제공 됩니다.)')
 
     if (result) {

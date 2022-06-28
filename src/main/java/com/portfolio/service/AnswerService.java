@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 public interface AnswerService {
-    long create(AnswerVO answerVO) throws SQLException;
-    AnswerVO select(long ansNo);
+    Integer create(AnswerVO answerVO) throws SQLException;
+    AnswerVO select(Integer ansNo);
     List<AnswerVO> selectAnswers(AnswerVO answerVO);
-    long countAnswers(AnswerVO answerVO);
+    Integer countAnswers(AnswerVO answerVO);
     void update(AnswerVO answerVO);
     void delete(AnswerVO answerVO);
-    Map<String, Long> addLike(AnswerLikeVO likeVO);
-    Map<String, Long> subtractLike(AnswerLikeVO likeVO);
+    AnswerLikeVO addLike(AnswerLikeVO likeVO);
+    AnswerLikeVO subtractLike(AnswerLikeVO likeVO);
     boolean checkAnswered(QuestionVO questionVO);
     AnswerLikeVO checkLiked(AnswerVO answerVO);
 }

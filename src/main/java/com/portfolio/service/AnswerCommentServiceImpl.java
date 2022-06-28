@@ -27,20 +27,12 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     @Override
     public void insert(CommentVO commentVO) {
 
-        HashMap<String, Long> map = new HashMap<>();
-
-        // 답변글 번호
-        map.put("ansNo", commentVO.getAnsNo());
-
-        // comment_cnt 더하기 갯수 1
-        map.put("coCnt", 1L);
-
         answerCommentMapper.insert(commentVO);
 
     }
 
     @Override
-    public CommentVO select(long coNo) {
+    public CommentVO select(Integer coNo) {
 
         return answerCommentMapper.select(coNo);
     }
@@ -52,13 +44,13 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     }
 
     @Override
-    public long selectLastCoNo(long ansNo) {
+    public Integer selectLastCoNo(Integer ansNo) {
         return answerCommentMapper.selectLastCoNo(ansNo);
     }
 
 
     @Override
-    public long update(CommentVO commentVO) {
+    public Integer update(CommentVO commentVO) {
 
         return answerCommentMapper.update(commentVO);
     }
@@ -70,7 +62,7 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
         answerCommentMapper.delete(commentVO.getCoNo());
 
     }
-    public Map<String, Long> addLike(CommentLikeVO likeVO) {
+    public Map<String, Integer> addLike(CommentLikeVO likeVO) {
 
         CommentLikeVO like = answerCommentMapper.findLike(likeVO);
 
@@ -104,7 +96,7 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
     }
 
     @Override
-    public Map<String, Long> subtractLike(CommentLikeVO likeVO) {
+    public Map<String, Integer> subtractLike(CommentLikeVO likeVO) {
 
         CommentLikeVO like = answerCommentMapper.findLike(likeVO);
 

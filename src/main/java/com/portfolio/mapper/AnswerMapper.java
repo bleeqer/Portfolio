@@ -7,17 +7,18 @@ import java.util.Map;
 
 public interface AnswerMapper {
 
-    AnswerVO select(long ansNo);
-    long insert(AnswerVO answerVO);
+    AnswerVO select(Integer ansNo);
+    Integer insert(AnswerVO answerVO);
     void update(AnswerVO answerVO);
-    void delete(long ansNo);
+    void delete(Integer ansNo);
     List<AnswerVO> selectAnswers(AnswerVO answerVO);
-    long countAnswers(AnswerVO answerVO);
-    long addLike(AnswerLikeVO likeVO);
-    long deleteLike(AnswerLikeVO likeVO);
+    Integer countAnswers(AnswerVO answerVO);
+    Integer addLike(AnswerLikeVO likeVO);
+    Integer deleteLike(AnswerLikeVO likeVO);
     AnswerLikeVO findLike(AnswerLikeVO likeVO);
-    long updateLike(AnswerLikeVO likeVO);
-    Map<String, Long> countLike(long ansNo);
+    Integer updateLike(AnswerLikeVO likeVO);
+    AnswerLikeVO countLike(Integer ansNo);
+    void updateCommentCnt(Map<String, Integer> map);
     boolean checkAnswered(QuestionVO questionVO);
     AnswerLikeVO checkLiked(AnswerVO answerVO);
 

@@ -54,7 +54,7 @@ public class QuestionController {
 
     @GetMapping("select")
     @ResponseBody
-    public QuestionVO selectQuestion(@RequestParam int quesNo) {
+    public QuestionVO selectQuestion(@RequestParam Integer quesNo) {
 
         return questionService.select(quesNo);
 
@@ -71,7 +71,7 @@ public class QuestionController {
     }
 
     @GetMapping("{quesNo}")
-    public String viewQuestion(@PathVariable long quesNo, Model model) {
+    public String viewQuestion(@PathVariable Integer quesNo, Model model) {
 
         QuestionVO question = questionService.select(quesNo);
 

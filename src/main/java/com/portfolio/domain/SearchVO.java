@@ -9,7 +9,7 @@ public class SearchVO {
 
     String keyword;
     String target;
-    Long categoryCode;
-    Long quesNo;
+    Integer categoryCode;
+    Integer quesNo;
 
 }

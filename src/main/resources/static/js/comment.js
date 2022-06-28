@@ -163,6 +163,13 @@ function addComment (comment) {
     // 로그인 유저와 댓글 작성자가 같을 때 옵션 버튼 활성화
     if ($('#logged-in-user').val() !== comment.userEmail) {
         template.find('.comment-option-button').hide()
+        template.find('.comment-like-button').addClass('login-first')
+        template.find('.comment-dislike-button').addClass('login-first')
+        template.find('.comment-like-button').removeClass('comment-like-button')
+        template.find('.comment-dislike-button').removeClass('comment-dislike-button')
+
+        template.find('.add-comment-button').addClass('login-first')
+        template.find('.add-comment-button').removeClass('.add-comment-button')
     } else {
         template.find('.comment-option-button').show()
     }
@@ -183,14 +190,8 @@ function addComment (comment) {
 
         template.find('.comment .reply-input-container').hide()
 
-        // 더보기일 경우 코멘트 리스트 맨 마지막에 추가
-        // if (more) {
         answer.find('.comment-list').append(template.html())
-        //
-        // // 더보기 아닐 경우 코멘트 리스트 맨 위에 추가
-        // } else {
-        //     answer.find('.comment-list').prepend(template.html())
-        // }
+
 
     } else {
         

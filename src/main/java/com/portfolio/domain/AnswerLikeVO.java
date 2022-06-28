@@ -7,8 +7,10 @@ import lombok.Setter;
 @Setter
 public class AnswerLikeVO {
 
-    private Long likeNo;
-    private Long ansNo;
+    private Integer likeNo;
+    private Integer ansNo;
     private String userEmail;
     private String likeType;
+    private Integer likes;
+    private Integer dislikes;
 }

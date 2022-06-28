@@ -5,6 +5,7 @@ function answerLikeHighlight(selector) {
         $.ajax({
             url: '/answer/checkLiked',
             type: 'GET',
+            async: false,
             data: {ansNo: $(element).data('ans-no')},
             dataType: 'json',
             contentType: 'application/json',
@@ -71,31 +72,31 @@ answerLikeHighlight('.answer')
 
 $('body').on('click', '.answer-like-button', function () {
 
-    const ansNo = $(this).closest('.answer').data('ans-no')
+    const answer = $(this).closest('.answer')
+    const ansNo = answer.data('ans-no')
 
     $.ajax({
         url: '/answer/like',
         type: 'GET',
+        contentType: 'application/json',
         dataType: 'json',
-        data: {
-            ansNo: ansNo
-        },
+        data: {ansNo: ansNo},
         context: this,
         success: function (result) {
 
             if (result.likes <= 0) {
-                result.likes = ''
+                result.likes = ' '
             }
 
             if (result.dislikes <= 0) {
-                result.dislikes = ''
+                result.dislikes = ' '
             }
 
-            answerLikeHighlight('.pair')
+            // answerLikeHighlight('.pair')
             answerLikeHighlight('.answer')
+            answer.find('.answer-like-cnt').html(result.likes)
+            answer.find('.answer-dislike-cnt').html(result.dislikes)
 
-            $(this).find('.answer-like-cnt').html(result.likes)
-            $(this).find('.answer-dislike-cnt').html(result.dislikes)
 
         },
         error: function () {
@@ -107,15 +108,15 @@ $('body').on('click', '.answer-like-button', function () {
 
 $('body').on('click', '.answer-dislike-button', function () {
 
-    const ansNo = $(this).closest('.answer').data('ans-no')
+    const answer = $(this).closest('.answer')
+    const ansNo = answer.data('ans-no')
 
     $.ajax({
         url: '/answer/dislike',
         type: 'GET',
+        contentType: 'application/json',
         dataType: 'json',
-        data: {
-            ansNo: ansNo
-        },
+        data: {ansNo: ansNo},
         context: this,
         success: function (result) {
 
@@ -129,9 +130,10 @@ $('body').on('click', '.answer-dislike-button', function () {
 
             answerLikeHighlight('.pair')
             answerLikeHighlight('.answer')
+            answer.find('.answer-like-cnt').html(result.likes)
+            answer.find('.answer-dislike-cnt').html(result.dislikes)
 
-            $(this).find('.answer-like-cnt').html(result.likes)
-            $(this).find('.answer-dislike-cnt').html(result.dislikes)
+
 
         },
         error: function () {
@@ -142,7 +144,8 @@ $('body').on('click', '.answer-dislike-button', function () {
 
 $('body').on('click', '.comment-like-button', function () {
 
-    const coNo = $(this).closest('.comment').data('co-no')
+    const comment = $(this).closest('.comment')
+    const coNo = comment.data('co-no')
 
     $.ajax({
         url: '/comment/like',
@@ -162,8 +165,8 @@ $('body').on('click', '.comment-like-button', function () {
 
             commentLikeHighlight()
 
-            $(this).closest('.comment').find('.comment-like-cnt').html(result.likes)
-            $(this).closest('.comment').find('.comment-dislike-cnt').html(result.dislikes)
+            comment.find('.comment-like-cnt').html(result.likes)
+            comment.find('.comment-dislike-cnt').html(result.dislikes)
 
         },
         error: function () {
@@ -175,7 +178,8 @@ $('body').on('click', '.comment-like-button', function () {
 
 $('body').on('click', '.comment-dislike-button', function () {
 
-    const coNo = $(this).closest('.comment').data('co-no')
+    const comment = $(this).closest('.comment')
+    const coNo = comment.data('co-no')
 
     $.ajax({
         url: '/comment/dislike',
@@ -197,8 +201,8 @@ $('body').on('click', '.comment-dislike-button', function () {
 
             commentLikeHighlight()
 
-            $(this).closest('.comment').find('.comment-like-cnt').html(result.likes)
-            $(this).closest('.comment').find('.comment-dislike-cnt').html(result.dislikes)
+            comment.find('.comment-like-cnt').html(result.likes)
+            comment.find('.comment-dislike-cnt').html(result.dislikes)
 
         },
         error: function () {

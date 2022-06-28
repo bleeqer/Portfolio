@@ -31,7 +31,7 @@ public class AnswerServiceImpl implements AnswerService {
 
     @Transactional
     @Override
-    public long create(AnswerVO answerVO) throws SQLException {
+    public Integer create(AnswerVO answerVO) throws SQLException {
 
         // answerVO 인서트 성공 시 postNo property에 자동생성된 postNo 세팅
         try {
@@ -83,7 +83,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public AnswerVO select(long ansNo) {
+    public AnswerVO select(Integer ansNo) {
 
         return answerMapper.select(ansNo);
     }
@@ -95,7 +95,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public long countAnswers(AnswerVO answerVO) {
+    public Integer countAnswers(AnswerVO answerVO) {
         return answerMapper.countAnswers(answerVO);
     }
 
@@ -146,7 +146,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Map<String, Long> addLike(AnswerLikeVO likeVO) {
+    public AnswerLikeVO addLike(AnswerLikeVO likeVO) {
 
         AnswerLikeVO like = answerMapper.findLike(likeVO);
 
@@ -174,7 +174,7 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public Map<String, Long> subtractLike(AnswerLikeVO likeVO) {
+    public AnswerLikeVO subtractLike(AnswerLikeVO likeVO) {
 
         AnswerLikeVO like = answerMapper.findLike(likeVO);
 

@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class ImageVO {
 
-    private long imgNo;
+    private Integer imgNo;
 
-    private long ansNo;
+    private Integer ansNo;
 
     // 이미지 업로드 경로
     private String imagePath;

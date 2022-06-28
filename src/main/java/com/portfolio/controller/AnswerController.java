@@ -40,7 +40,7 @@ public class AnswerController {
         answerVO.setUserEmail(principal.getName());
 
         // 답변 생성 후 ansNo 받기
-        long ansNo = answerService.create(answerVO);
+        Integer ansNo = answerService.create(answerVO);
 
 
         return new ResponseEntity<>(answerService.select(ansNo), HttpStatus.OK);
@@ -49,14 +49,14 @@ public class AnswerController {
 
     @GetMapping("select")
     @ResponseBody
-    public AnswerVO selectAnswer(long ansNo) {
+    public AnswerVO selectAnswer(Integer ansNo) {
 
         return answerService.select(ansNo);
     }
 
     @PostMapping("delete")
     @ResponseBody
-    public long deleteAnswer(@RequestBody AnswerVO answerVO) {
+    public Integer deleteAnswer(@RequestBody AnswerVO answerVO) {
 
         answerService.delete(answerVO);
 
@@ -85,31 +85,28 @@ public class AnswerController {
 
     @GetMapping("like")
     @ResponseBody
-    public Map<String, Long> likeAnswer(@RequestParam long ansNo, Principal principal) {
+    public ResponseEntity<AnswerLikeVO> likeAnswer(AnswerLikeVO likeVO, Principal principal) {
 
-        AnswerLikeVO likeVO = new AnswerLikeVO();
-
-        likeVO.setAnsNo(ansNo);
+        System.out.println(likeVO.getAnsNo());
         likeVO.setUserEmail(principal.getName());
 
-        return answerService.addLike(likeVO);
+        return new ResponseEntity<>(answerService.addLike(likeVO), HttpStatus.OK);
     }
 
     @GetMapping("dislike")
     @ResponseBody
-    public Map<String, Long> dislikeAnswer(@RequestParam long ansNo, Principal principal) {
+    public ResponseEntity<AnswerLikeVO> dislikeAnswer(AnswerLikeVO likeVO, Principal principal) {
 
-        AnswerLikeVO likeVO = new AnswerLikeVO();
-
-        likeVO.setAnsNo(ansNo);
+        System.out.println(likeVO.getAnsNo());
         likeVO.setUserEmail(principal.getName());
 
-        return answerService.subtractLike(likeVO);
+        return new ResponseEntity<>(answerService.subtractLike(likeVO), HttpStatus.OK);
+
     }
 
     @GetMapping("checkAnswered")
     @ResponseBody
-    public boolean checkAnswered(long quesNo, Principal principal) {
+    public boolean checkAnswered(Integer quesNo, Principal principal) {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -121,7 +118,7 @@ public class AnswerController {
 
     @GetMapping("checkLiked")
     @ResponseBody
-    public AnswerLikeVO checkLiked(long ansNo, Principal principal) {
+    public AnswerLikeVO checkLiked(Integer ansNo, Principal principal) {
 
         AnswerVO answerVO = new AnswerVO();
 
@@ -140,9 +137,9 @@ public class AnswerController {
 
 //    @GetMapping("like")
 //    @ResponseBody
-//    public String likeAnswer(long ansNo) {
+//    public String likeAnswer(Integer ansNo) {
 //
-//        long likeCnt = answerService.addLikeCnt(ansNo);
+//        Integer likeCnt = answerService.addLikeCnt(ansNo);
 //
 //        return
 //    }

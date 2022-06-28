@@ -9,19 +9,19 @@ import java.util.List;
 
 public interface QuestionMapper {
 
-    long insert(QuestionVO questionVO);
-    QuestionVO select(long quesNo);
+    Integer insert(QuestionVO questionVO);
+    QuestionVO select(Integer quesNo);
     void update(QuestionVO  questionVO);
-    void delete(long postNo);
-    long selectLastQuesNo();
+    void delete(Integer postNo);
+    Integer selectLastQuesNo();
     List<QuestionVO> selectList(QuestionVO questionVO);
     List<QAPairVO> selectPairList(QuestionVO questionVO);
-    void addViewCnt(long quesNo);
+    void addViewCnt(Integer quesNo);
     void updateAnswered(QuestionVO questionVO);
     List<CategoryVO> selectCategories();
     List<QuestionVO> searchList(SearchVO searchVO);
     List<QAPairVO> searchPairs(SearchVO searchVO);
-    long countQuestions(QuestionVO questionVO);
+    Integer countQuestions(QuestionVO questionVO);
 
 
 }

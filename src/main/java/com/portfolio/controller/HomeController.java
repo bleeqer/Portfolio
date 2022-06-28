@@ -45,7 +45,7 @@ public class HomeController {
     }
 
     @GetMapping("more")
-    public String getMorePairs(@RequestParam Long quesNo, Model model) {
+    public String getMorePairs(@RequestParam Integer quesNo, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -73,7 +73,7 @@ public class HomeController {
     }
 
     @GetMapping("questions/more") // 미답변 질문글 목록 더보기
-    public String getMoreQuestions(@RequestParam Long quesNo, Model model) {
+    public String getMoreQuestions(@RequestParam Integer quesNo, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -88,7 +88,7 @@ public class HomeController {
     }
 
     @GetMapping("category/{categoryCode}")
-    public String getQuestionsByTopic(@PathVariable Long categoryCode, Model model) {
+    public String getQuestionsByTopic(@PathVariable Integer categoryCode, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -108,7 +108,7 @@ public class HomeController {
     }
 
     @GetMapping("category/{categoryCode}/more")
-    public String getMoreQuestionsByTopic(@PathVariable String categoryCode, @RequestParam Long quesNo, Model model) {
+    public String getMoreQuestionsByTopic(@PathVariable String categoryCode, @RequestParam Integer quesNo, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 

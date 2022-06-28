@@ -10,17 +10,17 @@ import java.util.Map;
 
 public interface AnswerCommentMapper {
 
-    long insert(CommentVO commentVO);
-    CommentVO select(long coNo);
-    long update(CommentVO commentVO);
-    long delete(long coNo);
+    Integer insert(CommentVO commentVO);
+    CommentVO select(Integer coNo);
+    Integer update(CommentVO commentVO);
+    Integer delete(Integer coNo);
     List<CommentVO> selectList(CommentVO commentVO);
-    long selectLastCoNo(long ansNo);
-    long addLike(CommentLikeVO likeVO);
-    long deleteLike(CommentLikeVO likeVO);
+    Integer selectLastCoNo(Integer ansNo);
+    Integer addLike(CommentLikeVO likeVO);
+    Integer deleteLike(CommentLikeVO likeVO);
     CommentLikeVO findLike(CommentLikeVO likeVO);
-    long updateLike(CommentLikeVO likeVO);
-    Map<String, Long> countLike(long coNo);
+    Integer updateLike(CommentLikeVO likeVO);
+    Map<String, Integer> countLike(Integer coNo);
     CommentLikeVO checkLiked(CommentVO commentVO);
 
 }

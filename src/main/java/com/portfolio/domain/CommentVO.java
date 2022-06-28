@@ -11,14 +11,14 @@ import java.util.Date;
 public class CommentVO {
 
     // Comment
-    private Long level;
-    private Long coNo;
-    private Long ansNo;
+    private Integer level;
+    private Integer coNo;
+    private Integer ansNo;
     private String answerComment;
-    private Long parentCoNo;
+    private Integer parentCoNo;
     private String regDate;
-    private Long likes;
-    private Long dislikes;
+    private Integer likes;
+    private Integer dislikes;
 
     private String userEmail;
     private String userName;

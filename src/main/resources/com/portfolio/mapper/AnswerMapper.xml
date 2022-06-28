@@ -8,7 +8,7 @@
     <insert id="insert" parameterType="AnswerVO">
 
         -- file 테이블의 외래키로 사용될 ques_no를 반환받아 QuestionVO에 담김
-        <selectKey keyProperty="ansNo" resultType="long" order="BEFORE">
+        <selectKey keyProperty="ansNo" resultType="int" order="BEFORE">
             select answer_seq.nextval from dual
         </selectKey>
 
@@ -16,7 +16,7 @@
         VALUES (#{ansNo}, #{quesNo}, #{answer}, #{userEmail})
     </insert>
 
-    <select id="select" parameterType="long" resultMap="AnswerResultMap">
+    <select id="select" parameterType="int" resultMap="AnswerResultMap">
 
         SELECT
             ANS.ans_no,
@@ -36,16 +36,16 @@
 
     </select>
 
-<!--    <select id="select" parameterType="long" resultMap="AnswerResultMap">-->
+<!--    <select id="select" parameterType="int" resultMap="AnswerResultMap">-->
 <!--        SELECT ques_no, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER WHERE ans_no=#{ansNo}-->
 <!--    </select>-->
 
-<!--    <select id="selectList" parameterType="long" resultMap="AnswerResultMap">-->
+<!--    <select id="selectList" parameterType="int" resultMap="AnswerResultMap">-->
 <!--        SELECT ques_no, ans_no, content, writer, reg_date, view_cnt, like_cnt FROM TB_ANSWER WHERE ques_no=#{quesNo} ORDER BY ans_no DESC-->
 <!--    </select>-->
 <!--
 
-    <select id="selectBestAnswer" parameterType="long" resultMap="AnswerResultMap">
+    <select id="selectBestAnswer" parameterType="int" resultMap="AnswerResultMap">
 
         SELECT *
             (SELECT *
@@ -80,7 +80,7 @@
 
     </select>
 
-    <select id="countAnswers" parameterType="AnswerVO" resultType="long">
+    <select id="countAnswers" parameterType="AnswerVO" resultType="int">
         SELECT COUNT(*)
         FROM TB_ANSWER
         <where>
@@ -94,11 +94,11 @@
     </select>
 
 
-<!--    <select id="selectAnsweredPairByUser" parameterType="long" resultMap="QAPairResultMap">-->
+<!--    <select id="selectAnsweredPairByUser" parameterType="int" resultMap="QAPairResultMap">-->
 <!--        SELECT B.ques_no, B.question, A.answer, A.ans_no, A.reg_date, A.like_cnt, C.user_no, C.email, C.name, C.occupation, C.photo FROM tb_answer A, tb_question B, tb_user C WHERE A.ques_no = B.ques_no AND A.user_no = #{userNo} AND ROWNUM <![CDATA[<=]]> 5 ORDER BY A.ans_no DESC-->
 <!--    </select>-->
 
-<!--    <select id="selectMoreList" parameterType="long" resultMap="AnswerResultMap">
+<!--    <select id="selectMoreList" parameterType="int" resultMap="AnswerResultMap">
         SELECT * FROM (SELECT * FROM TB_ANSWER WHERE ques_no=#{quesNo} AND ans_no<![CDATA[<]]>#{ansNo} ORDER BY ans_no DESC) WHERE ROWNUM BETWEEN 0 AND 3
     </select>-->
 
@@ -107,12 +107,12 @@
         WHERE ans_no = #{ansNo}
     </update>
 
-    <delete id="delete" parameterType="long">
+    <delete id="delete" parameterType="int">
         DELETE FROM TB_ANSWER WHERE ans_no = #{ansNo}
     </delete>
 
     <insert id="addLike" parameterType="AnswerLikeVO">
-        <selectKey keyProperty="likeNo" resultType="long" order="BEFORE">
+        <selectKey keyProperty="likeNo" resultType="int" order="BEFORE">
             SELECT answer_like_seq.nextval FROM dual
         </selectKey>
 
@@ -125,7 +125,7 @@
     </delete>
 
     <select id="findLike" parameterType="AnswerLikeVO" resultMap="answerLikeResultMap">
-        SELECT * FROM tb_answer_like_rec WHERE ans_no=#{ansNo} AND user_email=#{userEmail}
+        SELECT * FROM tb_answer_like_rec WHERE ans_no = #{ansNo} AND user_email = #{userEmail}
     </select>
 
     <update id="updateLike" parameterType="AnswerLikeVO">
@@ -134,7 +134,7 @@
         WHERE ans_no = #{ansNo} AND user_email = #{userEmail}
     </update>
 
-    <select id="countLike" parameterType="AnswerLikeVO" resultMap="likeCountMap">
+    <select id="countLike" parameterType="AnswerLikeVO" resultMap="answerLikeResultMap">
         SELECT NVL(SUM(CASE WHEN like_type = 'UP' THEN 1 ELSE 0 END), 0) likes,
                NVL(SUM(CASE WHEN like_type = 'DOWN' THEN 1 ELSE 0 END), 0) dislikes
         FROM tb_answer_like_rec WHERE ans_no = #{ansNo}
@@ -174,13 +174,9 @@
         <id column="ans_no" property="ansNo"/>
         <id column="user_email" property="userEmail"/>
         <id column="like_type" property="likeType"/>
+        <id column="likes" property="likes"/>
+        <id column="dislikes" property="dislikes"/>
     </resultMap>
-
-    <resultMap id="likeCountMap" type="Hashmap">
-        <id column="likes" property="likes" javaType="long"/>
-        <id column="dislikes" property="dislikes" javaType="long"/>
-    </resultMap>
-
 
 
     <!--    <resultMap id="QAPairResultMap" type="QAPairVO">

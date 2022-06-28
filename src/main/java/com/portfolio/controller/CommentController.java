@@ -46,7 +46,7 @@ public class CommentController {
     public CommentVO updateComment(CommentVO commentVO, Principal principal) {
         
         // 예외처리 할 것
-        long res = 0;
+        Integer res = 0;
 
         if (commentVO.getUserEmail().equals(principal.getName())) {
 
@@ -59,7 +59,7 @@ public class CommentController {
 
     @PostMapping("delete")
     @ResponseBody
-    public long deleteComment(@RequestBody CommentVO commentVO) {
+    public Integer deleteComment(@RequestBody CommentVO commentVO) {
 
         answerCommentService.delete(commentVO);
 
@@ -78,31 +78,33 @@ public class CommentController {
 
     @GetMapping("like")
     @ResponseBody
-    public Map<String, Long> likeComment(@RequestParam Long coNo, Principal principal) {
+    public ResponseEntity<Map<String, Integer>> likeComment(@RequestParam Integer coNo, Principal principal) {
 
         CommentLikeVO likeVO = new CommentLikeVO();
 
         likeVO.setCoNo(coNo);
         likeVO.setUserEmail(principal.getName());
 
-        return answerCommentService.addLike(likeVO);
+        return new ResponseEntity<>(answerCommentService.addLike(likeVO), HttpStatus.OK);
     }
 
     @GetMapping("dislike")
     @ResponseBody
-    public Map<String, Long> dislikeComment(@RequestParam Long coNo, Principal principal) {
+    public ResponseEntity<Map<String, Integer>> dislikeComment(@RequestParam Integer coNo, Principal principal) {
 
         CommentLikeVO likeVO = new CommentLikeVO();
 
         likeVO.setCoNo(coNo);
         likeVO.setUserEmail(principal.getName());
 
-        return answerCommentService.subtractLike(likeVO);
+
+        return new ResponseEntity<>(answerCommentService.subtractLike(likeVO), HttpStatus.OK);
+
     }
 
     @GetMapping("checkLiked")
     @ResponseBody
-    public CommentLikeVO checkLiked(long coNo, Principal principal) {
+    public CommentLikeVO checkLiked(Integer coNo, Principal principal) {
 
         CommentVO commentVO = new CommentVO();
 
@@ -123,7 +125,7 @@ public class CommentController {
     @ResponseBody
     public boolean checkLast(CommentVO commentVO) {
 
-        long lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
+        Integer lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
 
         if (commentVO.getCoNo() == lastCoNo) {
             return true;

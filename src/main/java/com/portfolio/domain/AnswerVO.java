@@ -11,14 +11,14 @@ import java.util.List;
 @Setter
 public class AnswerVO {
 
-    private Long quesNo;
-    private Long ansNo;
+    private Integer quesNo;
+    private Integer ansNo;
     private String answer;
     private List<String> imagePath;
     private String regDate;
-    private Long likes;
-    private Long dislikes;
-    private Long commentCnt;
+    private Integer likes;
+    private Integer dislikes;
+    private Integer commentCnt;
     private String userEmail;
     private String userName;
     private String userPhoto;
