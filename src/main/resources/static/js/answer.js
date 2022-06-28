@@ -221,6 +221,10 @@ $('#add-answer-button').click(function () {
             template.find('.answer-text').prepend(answer.answer)
             template.find('.answer-user-photo').attr('src', '/uploadedImages' + answer.userPhoto)
 
+            if (answer.commentCnt > 0) {
+                template.find('.comment-count').html(answer.commentCnt)
+            }
+
             $('#answer-list').prepend(template.html())
 
             if (answer.likes > 0) {
@@ -229,6 +233,8 @@ $('#add-answer-button').click(function () {
             if (answer.dislikes > 0) {
                 addedAnswer.find('.answer-dislike-cnt').prepend(answer.dislikes)
             }
+
+            template.find('.answer-popover-item').attr('data-ans-no', answer.ansNo)
 
             initAnswerPopover()
 

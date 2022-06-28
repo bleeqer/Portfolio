@@ -457,7 +457,9 @@
 
                                                                                 <%--Comment count--%>
                                                                             <div class="d-flex align-items-center justify-content-center color-gray">
+                                                                            <c:if test="${answer.commentCnt > 0}">
                                                                                 ${answer.commentCnt}
+                                                                            </c:if>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -507,12 +509,12 @@
                                                  style="width: 100%; background-color: #202020;">
 
                                                     <%--Profile--%>
-                                                <a href="">
-                                                    <div>
-                                                        <img style="width: 36px; height: 36px;"
-                                                             src="/static/img/user.png" alt="">
-                                                    </div>
-                                                </a>
+<%--                                                <a href="">--%>
+<%--                                                    <div>--%>
+<%--                                                        <img style="width: 36px; height: 36px;"--%>
+<%--                                                             src="/static/img/user.png" alt="">--%>
+<%--                                                    </div>--%>
+<%--                                                </a>--%>
 
                                                     <%--Comment input--%>
                                                 <div class="rounded-3 bg-black ms-2 py-1 px-3"
@@ -769,8 +771,7 @@
                                                                             </span>
 
                                                     <%--Comment count--%>
-                                                    <div class="d-flex align-items-center justify-content-center color-gray">
-                                                        <%--                                                                                ${answer.answerCommentCnt}--%>
+                                                    <div class="comment-count d-flex align-items-center justify-content-center color-gray">
                                                     </div>
                                                 </div>
                                             </div>
@@ -818,12 +819,12 @@
                              style="width: 100%; background-color: #202020;">
 
                             <%--Profile--%>
-                            <a href="">
-                                <div>
-                                    <img style="width: 36px; height: 36px;"
-                                         src="/static/img/user.png" alt="">
-                                </div>
-                            </a>
+<%--                            <a href="">--%>
+<%--                                <div>--%>
+<%--                                    <img style="width: 36px; height: 36px;"--%>
+<%--                                         src="/static/img/user.png" alt="">--%>
+<%--                                </div>--%>
+<%--                            </a>--%>
 
                             <%--Comment input--%>
                             <div class="rounded-3 bg-black ms-2 py-1 px-3"
