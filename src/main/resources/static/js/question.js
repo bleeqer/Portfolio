@@ -18,14 +18,15 @@ function addQuestion (question) {
 
     let template = $('#question-template')
 
-    // comment data 속성 셋팅
+    // question data 속성 셋팅
     template.find('.question').attr('data-ques-no', question.quesNo)
     template.find('.question').addClass('border-bottom-gray')
 
-    // comment 셋팅
+    // question 셋팅
     template.find('.question-text').html(question.question)
     template.find('.question-reg-date').html(question.regDate)
     template.find('.answer-button').attr('data-ques-no', question.quesNo)
+    template.find('.question-link').attr('href', '/question/' + question.quesNo)
 
     // comment option popover 셋팅
     template.find('.question-popover-item').attr('data-ques-no', question.quesNo)

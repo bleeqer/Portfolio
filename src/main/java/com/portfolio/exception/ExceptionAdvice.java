@@ -1,6 +1,7 @@
 package com.portfolio.exception;
 
 import org.mybatis.spring.MyBatisSystemException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,6 +26,10 @@ public class ExceptionAdvice {
         } else if (e instanceof MethodArgumentTypeMismatchException || e instanceof IllegalArgumentException) {
 
             model.addAttribute("errorCode", 400);
+
+        } else if (e instanceof UsernameNotFoundException) {
+
+            model.addAttribute("errorCode", 404);
 
         }
 

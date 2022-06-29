@@ -15,7 +15,7 @@
                         <div class="d-flex justify-content-between position-relative">
                             <%--Question title--%>
                             <div class="pe-2">
-                                <a class="hover-underline" href="/question/"><strong class="question-text" style="line-height: 1.6;"></strong></a>
+                                <a class="question-link hover-underline" href=""><strong class="question-text" style="line-height: 1.6;"></strong></a>
                             </div>
                             <%--Question close--%>
                             <div class="position-absolute" style="top: -12px; right: -12px;">

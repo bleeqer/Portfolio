@@ -11,6 +11,7 @@ import com.portfolio.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,10 +45,17 @@ public class UserController {
     }
 
     @GetMapping("profile/{email}")
-    public String userProfile(@PathVariable String email, Model model) throws SQLException, IllegalArgumentException {
+    public String userProfile(@PathVariable String email, Model model) throws SQLException, UsernameNotFoundException, IllegalArgumentException {
 
-        // 유저 정보 가져오기
-        CustomUserDetailsVO user = userService.select(email);
+        CustomUserDetailsVO user;
+
+        try {
+            // 유저 정보 가져오기
+            user = userService.select(email);
+        } catch (Exception e) {
+            throw new UsernameNotFoundException(email);
+
+        }
 
         QuestionVO questionVO = new QuestionVO();
         AnswerVO answerVO = new AnswerVO();
