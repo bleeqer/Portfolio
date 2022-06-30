@@ -178,7 +178,7 @@
                                                                 <div class="d-flex flex-column">
 
                                                                         <%--이름--%>
-                                                                    <div class="my-auto"><a class="text-decoration-none link-default-color hover-underline h6" href="" style="font-size: 13px;"><strong class="answer-user-name">${answerPair.userName}</strong></a></div>
+                                                                    <div class="my-auto"><a class="user-profile-link text-decoration-none link-default-color hover-underline h6" href="/user/profile/${answerPair.userEmail}" style="font-size: 13px;"><strong class="answer-user-name">${answerPair.userName}</strong></a></div>
 
                                                                         <%--상세--%>
                                                                     <div class="d-flex align-items-center my-auto color-gray text-center" style="font-size: 13px;"><div class="answer-user-occupation">${answerPair.userOccupation}</div><span class="px-1 text-center">·</span><div class="answer-reg-date d-flex text-center" style="font-size: 11px;">${answerPair.answerRegDate}</div></div>
@@ -192,7 +192,7 @@
                                                                     <div class="d-flex justify-content-between position-relative">
                                                                             <%--Question title--%>
                                                                         <div class="pe-2">
-                                                                            <a class="question-link hover-underline" href="/question/${answerPair.question}"><strong class="question-text" style="line-height: 1.6;">${answerPair.question}</strong></a>
+                                                                            <a class="question-link hover-underline" href="/question/${answerPair.quesNo}"><strong class="question-text" style="line-height: 1.6;">${answerPair.question}</strong></a>
                                                                         </div>
 
                                                                     </div>

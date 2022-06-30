@@ -46,7 +46,7 @@
                                     <div class="d-flex flex-column">
 
                                         <%--이름--%>
-                                        <div class="my-auto"><a class="text-decoration-none link-default-color hover-underline h6" href="" style="font-size: 13px;"><strong class="answer-user-name"></strong></a></div>
+                                        <div class="my-auto"><a class="user-profile-link text-decoration-none link-default-color hover-underline h6" href="" style="font-size: 13px;"><strong class="answer-user-name"></strong></a></div>
 
                                         <%--상세--%>
                                         <div class="d-flex align-items-center my-auto color-gray text-center" style="font-size: 13px;"><div class="answer-user-occupation"></div><span class="px-1 text-center">·</span><div class="answer-reg-date d-flex text-center" style="font-size: 11px;"></div></div>

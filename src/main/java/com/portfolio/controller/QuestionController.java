@@ -73,6 +73,7 @@ public class QuestionController {
     @GetMapping("{quesNo}")
     public String viewQuestion(@PathVariable Integer quesNo, Model model) {
 
+    System.out.println(quesNo);
         QuestionVO question = questionService.select(quesNo);
 
         // 답변여부에 따라 답변글 조회

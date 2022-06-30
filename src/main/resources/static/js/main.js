@@ -10,6 +10,7 @@ function addPair (pair) {
     template.find('.question-text').html(pair.question)
     template.find('.answer-text p').html(pair.answer)
     template.find('.answer-user-photo').attr('src', '/uploadedImages' + pair.userPhoto)
+    template.find('.user-profile-link').attr('src', '/user/profile/' + pair.userEmail)
     template.find('.answer-user-name').html(pair.userName)
     template.find('.answer-user-occupation').html(pair.userOccupation)
     template.find('.answer-reg-date').html(pair.answerRegDate)
