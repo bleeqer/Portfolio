@@ -227,6 +227,7 @@ $('#add-answer-button').click(function () {
             template.find('.answer-reg-date').prepend(answer.regDate)
             template.find('.answer-text').prepend(answer.answer)
             template.find('.answer-user-photo').attr('src', '/uploadedImages' + answer.userPhoto)
+            template.find('.footer-container').prepend(answer.ansNo)
 
             if (answer.commentCnt > 0) {
                 template.find('.comment-count').html(answer.commentCnt)

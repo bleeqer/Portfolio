@@ -17,8 +17,7 @@ $(window).scroll(function() {
                     $('#question-list').append(addQuestion($(question)[0]))
                 })
 
-                // answer 엘레멘트가 없을 경우 no content 이미지 보여주기
-                if (isExist('.question')) $('#no-content').hide()
+                // if (isExist('.question')) $('#no-content').hide()
 
                 initAnswerPopover()
 

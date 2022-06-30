@@ -37,10 +37,6 @@ function addQuestion (question) {
     } else {
         template.find('.answer-button').hide()
         template.find('.question-option-button').show()
-
-
-
-
     }
 
     return template.html()

@@ -72,7 +72,7 @@ answerLikeHighlight('.answer')
 
 $('body').on('click', '.answer-like-button', function () {
 
-    const answer = $(this).closest('.answer')
+    const answer = $(this).closest('.footer-container')
     const ansNo = answer.data('ans-no')
     console.log(ansNo)
     $.ajax({
@@ -108,7 +108,7 @@ $('body').on('click', '.answer-like-button', function () {
 
 $('body').on('click', '.answer-dislike-button', function () {
 
-    const answer = $(this).closest('.answer')
+    const answer = $(this).closest('.footer-container')
     const ansNo = answer.data('ans-no')
 
     $.ajax({

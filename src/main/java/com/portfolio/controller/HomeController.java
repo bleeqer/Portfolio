@@ -47,16 +47,14 @@ public class HomeController {
     }
 
     @GetMapping("more")
-    public String getMorePairs(@RequestParam Integer quesNo, Model model) {
+    @ResponseBody
+    public ResponseEntity<List<QAPairVO>> getMorePairs(@RequestParam Integer quesNo) {
 
         QuestionVO questionVO = new QuestionVO();
 
         questionVO.setQuesNo(quesNo);
 
-        // 질문글 + 답변글 1:1 페어 리스트 model에 담기
-        model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
-
-        return "templates/pairTemplate";
+        return new ResponseEntity<>(questionService.selectPairList(questionVO), HttpStatus.OK);
     }
 
     @GetMapping("questions") // 미답변 질문글 목록

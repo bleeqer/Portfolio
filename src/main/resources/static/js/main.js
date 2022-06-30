@@ -1,6 +1,30 @@
+// 템플릿에 전달받은 댓글 데이터 세팅 후 화면에 삽입
+function addPair (pair) {
 
+    let template = $('#pair-template')
 
-$('.best-title:last-child').removeClass('border-bottom-grey')
+    // pair data 속성 셋팅
+    template.find('.pair').attr('data-ques-no', pair.quesNo)
+
+    // pair 셋팅
+    template.find('.question-text').html(pair.question)
+    template.find('.answer-text p').html(pair.answer)
+    template.find('.answer-user-photo').attr('src', '/uploadedImages' + pair.userPhoto)
+    template.find('.answer-user-name').html(pair.userName)
+    template.find('.answer-user-occupation').html(pair.userOccupation)
+    template.find('.answer-reg-date').html(pair.answerRegDate)
+    template.find('.question-link').attr('href', '/question/' + pair.quesNo)
+
+    // if ($('#logged-in-user').val() !== question.userEmail) {
+    //     template.find('.answer-button').show()
+    //     template.find('.question-option-button').hide()
+    // } else {
+    //     template.find('.answer-button').hide()
+    //     template.find('.question-option-button').show()
+    // }
+
+    return template.html()
+}
 
 $('.input-focus').focus(function () {
     $(this).parents('.input-container').addClass('border-blue')

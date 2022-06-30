@@ -41,7 +41,7 @@
                         <div class="position-relative">
                             <div class="fade-post" style="">
                                 <div class="answer-text" style="font-size: 15px; line-height: 1.5rem;">
-
+                                    <p></p>
                                     <div class="overflow-fade hidden" style="background: linear-gradient(to bottom, transparent 60%, rgb(24, 24, 24) 100%) !important;"></div>
                                 </div>
                                 <span class="readMore-button btn btn-primary rounded-pill hidden">More</span>
