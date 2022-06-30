@@ -222,6 +222,7 @@ $('#add-answer-button').click(function () {
 
             template.find('.comment-form').attr('data-ans-no', answer.ansNo)
             template.find('.answer').attr('data-ans-no', answer.ansNo)
+            template.find('.user-profile-link').attr('href', '/user/profile/' + answer.userEmail)
             template.find('.answer-user-name').prepend(answer.userName)
             template.find('.answer-user-occupation').prepend(answer.userOccupation)
             template.find('.answer-reg-date').prepend(answer.regDate)

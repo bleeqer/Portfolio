@@ -288,7 +288,7 @@
                                                     <div class="d-flex flex-column">
 
                                                             <%--이름--%>
-                                                        <div class="my-auto"><a class="text-decoration-none link-default-color hover-underline h6" href="" style="font-size: 13px;"><strong class="answer-user-name">${answer.userName}</strong></a></div>
+                                                        <div class="my-auto"><a class="user-profile-link text-decoration-none link-default-color hover-underline h6" href="/user/profile/${answer.userEmail}" style="font-size: 13px;"><strong class="answer-user-name">${answer.userName}</strong></a></div>
 
                                                             <%--상세--%>
                                                         <div class="answer-user-occupation d-flex align-items-center my-auto color-gray text-center" style="font-size: 13px;">${answer.userOccupation}<span class="px-1 text-center">·</span><div class="answer-reg-date d-flex text-center" style="font-size: 11px;">${answer.regDate}</div></div>
