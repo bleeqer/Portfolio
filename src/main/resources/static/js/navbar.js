@@ -1,3 +1,30 @@
+
+//
+// $('#search-button').click(function (e) {
+//
+//     e.preventDefault()
+//
+//     splitURL = window.location.href
+//
+//     //
+//     if ((splitURL.indexOf('questions') !== -1)) {
+//
+//         $('.question').last().
+//         return
+//     }
+//
+//
+//
+// })
+
+// enter키로 검색 submit 방지
+$('.search-input').on('keydown', function(e) {
+    if (e.keyCode === 13) {
+
+        e.preventDefault()
+    }
+})
+
 $('.search-input').on('keyup', (function () {
     const keyword = $(this).val()
     const keywordDisplay = $('.display-keyword')

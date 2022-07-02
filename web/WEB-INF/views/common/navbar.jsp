@@ -59,7 +59,9 @@
                         <%--Search bar--%>
                         <div class="d-flex ms-1" style="width: 100%;">
                             <input class="search-input input-focus justify-content-center" type="text" name="keyword" id="keyword" style="background-color: transparent; border: none; min-height: 26px; font-size: 13px; width: 100%; outline: none; transition: visibility 250ms, opacity 250ms;" placeholder="Search..." autocomplete="off">
-                            <input id="category-code" type="hidden" name="categoryCode" value="${search.categoryCode}">
+                            <input class="search-keyword" type="hidden" value="${keyword}">
+                            <input class="ques-no" type="hidden" name="quesNo" placeholder="Search..." autocomplete="off">
+<%--                            <input id="category-code" type="hidden" name="categoryCode" value="${selectedCategory}">--%>
                             <%--Search focus overlay--%>
                             <div class="position-fixed bg-transparent-dark search-overlay hidden"></div>
                         </div>

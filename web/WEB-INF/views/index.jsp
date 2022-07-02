@@ -103,7 +103,7 @@
                     <div>
                         <%--개별 토픽 컨테이너--%>
                         <c:forEach var="category" items="${categories}">
-                            <div class="category-item d-flex mb-1 rounded-1 <c:if test="${search.categoryCode == category.categoryCode}">selected</c:if> bg-hover-whiten-light"
+                            <div class="category-item d-flex mb-1 rounded-1 <c:if test="${selectedCategory == category.categoryCode}">selected</c:if> bg-hover-whiten-light"
                                  data-category-code="${category.categoryCode}">
                                 <a class="text-decoration-none" href="/category/${category.categoryCode}"
                                    style="width: 100%;">
@@ -413,7 +413,7 @@
 
                                         <%--배경색--%>
                                     <div class="rounded-3 bg-dark position-relative bg-hover-whiten"
-                                         style="height: calc(95vh - 80px);">
+                                         style="height: calc(70vh - 80px);">
                                         <div class="QnA-section d-flex px-4 justify-content-center align-items-center"
                                              style="height: 100%;">
                                             <div id="no-content" class="pb-4" style="width: 100%;">

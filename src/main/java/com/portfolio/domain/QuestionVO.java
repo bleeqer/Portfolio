@@ -20,6 +20,7 @@ public class QuestionVO {
     private String answered;
     private Integer answerCnt;
     private Integer viewCnt;
+    private String searchKeyword;
 
     public String getRegDate() {
         return regDate;

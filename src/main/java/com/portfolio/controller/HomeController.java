@@ -78,6 +78,8 @@ public class HomeController {
 
         questionVO.setAnswered("N");
 
+    System.out.println(questionVO.getSearchKeyword());
+
         return new ResponseEntity<>(questionService.selectList(questionVO), HttpStatus.OK);
     }
 
@@ -93,10 +95,8 @@ public class HomeController {
         // 카테고리 리스트 담기
         model.addAttribute("categories", questionService.selectCategories());
 
-        SearchVO search = new SearchVO();
-        search.setCategoryCode(categoryCode);
+        model.addAttribute("selectedCategory", categoryCode);
 
-        model.addAttribute("search", search);
 
         return "questions";
     }
@@ -113,32 +113,27 @@ public class HomeController {
         // 카테고리 리스트 담기
         model.addAttribute("categories", questionService.selectCategories());
 
-        SearchVO search = new SearchVO();
-        search.setCategoryCode(categoryCode);
-
-        model.addAttribute("search", search);
+        model.addAttribute("selectedCategory", categoryCode);
 
         return "index";
     }
 
+//    @GetMapping("search")
+//    public String searchPairs(SearchVO searchVO) {
+//        System.out.println(searchVO.getKeyword());
+//        System.out.println(searchVO.getQuesNo());
+//
+//        return "index";
+//    }
+
     @GetMapping("search/questions")
-    public String searchQs(SearchVO searchVO, Model model) {
+    public String searchQuestions(SearchVO searchVO, Model model) {
+        model.addAttribute("keyword", searchVO.getKeyword());
 
-        List<QuestionVO> questions = questionService.searchQuestions(searchVO);
-
-        model.addAttribute("categories", questionService.selectCategories());
-        model.addAttribute("search", searchVO);
-        model.addAttribute("questions", questions);
+        QuestionVO questionVO = new QuestionVO();
+        model.addAttribute("questions", questionService.selectList(questionVO));
 
         return "questions";
-
     }
-
-    @GetMapping("search/pairs")
-    public List<QAPairVO> searchPs(SearchVO searchVO) {
-
-        return questionService.searchPairs(searchVO);
-    }
-
 
 }

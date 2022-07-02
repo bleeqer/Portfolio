@@ -27,6 +27,8 @@ public class QAPairVO {
     private String userName;
     private String userPhoto;
     private String userOccupation;
+    private String searchKeyword;
+
 
     public String getAnswerRegDate() {
         return answerRegDate;

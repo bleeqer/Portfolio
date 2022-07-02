@@ -107,7 +107,7 @@
             <div>
               <%--개별 토픽 컨테이너--%>
               <c:forEach var="category" items="${categories}">
-                <div class="category-item d-flex mb-1 rounded-1 <c:if test="${search.categoryCode == category.categoryCode}">selected</c:if> bg-hover-whiten-light" data-category-code="${category.categoryCode}">
+                <div class="category-item d-flex mb-1 rounded-1 <c:if test="${selectedCategory == category.categoryCode}">selected</c:if> bg-hover-whiten-light" data-category-code="${category.categoryCode}">
                   <a class="topic-item text-decoration-none" href="/questions/category/${category.categoryCode}">
                     <div class="p-2 d-flex align-items-center" style="height: auto;">
 
