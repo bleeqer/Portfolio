@@ -1,7 +1,7 @@
 
 $(window).scroll(function() {
 
-    if ($(window).scrollTop() + 0.4 >= $(document).height() - $(window).height()) {
+    if ($(window).scrollTop() + 0.1 >= $(document).height() - $(window).height()) {
 
         const lastQuesNo = $('#question-list .question').last().data('ques-no')
         const categoryCode = $('.category-item.selected').data('category-code')
@@ -10,7 +10,7 @@ $(window).scroll(function() {
             url: '/questions/more',
             type: 'GET',
             contentType: 'application/json',
-            data : {'quesNo': lastQuesNo, categoryCode: categoryCode},
+            data : {quesNo: lastQuesNo, categoryCode: categoryCode},
             success: function (questions) {
 
                 questions.forEach(function (question) {

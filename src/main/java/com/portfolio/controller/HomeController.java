@@ -74,18 +74,35 @@ public class HomeController {
 
     @GetMapping("questions/more") // 미답변 질문글 목록 더보기
     @ResponseBody
-    public ResponseEntity<List<QuestionVO>> getMoreQuestions(Integer quesNo) {
+    public ResponseEntity<List<QuestionVO>> getMoreQuestions(QuestionVO questionVO) {
 
-        QuestionVO questionVO = new QuestionVO();
-
-        questionVO.setQuesNo(quesNo);
         questionVO.setAnswered("N");
 
         return new ResponseEntity<>(questionService.selectList(questionVO), HttpStatus.OK);
     }
 
-    @GetMapping("category/{categoryCode}")
+    @GetMapping("questions/category/{categoryCode}")
     public String getQuestionsByTopic(@PathVariable Integer categoryCode, Model model) {
+
+        QuestionVO questionVO = new QuestionVO();
+
+        questionVO.setCategoryCode(categoryCode);
+
+        model.addAttribute("questions", questionService.selectList(questionVO));
+
+        // 카테고리 리스트 담기
+        model.addAttribute("categories", questionService.selectCategories());
+
+        SearchVO search = new SearchVO();
+        search.setCategoryCode(categoryCode);
+
+        model.addAttribute("search", search);
+
+        return "questions";
+    }
+
+    @GetMapping("category/{categoryCode}")
+    public String getPairsByTopic(@PathVariable Integer categoryCode, Model model) {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -102,21 +119,6 @@ public class HomeController {
         model.addAttribute("search", search);
 
         return "index";
-    }
-
-    @GetMapping("category/{categoryCode}/more")
-    public String getMoreQuestionsByTopic(@PathVariable String categoryCode, @RequestParam Integer quesNo, Model model) {
-
-        QuestionVO questionVO = new QuestionVO();
-
-        questionVO.setQuesNo(quesNo);
-        questionVO.setCategoryName(categoryCode);
-
-        List<QAPairVO> pairs = questionService.selectPairList(questionVO);
-
-        model.addAttribute("answerPairs", pairs);
-
-        return "templates/pairTemplate";
     }
 
     @GetMapping("search/questions")
@@ -138,10 +140,5 @@ public class HomeController {
         return questionService.searchPairs(searchVO);
     }
 
-    @GetMapping("test/{str}")
-    public void searchPs(@PathVariable String str) {
-
-        System.out.println(str);
-    }
 
 }

@@ -31,7 +31,6 @@ $(window).scroll(function() {
         const lastQuesNo = $('#pair-list .pair').last().data('ques-no')
         const categoryCode = $('.category-item.selected').data('category-code')
 
-
         $.ajax({
             url: '/more',
             type: 'GET',
