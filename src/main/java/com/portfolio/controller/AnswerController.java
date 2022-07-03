@@ -42,8 +42,8 @@ public class AnswerController {
         AnswerVO answer;
 
         try {
-
-            answer = answerService.select(answerService.create(answerVO));
+            answerService.create(answerVO);
+            answer = answerService.select(answerVO.getAnsNo());
 
         } catch (Exception e) {
 
@@ -59,11 +59,11 @@ public class AnswerController {
     @ResponseBody
     public ResponseEntity<Object> selectAnswer(Integer ansNo) {
 
-        AnswerVO answerVO;
+        AnswerVO answer;
 
         try {
 
-            answerVO = answerService.select(ansNo);
+            answer = answerService.select(ansNo);
 
         } catch (Exception e) {
 
@@ -71,7 +71,7 @@ public class AnswerController {
 
         }
 
-        return new ResponseEntity<>(answerVO, HttpStatus.OK);
+        return new ResponseEntity<>(answer, HttpStatus.OK);
 
 
     }
@@ -132,11 +132,11 @@ public class AnswerController {
 
         likeVO.setUserEmail(principal.getName());
 
-        AnswerLikeVO answerLikeVO;
+        AnswerLikeVO answerLike;
 
         try {
 
-            answerLikeVO = answerService.addLike(likeVO);
+            answerLike = answerService.addLike(likeVO);
 
         } catch (Exception e) {
 
@@ -144,7 +144,7 @@ public class AnswerController {
 
         }
 
-        return new ResponseEntity<>(answerLikeVO, HttpStatus.OK);
+        return new ResponseEntity<>(answerLike, HttpStatus.OK);
     }
 
     @GetMapping("dislike")
@@ -153,11 +153,11 @@ public class AnswerController {
 
         likeVO.setUserEmail(principal.getName());
 
-        AnswerLikeVO answerLikeVO;
+        AnswerLikeVO answerLike;
 
         try {
 
-            answerLikeVO = answerService.subtractLike(likeVO);
+            answerLike = answerService.subtractLike(likeVO);
 
         } catch (Exception e) {
 
@@ -165,7 +165,7 @@ public class AnswerController {
 
         }
 
-        return new ResponseEntity<>(answerLikeVO, HttpStatus.OK);
+        return new ResponseEntity<>(answerLike, HttpStatus.OK);
 
     }
 
@@ -204,11 +204,11 @@ public class AnswerController {
 
         answerVO.setUserEmail(principal.getName());
 
-        AnswerLikeVO likeVO;
+        AnswerLikeVO like;
 
         try {
 
-            likeVO = answerService.checkLiked(answerVO);
+            like = answerService.checkLiked(answerVO);
 
         } catch (Exception e) {
 
@@ -216,12 +216,12 @@ public class AnswerController {
 
         }
 
-        if (likeVO == null) {
-            likeVO = new AnswerLikeVO();
-            likeVO.setLikeType("None");
+        if (like == null) {
+            like = new AnswerLikeVO();
+            like.setLikeType("None");
         }
 
-        return new ResponseEntity<>(likeVO, HttpStatus.OK);
+        return new ResponseEntity<>(like, HttpStatus.OK);
 
     }
 

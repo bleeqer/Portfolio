@@ -1,7 +1,5 @@
 package com.portfolio.service;
 
-import com.portfolio.domain.AnswerLikeVO;
-import com.portfolio.domain.AnswerVO;
 import com.portfolio.domain.CommentVO;
 import com.portfolio.domain.CommentLikeVO;
 import com.portfolio.mapper.AnswerCommentMapper;
@@ -10,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class AnswerCommentServiceImpl implements AnswerCommentService {
@@ -25,113 +22,202 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
 
     @Transactional
     @Override
-    public void insert(CommentVO commentVO) {
+    public int insert(CommentVO commentVO) throws SQLException {
 
-        answerCommentMapper.insert(commentVO);
+        try {
+
+            answerCommentMapper.insert(commentVO);
+
+        } catch (Exception e) {
+
+            throw new SQLException("댓글 등록에 실패했습니다.");
+
+        }
+
+        return 0;
+    }
+
+    @Override
+    public CommentVO select(Integer coNo) throws SQLException {
+
+        CommentVO comment;
+
+        try {
+
+            comment = answerCommentMapper.select(coNo);
+
+        } catch (Exception e) {
+
+            throw new SQLException("댓글 조회에 실패했습니다.");
+
+        }
+
+
+        return comment;
+    }
+
+    @Override
+    public List<CommentVO> selectList(CommentVO commentVO) throws SQLException {
+
+        List<CommentVO> comments;
+
+        try {
+
+            comments = answerCommentMapper.selectList(commentVO);
+
+        } catch (Exception e) {
+
+            throw new SQLException("댓글 조회에 실패했습니다.");
+
+        }
+
+        return comments;
 
     }
 
     @Override
-    public CommentVO select(Integer coNo) {
+    public Integer selectLastCoNo(Integer ansNo) throws SQLException {
 
-        return answerCommentMapper.select(coNo);
+        Integer lastCoNo;
+
+        try {
+
+            lastCoNo = answerCommentMapper.selectLastCoNo(ansNo);
+
+
+        } catch (Exception e) {
+
+            throw new SQLException("댓글을 찾을 수 없습니다.");
+
+        }
+        return lastCoNo;
     }
 
-    @Override
-    public List<CommentVO> selectList(CommentVO commentVO) {
-
-        return answerCommentMapper.selectList(commentVO);
-    }
 
     @Override
-    public Integer selectLastCoNo(Integer ansNo) {
-        return answerCommentMapper.selectLastCoNo(ansNo);
-    }
+    public void update(CommentVO commentVO) throws SQLException {
 
+        try {
 
-    @Override
-    public Integer update(CommentVO commentVO) {
+            answerCommentMapper.update(commentVO);
 
-        return answerCommentMapper.update(commentVO);
+        } catch (Exception e) {
+
+            throw new SQLException("댓글 업데이트에 실패했습니다.");
+
+        }
+
     }
 
     @Transactional
     @Override
-    public void delete(CommentVO commentVO) {
+    public void delete(CommentVO commentVO) throws SQLException {
 
-        answerCommentMapper.delete(commentVO.getCoNo());
+        try {
 
-    }
-    public Map<String, Integer> addLike(CommentLikeVO likeVO) {
+            answerCommentMapper.delete(commentVO.getCoNo());
 
-        CommentLikeVO like = answerCommentMapper.findLike(likeVO);
+        } catch (Exception e) {
 
-        // likeType 구분 없이 findLike 후 likeType 셋팅
-        likeVO.setLikeType("UP");
-
-        System.out.println("add find like");
-
-        if (like == null) {
-
-            answerCommentMapper.addLike(likeVO);
-            System.out.println("add add like");
-
-        } else if (like.getLikeType().equals("UP")) {
-
-            // 이미 좋아요 했다면 좋아요 취소
-            answerCommentMapper.deleteLike(likeVO);
-            System.out.println("add delete like");
-
-
-        } else {
-
-            // 싫어요 -> 좋아요 업데이트
-            answerCommentMapper.updateLike(likeVO);
-            System.out.println("add update like");
+            throw new SQLException("댓글 삭제에 실패했습니다.");
 
         }
 
-        return answerCommentMapper.countLike(likeVO.getCoNo());
+
+    }
+    public CommentLikeVO addLike(CommentLikeVO likeVO) throws SQLException {
+
+        CommentLikeVO resultLike;
+
+        try {
+            CommentLikeVO like = answerCommentMapper.findLike(likeVO);
+
+            // likeType 구분 없이 findLike 후 likeType 셋팅
+            likeVO.setLikeType("UP");
+
+            if (like == null) {
+
+                answerCommentMapper.addLike(likeVO);
+
+            } else if (like.getLikeType().equals("UP")) {
+
+                // 이미 좋아요 했다면 좋아요 취소
+                answerCommentMapper.deleteLike(likeVO);
+
+
+            } else {
+
+                // 싫어요 -> 좋아요 업데이트
+                answerCommentMapper.updateLike(likeVO);
+
+            }
+
+            resultLike = answerCommentMapper.countLike(likeVO.getCoNo());
+
+        } catch (Exception e) {
+
+            throw new SQLException("좋아요에 실패했습니다.");
+
+        }
+
+        return resultLike;
+    }
+
+    @Override
+    public CommentLikeVO subtractLike(CommentLikeVO likeVO) throws SQLException {
+
+        CommentLikeVO resultLike;
+
+        try {
+            CommentLikeVO like = answerCommentMapper.findLike(likeVO);
+
+            // likeType 구분 없이 findLike 후 likeType 셋팅
+            likeVO.setLikeType("DOWN");
+
+            if (like == null) {
+
+                answerCommentMapper.addLike(likeVO);
+
+            } else if (like.getLikeType().equals("DOWN")) {
+
+                // 이미 싫어요 했다면 싫어요 취소
+                answerCommentMapper.deleteLike(likeVO);
+
+            } else {
+
+                // 좋아요 -> 싫어요 업데이트
+                answerCommentMapper.updateLike(likeVO);
+
+            }
+
+            resultLike = answerCommentMapper.countLike(likeVO.getCoNo());
+
+        } catch (Exception e) {
+
+            throw new SQLException("싫어요에 실패했습니다.");
+
+        }
+
+        return resultLike;
 
     }
 
     @Override
-    public Map<String, Integer> subtractLike(CommentLikeVO likeVO) {
+    public CommentLikeVO checkLiked(CommentVO commentVO) throws SQLException {
 
-        CommentLikeVO like = answerCommentMapper.findLike(likeVO);
+        CommentLikeVO res;
 
-        // likeType 구분 없이 findLike 후 likeType 셋팅
-        likeVO.setLikeType("DOWN");
+        try {
 
-        System.out.println("subtract find like");
+            res = answerCommentMapper.checkLiked(commentVO);
 
-        if (like == null) {
+        } catch (Exception e) {
 
-            answerCommentMapper.addLike(likeVO);
-            System.out.println("subtract add like");
+            throw new SQLException("댓글 좋아요 여부 조회에 실패했습니다.");
 
-
-        } else if (like.getLikeType().equals("DOWN")) {
-
-            // 이미 싫어요 했다면 싫어요 취소
-            answerCommentMapper.deleteLike(likeVO);
-            System.out.println("subtract delete like");
-
-
-        } else {
-
-            // 좋아요 -> 싫어요 업데이트
-            answerCommentMapper.updateLike(likeVO);
-            System.out.println("subtract update like");
         }
 
-        return answerCommentMapper.countLike(likeVO.getCoNo());
-
-    }
-
-    @Override
-    public CommentLikeVO checkLiked(CommentVO commentVO) {
-        return answerCommentMapper.checkLiked(commentVO);
+        return res;
     }
 
 

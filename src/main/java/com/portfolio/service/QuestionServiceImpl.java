@@ -97,11 +97,11 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Integer selectLastQuesNo() throws SQLException {
 
-        Integer lastQUesNo;
+        Integer lastQuesNo;
 
         try {
 
-            lastQUesNo = questionMapper.selectLastQuesNo();
+            lastQuesNo = questionMapper.selectLastQuesNo();
 
 
         } catch (Exception e) {
@@ -109,7 +109,7 @@ public class QuestionServiceImpl implements QuestionService {
             throw new SQLException("질문을 찾을 수 없습니다.");
 
         }
-        return lastQUesNo;
+        return lastQuesNo;
     }
 
     @Override

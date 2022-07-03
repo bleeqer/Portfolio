@@ -1,8 +1,6 @@
 package com.portfolio.controller;
 
-import com.portfolio.domain.AnswerVO;
-import com.portfolio.domain.CommentLikeVO;
-import com.portfolio.domain.CommentVO;
+import com.portfolio.domain.*;
 import com.portfolio.domain.CommentLikeVO;
 import com.portfolio.service.AnswerCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("comment")
@@ -28,49 +28,111 @@ public class CommentController {
     @ResponseBody
     public ResponseEntity<Object> createComment(CommentVO commentVO, Principal principal) {
 
+        if (!commentVO.getUserEmail().equals(principal.getName())) {
+
+            return new ResponseEntity<>("작성자가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
+
+        }
+
+        CommentVO comment;
+
         commentVO.setUserEmail(principal.getName());
 
-        answerCommentService.insert(commentVO);
+        try {
 
-        return new ResponseEntity<>(answerCommentService.select(commentVO.getCoNo()), HttpStatus.OK);
+            answerCommentService.insert(commentVO);
+            comment = answerCommentService.select(commentVO.getCoNo());
+
+        } catch (SQLException e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+
+        }
+
+
+        return new ResponseEntity<>(comment, HttpStatus.OK);
     }
 
     @GetMapping("select")
     @ResponseBody
-    public CommentVO selectComment(int coNo) {
-        return answerCommentService.select(coNo);
+    public ResponseEntity<Object> selectComment(int coNo) {
+
+        CommentVO comment;
+
+        try {
+
+            comment = answerCommentService.select(coNo);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(comment, HttpStatus.OK);
     }
 
     @PostMapping("update")
     @ResponseBody
-    public CommentVO updateComment(CommentVO commentVO, Principal principal) {
-        
-        // 예외처리 할 것
-        Integer res = 0;
+    public ResponseEntity<Object> updateComment(CommentVO commentVO, Principal principal) {
 
-        if (commentVO.getUserEmail().equals(principal.getName())) {
+        if (!commentVO.getUserEmail().equals(principal.getName())) {
 
-            res = answerCommentService.update(commentVO);
+            return new ResponseEntity<>("작성자가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
 
         }
 
-        return commentVO;
+        CommentVO comment;
+
+
+        try {
+
+            answerCommentService.update(commentVO);
+            comment = answerCommentService.select(commentVO.getCoNo());
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(comment, HttpStatus.OK);
+
     }
 
     @PostMapping("delete")
     @ResponseBody
-    public Integer deleteComment(@RequestBody CommentVO commentVO) {
+    public ResponseEntity<Object> deleteComment(@RequestBody CommentVO commentVO) {
 
-        answerCommentService.delete(commentVO);
+        try {
 
-        return commentVO.getCoNo();
+            answerCommentService.delete(commentVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(commentVO.getCoNo(), HttpStatus.OK);
+
     }
 
     @GetMapping("")
     @ResponseBody
-    public ResponseEntity<List<CommentVO>> getComments(CommentVO commentVO) {
+    public ResponseEntity<Object> getComments(CommentVO commentVO) {
 
-        List<CommentVO> comments = answerCommentService.selectList(commentVO);
+        List<CommentVO> comments;
+
+        try {
+
+            comments = answerCommentService.selectList(commentVO);
+
+        } catch (SQLException e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
 
         return new ResponseEntity<>(comments, HttpStatus.OK);
 
@@ -78,59 +140,108 @@ public class CommentController {
 
     @GetMapping("like")
     @ResponseBody
-    public ResponseEntity<Map<String, Integer>> likeComment(@RequestParam Integer coNo, Principal principal) {
+    public ResponseEntity<Object> likeComment(@RequestParam Integer coNo, Principal principal) {
 
         CommentLikeVO likeVO = new CommentLikeVO();
 
         likeVO.setCoNo(coNo);
         likeVO.setUserEmail(principal.getName());
 
-        return new ResponseEntity<>(answerCommentService.addLike(likeVO), HttpStatus.OK);
+        CommentLikeVO commentLike;
+
+        try {
+
+            commentLike = answerCommentService.addLike(likeVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(commentLike, HttpStatus.OK);
+
     }
 
     @GetMapping("dislike")
     @ResponseBody
-    public ResponseEntity<Map<String, Integer>> dislikeComment(@RequestParam Integer coNo, Principal principal) {
+    public ResponseEntity<Object> dislikeComment(@RequestParam Integer coNo, Principal principal) {
 
         CommentLikeVO likeVO = new CommentLikeVO();
 
         likeVO.setCoNo(coNo);
         likeVO.setUserEmail(principal.getName());
 
+        CommentLikeVO commentLike;
 
-        return new ResponseEntity<>(answerCommentService.subtractLike(likeVO), HttpStatus.OK);
+        try {
+
+            commentLike = answerCommentService.subtractLike(likeVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(commentLike, HttpStatus.OK);
 
     }
 
     @GetMapping("checkLiked")
     @ResponseBody
-    public CommentLikeVO checkLiked(Integer coNo, Principal principal) {
+    public ResponseEntity<Object> checkLiked(Integer coNo, Principal principal) {
 
         CommentVO commentVO = new CommentVO();
 
-        commentVO.setCoNo(coNo);
+        commentVO.setAnsNo(coNo);
+
         commentVO.setUserEmail(principal.getName());
 
-        CommentLikeVO likeVO = answerCommentService.checkLiked(commentVO);
+        CommentLikeVO like;
 
-        if (likeVO == null) {
-            likeVO = new CommentLikeVO();
-            likeVO.setLikeType("None");
+        try {
+
+            like = answerCommentService.checkLiked(commentVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
         }
 
-        return likeVO;
+        if (like == null) {
+            like = new CommentLikeVO();
+            like.setLikeType("None");
+        }
+
+        return new ResponseEntity<>(like, HttpStatus.OK);
+
     }
 
     @GetMapping("checkLast")
     @ResponseBody
-    public boolean checkLast(CommentVO commentVO) {
+    public ResponseEntity<Object> checkLast(CommentVO commentVO) {
 
-        Integer lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
+        Integer lastCoNo;
 
-        if (commentVO.getCoNo() == lastCoNo) {
-            return true;
+        try {
+
+            lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
+
+            if (Objects.equals(commentVO.getCoNo(), lastCoNo)) {
+
+                return new ResponseEntity<>(true, HttpStatus.OK);
+
+            }
+
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
         }
-        return false;
+
+        return new ResponseEntity<>(false, HttpStatus.OK);
+
     }
 
 }

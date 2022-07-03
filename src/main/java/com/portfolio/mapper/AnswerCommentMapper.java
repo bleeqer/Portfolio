@@ -20,7 +20,7 @@ public interface AnswerCommentMapper {
     Integer deleteLike(CommentLikeVO likeVO);
     CommentLikeVO findLike(CommentLikeVO likeVO);
     Integer updateLike(CommentLikeVO likeVO);
-    Map<String, Integer> countLike(Integer coNo);
+    CommentLikeVO countLike(Integer coNo);
     CommentLikeVO checkLiked(CommentVO commentVO);
 
 }
