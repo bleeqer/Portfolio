@@ -27,7 +27,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
         if (user == null) {
 
-            throw new UsernameNotFoundException(userId);
+            throw new UsernameNotFoundException("존재하지 않는 계정입니다.");
         }
 
         return user;
@@ -71,7 +71,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
         } catch (Exception e) {
 
-            throw new SQLException("사용자 정보를 불러오지 못했습니다.");
+            throw new SQLException("사용자를 찾을 수 없습니다.");
 
         }
         return userVO;

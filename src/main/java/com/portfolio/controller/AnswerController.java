@@ -34,49 +34,89 @@ public class AnswerController {
 
     @PostMapping("create")
     @ResponseBody
-    public ResponseEntity<AnswerVO> createAnswer(@RequestBody AnswerVO answerVO, Principal principal) throws SQLException {
+    public ResponseEntity<Object> createAnswer(@RequestBody AnswerVO answerVO, Principal principal) {
 
         // 작성자 셋팅
         answerVO.setUserEmail(principal.getName());
 
-        // 답변 생성 후 ansNo 받기
-        Integer ansNo = answerService.create(answerVO);
+        AnswerVO answer;
 
+        try {
 
+            answer = answerService.select(answerService.create(answerVO));
 
-        return new ResponseEntity<>(answerService.select(ansNo), HttpStatus.OK);
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(answer, HttpStatus.OK);
 
     }
 
     @GetMapping("select")
     @ResponseBody
-    public AnswerVO selectAnswer(Integer ansNo) {
+    public ResponseEntity<Object> selectAnswer(Integer ansNo) {
 
-        System.out.println("외않" + ansNo);
+        AnswerVO answerVO;
 
-        return answerService.select(ansNo);
+        try {
+
+            answerVO = answerService.select(ansNo);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(answerVO, HttpStatus.OK);
+
+
     }
 
     @PostMapping("delete")
     @ResponseBody
-    public Integer deleteAnswer(@RequestBody AnswerVO answerVO) {
+    public ResponseEntity<Object> deleteAnswer(@RequestBody AnswerVO answerVO) {
 
-        answerService.delete(answerVO);
+        try {
 
-        return answerVO.getAnsNo();
+            answerService.delete(answerVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(answerVO.getAnsNo(), HttpStatus.OK);
+
     }
 
     @PostMapping("edit")
     @ResponseBody
-    public AnswerVO updateAnswer(@RequestBody AnswerVO answerVO) {
+    public ResponseEntity<Object> updateAnswer(@RequestBody AnswerVO answerVO) {
 
-        answerService.update(answerVO);
+        AnswerVO updatedAnswer;
 
-        return answerService.select(answerVO.getAnsNo());
+        try {
+
+            answerService.update(answerVO);
+            updatedAnswer = answerService.select(answerVO.getAnsNo());
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(updatedAnswer, HttpStatus.OK);
+
     }
 
     @GetMapping("")
-    public String getAnswers(AnswerVO answerVO, Model model) {
+    public String getAnswers(AnswerVO answerVO, Model model) throws SQLException {
 
         List<AnswerVO> answers = answerService.selectAnswers(answerVO);
 
@@ -88,62 +128,101 @@ public class AnswerController {
 
     @GetMapping("like")
     @ResponseBody
-    public ResponseEntity<AnswerLikeVO> likeAnswer(AnswerLikeVO likeVO, Principal principal) {
+    public ResponseEntity<Object> likeAnswer(AnswerLikeVO likeVO, Principal principal) {
 
-        System.out.println(likeVO.getAnsNo());
         likeVO.setUserEmail(principal.getName());
 
-        return new ResponseEntity<>(answerService.addLike(likeVO), HttpStatus.OK);
+        AnswerLikeVO answerLikeVO;
+
+        try {
+
+            answerLikeVO = answerService.addLike(likeVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(answerLikeVO, HttpStatus.OK);
     }
 
     @GetMapping("dislike")
     @ResponseBody
-    public ResponseEntity<AnswerLikeVO> dislikeAnswer(AnswerLikeVO likeVO, Principal principal) {
+    public ResponseEntity<Object> dislikeAnswer(AnswerLikeVO likeVO, Principal principal) {
 
-        System.out.println(likeVO.getAnsNo());
         likeVO.setUserEmail(principal.getName());
 
-        return new ResponseEntity<>(answerService.subtractLike(likeVO), HttpStatus.OK);
+        AnswerLikeVO answerLikeVO;
+
+        try {
+
+            answerLikeVO = answerService.subtractLike(likeVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(answerLikeVO, HttpStatus.OK);
 
     }
 
     @GetMapping("checkAnswered")
     @ResponseBody
-    public boolean checkAnswered(Integer quesNo, Principal principal) {
+    public ResponseEntity<Object> checkAnswered(Integer quesNo, Principal principal) {
 
         QuestionVO questionVO = new QuestionVO();
 
         questionVO.setQuesNo(quesNo);
         questionVO.setUserEmail(principal.getName());
 
-        return answerService.checkAnswered(questionVO);
+        boolean res;
+
+        try {
+
+            res = answerService.checkAnswered(questionVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+
     }
 
     @GetMapping("checkLiked")
     @ResponseBody
-    public AnswerLikeVO checkLiked(Integer ansNo, Principal principal) {
+    public ResponseEntity<Object> checkLiked(Integer ansNo, Principal principal) {
 
         AnswerVO answerVO = new AnswerVO();
 
         answerVO.setAnsNo(ansNo);
+
         answerVO.setUserEmail(principal.getName());
 
-        AnswerLikeVO likeVO = answerService.checkLiked(answerVO);
+        AnswerLikeVO likeVO;
+
+        try {
+
+            likeVO = answerService.checkLiked(answerVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
 
         if (likeVO == null) {
             likeVO = new AnswerLikeVO();
             likeVO.setLikeType("None");
         }
 
-        return likeVO;
+        return new ResponseEntity<>(likeVO, HttpStatus.OK);
+
     }
 
-//    @GetMapping("like")
-//    @ResponseBody
-//    public String likeAnswer(Integer ansNo) {
-//
-//        Integer likeCnt = answerService.addLikeCnt(ansNo);
-//
-//        return
-//    }
 }

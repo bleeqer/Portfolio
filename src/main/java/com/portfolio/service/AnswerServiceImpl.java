@@ -73,7 +73,7 @@ public class AnswerServiceImpl implements AnswerService {
 
             } catch (Exception e) {
 
-                throw new SQLException("이미지를 첨부할 수 없습니다.");
+                throw new SQLException("이미지 업로드에 실패했습니다.");
 
             }
 
@@ -83,132 +83,228 @@ public class AnswerServiceImpl implements AnswerService {
     }
 
     @Override
-    public AnswerVO select(Integer ansNo) {
+    public AnswerVO select(Integer ansNo) throws SQLException {
 
-        return answerMapper.select(ansNo);
+        try {
+
+            return answerMapper.select(ansNo);
+
+
+        } catch (Exception e) {
+
+            throw new SQLException("답변을 찾을 수 없습니다.");
+
+        }
     }
 
     @Override
-    public List<AnswerVO> selectAnswers(AnswerVO answerVO) {
+    public List<AnswerVO> selectAnswers(AnswerVO answerVO) throws SQLException {
 
-        return answerMapper.selectAnswers(answerVO);
+        List<AnswerVO> answerList;
+
+        try {
+
+            answerList = answerMapper.selectAnswers(answerVO);
+
+        } catch (Exception e) {
+
+            throw new SQLException("답변 목록을 불러올 수 없습니다.");
+
+        }
+        return answerList;
     }
 
     @Override
-    public Integer countAnswers(AnswerVO answerVO) {
-        return answerMapper.countAnswers(answerVO);
+    public Integer countAnswers(AnswerVO answerVO) throws SQLException {
+
+        int answerCounts;
+        try {
+
+            answerCounts = answerMapper.countAnswers(answerVO);
+
+        } catch (Exception e) {
+
+            throw new SQLException("답변 갯수 카운트에 실패했습니다.");
+
+        }
+
+        return answerCounts;
     }
 
     @Transactional
     @Override
-    public void update(AnswerVO answerVO) {
+    public void update(AnswerVO answerVO) throws SQLException {
 
-        // 답변 이미지 테이블에 새로운 이미지 저장에 앞서 등록되어 있던 사진 삭제
-        imageMapper.delete(answerVO);
+        try {
 
-        // 새롭게 이미지 경로 저장
-        ImageVO imageVO = new ImageVO();
+            // 답변 이미지 테이블에 새로운 이미지 저장에 앞서 등록되어 있던 사진 삭제
+            imageMapper.delete(answerVO);
 
-        for (String path : answerVO.getImagePath()) {
+            // 새롭게 이미지 경로 저장
+            ImageVO imageVO = new ImageVO();
 
-            imageVO.setAnsNo(answerVO.getAnsNo());
-            imageVO.setImagePath(path);
+            for (String path : answerVO.getImagePath()) {
 
-            imageMapper.insert(imageVO);
+                imageVO.setAnsNo(answerVO.getAnsNo());
+                imageVO.setImagePath(path);
+
+                imageMapper.insert(imageVO);
+
+            }
+
+            answerMapper.update(answerVO);
+
+        } catch (Exception e) {
+
+            throw new SQLException("이미지 업데이트에 실패했습니다.");
 
         }
-
-        answerMapper.update(answerVO);
-
 
     }
 
     @Transactional
     @Override
-    public void delete(AnswerVO answerVO) {
+    public void delete(AnswerVO answerVO) throws SQLException {
 
-        answerMapper.delete(answerVO.getAnsNo());
+        try {
 
-        // 답변글 삭제 후 해당 질문글의 답변글 갯수가 0개일 때 답변여부 N 업데이트
-        if (answerMapper.countAnswers(answerVO) <= 0) {
+            answerMapper.delete(answerVO.getAnsNo());
 
-            QuestionVO questionVO = new QuestionVO();
+            // 답변글 삭제 후 해당 질문글의 답변글 갯수가 0개일 때 답변여부 N 업데이트
+            if (answerMapper.countAnswers(answerVO) <= 0) {
 
-            questionVO.setQuesNo(answerVO.getQuesNo());
-            questionVO.setAnswered("N");
+                QuestionVO questionVO = new QuestionVO();
 
-            questionMapper.updateAnswered(questionVO);
+                questionVO.setQuesNo(answerVO.getQuesNo());
+                questionVO.setAnswered("N");
+
+                questionMapper.updateAnswered(questionVO);
+            }
+
+            // 등록되어있는 이미지 함께 삭제
+            imageMapper.delete(answerVO);
+
+        } catch (Exception e) {
+
+            throw new SQLException("답변 삭제에 실패했습니다.");
+
         }
-
-        // 등록되어있는 이미지 함께 삭제
-        imageMapper.delete(answerVO);
-
     }
 
     @Override
-    public AnswerLikeVO addLike(AnswerLikeVO likeVO) {
+    public AnswerLikeVO addLike(AnswerLikeVO likeVO) throws SQLException {
 
-        AnswerLikeVO like = answerMapper.findLike(likeVO);
+        AnswerLikeVO resultLike;
 
-        // likeType 구분 없이 findLike 후 likeType 셋팅
-        likeVO.setLikeType("UP");
+        try {
+            AnswerLikeVO like = answerMapper.findLike(likeVO);
 
-        if (like == null) {
+            // likeType 구분 없이 findLike 후 likeType 셋팅
+            likeVO.setLikeType("UP");
 
-            answerMapper.addLike(likeVO);
+            if (like == null) {
 
-        } else if (like.getLikeType().equals("UP")) {
+                answerMapper.addLike(likeVO);
 
-            // 이미 좋아요 했다면 좋아요 취소
-            answerMapper.deleteLike(likeVO);
+            } else if (like.getLikeType().equals("UP")) {
 
-        } else {
+                // 이미 좋아요 했다면 좋아요 취소
+                answerMapper.deleteLike(likeVO);
 
-            // 싫어요 -> 좋아요 업데이트
-            answerMapper.updateLike(likeVO);
+            } else {
 
-        }
+                // 싫어요 -> 좋아요 업데이트
+                answerMapper.updateLike(likeVO);
 
-        return answerMapper.countLike(likeVO.getAnsNo());
+            }
 
-    }
+            resultLike = answerMapper.countLike(likeVO.getAnsNo());
 
-    @Override
-    public AnswerLikeVO subtractLike(AnswerLikeVO likeVO) {
+        } catch (Exception e) {
 
-        AnswerLikeVO like = answerMapper.findLike(likeVO);
-
-        // likeType 구분 없이 findLike 후 likeType 셋팅
-        likeVO.setLikeType("DOWN");
-
-        if (like == null) {
-
-            answerMapper.addLike(likeVO);
-
-        } else if (like.getLikeType().equals("DOWN")) {
-
-            // 이미 싫어요 했다면 싫어요 취소
-            answerMapper.deleteLike(likeVO);
-
-        } else {
-
-            // 좋아요 -> 싫어요 업데이트
-            answerMapper.updateLike(likeVO);
+            throw new SQLException("좋아요에 실패했습니다.");
 
         }
 
-        return answerMapper.countLike(likeVO.getAnsNo());
+
+        return resultLike;
 
     }
 
     @Override
-    public boolean checkAnswered(QuestionVO questionVO) {
-        return answerMapper.checkAnswered(questionVO);
+    public AnswerLikeVO subtractLike(AnswerLikeVO likeVO) throws SQLException {
+
+        AnswerLikeVO resultLike;
+
+        try {
+            AnswerLikeVO like = answerMapper.findLike(likeVO);
+
+            // likeType 구분 없이 findLike 후 likeType 셋팅
+            likeVO.setLikeType("DOWN");
+
+            if (like == null) {
+
+                answerMapper.addLike(likeVO);
+
+            } else if (like.getLikeType().equals("DOWN")) {
+
+                // 이미 싫어요 했다면 싫어요 취소
+                answerMapper.deleteLike(likeVO);
+
+            } else {
+
+                // 좋아요 -> 싫어요 업데이트
+                answerMapper.updateLike(likeVO);
+
+            }
+
+            resultLike = answerMapper.countLike(likeVO.getAnsNo());
+
+        } catch (Exception e) {
+
+            throw new SQLException("싫어요에 실패했습니다.");
+
+        }
+
+        return resultLike;
+
     }
 
     @Override
-    public AnswerLikeVO checkLiked(AnswerVO answerVO) {
-        return answerMapper.checkLiked(answerVO);
+    public boolean checkAnswered(QuestionVO questionVO) throws SQLException {
+
+        boolean res;
+
+        try {
+
+            res = answerMapper.checkAnswered(questionVO);
+
+        } catch (Exception e) {
+
+            throw new SQLException("답변 여부 조회에 실패했습니다.");
+
+        }
+
+        return res;
+    }
+
+    @Override
+    public AnswerLikeVO checkLiked(AnswerVO answerVO) throws SQLException {
+
+        AnswerLikeVO res;
+
+        try {
+
+            res = answerMapper.checkLiked(answerVO);
+
+        } catch (Exception e) {
+
+            throw new SQLException("답변 좋아요 여부 조회에 실패했습니다.");
+
+        }
+
+        return res;
+
     }
 
 }

@@ -11,13 +11,13 @@ import java.util.Map;
 
 public interface AnswerService {
     Integer create(AnswerVO answerVO) throws SQLException;
-    AnswerVO select(Integer ansNo);
-    List<AnswerVO> selectAnswers(AnswerVO answerVO);
-    Integer countAnswers(AnswerVO answerVO);
-    void update(AnswerVO answerVO);
-    void delete(AnswerVO answerVO);
-    AnswerLikeVO addLike(AnswerLikeVO likeVO);
-    AnswerLikeVO subtractLike(AnswerLikeVO likeVO);
-    boolean checkAnswered(QuestionVO questionVO);
-    AnswerLikeVO checkLiked(AnswerVO answerVO);
+    AnswerVO select(Integer ansNo) throws SQLException;
+    List<AnswerVO> selectAnswers(AnswerVO answerVO) throws SQLException;
+    Integer countAnswers(AnswerVO answerVO) throws SQLException;
+    void update(AnswerVO answerVO) throws SQLException;
+    void delete(AnswerVO answerVO) throws SQLException;
+    AnswerLikeVO addLike(AnswerLikeVO likeVO) throws SQLException;
+    AnswerLikeVO subtractLike(AnswerLikeVO likeVO) throws SQLException;
+    boolean checkAnswered(QuestionVO questionVO) throws SQLException;
+    AnswerLikeVO checkLiked(AnswerVO answerVO) throws SQLException;
 }
