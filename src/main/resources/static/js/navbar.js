@@ -72,6 +72,7 @@ $('#search-button').click(function () {
     if (currentURL.indexOf('questions') !== -1) {
         requestURL = 'search/questions'
     }
+
     $('#search-form').attr('action', requestURL)
     $('#search-form').submit()
 

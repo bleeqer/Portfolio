@@ -63,17 +63,26 @@ public class UserController {
         questionVO.setUserEmail(email);
         answerVO.setUserEmail(email);
 
+        // 전달 객체 타입과 객체 타입의 갯수 (프로필 화면의 회원이 작성한 답변글 갯수 표시)
         Map<String, Object> meta = new HashMap<>();
 
-        model.addAttribute("meta", meta);
-
-        // 전달 객체 타입과 총 갯수
         meta.put("type", "answers");
 
-        meta.put("total", answerService.countAnswers(answerVO));
+        try {
+            meta.put("total", answerService.countAnswers(answerVO));
+        } catch (Exception e) {
+            throw new SQLException();
+        }
 
-        // 유저가 작성한 답변-질문 페어 가져오기
-        model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
+
+        try {
+            // 유저가 작성한 답변-질문 페어 가져오기
+            model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
+        } catch (Exception e) {
+            throw new SQLException();
+        }
+
+        model.addAttribute("meta", meta);
 
         model.addAttribute("user", user);
 
@@ -83,10 +92,17 @@ public class UserController {
     @GetMapping("profile/{email}/answers")
     public String userAnswers(@PathVariable String email, Model model) throws SQLException, IllegalArgumentException {
 
-        // 유저 정보 가져오기
-        CustomUserDetailsVO userVO = userService.select(email);
+        CustomUserDetailsVO user;
 
-        model.addAttribute("user", userVO);
+        try {
+            // 유저 정보 가져오기
+            user = userService.select(email);
+        } catch (Exception e) {
+            throw new UsernameNotFoundException(email);
+
+        }
+
+        model.addAttribute("user", user);
 
         QuestionVO questionVO = new QuestionVO();
         AnswerVO answerVO = new AnswerVO();
@@ -94,15 +110,27 @@ public class UserController {
         questionVO.setUserEmail(email);
         answerVO.setUserEmail(email);
 
+        // 전달 객체 타입과 객체 타입의 갯수 (프로필 화면의 회원이 작성한 답변글 갯수 표시)
         Map<String, Object> meta = new HashMap<>();
 
         meta.put("type", "answers");
-        meta.put("total", answerService.countAnswers(answerVO));
+
+        try {
+            meta.put("total", answerService.countAnswers(answerVO));
+        } catch (Exception e) {
+            throw new SQLException();
+        }
+
+        try {
+            // 유저가 작성한 답변-질문 페어 가져오기
+            model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
+        } catch (Exception e) {
+            throw new SQLException();
+        }
 
         model.addAttribute("meta", meta);
 
-        // 유저가 작성한 답변-질문 페어 가져오기
-        model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
+        model.addAttribute("user", user);
 
         return "profile";
     }
@@ -110,21 +138,41 @@ public class UserController {
     @GetMapping("profile/{email}/questions")
     public String userQuestions(@PathVariable String email, Model model) throws SQLException, IllegalArgumentException {
 
-        // 유저 정보 가져오기
-        model.addAttribute("user", userService.select(email));
+        CustomUserDetailsVO user;
+
+        try {
+            // 유저 정보 가져오기
+            user = userService.select(email);
+        } catch (Exception e) {
+            throw new UsernameNotFoundException(email);
+
+        }
 
         QuestionVO questionVO = new QuestionVO();
         questionVO.setUserEmail(email);
 
+        // 전달 객체 타입과 객체 타입의 갯수 (프로필 화면의 회원이 작성한 답변글 갯수 표시)
         Map<String, Object> meta = new HashMap<>();
 
         meta.put("type", "questions");
-        meta.put("total", questionService.countQuestions(questionVO));
+
+        try {
+            meta.put("total", questionService.countQuestions(questionVO));
+        } catch (Exception e) {
+            throw new SQLException();
+        }
+
+        try {
+            // 유저가 작성한 답변-질문 페어 가져오기
+            model.addAttribute("questions", questionService.selectList(questionVO));
+        } catch (Exception e) {
+            throw new SQLException();
+        }
 
         model.addAttribute("meta", meta);
 
-        // 유저가 작성한 질문 리스트 가져오기
-        model.addAttribute("questions", questionService.selectList(questionVO));
+        model.addAttribute("user", user);
+
 
         return "profile";
     }
@@ -202,14 +250,6 @@ public class UserController {
         try {
 
             prevUser = userService.select(userVO.getEmail());
-
-        } catch (Exception e) {
-
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-
-        }
-
-        try {
 
             // 프로필 사진 업로드 후 경로 담기 (프로필 사진 업데이트 안했을 경우 빈 리스트 반환)
             photoPath = UploadFileUtils.uploadFile(multiRequest);
