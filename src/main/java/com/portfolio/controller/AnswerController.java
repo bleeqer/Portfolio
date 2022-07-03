@@ -32,7 +32,7 @@ public class AnswerController {
     @Autowired
     ImageService imageService;
 
-    @PostMapping("create")
+    @PostMapping(value="create", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> createAnswer(@RequestBody AnswerVO answerVO, Principal principal) {
 
@@ -55,7 +55,7 @@ public class AnswerController {
 
     }
 
-    @GetMapping("select")
+    @GetMapping(value="select", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> selectAnswer(Integer ansNo) {
 
@@ -76,7 +76,7 @@ public class AnswerController {
 
     }
 
-    @PostMapping("delete")
+    @PostMapping(value="delete", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> deleteAnswer(@RequestBody AnswerVO answerVO) {
 
@@ -94,7 +94,7 @@ public class AnswerController {
 
     }
 
-    @PostMapping("edit")
+    @PostMapping(value="edit", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> updateAnswer(@RequestBody AnswerVO answerVO) {
 
@@ -126,7 +126,7 @@ public class AnswerController {
 
     }
 
-    @GetMapping("like")
+    @GetMapping(value="like", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> likeAnswer(AnswerLikeVO likeVO, Principal principal) {
 
@@ -154,7 +154,7 @@ public class AnswerController {
         return new ResponseEntity<>(answerLike, HttpStatus.OK);
     }
 
-    @GetMapping("dislike")
+    @GetMapping(value="dislike", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> dislikeAnswer(AnswerLikeVO likeVO, Principal principal) {
 
@@ -183,9 +183,16 @@ public class AnswerController {
 
     }
 
-    @GetMapping("checkAnswered")
+    @GetMapping(value="checkAnswered", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> checkAnswered(Integer quesNo, Principal principal) {
+
+        // 미로그인 유저일 때
+        if (principal == null) {
+
+            return new ResponseEntity<>("로그인이 필요한 기능입니다.", HttpStatus.BAD_REQUEST);
+
+        }
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -208,13 +215,12 @@ public class AnswerController {
 
     }
 
-    @GetMapping("checkLiked")
+    @GetMapping(value="checkLiked", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> checkLiked(Integer ansNo, Principal principal) {
 
         // 미로그인 유저일 때
         if (principal == null) {
-
             AnswerLikeVO like = new AnswerLikeVO();
             return new ResponseEntity<>(like, HttpStatus.OK);
 
@@ -231,6 +237,7 @@ public class AnswerController {
         try {
 
             like = answerService.checkLiked(answerVO);
+
 
         } catch (Exception e) {
 

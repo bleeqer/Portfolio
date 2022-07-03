@@ -24,9 +24,16 @@ public class CommentController {
     @Autowired
     AnswerCommentService answerCommentService;
 
-    @PostMapping("create")
+    @PostMapping(value="create", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> createComment(CommentVO commentVO, Principal principal) {
+
+        // 미로그인 유저일 때
+        if (principal == null) {
+
+            return new ResponseEntity<>("로그인이 필요한 기능입니다.", HttpStatus.BAD_REQUEST);
+
+        }
 
         if (!commentVO.getUserEmail().equals(principal.getName())) {
 
@@ -53,7 +60,7 @@ public class CommentController {
         return new ResponseEntity<>(comment, HttpStatus.OK);
     }
 
-    @GetMapping("select")
+    @GetMapping(value="select", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> selectComment(int coNo) {
 
@@ -72,7 +79,7 @@ public class CommentController {
         return new ResponseEntity<>(comment, HttpStatus.OK);
     }
 
-    @PostMapping("update")
+    @PostMapping(value="update", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> updateComment(CommentVO commentVO, Principal principal) {
 
@@ -100,7 +107,7 @@ public class CommentController {
 
     }
 
-    @PostMapping("delete")
+    @PostMapping(value="delete", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> deleteComment(@RequestBody CommentVO commentVO) {
 
@@ -118,7 +125,7 @@ public class CommentController {
 
     }
 
-    @GetMapping("")
+    @GetMapping(value="", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> getComments(CommentVO commentVO) {
 
@@ -138,7 +145,7 @@ public class CommentController {
 
     }
 
-    @GetMapping("like")
+    @GetMapping(value="like", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> likeComment(@RequestParam Integer coNo, Principal principal) {
 
@@ -170,7 +177,7 @@ public class CommentController {
 
     }
 
-    @GetMapping("dislike")
+    @GetMapping(value="dislike", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> dislikeComment(@RequestParam Integer coNo, Principal principal) {
 
@@ -202,7 +209,7 @@ public class CommentController {
 
     }
 
-    @GetMapping("checkLiked")
+    @GetMapping(value="checkLiked", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> checkLiked(Integer coNo, Principal principal) {
 
@@ -241,7 +248,7 @@ public class CommentController {
 
     }
 
-    @GetMapping("checkLast")
+    @GetMapping(value="checkLast", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> checkLast(CommentVO commentVO) {
 

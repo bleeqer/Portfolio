@@ -1,7 +1,8 @@
 // like 여부 체크 후 하이라이트
 function answerLikeHighlight(selector) {
-
-    $(selector).each(function (idx, element) {
+    
+    // 마지막 element는 템플릿이므로 제외
+    $(selector).slice(0, -1).each(function (idx, element) {
         $.ajax({
             url: '/answer/checkLiked',
             type: 'GET',
@@ -40,7 +41,7 @@ function answerLikeHighlight(selector) {
 
 function commentLikeHighlight() {
 
-    $('.comment').each(function (idx, element) {
+    $('.comment').slice(0, -1).each(function (idx, element) {
         $.ajax({
             url: '/comment/checkLiked',
             type: 'GET',
@@ -75,7 +76,7 @@ function commentLikeHighlight() {
 }
 
 
-answerLikeHighlight('.pair')
+// answerLikeHighlight('.pair')
 answerLikeHighlight('.answer')
 
 $('body').on('click', '.answer-like-button', function () {

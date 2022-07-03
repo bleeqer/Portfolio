@@ -298,7 +298,8 @@ public class AnswerServiceImpl implements AnswerService {
             res = answerMapper.checkLiked(answerVO);
 
         } catch (Exception e) {
-
+      System.out.println(e.getMessage());
+            e.getStackTrace();
             throw new SQLException("답변 좋아요 여부 조회에 실패했습니다.");
 
         }

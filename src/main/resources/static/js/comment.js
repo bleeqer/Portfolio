@@ -20,8 +20,6 @@ function getComments(data) {
 // 댓글 더 불러오기에서 사용 시 more에 true 전달할 것(더 불러오기는 댓글 리스트 맨 아래에 추가)
     let comments
 
-    console.log(data)
-
     $.ajax({
         url: '/comment/',
         type: 'GET',
@@ -33,6 +31,13 @@ function getComments(data) {
             comments.forEach(function (comment) {
                 addComment(comment)
             })
+
+            lastComment = $(comments).get(-1)
+
+            // 댓글이 없거나 댓글 리스트의 마지막 댓글이 전체 댓글의 마지막 댓글일 경우 view more comments 숨기기
+            if (typeof lastComment === 'undefined' || isLastComment(lastComment.coNo, lastComment.ansNo)) {
+                $('.answer[data-ans-no=' + data.ansNo + '] .view-more-comments').addClass('hidden')
+            }
 
             resetBorderTop()
 
@@ -434,6 +439,8 @@ $('body').on('click', '.add-comment-button', function () {
     const ansNo = $(this).parents('.answer').data('ans-no')
 
     let parentCoNo = $(this).closest('.comment').data('co-no')
+    console.log(ansNo)
+    console.log(parentCoNo)
 
     if (typeof (parentCoNo) === 'undefined') {
         parentCoNo = 0
@@ -458,6 +465,7 @@ $('body').on('click', '.add-comment-button', function () {
             xhr.setRequestHeader(header, token)
         },
         success: function (comment) {
+
             addComment(comment)
 
             // 댓글 border-top-gray 리셋

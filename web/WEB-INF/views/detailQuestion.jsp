@@ -119,7 +119,6 @@
                             <div style="padding-top: 1px; padding-bottom: 1px;">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="d-flex">
-                                        <sec:authorize access="isAuthenticated()">
                                         <%--Answer button--%>
                                         <c:if test="${principal != question.userEmail}">
                                         <button class="answer-button px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-ques-no="${question.quesNo}">
@@ -143,29 +142,6 @@
 
                                         </c:if>
 
-                                        </sec:authorize>
-                                        <sec:authorize access="isAnonymous()">
-                                        <%--Answer button--%>
-                                        <button class="login-first px-2 rounded-pill bg-hover-whiten-light" style="margin-left: -0.5rem; height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;" data-ques-no="${question.quesNo}">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                    <%--Answer icon--%>
-                                                <div>
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        <g stroke-width="1.5" fill="none" fill-rule="evenodd">
-                                                            <path d="M18.571 5.429h0a2 2 0 0 1 0 2.828l-9.9 9.9-4.24 1.416 1.412-4.245 9.9-9.9h0a2 2 0 0 1 2.828 0Z" stroke="rgb(72, 148, 253)" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                            <path fill="#666" d="m4.429 19.571 2.652-.884-1.768-1.768z"></path>
-                                                            <path d="M14.5 19.5h5v-5m-10-10h-5v5"  stroke="rgb(72, 148, 253)" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        </g>
-                                                    </svg>
-                                                </div>
-                                                    <%--Answer text--%>
-                                                <div class="color-gray ms-1" style="font-size: 14px;">
-                                                    <div>Answer</div>
-                                                </div>
-                                            </div>
-                                        </button>
-
-                                        </sec:authorize>
 
                                       </div>
 
@@ -328,7 +304,6 @@
                                                                     <div class="d-flex rounded-pill" role="button"
                                                                          style="background-color: rgba(255, 255, 255, 0.05); height: 30px;">
 
-                                                                        <sec:authorize access="isAuthenticated()">
                                                                         <%--Like 버튼--%>
                                                                         <div class="answer-like-button d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" data-ans-no="${answer.ansNo}">
                                                                             <div class="d-flex">
@@ -377,58 +352,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        </sec:authorize>
 
-                                                                        <sec:authorize access="isAnonymous()">
-                                                                        <%--Like 버튼--%>
-                                                                        <div class="login-first d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-left-top-pill rounded-left-bottom-pill" data-ans-no="${answer.ansNo}">
-                                                                            <div class="d-flex">
-                                                                                <div>
-                                                                                <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                                                                    <svg width="20" height="20"
-                                                                                         viewBox="0 0 24 24"
-                                                                                         xmlns="http://www.w3.org/2000/svg">
-                                                                                        <path d="M12 4 3 15h6v5h6v-5h6z"
-                                                                                              stroke-width="1.5"
-                                                                                              stroke="rgb(72, 148, 253)"
-                                                                                              fill="none"
-                                                                                              stroke-linejoin="round"></path>
-                                                                                    </svg>
-                                                                                </span>
-                                                                                </div>
-                                                                                <div class="answer-like-cnt d-flex align-items-center justify-content-center"
-                                                                                     style="font-size: 13px; margin-left: 2px;" data-ans-no="${answer.ansNo}">
-                                                                                    <c:if test="${answer.likes > 0}">
-                                                                                        ${answer.likes}
-                                                                                    </c:if>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <%--Unlike 버튼--%>
-                                                                        <div class="login-first d-flex justify-content-center align-items-center bg-hover-whiten px-2 rounded-right-top-pill rounded-right-bottom-pill" data-ans-no="${answer.ansNo}">
-                                                                            <div class="d-flex">
-                                                                                <div>
-                                                                                <span class="d-inline-block d-flex align-items-center justify-content-center">
-                                                                                    <svg width="20" height="20"
-                                                                                         viewBox="0 0 24 24"
-                                                                                         xmlns="http://www.w3.org/2000/svg">
-                                                                                        <path d="m12 20 9-11h-6V4H9v5H3z"
-                                                                                              class="icon_svg-stroke icon_svg-fill"
-                                                                                              stroke="#666" fill="none"
-                                                                                              stroke-width="1.5"
-                                                                                              stroke-linejoin="round"></path>
-                                                                                    </svg>
-                                                                                </span>
-                                                                                </div>
-                                                                                <div class="answer-dislike-cnt d-flex align-items-center justify-content-center"
-                                                                                     style="font-size: 13px; margin-left: 2px;" data-ans-no="${answer.ansNo}">
-                                                                                    <c:if test="${answer.dislikes > 0}">
-                                                                                        ${answer.dislikes}
-                                                                                    </c:if>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        </sec:authorize>
                                                                     </div>
                                                                 </div>
 
@@ -533,7 +457,6 @@
                                                     </form>
                                                 </div>
 
-                                                        <sec:authorize access="isAuthenticated()">
                                                             <%--Add button--%>
                                                             <span class="add-comment-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
                                                                   style="font-size: 13px; height: 30px; margin-left: 4px;"
@@ -541,16 +464,7 @@
                                                     <div style="white-space: nowrap;">Add comment
                                                     </div>
                                                 </span>
-                                                        </sec:authorize>
-                                                        <sec:authorize access="isAnonymous()">
-                                                            <%--Add button--%>
-                                                            <span class="login-first btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
-                                                                  style="font-size: 13px; height: 30px; margin-left: 4px;"
-                                                                  data-co-level="0" data-co-no="0" data-parent-co-no="0" data-ans-no="${answer.ansNo}">
-                                                    <div style="white-space: nowrap;">Add comment
-                                                    </div>
-                                                </span>
-                                                        </sec:authorize>
+
 
 
                                             </div>
