@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -26,14 +27,14 @@ public class HomeController {
     @Autowired
     CustomUserDetailsServiceImpl userService;
 
-    @GetMapping("/search")
-    public String getSearchResults(@RequestParam String keyword, Model model) {
-
-        return "index";
-    }
+//    @GetMapping("/search")
+//    public String getSearchResults(@RequestParam String keyword, Model model) {
+//
+//        return "index";
+//    }
 
     @GetMapping("")
-    public String getPairs(Model model) {
+    public String getPairs(Model model) throws SQLException {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -48,13 +49,25 @@ public class HomeController {
 
     @GetMapping("more")
     @ResponseBody
-    public ResponseEntity<List<QAPairVO>> getMorePairs(QuestionVO questionVO) {
+    public ResponseEntity<Object> getMorePairs(QuestionVO questionVO) {
 
-        return new ResponseEntity<>(questionService.selectPairList(questionVO), HttpStatus.OK);
+        List<QAPairVO> pairList;
+
+        try {
+
+            pairList = questionService.selectPairList(questionVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(pairList, HttpStatus.OK);
     }
 
     @GetMapping("questions") // 미답변 질문글 목록
-    public String getQuestions(Model model) {
+    public String getQuestions(Model model) throws SQLException {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -70,15 +83,27 @@ public class HomeController {
 
     @GetMapping("questions/more") // 미답변 질문글 목록 더보기
     @ResponseBody
-    public ResponseEntity<List<QuestionVO>> getMoreQuestions(QuestionVO questionVO) {
+    public ResponseEntity<Object> getMoreQuestions(QuestionVO questionVO) {
 
         questionVO.setAnswered("N");
 
-        return new ResponseEntity<>(questionService.selectList(questionVO), HttpStatus.OK);
+        List<QuestionVO> questionList;
+
+        try {
+
+            questionList = questionService.selectList(questionVO);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(questionList, HttpStatus.OK);
     }
 
     @GetMapping("questions/category/{categoryCode}")
-    public String getQuestionsByTopic(@PathVariable Integer categoryCode, Model model) {
+    public String getQuestionsByTopic(@PathVariable Integer categoryCode, Model model) throws SQLException {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -96,7 +121,7 @@ public class HomeController {
     }
 
     @GetMapping("category/{categoryCode}")
-    public String getPairsByTopic(@PathVariable Integer categoryCode, Model model) {
+    public String getPairsByTopic(@PathVariable Integer categoryCode, Model model) throws SQLException {
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -121,8 +146,8 @@ public class HomeController {
 //    }
 
     @GetMapping("search/questions")
-    public String searchQuestions(QuestionVO questionVO, Model model) {
-    System.out.println(questionVO.getSearchKeyword());
+    public String searchQuestions(QuestionVO questionVO, Model model) throws SQLException {
+
         model.addAttribute("keyword", questionVO.getSearchKeyword());
 
         model.addAttribute("categories", questionService.selectCategories());
@@ -133,8 +158,7 @@ public class HomeController {
     }
 
     @GetMapping("search/pairs")
-    public String searchPairs(QuestionVO questionVO, Model model) {
-        System.out.println(questionVO.getSearchKeyword());
+    public String searchPairs(QuestionVO questionVO, Model model) throws SQLException {
 
         model.addAttribute("keyword", questionVO.getSearchKeyword());
 

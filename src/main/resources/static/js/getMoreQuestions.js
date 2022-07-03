@@ -23,9 +23,9 @@ $(window).scroll(function() {
                 initAnswerPopover()
 
             },
-            error: function () {
-                console.log('error occurred')
-            }
+                error: function (error) {
+                    alert(error.responseText)
+                }
         })
     }
 })

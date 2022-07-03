@@ -83,8 +83,8 @@ $(document).on('click', '.answer-popover-item', function () {
 
 
             },
-            error: function () {
-                alert('오류가 발생했습니다.')
+            error: function (error) {
+                alert(error.responseText)
             }
         })
     }
@@ -111,8 +111,8 @@ $(document).on('click', '.answer-popover-item', function () {
                 $('#answer-modal #ans-no').val(answer.ansNo)
                 $('#answer-modal #ques-no').val(answer.quesNo)
             },
-            error: function () {
-                alert('오류가 발생했습니다.')
+            error: function (error) {
+                alert(error.responseText)
             }
         })
     }
@@ -160,6 +160,9 @@ $('body').on('click', '.answer-button', function() {
                     }
                 })
             }
+        },
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 })
@@ -243,6 +246,9 @@ $('#add-answer-button').click(function () {
             // 모달창 종료
             $('#answer-modal').modal('toggle')
 
+        },
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 })
@@ -280,6 +286,9 @@ $('#edit-answer-button').click(function () {
 
             initAnswerPopover()
 
+        },
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 })
@@ -350,8 +359,8 @@ $('#image').on("change", function () {
             // })
 
         },
-        error: function () {
-            alert("파일 유형을 확인해주세요.")
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 })

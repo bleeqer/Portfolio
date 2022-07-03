@@ -92,6 +92,9 @@ $('#ask-question-button').click(function () {
 
             // 카테고리 리스트에 카테고리 목록 추가
             $('#category-select').append(cats)
+        },
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 })
@@ -150,8 +153,8 @@ $('#edit-question-button').click(function () {
 
             alert('질문이 성공적으로 수정되었습니다.')
         },
-        error: function () {
-            alert('오류가 발생했습니다.')
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 })
@@ -190,8 +193,8 @@ $('body').on('click', '.question-popover-item', function () {
                 countChildComments($(this).data('parent-co-no'))
 
             },
-            error: function () {
-                alert('오류가 발생했습니다.')
+            error: function (error) {
+                alert(error.responseText)
             }
         })
     }
@@ -215,8 +218,8 @@ $('body').on('click', '.question-popover-item', function () {
                 $('#category-select').attr('disabled', 'disabled')
 
             },
-            error: function () {
-                alert('오류가 발생했습니다.')
+            error: function (error) {
+                alert(error.responseText)
             }
         })
 

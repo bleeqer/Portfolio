@@ -104,11 +104,8 @@ $('#register-button').click(function () {
             // $('#signUp-modal').modal('hide')
 
         },
-        error: function (resultMsg) {
-
-            alert(resultMsg.responseText)
-
-
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 
@@ -136,7 +133,8 @@ $('#login-button').click(function (e) {
         },
         error: function (error) {
 
-            $('#login-message .message').text(error.responseJSON.message)
+            // $('#login-message .message').text(error.responseJSON.message)
+            $('#login-message .message').text(error.responseText)
             $('#login-message').fadeOut(50).fadeIn(50)
 
         }

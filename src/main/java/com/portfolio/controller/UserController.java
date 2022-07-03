@@ -18,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.*;
@@ -133,7 +132,7 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<Object> getUser(Principal principal) {
 
-        if (principal.getName() == null) {
+        if (principal == null) {
             return new ResponseEntity<>("먼저 로그인 해주세요.", HttpStatus.BAD_REQUEST);
         }
 
@@ -186,7 +185,7 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<String> editUser(CustomUserDetailsVO userVO, MultipartHttpServletRequest multiRequest, Principal principal) {
 
-        if (principal.getName() == null) {
+        if (principal == null) {
             return new ResponseEntity<>("먼저 로그인 해주세요.", HttpStatus.BAD_REQUEST);
         }
 

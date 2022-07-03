@@ -142,6 +142,13 @@ public class CommentController {
     @ResponseBody
     public ResponseEntity<Object> likeComment(@RequestParam Integer coNo, Principal principal) {
 
+        // 미로그인 유저일 때
+        if (principal == null) {
+
+            return new ResponseEntity<>("로그인이 필요한 기능입니다.", HttpStatus.BAD_REQUEST);
+
+        }
+
         CommentLikeVO likeVO = new CommentLikeVO();
 
         likeVO.setCoNo(coNo);
@@ -167,6 +174,13 @@ public class CommentController {
     @ResponseBody
     public ResponseEntity<Object> dislikeComment(@RequestParam Integer coNo, Principal principal) {
 
+        // 미로그인 유저일 때
+        if (principal == null) {
+
+            return new ResponseEntity<>("로그인이 필요한 기능입니다.", HttpStatus.BAD_REQUEST);
+
+        }
+
         CommentLikeVO likeVO = new CommentLikeVO();
 
         likeVO.setCoNo(coNo);
@@ -191,6 +205,14 @@ public class CommentController {
     @GetMapping("checkLiked")
     @ResponseBody
     public ResponseEntity<Object> checkLiked(Integer coNo, Principal principal) {
+
+        // 미로그인 유저일 때
+        if (principal == null) {
+
+            CommentLikeVO like = new CommentLikeVO();
+            return new ResponseEntity<>(like, HttpStatus.OK);
+
+        }
 
         CommentVO commentVO = new CommentVO();
 

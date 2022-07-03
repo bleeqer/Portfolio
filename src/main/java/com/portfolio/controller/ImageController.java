@@ -31,12 +31,13 @@ public class ImageController {
 
         } catch (IOException e) {
 
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-        // Image DTO 리스트와 함께 OK status response code 반환
-        return new ResponseEntity<>(attachedImgs, HttpStatus.OK);
+//        // Image DTO 리스트와 함께 OK status response code 반환
+//        return new ResponseEntity<>(attachedImgs, HttpStatus.OK);
 
     }
 

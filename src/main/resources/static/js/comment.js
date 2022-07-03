@@ -47,8 +47,8 @@ function getComments(data) {
 
 
         },
-        error: function () {
-            console.log('오류가 발생했습니다.')
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 
@@ -114,6 +114,9 @@ function isLastComment (coNo, ansNo) {
         data: {coNo: coNo, ansNo: ansNo},
         success: function (result) {
             isLast = result
+        },
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 
@@ -265,8 +268,8 @@ $(document).on('click', '.comment-popover-item', function () {
                 countChildComments()
 
             },
-            error: function () {
-                alert('오류가 발생했습니다.')
+            error: function (error) {
+                alert(error.responseText)
             }
         })
     }
@@ -291,8 +294,8 @@ $(document).on('click', '.comment-popover-item', function () {
                 comment.find('.user-email').val(originalComment.userEmail)
 
             },
-            error: function () {
-                alert('오류가 발생했습니다.')
+            error: function (error) {
+                alert(error.responseText)
             }
         })
 
@@ -324,6 +327,9 @@ $('.comment-section').on('click', '.comment-edit-submit-button', function () {
             // 수정된 댓글 내용으로 바꾸기
             comment.find('.comment-text').html(updatedComment.answerComment)
 
+        },
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 })
@@ -470,8 +476,8 @@ $('body').on('click', '.add-comment-button', function () {
             $('.comment[data-co-no="' + comment.coNo + '"]').show()
 
         },
-        error: function () {
-            console.log('댓글 등록에 실패했습니다.')
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 })

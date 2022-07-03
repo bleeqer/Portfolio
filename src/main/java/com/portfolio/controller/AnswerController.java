@@ -130,6 +130,13 @@ public class AnswerController {
     @ResponseBody
     public ResponseEntity<Object> likeAnswer(AnswerLikeVO likeVO, Principal principal) {
 
+        // 미로그인 유저일 때
+        if (principal == null) {
+
+            return new ResponseEntity<>("로그인이 필요한 기능입니다.", HttpStatus.BAD_REQUEST);
+
+        }
+
         likeVO.setUserEmail(principal.getName());
 
         AnswerLikeVO answerLike;
@@ -150,6 +157,13 @@ public class AnswerController {
     @GetMapping("dislike")
     @ResponseBody
     public ResponseEntity<Object> dislikeAnswer(AnswerLikeVO likeVO, Principal principal) {
+
+        // 미로그인 유저일 때
+        if (principal == null) {
+
+            return new ResponseEntity<>("로그인이 필요한 기능입니다.", HttpStatus.BAD_REQUEST);
+
+        }
 
         likeVO.setUserEmail(principal.getName());
 
@@ -190,13 +204,21 @@ public class AnswerController {
 
         }
 
-        return new ResponseEntity<>(res, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(res, HttpStatus.OK);
 
     }
 
     @GetMapping("checkLiked")
     @ResponseBody
     public ResponseEntity<Object> checkLiked(Integer ansNo, Principal principal) {
+
+        // 미로그인 유저일 때
+        if (principal == null) {
+
+            AnswerLikeVO like = new AnswerLikeVO();
+            return new ResponseEntity<>(like, HttpStatus.OK);
+
+        }
 
         AnswerVO answerVO = new AnswerVO();
 

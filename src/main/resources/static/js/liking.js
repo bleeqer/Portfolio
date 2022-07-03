@@ -28,6 +28,11 @@ function answerLikeHighlight(selector) {
                     $(element).find('.answer-like-button').removeClass('bg-whiten')
 
                 }
+            },
+            error: function (error) {
+                console.log(error.responseText)
+
+                // alert(error.responseText)
             }
         })
     })
@@ -61,6 +66,9 @@ function commentLikeHighlight() {
                     $(element).find('.comment-like-button').removeClass('bg-whiten')
 
                 }
+            },
+            error: function (error) {
+                alert(error.responseText)
             }
         })
     })
@@ -74,7 +82,7 @@ $('body').on('click', '.answer-like-button', function () {
 
     const answer = $(this).closest('.footer-container')
     const ansNo = answer.data('ans-no')
-    console.log(ansNo)
+
     $.ajax({
         url: '/answer/like',
         type: 'GET',
@@ -99,8 +107,8 @@ $('body').on('click', '.answer-like-button', function () {
 
 
         },
-        error: function () {
-            alert('오류가 발생했습니다.')
+        error: function (error) {
+            alert(error.responseText)
         }
 
     })
@@ -136,8 +144,8 @@ $('body').on('click', '.answer-dislike-button', function () {
 
 
         },
-        error: function () {
-            alert('오류가 발생했습니다.')
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 })
@@ -169,10 +177,9 @@ $('body').on('click', '.comment-like-button', function () {
             comment.find('.comment-dislike-cnt').html(result.dislikes)
 
         },
-        error: function () {
-            alert('오류가 발생했습니다.')
+        error: function (error) {
+            alert(error.responseText)
         }
-
     })
 })
 
@@ -205,8 +212,8 @@ $('body').on('click', '.comment-dislike-button', function () {
             comment.find('.comment-dislike-cnt').html(result.dislikes)
 
         },
-        error: function () {
-            alert('오류가 발생했습니다.')
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 })

@@ -48,6 +48,9 @@ $('#profile-edit-button').click(function () {
 
             $('#signUp-modal').modal('show')
 
+        },
+        error: function (error) {
+            alert(error.responseText)
         }
     })
 
@@ -76,10 +79,8 @@ $('#profile-edit-submit-button').click(function () {
                 $('#profile-occupation').text(user.occupation)
 
             },
-            error: function () {
-
-                alert("업데이트를 실패 했습니다.")
-
+            error: function (error) {
+                alert(error.responseText)
             }
         })
     }
