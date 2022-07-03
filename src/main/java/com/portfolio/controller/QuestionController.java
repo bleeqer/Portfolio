@@ -6,11 +6,14 @@ import com.portfolio.domain.QuestionVO;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,7 +28,7 @@ public class QuestionController {
     AnswerService answerService;
 
     @PostMapping("create")
-    public String createQuestion(QuestionVO questionVO, Principal principal, Model model) {
+    public String createQuestion(QuestionVO questionVO, Principal principal, Model model) throws SQLException {
 
         questionVO.setUserEmail(principal.getName());
 
@@ -54,24 +57,47 @@ public class QuestionController {
 
     @GetMapping("select")
     @ResponseBody
-    public QuestionVO selectQuestion(@RequestParam Integer quesNo) {
+    public ResponseEntity<Object> selectQuestion(@RequestParam Integer quesNo) {
 
-        return questionService.select(quesNo);
+        QuestionVO question;
+
+        try {
+
+            question = questionService.select(quesNo);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(question, HttpStatus.OK);
 
     }
 
     @PostMapping("update")
     @ResponseBody
-    public QuestionVO updateQuestion(@RequestBody QuestionVO questionVO) {
+    public ResponseEntity<Object> updateQuestion(@RequestBody QuestionVO questionVO) {
 
-        questionService.update(questionVO);
+        QuestionVO updatedQuestion;
 
-        return questionService.select(questionVO.getQuesNo());
+        try {
+
+            questionService.update(questionVO);
+            updatedQuestion = questionService.select(questionVO.getQuesNo());
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(updatedQuestion, HttpStatus.OK);
 
     }
 
     @GetMapping("{quesNo}")
-    public String viewQuestion(@PathVariable Integer quesNo, Model model) {
+    public String viewQuestion(@PathVariable Integer quesNo, Model model) throws SQLException {
 
         QuestionVO question = questionService.select(quesNo);
 
@@ -95,9 +121,22 @@ public class QuestionController {
 
     @GetMapping("categories")
     @ResponseBody
-    public List<CategoryVO> getCategories() {
+    public ResponseEntity<Object> getCategories() {
 
-        return questionService.selectCategories();
+        List<CategoryVO> categoryList;
+
+        try {
+
+            categoryList = questionService.selectCategories();
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+        }
+
+        return new ResponseEntity<>(categoryList, HttpStatus.OK);
+
     }
 
 }
