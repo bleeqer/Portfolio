@@ -47,15 +47,7 @@ public class UserController {
     @GetMapping("profile/{email}")
     public String userProfile(@PathVariable String email, Model model) throws SQLException, UsernameNotFoundException, IllegalArgumentException {
 
-        CustomUserDetailsVO user;
-
-        try {
-            // 유저 정보 가져오기
-            user = userService.select(email);
-        } catch (Exception e) {
-            throw new UsernameNotFoundException(email);
-
-        }
+        CustomUserDetailsVO user = userService.select(email);
 
         QuestionVO questionVO = new QuestionVO();
         AnswerVO answerVO = new AnswerVO();
@@ -68,19 +60,11 @@ public class UserController {
 
         meta.put("type", "answers");
 
-        try {
-            meta.put("total", answerService.countAnswers(answerVO));
-        } catch (Exception e) {
-            throw new SQLException();
-        }
+        meta.put("total", answerService.countAnswers(answerVO));
 
+        // 유저가 작성한 답변-질문 페어 가져오기
+        model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
 
-        try {
-            // 유저가 작성한 답변-질문 페어 가져오기
-            model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
-        } catch (Exception e) {
-            throw new SQLException();
-        }
 
         model.addAttribute("meta", meta);
 
@@ -92,15 +76,7 @@ public class UserController {
     @GetMapping("profile/{email}/answers")
     public String userAnswers(@PathVariable String email, Model model) throws SQLException, IllegalArgumentException {
 
-        CustomUserDetailsVO user;
-
-        try {
-            // 유저 정보 가져오기
-            user = userService.select(email);
-        } catch (Exception e) {
-            throw new UsernameNotFoundException(email);
-
-        }
+        CustomUserDetailsVO user = userService.select(email);
 
         model.addAttribute("user", user);
 
@@ -115,18 +91,10 @@ public class UserController {
 
         meta.put("type", "answers");
 
-        try {
-            meta.put("total", answerService.countAnswers(answerVO));
-        } catch (Exception e) {
-            throw new SQLException();
-        }
+        meta.put("total", answerService.countAnswers(answerVO));
 
-        try {
-            // 유저가 작성한 답변-질문 페어 가져오기
-            model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
-        } catch (Exception e) {
-            throw new SQLException();
-        }
+        // 유저가 작성한 답변-질문 페어 가져오기
+        model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
 
         model.addAttribute("meta", meta);
 
@@ -138,15 +106,7 @@ public class UserController {
     @GetMapping("profile/{email}/questions")
     public String userQuestions(@PathVariable String email, Model model) throws SQLException, IllegalArgumentException {
 
-        CustomUserDetailsVO user;
-
-        try {
-            // 유저 정보 가져오기
-            user = userService.select(email);
-        } catch (Exception e) {
-            throw new UsernameNotFoundException(email);
-
-        }
+        CustomUserDetailsVO user = userService.select(email);
 
         QuestionVO questionVO = new QuestionVO();
         questionVO.setUserEmail(email);
@@ -156,18 +116,10 @@ public class UserController {
 
         meta.put("type", "questions");
 
-        try {
-            meta.put("total", questionService.countQuestions(questionVO));
-        } catch (Exception e) {
-            throw new SQLException();
-        }
+        meta.put("total", questionService.countQuestions(questionVO));
 
-        try {
-            // 유저가 작성한 답변-질문 페어 가져오기
-            model.addAttribute("questions", questionService.selectList(questionVO));
-        } catch (Exception e) {
-            throw new SQLException();
-        }
+        // 유저가 작성한 답변-질문 페어 가져오기
+        model.addAttribute("questions", questionService.selectList(questionVO));
 
         model.addAttribute("meta", meta);
 
