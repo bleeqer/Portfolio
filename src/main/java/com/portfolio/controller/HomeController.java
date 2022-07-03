@@ -48,11 +48,7 @@ public class HomeController {
 
     @GetMapping("more")
     @ResponseBody
-    public ResponseEntity<List<QAPairVO>> getMorePairs(@RequestParam Integer quesNo) {
-
-        QuestionVO questionVO = new QuestionVO();
-
-        questionVO.setQuesNo(quesNo);
+    public ResponseEntity<List<QAPairVO>> getMorePairs(QuestionVO questionVO) {
 
         return new ResponseEntity<>(questionService.selectPairList(questionVO), HttpStatus.OK);
     }
@@ -77,8 +73,6 @@ public class HomeController {
     public ResponseEntity<List<QuestionVO>> getMoreQuestions(QuestionVO questionVO) {
 
         questionVO.setAnswered("N");
-
-    System.out.println(questionVO.getSearchKeyword());
 
         return new ResponseEntity<>(questionService.selectList(questionVO), HttpStatus.OK);
     }
@@ -127,13 +121,28 @@ public class HomeController {
 //    }
 
     @GetMapping("search/questions")
-    public String searchQuestions(SearchVO searchVO, Model model) {
-        model.addAttribute("keyword", searchVO.getKeyword());
+    public String searchQuestions(QuestionVO questionVO, Model model) {
+    System.out.println(questionVO.getSearchKeyword());
+        model.addAttribute("keyword", questionVO.getSearchKeyword());
 
-        QuestionVO questionVO = new QuestionVO();
+        model.addAttribute("categories", questionService.selectCategories());
+
         model.addAttribute("questions", questionService.selectList(questionVO));
 
         return "questions";
+    }
+
+    @GetMapping("search/pairs")
+    public String searchPairs(QuestionVO questionVO, Model model) {
+        System.out.println(questionVO.getSearchKeyword());
+
+        model.addAttribute("keyword", questionVO.getSearchKeyword());
+
+        model.addAttribute("categories", questionService.selectCategories());
+
+        model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
+
+        return "index";
     }
 
 }

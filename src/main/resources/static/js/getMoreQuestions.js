@@ -5,15 +5,15 @@ $(window).scroll(function() {
 
         const lastQuesNo = $('#question-list .question').last().data('ques-no')
         const categoryCode = $('.category-item.selected').data('category-code')
-        const keyword = $('#search-form .search-keyword').val()
+        const keyword = $('#search-data #search-keyword').val()
 
-        $.ajax({
+        $.ajax(
+            {
             url: '/questions/more',
             type: 'GET',
             contentType: 'application/json',
             data : {quesNo: lastQuesNo, categoryCode: categoryCode, searchKeyword: keyword},
             success: function (questions) {
-
                 questions.forEach(function (question) {
                     $('#question-list').append(addQuestion($(question)[0]))
                 })

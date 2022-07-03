@@ -1,7 +1,7 @@
 
 $(window).scroll(function() {
 
-    if ($(window).scrollTop() + 0.4 >= $(document).height() - $(window).height()) {
+    if ($(window).scrollTop() + 0.1 >= $(document).height() - $(window).height()) {
 
         // 숨겨진 질문 3개 선택
         const answers = $('.answer:hidden').slice(0, 3)

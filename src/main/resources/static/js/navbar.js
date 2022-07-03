@@ -65,13 +65,19 @@ $('a').each(function () {
 })
 
 $('#search-button').click(function () {
+    currentURL = $(location).attr('pathname')
 
-    $('#search-form').attr('action', '/search/questions')
+    requestURL = 'search/pairs'
+
+    if (currentURL.indexOf('questions') !== -1) {
+        requestURL = 'search/questions'
+    }
+    $('#search-form').attr('action', requestURL)
     $('#search-form').submit()
-    //
+
     // $.ajax({
     //     type: 'GET',
-    //     url: 'search/questions',
+    //     url: requestURL,
     //     data: $('#search-form').serialize(),
     //     success: function (questions) {
     //

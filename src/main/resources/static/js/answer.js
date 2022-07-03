@@ -19,11 +19,8 @@ if (!isExist('.answer')) {
     $('#no-content').show()
 }
 
-
 // 최초 조회된 답변 popover
 initAnswerPopover()
-
-
 
 function answerFormCheck() {
 
@@ -35,7 +32,6 @@ function answerFormCheck() {
 
     return true
 }
-
 
 $('.readMore-button').on('click', function() {
     $(this).parent().find('.fade-post').css('max-height', $(this).parent().find('.fade-post').prop('scrollHeight') + 'px')
@@ -114,16 +110,11 @@ $(document).on('click', '.answer-popover-item', function () {
                 $('#answer-modal #answer-textarea').val(answer.answer)
                 $('#answer-modal #ans-no').val(answer.ansNo)
                 $('#answer-modal #ques-no').val(answer.quesNo)
-
-
-
             },
             error: function () {
                 alert('오류가 발생했습니다.')
             }
         })
-
-
     }
 })
 
@@ -171,11 +162,7 @@ $('body').on('click', '.answer-button', function() {
             }
         }
     })
-
-
 })
-
-
 
 
 // 답변 Modal Window open 시 text editor 초기화
@@ -252,7 +239,6 @@ $('#add-answer-button').click(function () {
             if (isExist('.answer')) $('#no-content').hide()
 
             initAnswerPopover()
-
 
             // 모달창 종료
             $('#answer-modal').modal('toggle')
