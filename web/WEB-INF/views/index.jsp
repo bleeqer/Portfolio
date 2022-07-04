@@ -131,7 +131,7 @@
                 </div>
 
                 <%--질문글 리스트--%>
-                <div style="width: 572px; margin-left: 172px;">
+                <div id="content-container" style="width: 572px; margin-left: 172px;">
                     <div>
                         <div id="pair-list">
 
@@ -743,6 +743,9 @@
     <%@ include file="/WEB-INF/views/modals/answer.jsp" %>
 
     <%@ include file="/WEB-INF/views/templates/pairTemplate.jsp" %>
+    <%@ include file="/WEB-INF/views/templates/commentTemplate.jsp" %>
+
+    <input id="logged-in-user" type="hidden" value="${principal}">
 
 
     <script src="/static/js/utils.js"></script>

@@ -92,7 +92,7 @@
              style="width: 1002px; padding-top: 30px; padding-left: 24px; padding-right: 24px;">
 
             <%--Main content container--%>
-            <div style="width: 572px;">
+            <div id="content-container" style="width: 572px;">
 
                 <%--Profile--%>
                 <div>

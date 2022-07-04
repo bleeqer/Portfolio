@@ -35,12 +35,6 @@ public class CommentController {
 
         }
 
-        if (!commentVO.getUserEmail().equals(principal.getName())) {
-
-            return new ResponseEntity<>("작성자가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
-
-        }
-
         CommentVO comment;
 
         commentVO.setUserEmail(principal.getName());
@@ -52,10 +46,9 @@ public class CommentController {
 
         } catch (SQLException e) {
 
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
-
 
         return new ResponseEntity<>(comment, HttpStatus.OK);
     }
@@ -223,7 +216,7 @@ public class CommentController {
 
         CommentVO commentVO = new CommentVO();
 
-        commentVO.setAnsNo(coNo);
+        commentVO.setCoNo(coNo);
 
         commentVO.setUserEmail(principal.getName());
 

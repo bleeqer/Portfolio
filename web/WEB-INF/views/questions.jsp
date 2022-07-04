@@ -133,7 +133,7 @@
           </div>
 
           <%--질문글 리스트--%>
-          <div style="width: 572px; margin-left:172px;">
+          <div id="content-container" style="width: 572px; margin-left:172px;">
             <div>
               <div>
 

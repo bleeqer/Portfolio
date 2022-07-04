@@ -4,7 +4,7 @@ function initCommentPopover() {
 
         $(function() {
             $(element).popover({
-                trigger: 'focus',
+                trigger: 'click',
                 html: true,
                 sanitize: false,
                 content: $(element).find($('.comment-option-popover-content')).html()
@@ -16,7 +16,7 @@ function initCommentPopover() {
 
 
 // 댓글 가져오기
-function getComments(data) {
+function getComments(data, order) {
 // 댓글 더 불러오기에서 사용 시 more에 true 전달할 것(더 불러오기는 댓글 리스트 맨 아래에 추가)
     let comments
 
@@ -29,10 +29,15 @@ function getComments(data) {
         // data : data,
         success: function (comments) {
             comments.forEach(function (comment) {
-                addComment(comment)
+                if (order === 'after') {
+                    $('#content-container .answer[data-ans-no="' + comment.ansNo + '"]').find('.comment-list').append(addComment(comment))
+                } else {
+                    $('#content-container .answer[data-ans-no="' + comment.ansNo + '"]').find('.comment-list').prepend(addComment(comment))
+                }
             })
 
             lastComment = $(comments).get(-1)
+
 
             // 댓글이 없거나 댓글 리스트의 마지막 댓글이 전체 댓글의 마지막 댓글일 경우 view more comments 숨기기
             if (typeof lastComment === 'undefined' || isLastComment(lastComment.coNo, lastComment.ansNo)) {
@@ -49,6 +54,7 @@ function getComments(data) {
 
             // 자식 댓글 카운트 및 셋팅
             countChildComments()
+
 
 
         },
@@ -73,11 +79,11 @@ function countChildComments() {
 
         const coNo = $(comment).data('co-no')
 
-        const childComments = $('.comment[data-parent-co-no="' + coNo + '"]')
+        const childComments = $('#content-container .comment[data-parent-co-no="' + coNo + '"]')
 
         if (childComments.length > 0) {
 
-            $(comment).find('.comment-count').html(childComments.length-1)
+            $(comment).find('.comment-count').html(childComments.length)
 
         }
 
@@ -102,7 +108,7 @@ function deleteCommentTree (rootCoNo) {
 function getLastCoNo (ansNo) {
     let coNoArr = []
 
-    $('.comment[data-ans-no="' + ansNo + '"]').each(function (idx, el) {
+    $('.comment[data-ans-no="' + ansNo + '"][data-co-level="1"]').each(function (idx, el) {
         coNoArr.push($(el).data('co-no'))
     })
 
@@ -149,19 +155,26 @@ function addComment (comment) {
     template.find('.comment').attr('data-parent-co-no', comment.parentCoNo)
     template.find('.comment-form').attr('data-co-no', comment.coNo)
     template.find('.comment-form').attr('data-ans-no', comment.ansNo)
-    
+    template.find('.view-more-reply-container').attr('data-co-no', comment.coNo)
+    template.find('.view-more-reply-container').attr('data-parent-co-no', comment.parentCoNo)
+
     // comment 셋팅
     template.find('.comment-user-photo').attr('src', '/uploadedImages' + comment.userPhoto)
     template.find('.comment-text p').html(comment.answerComment)
     template.find('.comment-user-name').html(comment.userName)
     template.find('.comment-reg-date').html(comment.regDate)
 
-    if (comment.likeCnt > 0) {
-        template.find('.comment-like-cnt').html(comment.likeCnt)
+    if (comment.likes > 0) {
+        template.find('.comment-like-cnt').html(comment.likes)
+    } else {
+        template.find('.comment-like-cnt').html('')
+
     }
 
-    if (comment.dislikeCnt > 0) {
-        template.find('.comment-dislike-cnt').html(comment.dislikeCnt)
+    if (comment.dislikes > 0) {
+        template.find('.comment-dislike-cnt').html(comment.dislikes)
+    } else {
+        template.find('.comment-dislike-cnt').html('')
     }
 
     // comment option popover 셋팅
@@ -171,13 +184,7 @@ function addComment (comment) {
     // 로그인 유저와 댓글 작성자가 같지 않을 때 옵션 버튼 활성화
     if ($('#logged-in-user').val() !== comment.userEmail) {
         template.find('.comment-option-button').hide()
-        template.find('.comment-like-button').addClass('login-first')
-        template.find('.comment-dislike-button').addClass('login-first')
-        template.find('.comment-like-button').removeClass('comment-like-button')
-        template.find('.comment-dislike-button').removeClass('comment-dislike-button')
 
-        template.find('.add-comment-button').addClass('login-first')
-        template.find('.add-comment-button').removeClass('.add-comment-button')
     } else {
         template.find('.comment-option-button').show()
     }
@@ -194,11 +201,11 @@ function addComment (comment) {
         template.find('.comment').css('padding-left', 0)
 
         // 댓글의 답변글
-        const answer = $('.answer[data-ans-no="' + comment.ansNo + '"]')
+        // const answer = $('.answer[data-ans-no="' + comment.ansNo + '"]')
 
         template.find('.comment .reply-input-container').hide()
 
-        answer.find('.comment-list').append(template.html())
+        // answer.find('.comment-list').prepend(template.html())
 
 
     } else {
@@ -206,7 +213,8 @@ function addComment (comment) {
         // 사진 크기 조절
         template.find('.comment-user-photo').css('width', 24)
         template.find('.comment-user-photo').css('height', 24)
-        
+        template.find('.comment').removeClass('border-bottom-gray')
+
         // 왼쪽 패딩 조절
         const padding = (comment.level - 2) * 36 + 42
         template.find('.comment').css('padding-left', padding + 'px')
@@ -214,8 +222,10 @@ function addComment (comment) {
         // 하위 댓글이므로 숨김 후 부모댓글 바로 아래에 추가
         template.find('.comment').hide()
         template.find('.comment .reply-input-container').hide()
-        $('.comment[data-co-no="' + comment.parentCoNo + '"]').after(template.html())
+        // $('.comment[data-co-no="' + comment.parentCoNo + '"]').after(template.html())
     }
+
+    return template.html()
 
 }
 
@@ -232,7 +242,7 @@ $('body').on('click', '.comment-button', function () {
 
     if (commentSection.css('display') === 'block') {
         
-        answer.find('.comment-list').html(getComments({ansNo: ansNo}))
+        answer.find('.comment-list').html(getComments({ansNo: ansNo}, 'after'))
 
     } else {
 
@@ -243,8 +253,9 @@ $('body').on('click', '.comment-button', function () {
 })
 
 // 댓글 popover 옵션
-$(document).on('click', '.comment-popover-item', function () {
+$('body').on('click', '.comment-popover-item', function () {
 
+    $('.comment-option-button').popover('hide')
     const coNo = $(this).data('co-no')
     const ansNo = $(this).data('ans-no')
     const optionType = $(this).data('option-type')
@@ -309,7 +320,7 @@ $(document).on('click', '.comment-popover-item', function () {
 })
 
 
-$('.comment-section').on('click', '.comment-edit-submit-button', function () {
+$('body').on('click', '.comment-edit-submit-button', function () {
 
     const comment = $(this).closest('.comment')
     const commentForm = comment.find('.comment-edit-form')
@@ -339,8 +350,17 @@ $('.comment-section').on('click', '.comment-edit-submit-button', function () {
     })
 })
 
+$('body').on('click', '.comment-edit-cancel-button', function () {
+
+    const comment = $(this).closest('.comment')
+
+    comment.find('.comment-text').show()
+    comment.find('.comment-footer').show()
+    comment.find('.comment-edit-container').hide()
+
+})
 // 대댓글 보기
-$('.comment-section').on('click', '.reply-button', function () {
+$('body').on('click', '.reply-button', function () {
 
     const parentNo = $(this).parents('.comment').data('co-no')
     
@@ -376,12 +396,11 @@ $('.comment-section').on('click', '.reply-button', function () {
     $('.comment[data-co-no="' + parentNo + '"] .reply-input-container').toggle()
 })
 
-$('.comment-section').on('click', '.view-more-reply-container', function () {
+$('body').on('click', '#content-container .view-more-reply-container', function () {
 
     const parentCoNo = $(this).data('parent-co-no')
 
-    const childComments = $('.comment[data-parent-co-no="' + parentCoNo + '"]')
-
+    const childComments = $('#content-container .comment[data-parent-co-no="' + parentCoNo + '"]')
 
     // 해당 댓글의 숨겨져있는 자식 댓글
     const hiddenChildComments = childComments.filter(function () {
@@ -391,7 +410,7 @@ $('.comment-section').on('click', '.view-more-reply-container', function () {
     // 특정 갯수만 보여주기
     hiddenChildComments.slice(0, 3).toggle()
 
-    // 현재 view more replies 버튼 숨기기
+    // 현재 코멘트의 view more replies 버튼 숨기기
     $(this).hide()
 
     // 보여지고 있는 자식 댓글 선택
@@ -418,16 +437,16 @@ $('body').on('click', '.view-more-comments', function () {
 
     const lastCoNo = getLastCoNo(ansNo)
 
-    // 마지막 댓글 여부 체크 후 맞다면 더보기 버튼 숨김
-    if (isLastComment(lastCoNo, ansNo) === true) {
-        $(this).addClass('hidden')
-
-        return false
-    }
+    // // 마지막 댓글 여부 체크 후 맞다면 더보기 버튼 숨김
+    // if (isLastComment(lastCoNo, ansNo) === true) {
+    //     $(this).addClass('hidden')
+    //
+    //     return false
+    // }
 
     getComments({ansNo: ansNo,
                  coNo: lastCoNo},
-                true)
+                'after')
 
 
 })
@@ -466,7 +485,18 @@ $('body').on('click', '.add-comment-button', function () {
         },
         success: function (comment) {
 
-            addComment(comment)
+            const commentHTML = addComment(comment)
+
+            // 코멘트의 레벨에 따라 삽입위치 다름
+            if (comment.parentCoNo === 0) {
+
+                $('#content-container .answer[data-ans-no="' + comment.ansNo + '"]').find('.comment-list').prepend(commentHTML)
+
+            } else {
+
+                $('#content-container .comment[data-co-no="' + comment.parentCoNo + '"]').after(commentHTML)
+
+            }
 
             // 댓글 border-top-gray 리셋
             resetBorderTop()

@@ -36,6 +36,13 @@ public class AnswerController {
     @ResponseBody
     public ResponseEntity<Object> createAnswer(@RequestBody AnswerVO answerVO, Principal principal) {
 
+        // 미로그인 유저일 때
+        if (principal == null) {
+
+            return new ResponseEntity<>("로그인이 필요한 기능입니다.", HttpStatus.BAD_REQUEST);
+
+        }
+
         // 작성자 셋팅
         answerVO.setUserEmail(principal.getName());
 

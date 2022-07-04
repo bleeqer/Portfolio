@@ -191,7 +191,7 @@
                 </div>
 
                 <%--Answers--%>
-                <div>
+                <div id="content-container">
 
                     <%--Answer list header--%>
                     <div>

@@ -183,10 +183,10 @@
                             </div>
                             <div class="d-flex my-2" style="width: 100%;">
                                 <div class="d-flex ms-auto">
-                                    <div class="comment-edit-cancel-button rounded-pill d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;" data-co-level="" data-co-no="" data-parent-co-no="" data-ans-no="">
+                                    <div class="comment-edit-cancel-button rounded-pill d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="cursor: pointer; height: 30px; font-size: 13px; border: none;" data-co-level="" data-co-no="" data-parent-co-no="" data-ans-no="">
                                         Cancel
                                     </div>
-                                    <div class="comment-edit-submit-button rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="height: 30px; font-size: 13px; border: none;" data-co-no="">
+                                    <div class="comment-edit-submit-button rounded-pill btn-primary d-flex px-3 justify-content-center align-items-center font-bold ms-1" style="cursor: pointer; height: 30px; font-size: 13px; border: none;" data-co-no="">
                                         Edit
                                     </div>
                                 </div>
@@ -219,7 +219,7 @@
         <%--View more replies--%>
         <div class="view-more-reply-container" style="display: none;" data-co-no="" data-parent-co-no="">
             <div class="pb-3 px-3">
-                <button class="view-more-replies btn d-flex justify-content-center align-items-center border-gray rounded-3 bg-black-light bg-darken-light bg-hover-darken py-0 px-3"
+                <div class="view-more-replies btn d-flex justify-content-center align-items-center border-gray rounded-3 bg-black-light bg-darken-light bg-hover-darken py-0 px-3"
                         style="height: 30px; width: 100%; font-weight: 500;">
                     <div class="d-flex align-items-center">
 
@@ -241,7 +241,7 @@
                                     </span>
                                 </span>
                     </div>
-                </button>
+                </div>
             </div>
         </div>
     </div>

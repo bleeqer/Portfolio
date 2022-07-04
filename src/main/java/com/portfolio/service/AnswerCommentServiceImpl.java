@@ -155,7 +155,8 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
             resultLike = answerCommentMapper.countLike(likeVO.getCoNo());
 
         } catch (Exception e) {
-
+e.getStackTrace();
+      System.out.println(e.getMessage());
             throw new SQLException("좋아요에 실패했습니다.");
 
         }
@@ -212,7 +213,7 @@ public class AnswerCommentServiceImpl implements AnswerCommentService {
             res = answerCommentMapper.checkLiked(commentVO);
 
         } catch (Exception e) {
-
+            e.getStackTrace();
             throw new SQLException("댓글 좋아요 여부 조회에 실패했습니다.");
 
         }
