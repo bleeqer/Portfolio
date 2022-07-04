@@ -72,6 +72,7 @@ $(document).on('click', '.answer-popover-item', function () {
             success: function (ansNo) {
 
                 const answer = $('.answer[data-ans-no="' + ansNo + '"]')
+                // answer.closest('.pair').remove()
                 answer.remove()
 
                 $('#answer-count').html(parseInt($('#answer-count').html()) - 1)

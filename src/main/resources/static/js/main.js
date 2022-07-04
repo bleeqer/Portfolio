@@ -15,6 +15,7 @@ function addPair (pair) {
     template.find('.answer-user-occupation').html(pair.userOccupation)
     template.find('.answer-reg-date').html(pair.answerRegDate)
     template.find('.question-link').attr('href', '/question/' + pair.quesNo)
+    template.find('.share-button').attr('data-ques-no', pair.quesNo)
 
     // if ($('#logged-in-user').val() !== question.userEmail) {
     //     template.find('.answer-button').show()
