@@ -91,7 +91,14 @@
                 <sec:authorize access="isAuthenticated()">
                     <li><a class="dropdown-item color-gray-light bg-hover-whiten-light d-flex justify-content-start align-items-center py-3" href="/user/profile/${principal}" style="line-height: 100%; font-size: 14px;">My Page</a></li>
                     <div class="border-bottom-gray"></div>
-                    <li><a class="dropdown-item color-gray-light bg-hover-whiten-light justify-content-start align-items-center py-2 font-bold" href="/user/logout" style="line-height: 100%; font-size: 11px;">Log out</a></li>
+                    <li><span class="dropdown-item log-out color-gray-light bg-hover-whiten-light justify-content-start align-items-center py-2 font-bold" href="" style="line-height: 100%; font-size: 11px;">
+                        Log out
+
+                    </span>
+                        <form id="logout-form" action="/user/logout" method="POST" style="display: none;">
+                            <sec:csrfInput/>
+                        </form>
+                    </li>
 
                 </sec:authorize>
                 <sec:authorize access="isAnonymous()">

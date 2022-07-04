@@ -380,7 +380,7 @@
                                                                             </span>
 
                                                                                 <%--Comment count--%>
-                                                                            <div class="d-flex align-items-center justify-content-center color-gray">
+                                                                            <div class="comment-count d-flex align-items-center justify-content-center color-gray">
                                                                             <c:if test="${answer.commentCnt > 0}">
                                                                                 ${answer.commentCnt}
                                                                             </c:if>

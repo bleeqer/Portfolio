@@ -142,6 +142,8 @@ $('#login-button').click(function (e) {
 })
 
 
+
+
 function isUserValid(){
 
     const nameRegExp = RegExp(/[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g)

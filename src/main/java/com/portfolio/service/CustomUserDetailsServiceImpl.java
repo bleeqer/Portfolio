@@ -1,5 +1,7 @@
 package com.portfolio.service;
 
+import com.portfolio.domain.ImageVO;
+import com.portfolio.mapper.ImageMapper;
 import com.portfolio.mapper.UserMapper;
 import com.portfolio.domain.CustomUserDetailsVO;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -19,6 +22,9 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    ImageMapper imageMapper;
 
     @Override
     public UserDetails loadUserByUsername(String userId) throws AuthenticationException {
@@ -43,6 +49,7 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
         }
 
         try {
+
 
             userMapper.insert(userVO);
 

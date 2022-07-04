@@ -22,8 +22,8 @@
 
         <logout
             logout-url="/user/logout"
-            invalidate-session="true"
             logout-success-url="/"
+            delete-cookies="JSESSIONID"
         />
     </http>
 

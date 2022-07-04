@@ -333,7 +333,9 @@
 
                                                                                                         <%--Comment count--%>
                                                                                                     <div class="comment-count d-flex align-items-center justify-content-center color-gray">
+                                                                                                        <c:if test="${answerPair.commentCnt > 0}">
                                                                                                             ${answerPair.commentCnt}
+                                                                                                        </c:if>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>

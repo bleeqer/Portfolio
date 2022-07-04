@@ -72,7 +72,8 @@ public class AnswerServiceImpl implements AnswerService {
                 imageMapper.insert(imageVO);
 
             } catch (Exception e) {
-
+        System.out.println(e.getMessage());
+        e.getStackTrace();
                 throw new SQLException("이미지 업로드에 실패했습니다.");
 
             }

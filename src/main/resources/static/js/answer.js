@@ -34,7 +34,7 @@ function answerFormCheck() {
 }
 
 $('.readMore-button').on('click', function() {
-    $(this).parent().find('.fade-post').css('max-height', $(this).parent().find('.fade-post').prop('scrollHeight') + 'px')
+    $(this).parent().css('max-height', $(this).parent().prop('scrollHeight'))
     $(this).hide()
     $(this).parent().find('.overflow-fade').css('display', 'none')
 })
@@ -347,7 +347,7 @@ $('#image').on("change", function () {
             for (const path of paths) {
 
                 // 이미지 태그 클릭하면 에러 발생함 나중에 삭제버튼 추가하기
-                tags = tags + '<div class="d-flex" style="width: 100%;"><img class="inserted-image px-auto" alt="photo" src= "/uploadedImages' + path + '" style="width: 20%;"/></div></b>'
+                tags = tags + '<div class="d-flex" style="width: 100%;"><img class="inserted-image px-auto" alt="photo" src= "/uploadedImages' + path + '" style="width: 50%;"/></div></b>'
             }
 
             tinymce.activeEditor.insertContent(tags)

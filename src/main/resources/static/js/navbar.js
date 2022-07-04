@@ -1,21 +1,9 @@
+$('body').on('click', '.log-out', function (e) {
+    console.log("?")
+    e.preventDefault()
 
-//
-// $('#search-button').click(function (e) {
-//
-//     e.preventDefault()
-//
-//     splitURL = window.location.href
-//
-//     //
-//     if ((splitURL.indexOf('questions') !== -1)) {
-//
-//         $('.question').last().
-//         return
-//     }
-//
-//
-//
-// })
+    $('#logout-form').submit()
+})
 
 // enter키로 검색 submit 방지
 $('.search-input').on('keydown', function(e) {
