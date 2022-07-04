@@ -85,7 +85,8 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
             userMapper.update(userVO);
 
         } catch (Exception e) {
-
+      System.out.println(e.getMessage());
+      e.getStackTrace();
             throw new SQLException("사용자 정보 업데이트에 실패했습니다.");
 
         }

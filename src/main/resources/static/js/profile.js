@@ -63,24 +63,30 @@ $('#profile-edit-submit-button').click(function () {
             url: '/user/update',
             type: 'POST',
             data: new FormData($('#signUp-form')[0]),
+            dataType: "text",
             contentType: false,
             processData: false,
             context: this,
-            success: function () {
+            success: function (success) {
 
-                alert("업데이트를 완료 했습니다.")
-                $('#signUp-modal').modal('hide')
+                alert(success)
 
-                const user = getUser()
+                location.reload()
 
-                $('#navbar-profile').attr('src', '/uploadedImages' + user.photo)
-                $('#profile-photo').attr('src', '/uploadedImages' + user.photo)
-                $('#profile-username').text(user.name)
-                $('#profile-occupation').text(user.occupation)
+                // $('#signUp-modal').modal('hide')
+                //
+                // const user = getUser()
+
+                // $('#navbar-profile').attr('src', '/uploadedImages' + user.photo)
+                // $('#profile-photo').attr('src', '/uploadedImages' + user.photo)
+                // $('#profile-username').text(user.name)
+                // $('#profile-occupation').text(user.occupation)
 
             },
             error: function (error) {
-                alert(error.responseText)
+
+                alert(error)
+
             }
         })
     }
