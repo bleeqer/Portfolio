@@ -3,6 +3,7 @@ package com.portfolio.controller;
 import com.portfolio.domain.*;
 import com.portfolio.domain.CommentLikeVO;
 import com.portfolio.service.AnswerCommentService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,19 @@ import java.util.Objects;
 @RequestMapping("comment")
 public class CommentController {
 
+    private final Logger logger = Logger.getLogger(this.getClass());
+
     @Autowired
     AnswerCommentService answerCommentService;
 
     @PostMapping(value="create", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> createComment(CommentVO commentVO, Principal principal) {
+
+        logger.info("comment: " + commentVO.getAnswerComment());
+        logger.info("parent comment number: " + commentVO.getParentCoNo());
+        logger.info("photo: " + commentVO.getUserPhoto());
+        logger.info("occupation: " + commentVO.getUserOccupation());
 
         // 미로그인 유저일 때
         if (principal == null) {
@@ -46,6 +54,7 @@ public class CommentController {
 
         } catch (SQLException e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -57,6 +66,8 @@ public class CommentController {
     @ResponseBody
     public ResponseEntity<Object> selectComment(int coNo) {
 
+        logger.info("comment number: " + coNo);
+
         CommentVO comment;
 
         try {
@@ -65,6 +76,7 @@ public class CommentController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -75,6 +87,13 @@ public class CommentController {
     @PostMapping(value="update", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> updateComment(CommentVO commentVO, Principal principal) {
+
+        logger.info("comment number: " + commentVO.getCoNo());
+        logger.info("comment: " + commentVO.getAnswerComment());
+        logger.info("parent comment number: " + commentVO.getParentCoNo());
+        logger.info("email: " + commentVO.getUserEmail());
+        logger.info("photo: " + commentVO.getUserPhoto());
+        logger.info("occupation: " + commentVO.getUserOccupation());
 
         if (!commentVO.getUserEmail().equals(principal.getName())) {
 
@@ -92,6 +111,7 @@ public class CommentController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -104,12 +124,15 @@ public class CommentController {
     @ResponseBody
     public ResponseEntity<Object> deleteComment(@RequestBody CommentVO commentVO) {
 
+        logger.info("comment number: " + commentVO.getCoNo());
+
         try {
 
             answerCommentService.delete(commentVO);
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -122,6 +145,8 @@ public class CommentController {
     @ResponseBody
     public ResponseEntity<Object> getComments(CommentVO commentVO) {
 
+        logger.info("answer number: " + commentVO.getAnsNo());
+
         List<CommentVO> comments;
 
         try {
@@ -130,6 +155,7 @@ public class CommentController {
 
         } catch (SQLException e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -141,6 +167,8 @@ public class CommentController {
     @GetMapping(value="like", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> likeComment(@RequestParam Integer coNo, Principal principal) {
+
+        logger.info("comment number: " + coNo);
 
         // 미로그인 유저일 때
         if (principal == null) {
@@ -162,6 +190,7 @@ public class CommentController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -173,6 +202,8 @@ public class CommentController {
     @GetMapping(value="dislike", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> dislikeComment(@RequestParam Integer coNo, Principal principal) {
+
+        logger.info("comment number: " + coNo);
 
         // 미로그인 유저일 때
         if (principal == null) {
@@ -194,6 +225,7 @@ public class CommentController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -205,6 +237,8 @@ public class CommentController {
     @GetMapping(value="checkLiked", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> checkLiked(Integer coNo, Principal principal) {
+
+        logger.info("comment number: " + coNo);
 
         // 미로그인 유저일 때
         if (principal == null) {
@@ -228,6 +262,7 @@ public class CommentController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -245,6 +280,8 @@ public class CommentController {
     @ResponseBody
     public ResponseEntity<Object> checkLast(CommentVO commentVO) {
 
+        logger.info("answer number: " + commentVO.getAnsNo());
+
         Integer lastCoNo;
 
         try {
@@ -258,6 +295,8 @@ public class CommentController {
             }
 
         } catch (Exception e) {
+
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }

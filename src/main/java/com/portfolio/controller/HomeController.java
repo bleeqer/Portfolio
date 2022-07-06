@@ -4,6 +4,7 @@ import com.portfolio.domain.*;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.CustomUserDetailsServiceImpl;
 import com.portfolio.service.QuestionService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import java.util.List;
 @RequestMapping("/")
 public class HomeController {
 
+    private final Logger logger = Logger.getLogger(this.getClass());
+
     @Autowired
     QuestionService questionService;
 
@@ -26,12 +29,6 @@ public class HomeController {
 
     @Autowired
     CustomUserDetailsServiceImpl userService;
-
-//    @GetMapping("/search")
-//    public String getSearchResults(@RequestParam String keyword, Model model) {
-//
-//        return "index";
-//    }
 
     @GetMapping("")
     public String getPairs(Model model) throws SQLException {
@@ -51,6 +48,10 @@ public class HomeController {
     @ResponseBody
     public ResponseEntity<Object> getMorePairs(QuestionVO questionVO) {
 
+        logger.info("question number: " + questionVO.getQuesNo());
+        logger.info("category: " + questionVO.getCategoryCode());
+        logger.info("search keyword: " + questionVO.getSearchKeyword());
+
         List<QAPairVO> pairList;
 
         try {
@@ -59,6 +60,7 @@ public class HomeController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -85,6 +87,10 @@ public class HomeController {
     @ResponseBody
     public ResponseEntity<Object> getMoreQuestions(QuestionVO questionVO) {
 
+        logger.info("question number: " + questionVO.getQuesNo());
+        logger.info("category: " + questionVO.getCategoryCode());
+        logger.info("search keyword: " + questionVO.getSearchKeyword());
+
         questionVO.setAnswered("N");
 
         List<QuestionVO> questionList;
@@ -95,6 +101,7 @@ public class HomeController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -104,6 +111,8 @@ public class HomeController {
 
     @GetMapping("questions/category/{categoryCode}")
     public String getQuestionsByTopic(@PathVariable Integer categoryCode, Model model) throws SQLException {
+
+        logger.info("category: " + categoryCode);
 
         QuestionVO questionVO = new QuestionVO();
 
@@ -123,6 +132,8 @@ public class HomeController {
     @GetMapping("category/{categoryCode}")
     public String getPairsByTopic(@PathVariable Integer categoryCode, Model model) throws SQLException {
 
+        logger.info("category: " + categoryCode);
+
         QuestionVO questionVO = new QuestionVO();
 
         questionVO.setCategoryCode(categoryCode);
@@ -137,16 +148,12 @@ public class HomeController {
         return "index";
     }
 
-//    @GetMapping("search")
-//    public String searchPairs(SearchVO searchVO) {
-//        System.out.println(searchVO.getKeyword());
-//        System.out.println(searchVO.getQuesNo());
-//
-//        return "index";
-//    }
-
     @GetMapping("search/questions")
     public String searchQuestions(QuestionVO questionVO, Model model) throws SQLException {
+
+        logger.info("question number: " + questionVO.getQuesNo());
+        logger.info("category: " + questionVO.getCategoryCode());
+        logger.info("search keyword: " + questionVO.getSearchKeyword());
 
         model.addAttribute("keyword", questionVO.getSearchKeyword());
 
@@ -159,6 +166,10 @@ public class HomeController {
 
     @GetMapping("search/pairs")
     public String searchPairs(QuestionVO questionVO, Model model) throws SQLException {
+
+        logger.info("question number: " + questionVO.getQuesNo());
+        logger.info("category: " + questionVO.getCategoryCode());
+        logger.info("search keyword: " + questionVO.getSearchKeyword());
 
         model.addAttribute("keyword", questionVO.getSearchKeyword());
 

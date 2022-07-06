@@ -5,6 +5,7 @@ import com.portfolio.domain.CategoryVO;
 import com.portfolio.domain.QuestionVO;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.QuestionService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ import java.util.List;
 @RequestMapping("question")
 public class QuestionController {
 
+    private final Logger logger = Logger.getLogger(this.getClass());
+
     @Autowired
     QuestionService questionService;
 
@@ -29,6 +32,10 @@ public class QuestionController {
 
     @PostMapping("create")
     public String createQuestion(QuestionVO questionVO, Principal principal, Model model) throws SQLException {
+
+        logger.info("category: " + questionVO.getCategoryCode());
+        logger.info("question: " + questionVO.getQuestion());
+        logger.info("email: " + principal.getName());
 
         questionVO.setUserEmail(principal.getName());
 
@@ -59,6 +66,8 @@ public class QuestionController {
     @ResponseBody
     public ResponseEntity<Object> selectQuestion(@RequestParam Integer quesNo) {
 
+        logger.info("question number: " + quesNo);
+
         QuestionVO question;
 
         try {
@@ -67,6 +76,7 @@ public class QuestionController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -79,6 +89,12 @@ public class QuestionController {
     @ResponseBody
     public ResponseEntity<Object> updateQuestion(@RequestBody QuestionVO questionVO) {
 
+        logger.info("question number: " + questionVO.getQuesNo());
+        logger.info("category: " + questionVO.getCategoryCode());
+        logger.info("question: " + questionVO.getQuestion());
+        logger.info("email: " + questionVO.getUserEmail());
+        logger.info("registration date: " + questionVO.getRegDate());
+
         QuestionVO updatedQuestion;
 
         try {
@@ -88,6 +104,7 @@ public class QuestionController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -98,6 +115,8 @@ public class QuestionController {
 
     @GetMapping("{quesNo}")
     public String viewQuestion(@PathVariable Integer quesNo, Model model) throws SQLException {
+
+        logger.info("question number: " + quesNo);
 
         QuestionVO question = questionService.select(quesNo);
 

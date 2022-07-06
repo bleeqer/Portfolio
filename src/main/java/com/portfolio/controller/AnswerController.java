@@ -5,6 +5,7 @@ import com.portfolio.mapper.ImageMapper;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.ImageService;
 import com.portfolio.service.QuestionService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,8 @@ import java.util.Map;
 @RequestMapping("answer")
 public class AnswerController {
 
+    private final Logger logger = Logger.getLogger(this.getClass());
+
     @Autowired
     AnswerService answerService;
 
@@ -35,6 +38,9 @@ public class AnswerController {
     @PostMapping(value="create", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> createAnswer(@RequestBody AnswerVO answerVO, Principal principal) {
+
+        logger.info("question number: " + answerVO.getQuesNo());
+        logger.info("answer: " + answerVO.getAnswer());
 
         // 미로그인 유저일 때
         if (principal == null) {
@@ -54,6 +60,7 @@ public class AnswerController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -66,6 +73,8 @@ public class AnswerController {
     @ResponseBody
     public ResponseEntity<Object> selectAnswer(Integer ansNo) {
 
+        logger.info("answer number: " + ansNo);
+
         AnswerVO answer;
 
         try {
@@ -74,6 +83,7 @@ public class AnswerController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -87,12 +97,15 @@ public class AnswerController {
     @ResponseBody
     public ResponseEntity<Object> deleteAnswer(@RequestBody AnswerVO answerVO) {
 
+        logger.info("answer number: " + answerVO.getAnsNo());
+
         try {
 
             answerService.delete(answerVO);
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -101,9 +114,13 @@ public class AnswerController {
 
     }
 
-    @PostMapping(value="edit", produces="application/json; charset=UTF-8")
+    @PostMapping(value="update", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> updateAnswer(@RequestBody AnswerVO answerVO) {
+
+        logger.info("answer number: " + answerVO.getAnsNo());
+        logger.info("answer: " + answerVO.getAnswer());
+        logger.info("question number: " + answerVO.getQuesNo());
 
         AnswerVO updatedAnswer;
 
@@ -114,6 +131,7 @@ public class AnswerController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -124,6 +142,9 @@ public class AnswerController {
 
     @GetMapping("")
     public String getAnswers(AnswerVO answerVO, Model model) throws SQLException {
+
+        logger.info("question number: " + answerVO.getQuesNo());
+        logger.info("email: " + answerVO.getUserEmail());
 
         List<AnswerVO> answers = answerService.selectAnswers(answerVO);
 
@@ -136,6 +157,9 @@ public class AnswerController {
     @GetMapping(value="like", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> likeAnswer(AnswerLikeVO likeVO, Principal principal) {
+
+        logger.info("answer number: " + likeVO.getAnsNo());
+        logger.info("like type: " + likeVO.getLikeType());
 
         // 미로그인 유저일 때
         if (principal == null) {
@@ -154,6 +178,7 @@ public class AnswerController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -164,6 +189,9 @@ public class AnswerController {
     @GetMapping(value="dislike", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> dislikeAnswer(AnswerLikeVO likeVO, Principal principal) {
+
+        logger.info("answer number: " + likeVO.getAnsNo());
+        logger.info("like type: " + likeVO.getLikeType());
 
         // 미로그인 유저일 때
         if (principal == null) {
@@ -182,6 +210,7 @@ public class AnswerController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -193,6 +222,8 @@ public class AnswerController {
     @GetMapping(value="checkAnswered", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> checkAnswered(Integer quesNo, Principal principal) {
+
+        logger.info("question number: " + quesNo);
 
         // 미로그인 유저일 때
         if (principal == null) {
@@ -214,6 +245,7 @@ public class AnswerController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -225,6 +257,8 @@ public class AnswerController {
     @GetMapping(value="checkLiked", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<Object> checkLiked(Integer ansNo, Principal principal) {
+
+        logger.info("answer number: " + ansNo);
 
         // 미로그인 유저일 때
         if (principal == null) {
@@ -248,6 +282,7 @@ public class AnswerController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }

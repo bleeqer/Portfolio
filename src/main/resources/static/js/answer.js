@@ -271,7 +271,7 @@ $('#edit-answer-button').click(function () {
     const ansNo = $('#answer-form #ans-no').val()
 
     $.ajax({
-        url: '/answer/edit',
+        url: '/answer/update',
         type: 'POST',
         data: JSON.stringify({ansNo: ansNo, answer: answer, quesNo: quesNo, imagePath: imagePaths}),
         beforeSend: function(xhr){

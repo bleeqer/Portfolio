@@ -4,6 +4,7 @@ import com.portfolio.commons.util.UploadFileUtils;
 import com.portfolio.domain.ImageVO;
 import com.portfolio.mapper.ImageMapper;
 import com.portfolio.service.ImageService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import java.util.List;
 @RestController
 @RequestMapping("file")
 public class ImageController {
+
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     @Autowired
     ImageService imageService;
@@ -31,6 +34,7 @@ public class ImageController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }

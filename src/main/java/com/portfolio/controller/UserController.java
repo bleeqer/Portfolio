@@ -8,6 +8,8 @@ import com.portfolio.domain.CustomUserDetailsVO;
 import com.portfolio.service.AnswerService;
 import com.portfolio.service.CustomUserDetailsServiceImpl;
 import com.portfolio.service.QuestionService;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,8 @@ import java.util.*;
 @Controller
 @RequestMapping("user")
 public class UserController {
+
+    private final Logger logger = Logger.getLogger(this.getClass());
 
     @Autowired
     CustomUserDetailsServiceImpl userService;
@@ -46,6 +50,8 @@ public class UserController {
     @GetMapping("profile/{email}")
     public String userProfile(@PathVariable String email, Model model) throws SQLException, UsernameNotFoundException, IllegalArgumentException {
 
+        logger.info("getting user profile: " + email);
+
         CustomUserDetailsVO user = userService.select(email);
 
         QuestionVO questionVO = new QuestionVO();
@@ -59,7 +65,9 @@ public class UserController {
 
         meta.put("type", "answers");
 
-        meta.put("total", answerService.countAnswers(answerVO));
+        int answerCount = answerService.countAnswers(answerVO);
+
+        meta.put("total", answerCount);
 
         // 유저가 작성한 답변-질문 페어 가져오기
         model.addAttribute("answerPairs", questionService.selectPairList(questionVO));
@@ -74,6 +82,8 @@ public class UserController {
 
     @GetMapping("profile/{email}/answers")
     public String userAnswers(@PathVariable String email, Model model) throws SQLException, IllegalArgumentException {
+
+        logger.info("getting user profile: " + email);
 
         CustomUserDetailsVO user = userService.select(email);
 
@@ -104,6 +114,8 @@ public class UserController {
 
     @GetMapping("profile/{email}/questions")
     public String userQuestions(@PathVariable String email, Model model) throws SQLException, IllegalArgumentException {
+
+        logger.info("getting user profile: " + email);
 
         CustomUserDetailsVO user = userService.select(email);
 
@@ -140,10 +152,13 @@ public class UserController {
 
         try {
 
+            logger.info("getting user profile: " + principal.getName());
+
             userVO = userService.select(principal.getName());
 
         } catch(Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
 
@@ -156,6 +171,11 @@ public class UserController {
     @ResponseBody
     public ResponseEntity<String> createUser(CustomUserDetailsVO userVO, MultipartHttpServletRequest multiRequest) {
 
+        logger.info("user email: " + userVO.getEmail());
+        logger.info("user name: " + userVO.getName());
+        logger.info("user photo: " + userVO.getPhoto());
+        logger.info("user occupation: " + userVO.getOccupation());
+
         // 프로필 이미지 업로드 후 업로드한 이미지 경로 담기
         try {
             List<String> photoPath = UploadFileUtils.uploadFile(multiRequest);
@@ -164,7 +184,10 @@ public class UserController {
             userVO.setPhoto(photoPath.get(0));
 
         } catch (Exception e) {
+
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
         }
 
         // 해싱한 비밀번호로 교체
@@ -173,8 +196,12 @@ public class UserController {
         userVO.setAuthority("ROLE_USER");
 
         try {
+
             userService.create(userVO);
+
         } catch (Exception e) {
+
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -184,6 +211,11 @@ public class UserController {
     @PostMapping(value="update", produces="application/json; charset=UTF-8")
     @ResponseBody
     public ResponseEntity<String> editUser(CustomUserDetailsVO userVO, MultipartHttpServletRequest multiRequest, Principal principal) {
+
+        logger.info("user email: " + userVO.getEmail());
+        logger.info("user name: " + userVO.getName());
+        logger.info("user photo: " + userVO.getPhoto());
+        logger.info("user occupation: " + userVO.getOccupation());
 
         if (principal == null) {
             return new ResponseEntity<>("먼저 로그인 해주세요.", HttpStatus.BAD_REQUEST);
@@ -207,6 +239,7 @@ public class UserController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
@@ -228,6 +261,7 @@ public class UserController {
 
             } catch (Exception e) {
 
+                logger.error(e.getMessage());
                 return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
             }
@@ -248,6 +282,7 @@ public class UserController {
 
         } catch (Exception e) {
 
+            logger.error(e.getMessage());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 
         }
