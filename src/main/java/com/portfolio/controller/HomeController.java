@@ -116,6 +116,8 @@ public class HomeController {
 
         QuestionVO questionVO = new QuestionVO();
 
+        questionVO.setAnswered("N");
+
         questionVO.setCategoryCode(categoryCode);
 
         model.addAttribute("questions", questionService.selectList(questionVO));
