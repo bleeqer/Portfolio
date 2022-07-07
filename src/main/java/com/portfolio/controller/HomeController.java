@@ -155,6 +155,8 @@ public class HomeController {
         logger.info("category: " + questionVO.getCategoryCode());
         logger.info("search keyword: " + questionVO.getSearchKeyword());
 
+        questionVO.setAnswered("N");
+
         model.addAttribute("keyword", questionVO.getSearchKeyword());
 
         model.addAttribute("categories", questionService.selectCategories());

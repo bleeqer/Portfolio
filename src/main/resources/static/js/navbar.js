@@ -55,10 +55,10 @@ $('a').each(function () {
 $('#search-button').click(function () {
     currentURL = $(location).attr('pathname')
 
-    requestURL = 'search/pairs'
+    requestURL = '/search/pairs'
 
     if (currentURL.indexOf('questions') !== -1) {
-        requestURL = 'search/questions'
+        requestURL = '/search/questions'
     }
 
     $('#search-form').attr('action', requestURL)
