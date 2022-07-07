@@ -245,7 +245,9 @@ $('#add-answer-button').click(function () {
 
             initAnswerPopover()
 
-            fadePost()
+            $('.inserted-image').ready(function () {
+                fadePost()
+            })
 
             // 모달창 종료
             $('#answer-modal').modal('toggle')
@@ -395,6 +397,6 @@ async function initEditor () {
 initAnswerPopover()
 
 // 길이 초과 답변 부분 숨기기
-$(document).ready(function () {
+$('.inserted-image').ready(function () {
     fadePost()
 })

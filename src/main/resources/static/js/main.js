@@ -39,7 +39,7 @@ $('.input-focus').focusout(function () {
 })
 
 $('body').on('click', '.login-first', function () {
-    result = confirm('로그인 화면으로 이동하시겠어요? (임시 계정이 제공 됩니다.)')
+    result = confirm('로그인 화면으로 이동하시겠습니까?')
 
     if (result) {
         window.location.href = '/user/login'

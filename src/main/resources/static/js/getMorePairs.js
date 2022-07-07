@@ -20,7 +20,9 @@ $(window).scroll(function() {
 
                 initAnswerPopover()
 
-                fadePost()
+                $('.inserted-image').ready(function () {
+                    fadePost()
+                })
 
             },
             error: function (error) {

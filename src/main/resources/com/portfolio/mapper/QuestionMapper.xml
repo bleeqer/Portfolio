@@ -120,7 +120,7 @@
                     AND (QUES.question LIKE '%' || #{searchKeyword} || '%' OR ANS.answer LIKE '%' || #{searchKeyword} || '%')
                 </if>) PAIR
         ORDER BY ques_no DESC)
-    WHERE RN = 1 AND ROWNUM BETWEEN 0 AND 10
+    WHERE RN = 1 AND ROWNUM BETWEEN 0 AND 5
 
     </select>
 
