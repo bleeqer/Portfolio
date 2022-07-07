@@ -12,7 +12,7 @@
         <a href="#" class="navbar-brand px-2">LOGO</a>
 
         <%--Home button--%>
-        <a href="/" class="nav-item d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px; min-width: 60px;" data-toggle="description" data-content="Home">
+        <a href="/" class="nav-pair nav-item d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px; min-width: 60px;" data-toggle="description" data-content="Home">
             <div>
   <span class="d-inline-block">
     <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -25,7 +25,7 @@
         </a>
 
         <%--Qeustion button--%>
-        <a href="/questions" class="nav-item d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px; min-width: 60px;" data-toggle="description" data-content="Questions">
+        <a href="/questions" class="nav-question nav-item d-flex align-items-center justify-content-center rounded-1 position-relative" style="height: 50px; width: 60px; min-width: 60px;" data-toggle="description" data-content="Questions">
             <div>
       <span class="d-inline-block">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

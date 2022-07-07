@@ -36,21 +36,15 @@ $('.search-input').focusout(function () {
     $('.search-overlay').removeClass('show-search-overlay')
 })
 
-// navbar 버튼 클릭 시 버튼 활성화
-$('a').each(function () {
-    let currentURL = '/' + $(location).attr('pathname').split('/')[1]
-
-    // 토픽 검색 시에도 홈메뉴 하이라이트 유지
-    if (currentURL === '/topic') {
-        currentURL = '/'
-    }
-
-    if ($(this).attr('href') === currentURL) {
-        $(this).find('path').addClass('svg-fill')
-        $(this).find('.under-red').removeClass('hidden')
-    }
-
-})
+// 현재 url에 따라 navbar button 하이라이트
+var checkPage = $(location).attr('pathname').indexOf('questions')
+if (checkPage > 0) {
+    $('.nav-question').find('path').addClass('svg-fill')
+    $('.nav-question').find('.under-red').removeClass('hidden')
+} else {
+    $('.nav-pair').find('path').addClass('svg-fill')
+    $('.nav-pair').find('.under-red').removeClass('hidden')
+}
 
 $('#search-button').click(function () {
     currentURL = $(location).attr('pathname')
