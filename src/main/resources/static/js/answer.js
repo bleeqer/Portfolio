@@ -19,9 +19,6 @@ if (!isExist('.answer')) {
     $('#no-content').show()
 }
 
-// 최초 조회된 답변 popover
-initAnswerPopover()
-
 function answerFormCheck() {
 
     if ($('#answer-textarea').val() === "") {
@@ -33,19 +30,23 @@ function answerFormCheck() {
     return true
 }
 
-$('.readMore-button').on('click', function() {
+$('body').on('click', '.readMore-button', function () {
     $(this).parent().css('max-height', $(this).parent().prop('scrollHeight'))
     $(this).hide()
     $(this).parent().find('.overflow-fade').css('display', 'none')
 })
 
-$('.fade-post').each(function() {
+// 답글 길이 초과 시 일부만 보여주는 함수
+function fadePost() {
+    $('.fade-post').each(function() {
+        if (isOverflown($(this))) {
 
-    if (isOverflown($(this))) {
-        $(this).find('.overflow-fade').removeClass('hidden')
-        $(this).parent().find('.readMore-button').removeClass('hidden')
-    }
-})
+            $(this).find('.overflow-fade').removeClass('hidden')
+            $(this).parent().find('.readMore-button').removeClass('hidden')
+        }
+    })
+}
+
 
 // 답변글 popover 옵션
 $(document).on('click', '.answer-popover-item', function () {
@@ -244,6 +245,8 @@ $('#add-answer-button').click(function () {
 
             initAnswerPopover()
 
+            fadePost()
+
             // 모달창 종료
             $('#answer-modal').modal('toggle')
 
@@ -388,3 +391,10 @@ async function initEditor () {
     })
 }
 
+// 최초 조회된 답변 popover
+initAnswerPopover()
+
+// 길이 초과 답변 부분 숨기기
+$(document).ready(function () {
+    fadePost()
+})

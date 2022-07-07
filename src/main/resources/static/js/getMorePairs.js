@@ -20,6 +20,8 @@ $(window).scroll(function() {
 
                 initAnswerPopover()
 
+                fadePost()
+
             },
             error: function (error) {
                 alert(error.responseText)

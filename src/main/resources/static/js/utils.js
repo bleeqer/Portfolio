@@ -4,3 +4,8 @@ function isOverflown(element) {
     console.log(element.height())
     return element.prop('scrollHeight') > element.height()
 }
+
+function isExist(selector) {
+
+    return $(selector).length-1 > 0
+}
