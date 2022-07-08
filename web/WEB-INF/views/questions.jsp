@@ -307,6 +307,7 @@
 <input id="logged-in-user" type="hidden" value="${principal}">
 
   <%--JS--%>
+  <script type="text/javascript" src="/static/js/utils.js"></script>
   <script type="text/javascript" src="/static/js/main.js"></script>
   <script type="text/javascript" src="/static/js/question.js"></script>
   <script type="text/javascript" src="/static/js/questions.js"></script>

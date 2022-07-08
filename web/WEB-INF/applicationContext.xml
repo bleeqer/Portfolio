@@ -16,11 +16,23 @@
 
     <context:component-scan base-package="com.portfolio"/>
 
+    <bean id="dbPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:config/jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-        <property name="username" value="system"/>
-        <property name="password" value="458512"/>
+        <property name="driverClassName" value="${driverClassName}"/>
+<!--        <property name="driverClassName" value="oracle.jdbc.OracleDriver"/>-->
+        <property name="jdbcUrl" value="${url}"/>
+        <property name="username" value="${username}"/>
+<!--        <property name="username" value="admin"/>-->
+        <property name="password" value="${password}"/>
+<!--        <property name="password" value="Asdfghjkl1234567890"/>-->
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
