@@ -65,7 +65,7 @@
 <body>
 
 <div>
-    <div class="color-light-black" style="height: 100%; width: 100%; background-image: url('/static/img/login-background.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+    <div class="color-light-black" style="height: 100%; width: 100%; background-image: url('/static/img/loginBackground.png'); background-repeat: no-repeat; background-size: cover; background-position: center;">
         <div class="d-flex justify-content-center align-items-center" style="padding: 237px 0; height: 100%; width: 100%;">
             <div class="rounded-1" style="box-shadow: 0 1px 1px rgb(0 0 0 / 4%);">
 
@@ -199,7 +199,7 @@
     </div>
 </div>
 <%@ include file="/WEB-INF/views/modals/signUp.jsp" %>
-<%@ include file="/WEB-INF/views/modals/findPW.jsp" %>
+<%--<%@ include file="/WEB-INF/views/modals/findPW.jsp" %>--%>
 
 <script src="/static/js/login.js"></script>
 

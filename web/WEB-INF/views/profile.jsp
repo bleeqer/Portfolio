@@ -172,7 +172,7 @@
                             <div class="py-3 px-4 d-flex justify-content-center hidden">
                                 <div class="py-4">
                                     <div class="d-flex justify-content-center">
-                                        <img class="mb-1" src="/static/img/mailbox.png" alt="" width="100">
+                                        <img class="mb-1" src="/static/img/noContent.png" alt="" width="100">
                                     </div>
 
                                     <div class="link-default-color">

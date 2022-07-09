@@ -29,9 +29,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
     <%--CSS--%>
-    <link rel="stylesheet" type="text/css" href="/static/css/utils.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/popover.css">
+    <link rel="stylesheet" type="text/css" href="static/css/utils.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="static/css/popover.css">
 
     <style>
         input, textarea, button, a {
@@ -160,10 +160,10 @@
 </div>
 
 
-<script src="/static/js/main.js"></script>
-<script src="/static/js/utils.js"></script>
-<script src="/static/js/questions.js"></script>
-<script src="/static/js/question.js"></script>
+<script src="static/js/main.js"></script>
+<script src="static/js/utils.js"></script>
+<script src="static/js/questions.js"></script>
+<script src="static/js/question.js"></script>
 
 </body>
 </html>
