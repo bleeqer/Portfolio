@@ -116,6 +116,22 @@ $('#register-button').click(function () {
 
 })
 
+$('#login-form #login-email').on('keydown', function(e) {
+    if (e.keyCode === 13) {
+
+        e.preventDefault()
+        $('#login-button').trigger('click')
+    }
+})
+
+$('#login-form #login-password').on('keydown', function(e) {
+    if (e.keyCode === 13) {
+
+        e.preventDefault()
+        $('#login-button').trigger('click')
+    }
+})
+
 $('#login-button').click(function (e) {
 
     e.preventDefault()
@@ -124,6 +140,7 @@ $('#login-button').click(function (e) {
         type: 'POST',
         url: '/user/login',
         data: $('#login-form').serialize(),
+        dataType: 'json',
         context: this,
         beforeSend: function(xhr){
             xhr.setRequestHeader(header, token)
@@ -137,8 +154,9 @@ $('#login-button').click(function (e) {
         },
         error: function (error) {
 
-            // $('#login-message .message').text(error.responseJSON.message)
-            $('#login-message .message').text(error.responseText)
+            $('#login-message .message').text(error.responseJSON.message)
+            // console.log(Object.keys(error.responseJSON))
+            // $('#login-message .message').text(error.responseJSON.e)
             $('#login-message').fadeOut(50).fadeIn(50)
 
         }

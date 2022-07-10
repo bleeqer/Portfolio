@@ -1,31 +1,29 @@
 $('body').on('click', '.log-out', function (e) {
-    console.log("?")
     e.preventDefault()
-
     $('#logout-form').submit()
 })
 
-// enter키로 검색 submit 방지
 $('.search-input').on('keydown', function(e) {
     if (e.keyCode === 13) {
 
         e.preventDefault()
+        $('.search-button').trigger('click')
     }
 })
 
-$('.search-input').on('keyup', (function () {
-    const keyword = $(this).val()
-    const keywordDisplay = $('.display-keyword')
-
-    keywordDisplay.html(keyword)
-
-    if (keyword.length > 0) {
-        $('.search-display').removeClass('hidden')
-
-    } else {
-        $('.search-display').addClass('hidden')
-    }
-}))
+// $('.search-input').on('keyup', (function () {
+//     const keyword = $(this).val()
+//     const keywordDisplay = $('.display-keyword')
+//
+//     keywordDisplay.html(keyword)
+//
+//     if (keyword.length > 0) {
+//         $('.search-display').removeClass('hidden')
+//
+//     } else {
+//         $('.search-display').addClass('hidden')
+//     }
+// }))
 
 $('.search-input').focus(function () {
     $('.search-overlay').addClass('show-search-overlay')
