@@ -5,8 +5,11 @@
 
             <%--Header--%>
             <div class="px-3 pt-3 pb-1">
-                <div class="font-bold color-gray-dark" style="font-size: 18px;">
+                <div id="sign-up-text" class="font-bold color-gray-dark" style="font-size: 18px;">
                     Sign Up
+                </div>
+                <div id="edit-text" class="font-bold color-gray-dark" style="font-size: 18px;">
+                    Edit Profile
                 </div>
             </div>
 

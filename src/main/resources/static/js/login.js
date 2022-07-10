@@ -5,6 +5,9 @@ $('#profile-image-upload-button').click(function () {
 })
 
 $('#sign-up-button').click(function () {
+
+    $('#signUp-modal #sign-up-text').show()
+    $('#signUp-modal #edit-text').hide()
     $('#signUp-modal #profile-edit-submit-button').hide()
     $('#signUp-modal #register-button').show()
 

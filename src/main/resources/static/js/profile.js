@@ -37,6 +37,8 @@ $('#profile-edit-button').click(function () {
         context: this,
         success: function (user) {
 
+            $('#signUp-modal #sign-up-text').hide()
+            $('#signUp-modal #edit-text').show()
             $('#signUp-modal #register-button').hide()
             $('#signUp-modal #profile-edit-submit-button').show()
             $('#signUp-modal #register-email').val(user.email)

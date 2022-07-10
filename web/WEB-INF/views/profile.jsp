@@ -139,22 +139,18 @@
                         <%--User profile tabs--%>
                         <div class="border-bottom-gray">
                             <div class="d-flex color-dark-gray">
-                                <div id="answer-tab" class="profile-tab py-3 px-2 color-dark-gray bg-hover-whiten-light position-relative color-red"
-                                     style="font-size: 13px;">
-                                    <a href="/user/profile/${user.email}/answers">
-                                        <div><b>Answers</b></div>
-                                    </a>
+                                <a id="answer-tab" href="/user/profile/${user.email}/answers" class="profile-tab py-3 px-2 color-dark-gray bg-hover-whiten-light position-relative color-red"
+                                     style="font-size: 13px; cursor: pointer;">
+                                    <div><strong>Answers</strong></div>
                                     <div class="under-red rounded-left-top-pill rounded-right-top-pill bg-red position-absolute"
                                          style="height: 3px; width: 100%; left: 50%; bottom: 0; transform: translateX(-50%);"></div>
-                                </div>
-                                <div id="question-tab" class="profile-tab py-3 px-2 color-dark-gray bg-hover-whiten-light position-relative"
-                                     style="font-size: 13px;">
-                                    <a href="/user/profile/${user.email}/questions">
-                                        <div><b>Questions</b></div>
-                                    </a>
+                                </a>
+                                <a id="question-tab" href="/user/profile/${user.email}/questions" class="profile-tab py-3 px-2 color-dark-gray bg-hover-whiten-light position-relative"
+                                     style="font-size: 13px; cursor: pointer;">
+                                    <div><strong>Questions</strong></div>
                                     <div class="under-red rounded-left-top-pill rounded-right-top-pill bg-red position-absolute hidden"
                                          style="height: 3px; width: 100%; left: 50%; bottom: 0; transform: translateX(-50%);"></div>
-                                </div>
+                                </a>
                             </div>
                         </div>
 
@@ -394,86 +390,170 @@
                                                                         </div>
                                                                 </div>
                                                             </div>
+
                                                                 <%--Comment section--%>
-                                                                <div class="comment-section"
-                                                                     data-ans-no="${answerPair.ansNo}" style="display: none;">
-                                                                    <div class="d-flex justify-content-between align-items-center px-3 py-2"
-                                                                         style="width: 100%; background-color: #202020;">
+                                                            <div class="comment-section"
+                                                                 data-ans-no="${answerPair.ansNo}" style="display: none; margin: 0 -17px 0 -24px;">
+                                                                <div class="d-flex justify-content-between align-items-center px-3 py-2"
+                                                                     style="width: 100%; background-color: #202020;">
 
-                                                                            <%--Profile--%>
-                                                                        <a href="">
-                                                                            <div>
-                                                                                <img style="width: 36px; height: 36px;"
-                                                                                     src="/static/img/user.png" alt="">
-                                                                            </div>
-                                                                        </a>
+                                                                        <%--Profile--%>
+                                                                        <%--                                                <a href="">--%>
+                                                                        <%--                                                    <div>--%>
+                                                                        <%--                                                        <img style="width: 36px; height: 36px;"--%>
+                                                                        <%--                                                             src="/static/img/user.png" alt="">--%>
+                                                                        <%--                                                    </div>--%>
+                                                                        <%--                                                </a>--%>
 
-                                                                            <%--Comment input--%>
-                                                                        <div class="rounded-3 bg-black ms-2 py-1 px-3"
-                                                                             style="width: 100%;">
-                                                                            <form class="comment-form" action="">
-                                                                                <input class="" type="text"
-                                                                                       name="answerComment"
-                                                                                       style="width: 100%; outline: none; border: none;"
-                                                                                       placeholder="Add a comment...">
-                                                                                <input type="hidden" name="ansNo" value="${answerPair.ansNo}">
-                                                                                <input type="hidden" name="parentCoNo" value="0">
-                                                                                <sec:csrfInput/>
-                                                                                    <%--                                                        <sec:authorize access="isAuthenticated()">--%>
-                                                                                    <%--                                                            <input type="hidden" name="userEmail" value="${user.username}">--%>
-                                                                                    <%--                                                        </sec:authorize>--%>
-                                                                            </form>
-                                                                        </div>
-
-                                                                            <%--Add button--%>
-                                                                        <span class="add-comment-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
-                                                                              style="font-size: 13px; height: 30px; margin-left: 4px;"
-                                                                              data-co-level="0" data-co-no="0" data-parent-co-no="0" data-ans-no="${answerPair.ansNo}">
-                                                <div style="white-space: nowrap;">Add comment
-                                                </div>
-                                            </span>
+                                                                        <%--Comment input--%>
+                                                                    <div class="rounded-3 bg-black ms-2 py-1 px-3"
+                                                                         style="width: 100%;">
+                                                                        <form class="comment-form" action="" data-co-no="0" data-ans-no="${answerPair.ansNo}">
+                                                                            <input class="comment-text" type="text"
+                                                                                   name="answerComment"
+                                                                                   style="width: 100%; outline: none; border: none;"
+                                                                                   placeholder="Add a comment...">
+                                                                            <input type="hidden" name="ansNo" value="${answerPair.ansNo}">
+                                                                            <input type="hidden" name="parentCoNo" value="0">
+                                                                            <sec:csrfInput/>
+                                                                                <%--                                                        <sec:authorize access="isAuthenticated()">--%>
+                                                                                <%--                                                            <input type="hidden" name="userEmail" value="${user.username}">--%>
+                                                                                <%--                                                        </sec:authorize>--%>
+                                                                        </form>
                                                                     </div>
 
-                                                                        <%--Comments--%>
-                                                                    <div class="bg-dark">
-                                                                        <div>
-
-                                                                                <%--Each comment--%>
-                                                                            <div class="comment-list px-3 pt-2">
-
-                                                                            </div>
-
-                                                                                <%--View more comments--%>
-                                                                            <div>
-                                                                                <div class="pb-3 px-3">
-                                                                                    <button class="view-more-comments btn d-flex justify-content-center align-items-center border-gray rounded-pill bg-black-light bg-hover-darken-strong py-0 px-3"
-                                                                                            style="height: 30px; width: 100%; font-weight: 500;" data-ans-no="${answerPair.ansNo}" data-parent-co-no="0">
-                                                                                        <div class="d-flex align-items-center">
-
-                                                                                                <%--Text--%>
-                                                                                            <div class="color-gray"
-                                                                                                 style="font-size: 13px;">
-                                                                                                View more comments
-                                                                                            </div>
-
-                                                                                                <%--Arrow--%>
-                                                                                            <span>
-                                        <span>
-                                            <svg class="d-flex" width="16" height="16" viewBox="0 0 24 24"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke"
-                                                      stroke="#666" stroke-width="1.5" fill="none"
-                                                      stroke-linecap="round"></path>
-                                            </svg>
+                                                                        <%--Add button--%>
+                                                                    <span class="add-comment-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"
+                                                                          style="font-size: 13px; height: 30px; margin-left: 4px;"
+                                                                          data-co-level="0" data-co-no="0" data-parent-co-no="0" data-ans-no="${answerPair.ansNo}">
+                                            <div style="white-space: nowrap;">Add comment
+                                            </div>
                                         </span>
-                                    </span>
+
+
+
+                                                                </div>
+
+                                                                    <%--Comments--%>
+                                                                <div class="bg-dark">
+                                                                    <div>
+
+                                                                            <%--Each comment--%>
+                                                                        <div class="comment-list px-3">
+
+                                                                        </div>
+
+                                                                            <%--View more comments--%>
+                                                                        <div>
+                                                                            <div class="px-3">
+                                                                                <button class="view-more-comments btn d-flex justify-content-center align-items-center border-gray rounded-pill bg-black-light bg-hover-darken-strong py-0 px-3"
+                                                                                        style="height: 30px; width: 100%; font-weight: 500;" data-ans-no="${answerPair.ansNo}" data-parent-co-no="0">
+                                                                                    <div class="d-flex align-items-center">
+
+                                                                                            <%--Text--%>
+                                                                                        <div class="color-gray"
+                                                                                             style="font-size: 13px;">
+                                                                                            View more comments
                                                                                         </div>
-                                                                                    </button>
-                                                                                </div>
+
+                                                                                            <%--Arrow--%>
+                                                                                        <span>
+                        <span>
+                            <svg class="d-flex" width="16" height="16" viewBox="0 0 24 24"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke"
+                                      stroke="#666" stroke-width="1.5" fill="none"
+                                      stroke-linecap="round"></path>
+                            </svg>
+                        </span>
+                    </span>
+                                                                                    </div>
+                                                                                </button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+<%--                                                                &lt;%&ndash;Comment section&ndash;%&gt;--%>
+<%--                                                                <div class="comment-section"--%>
+<%--                                                                     data-ans-no="${answerPair.ansNo}" style="display: none;">--%>
+<%--                                                                    <div class="d-flex justify-content-between align-items-center px-3 py-2"--%>
+<%--                                                                         style="width: 100%; background-color: #202020;">--%>
+
+<%--                                                                            &lt;%&ndash;Profile&ndash;%&gt;--%>
+<%--                                                                        <a href="">--%>
+<%--                                                                            <div>--%>
+<%--                                                                                <img style="width: 36px; height: 36px;"--%>
+<%--                                                                                     src="/static/img/user.png" alt="">--%>
+<%--                                                                            </div>--%>
+<%--                                                                        </a>--%>
+
+<%--                                                                            &lt;%&ndash;Comment input&ndash;%&gt;--%>
+<%--                                                                        <div class="rounded-3 bg-black ms-2 py-1 px-3"--%>
+<%--                                                                             style="width: 100%;">--%>
+<%--                                                                            <form class="comment-form" action="">--%>
+<%--                                                                                <input class="" type="text"--%>
+<%--                                                                                       name="answerComment"--%>
+<%--                                                                                       style="width: 100%; outline: none; border: none;"--%>
+<%--                                                                                       placeholder="Add a comment...">--%>
+<%--                                                                                <input type="hidden" name="ansNo" value="${answerPair.ansNo}">--%>
+<%--                                                                                <input type="hidden" name="parentCoNo" value="0">--%>
+<%--                                                                                <sec:csrfInput/>--%>
+<%--                                                                                    &lt;%&ndash;                                                        <sec:authorize access="isAuthenticated()">&ndash;%&gt;--%>
+<%--                                                                                    &lt;%&ndash;                                                            <input type="hidden" name="userEmail" value="${user.username}">&ndash;%&gt;--%>
+<%--                                                                                    &lt;%&ndash;                                                        </sec:authorize>&ndash;%&gt;--%>
+<%--                                                                            </form>--%>
+<%--                                                                        </div>--%>
+
+<%--                                                                            &lt;%&ndash;Add button&ndash;%&gt;--%>
+<%--                                                                        <span class="add-comment-button btn btn-primary d-flex align-items-center justify-content-center rounded-pill"--%>
+<%--                                                                              style="font-size: 13px; height: 30px; margin-left: 4px;"--%>
+<%--                                                                              data-co-level="0" data-co-no="0" data-parent-co-no="0" data-ans-no="${answerPair.ansNo}">--%>
+<%--                                                <div style="white-space: nowrap;">Add comment--%>
+<%--                                                </div>--%>
+<%--                                            </span>--%>
+<%--                                                                    </div>--%>
+
+<%--                                                                        &lt;%&ndash;Comments&ndash;%&gt;--%>
+<%--                                                                    <div class="bg-dark">--%>
+<%--                                                                        <div>--%>
+
+<%--                                                                                &lt;%&ndash;Each comment&ndash;%&gt;--%>
+<%--                                                                            <div class="comment-list px-3 pt-2">--%>
+
+<%--                                                                            </div>--%>
+
+<%--                                                                                &lt;%&ndash;View more comments&ndash;%&gt;--%>
+<%--                                                                            <div>--%>
+<%--                                                                                <div class="pb-3 px-3">--%>
+<%--                                                                                    <button class="view-more-comments btn d-flex justify-content-center align-items-center border-gray rounded-pill bg-black-light bg-hover-darken-strong py-0 px-3"--%>
+<%--                                                                                            style="height: 30px; width: 100%; font-weight: 500;" data-ans-no="${answerPair.ansNo}" data-parent-co-no="0">--%>
+<%--                                                                                        <div class="d-flex align-items-center">--%>
+
+<%--                                                                                                &lt;%&ndash;Text&ndash;%&gt;--%>
+<%--                                                                                            <div class="color-gray"--%>
+<%--                                                                                                 style="font-size: 13px;">--%>
+<%--                                                                                                View more comments--%>
+<%--                                                                                            </div>--%>
+
+<%--                                                                                                &lt;%&ndash;Arrow&ndash;%&gt;--%>
+<%--                                                                                            <span>--%>
+<%--                                        <span>--%>
+<%--                                            <svg class="d-flex" width="16" height="16" viewBox="0 0 24 24"--%>
+<%--                                                 xmlns="http://www.w3.org/2000/svg">--%>
+<%--                                                <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke"--%>
+<%--                                                      stroke="#666" stroke-width="1.5" fill="none"--%>
+<%--                                                      stroke-linecap="round"></path>--%>
+<%--                                            </svg>--%>
+<%--                                        </span>--%>
+<%--                                    </span>--%>
+<%--                                                                                        </div>--%>
+<%--                                                                                    </button>--%>
+<%--                                                                                </div>--%>
+<%--                                                                            </div>--%>
+<%--                                                                        </div>--%>
+<%--                                                                    </div>--%>
+<%--                                                                </div>--%>
                                                         </div>
                                                     </div>
                                                 </div>
