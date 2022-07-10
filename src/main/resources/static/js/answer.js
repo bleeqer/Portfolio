@@ -210,53 +210,61 @@ $('#add-answer-button').click(function () {
             xhr.setRequestHeader(header, token)
         },
         success: function (answer) {
-            let template = $('#answer-template')
 
-            template.find('.comment-form').attr('data-ans-no', answer.ansNo)
-            template.find('.answer').attr('data-ans-no', answer.ansNo)
-            template.find('.user-profile-link').attr('href', '/user/profile/' + answer.userEmail)
-            template.find('.answer-user-name').prepend(answer.userName)
-            template.find('.answer-user-occupation').prepend(answer.userOccupation)
-            template.find('.answer-reg-date').prepend(answer.regDate)
-            template.find('.answer-text').prepend(answer.answer)
-            template.find('.answer-user-photo').attr('src', '/uploadedImages' + answer.userPhoto)
-            template.find('.footer-container').prepend(answer.ansNo)
+            // if ($(location).attr('pathname').indexOf('questions') > 0) {
+            location.reload()
+            //     return
+            // }
 
-            if (answer.commentCnt > 0) {
-                template.find('.comment-count').html(answer.commentCnt)
-            }
-
-            if (answer.likes > 0) {
-                addedAnswer.find('.answer-like-cnt').prepend(answer.likes)
-            }
-            if (answer.dislikes > 0) {
-                addedAnswer.find('.answer-dislike-cnt').prepend(answer.dislikes)
-            }
-
-            template.find('.answer-popover-item').attr('data-ans-no', answer.ansNo)
-            template.find('.answer-popover-item').attr('data-ques-no', answer.quesNo)
-
-            $('#answer-list').prepend(template.html())
-
-            $('#answer-count').html(parseInt($('#answer-count').html()) + 1)
-
-            // answer 엘레멘트가 없을 경우 no content 이미지 보여주기
-            if (isExist('.answer')) $('#no-content').hide()
-
-            initAnswerPopover()
-
-            $('.inserted-image').ready(function () {
-                fadePost()
-            })
-
-            // 모달창 종료
-            $('#answer-modal').modal('toggle')
+            // let template = $('#answer-template')
+            //
+            // template.find('.comment-form').attr('data-ans-no', answer.ansNo)
+            // template.find('.answer').attr('data-ans-no', answer.ansNo)
+            // template.find('.user-profile-link').attr('href', '/user/profile/' + answer.userEmail)
+            // template.find('.answer-user-name').prepend(answer.userName)
+            // template.find('.answer-user-occupation').prepend(answer.userOccupation)
+            // template.find('.answer-reg-date').prepend(answer.regDate)
+            // template.find('.answer-text').prepend(answer.answer)
+            // template.find('.answer-user-photo').attr('src', '/uploadedImages' + answer.userPhoto)
+            // template.find('.footer-container').attr('data-ans-no', answer.ansNo)
+            //
+            // if (answer.commentCnt > 0) {
+            //     template.find('.comment-count').html(answer.commentCnt)
+            // }
+            //
+            // if (answer.likes > 0) {
+            //     addedAnswer.find('.answer-like-cnt').prepend(answer.likes)
+            // }
+            // if (answer.dislikes > 0) {
+            //     addedAnswer.find('.answer-dislike-cnt').prepend(answer.dislikes)
+            // }
+            //
+            // template.find('.answer-popover-item').attr('data-ans-no', answer.ansNo)
+            // template.find('.answer-popover-item').attr('data-ques-no', answer.quesNo)
+            //
+            // $('#answer-list').prepend(template.html())
+            //
+            // $('#answer-count').html(parseInt($('#answer-count').html()) + 1)
+            //
+            // // answer 엘레멘트가 없을 경우 no content 이미지 보여주기
+            // if (isExist('.answer')) $('#no-content').hide()
+            //
+            // initAnswerPopover()
+            //
+            // $('.inserted-image').ready(function () {
+            //     fadePost()
+            // })
+            //
+            // // 모달창 종료
+            // $('#answer-modal').modal('toggle')
 
         },
         error: function (error) {
             alert(error.responseText)
         }
     })
+
+
 })
 
 // 답변 수정

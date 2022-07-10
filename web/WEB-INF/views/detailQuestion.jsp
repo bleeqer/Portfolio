@@ -103,7 +103,7 @@
                         </div>
 
                         <%--Question--%>
-                        <div id="question" data-ques-no="${question.quesNo}">
+                        <div id="question" class="question" data-ques-no="${question.quesNo}">
                             <%--question--%>
                             <div>
                                 <div class="question-text font-bold d-flex align-items-center" style="font-size: 21px;">${question.question}</div>
@@ -560,7 +560,6 @@
 <script src="/static/js/utils.js"></script>
 <script src="/static/js/comment.js"></script>
 <script src="/static/js/question.js"></script>
-<script src="/static/js/questions.js"></script>
 <script src="/static/js/answer.js"></script>
 <script src="/static/js/detailQuestion.js"></script>
 <script src="/static/js/liking.js"></script>
