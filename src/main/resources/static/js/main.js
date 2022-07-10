@@ -46,6 +46,13 @@ $('body').on('click', '.login-first', function () {
     }
 })
 
+function deleteConfirm() {
+    result = confirm('정말 삭제 하시겠습니까?')
+
+    return result
+
+}
+
 // 질문글 url 복사
 $(document).on('click', '.share-button', function () {
     const url = window.location.origin + '/question/' + $(this).data('ques-no')

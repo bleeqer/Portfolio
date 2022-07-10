@@ -261,6 +261,10 @@ $('body').on('click', '.comment-popover-item', function () {
     const optionType = $(this).data('option-type')
 
     if (optionType === 'Delete') {
+
+        if (!deleteConfirm()) {
+            return
+        }
         
         $.ajax({
             type: 'POST',

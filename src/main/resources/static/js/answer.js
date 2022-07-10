@@ -61,6 +61,10 @@ $(document).on('click', '.answer-popover-item', function () {
 
     if (optionType === 'Delete') {
 
+        if (!deleteConfirm()) {
+            return
+        }
+
         $.ajax({
             type: 'POST',
             url: '/answer/delete',
