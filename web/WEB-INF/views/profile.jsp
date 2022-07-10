@@ -179,7 +179,7 @@
                             </div>
 
                             <%--Content view for answers or questions--%>
-                            <div class="pt-3 border-bottom-gray">
+                            <div class="pt-3">
                                 <div>
 
                                     <%--answers--%>
@@ -732,36 +732,37 @@
                                                                                     <%--Share button--%>
                                                                                 <div>
                                                                                     <div>
-            <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
-                  style="width: 38px; height: 38px;">
-              <svg width="24" height="24"
-                   viewBox="0 0 24 24"
-                   xmlns="http://www.w3.org/2000/svg">
-                <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z"
-                      class="icon_svg-stroke"
-                      stroke="#666" fill="none"
-                      stroke-width="1.5"
-                      stroke-linejoin="round"></path>
-              </svg>
-            </span>
+                                              <span class="share-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;" data-ques-no="${question.quesNo}" data-toggle="description" data-content="Copy Link">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                  <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z" class="icon_svg-stroke" stroke="#666" fill="none" stroke-width="1.5" stroke-linejoin="round"></path>
+                                                </svg>
+                                              </span>
                                                                                     </div>
                                                                                 </div>
 
-                                                                                    <%--Three dots--%>
+                                                                                <c:if test="${principal == question.userEmail}">
+
+                                                                                <%--Three dots--%>
                                                                                 <div>
-              <span class="bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
-                    style="width: 38px; height: 38px;">
-                <svg class="d-block" width="24"
-                     height="24" viewBox="0 0 24 24"
-                     xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
-                  class="icon_svg-stroke"
-                  stroke-width="1.5"
-                  stroke="#666" fill="none">
-            </path>
-                </svg>
-              </span>
+
+                                                                                    <a tabindex="0" class="question-option-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center" style="width: 38px; height: 38px;">
+                                                                                        <svg class="d-block" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                                            <path d="M5 14a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm7 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"
+                                                                                                  class="icon_svg-stroke" stroke-width="1.5" stroke="#666" fill="none">
+                                                                                            </path>
+                                                                                        </svg>
+                                                                                        <div class="question-option-popover-content" style="display: none;">
+                                                                                            <div class="d-flex question-popover-item option" data-bs-toggle="modal" data-bs-target="#question-modal" data-ques-no="${question.quesNo}" data-option-type="Edit">
+                                                                                                <div class="py-1 px-3">Edit</div>
+                                                                                            </div>
+                                                                                            <div class="d-flex question-popover-item option" data-ques-no="${question.quesNo}" data-option-type="Delete">
+                                                                                                <div class="py-1 px-3">Delete</div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </a>
                                                                                 </div>
+
+                                                                                </c:if>
                                                                             </div>
                                                                         </div>
                                                                     </div>
