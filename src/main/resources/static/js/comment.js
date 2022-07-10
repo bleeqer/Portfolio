@@ -484,7 +484,8 @@ $('body').on('click', '.add-comment-button', function () {
             xhr.setRequestHeader(header, token)
         },
         success: function (comment) {
-
+            $('input.comment-text').val('')
+            $('.comment')
             const commentHTML = addComment(comment)
 
             // 코멘트의 레벨에 따라 삽입위치 다름
