@@ -145,7 +145,7 @@ public class UserController {
     public ResponseEntity<Object> getUser(Principal principal) {
 
         if (principal == null) {
-            return new ResponseEntity<>("먼저 로그인 해주세요.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("로그인이 필요한 기능입니다.", HttpStatus.BAD_REQUEST);
         }
 
         CustomUserDetailsVO userVO;
@@ -218,7 +218,7 @@ public class UserController {
         logger.info("user occupation: " + userVO.getOccupation());
 
         if (principal == null) {
-            return new ResponseEntity<>("먼저 로그인 해주세요.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("로그인이 필요한 기능입니다.", HttpStatus.BAD_REQUEST);
         }
 
         // 유저 불일치 시

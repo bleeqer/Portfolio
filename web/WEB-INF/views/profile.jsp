@@ -986,7 +986,6 @@
     <script src="/static/js/utils.js"></script>
     <script src="/static/js/comment.js"></script>
     <script src="/static/js/question.js"></script>
-    <script src="/static/js/questions.js"></script>
     <script src="/static/js/answer.js"></script>
     <script src="/static/js/detailQuestion.js"></script>
     <script src="/static/js/liking.js"></script>
