@@ -214,7 +214,7 @@
                                                                         <div class="my-auto"><a class="text-decoration-none link-default-color hover-underline h6" href="" style="font-size: 13px;"><strong>${answerPair.userName}</strong></a></div>
 
                                                                             <%--상세--%>
-                                                                        <div class="my-auto color-gray" style="font-size: 13px;">${answerPair.userOccupation} <span> · </span> ${answerPair.answerRegDate}</div>
+                                                                        <div class="my-auto color-gray" style="font-size: 11px;">${answerPair.userOccupation} <span> · </span> ${answerPair.answerRegDate}</div>
 
                                                                     </div>
                                                                 </div>
@@ -593,7 +593,7 @@
                                                                     <%--Posted date--%>
                                                                 <div class="mt-2 color-gray" style="font-size: 13px;">
                                                                     <div>
-                                                                        <div>
+                                                                        <div style="font-size: 11px;">
                                                                                 ${question.regDate}
                                                                         </div>
                                                                     </div>

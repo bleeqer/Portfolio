@@ -104,6 +104,19 @@ function deleteCommentTree (rootCoNo) {
     deleteCommentTree($('.comment-section .comment[data-parent-co-no="' + rootCoNo + '"]').data('co-no'))
 }
 
+// 하위댓글 모두 숨기기
+function hideCommentTree (rootCoNo) {
+
+    if (typeof rootCoNo === 'undefined') {
+        return
+    }
+
+    // 해당 댓글 지우기
+    $('.comment-section .comment[data-parent-co-no="' + rootCoNo + '"]').hide()
+
+    hideCommentTree($('.comment-section .comment[data-parent-co-no="' + rootCoNo + '"]').data('co-no'))
+}
+
 // 마지막 댓글 번호 반환
 function getLastCoNo (ansNo) {
     let coNoArr = []
@@ -379,7 +392,7 @@ $('body').on('click', '.reply-button', function () {
     // reply button 클릭 시 이미 보여지고 있는 자식 댓글이 있다면 전부 숨기기
     if (shownChildComments.length > 0) {
 
-        shownChildComments.hide()
+        hideCommentTree(parentNo)
 
     // 보여지고 있는 자식 댓글이 없다면 특정 갯수 보여주기
     } else {
