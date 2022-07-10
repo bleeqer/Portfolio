@@ -63,7 +63,7 @@ $('#profile-edit-submit-button').click(function () {
             url: '/user/update',
             type: 'POST',
             data: new FormData($('#signUp-form')[0]),
-            dataType: "text",
+            dataType: 'text',
             contentType: false,
             processData: false,
             context: this,

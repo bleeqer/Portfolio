@@ -113,6 +113,31 @@ public class QuestionController {
 
     }
 
+    @PostMapping("delete")
+    @ResponseBody
+    public ResponseEntity<Object> deleteQuestion(@RequestBody QuestionVO questionVO, Principal principal) throws SQLException {
+
+        logger.info("question number: " + questionVO.getQuesNo());
+
+        QuestionVO question = questionService.select(questionVO.getQuesNo());
+
+        logger.info("principal name: " + principal.getName());
+        logger.info("question writer: " + question.getUserEmail());
+
+        // 작성자와 로그인 유저가 같으면 삭제
+        if (principal.getName().equals(question.getUserEmail())) {
+
+            questionService.delete(questionVO.getQuesNo());
+
+        } else {
+
+            return new ResponseEntity<>("작성자가 일치하지 않습니다.", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
     @GetMapping("{quesNo}")
     public String viewQuestion(@PathVariable Integer quesNo, Model model) throws SQLException {
 

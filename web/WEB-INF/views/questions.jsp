@@ -307,7 +307,6 @@
   <script type="text/javascript" src="/static/js/utils.js"></script>
   <script type="text/javascript" src="/static/js/main.js"></script>
   <script type="text/javascript" src="/static/js/question.js"></script>
-  <script type="text/javascript" src="/static/js/questions.js"></script>
   <script type="text/javascript" src="/static/js/answer.js"></script>
   <script type="text/javascript" src="/static/js/getMoreQuestions.js"></script>
 </body>

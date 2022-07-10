@@ -18,6 +18,8 @@ $(window).scroll(function() {
                     $('#question-list').append(addQuestion($(question)[0]))
                 })
 
+                $('.question').last().removeClass('border-bottom-gray')
+
                 // if (isExist('.question')) $('#no-content').hide()
 
                 initAnswerPopover()

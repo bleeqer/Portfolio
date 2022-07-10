@@ -13,6 +13,9 @@ function initQuestionPopover() {
 
 initQuestionPopover()
 
+$('#question-list .question').last().removeClass('border-bottom-gray')
+
+
 // 템플릿에 전달받은 댓글 데이터 세팅 후 화면에 삽입
 function addQuestion (question) {
 
@@ -171,7 +174,7 @@ $('body').on('click', '.question-popover-item', function () {
             url: '/question/delete',
             data: JSON.stringify({quesNo: quesNo}),
             contentType: 'application/json',
-            dataType: 'json',
+            // dataType: 'json',
             context: this,
             beforeSend: function(xhr){
                 xhr.setRequestHeader(header, token)
@@ -180,17 +183,19 @@ $('body').on('click', '.question-popover-item', function () {
 
                 // redirection
 
-                // 댓글 포함된 comment-section
-                const commentSection = $('.comment[data-co-no="' + deletedCoNo + '"]').parents('.comment-section')
+                window.location.href = "/"
 
-                // 해당 댓글 포함 하위 댓글 모두 화면에서 지우기
-                deleteCommentTree(deletedCoNo)
-
-                // 첫번째 댓글 border-top 지우기
-                commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
-
-                // 해당 댓글의 부모 댓글의 자식 댓글 카운트 업데이트
-                countChildComments($(this).data('parent-co-no'))
+                // // 댓글 포함된 comment-section
+                // const commentSection = $('.comment[data-co-no="' + deletedCoNo + '"]').parents('.comment-section')
+                //
+                // // 해당 댓글 포함 하위 댓글 모두 화면에서 지우기
+                // deleteCommentTree(deletedCoNo)
+                //
+                // // 첫번째 댓글 border-top 지우기
+                // commentSection.find('.comment[data-co-level="1"]').first().removeClass('border-top-gray')
+                //
+                // // 해당 댓글의 부모 댓글의 자식 댓글 카운트 업데이트
+                // countChildComments($(this).data('parent-co-no'))
 
             },
             error: function (error) {

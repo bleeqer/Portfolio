@@ -95,13 +95,14 @@ $('#register-button').click(function () {
         url: '/user/create',
         type: 'POST',
         data: new FormData($('#signUp-form')[0]),
+        dataType: 'text',
         contentType: false,
         processData: false,
         context: this,
         success: function (resultMsg) {
 
-            // alert(resultMsg)
-            // $('#signUp-modal').modal('hide')
+            alert(resultMsg)
+            $('#signUp-modal').modal('hide')
 
         },
         error: function (error) {

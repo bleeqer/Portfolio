@@ -159,7 +159,7 @@
                                             </div>
                                         </div>
 
-                                        <c:if test="${user == question.userEmail}">
+                                        <c:if test="${principal == question.userEmail}">
 
                                         <%--Three dots--%>
                                         <div>
@@ -218,18 +218,18 @@
                             </div>
 
                             <%--Sorting option--%>
-                            <div class="d-flex cursor-pointer rounded-pill bg-hover-whiten-light px-3 py-1 position-relative">
-                                <div class="d-flex me-1" style="font-size: 15px;">
-                                    Sort
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" fill="none" stroke-linecap="round"></path>
-                                    </svg>
-                                </div>
+<%--                            <div class="d-flex cursor-pointer rounded-pill bg-hover-whiten-light px-3 py-1 position-relative">--%>
+<%--                                <div class="d-flex me-1" style="font-size: 15px;">--%>
+<%--                                    Sort--%>
+<%--                                </div>--%>
+<%--                                <div class="d-flex align-items-center">--%>
+<%--                                    <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">--%>
+<%--                                        <path d="m5 8.5 7 7 7.005-7" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" fill="none" stroke-linecap="round"></path>--%>
+<%--                                    </svg>--%>
+<%--                                </div>--%>
 
-                                <div id="sort-button" class="position-absolute" data-bs-toggle="popover" style="inset: 0; height: 100%; width: 100%; z-index: 2;"></div>
-                            </div>
+<%--                                <div id="sort-button" class="position-absolute" data-bs-toggle="popover" style="inset: 0; height: 100%; width: 100%; z-index: 2;"></div>--%>
+<%--                            </div>--%>
                         </div>
                     </div>
 

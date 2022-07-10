@@ -164,7 +164,7 @@
                             <%--Content name--%>
                             <div class="py-2 border-bottom-gray">
                                 <div class="d-flex align-items-center">
-                                    <strong>${meta.total} ${meta.type}</strong>
+                                    ${meta.total} ${meta.type}
                                 </div>
                             </div>
 
@@ -350,7 +350,7 @@
                                                                                             <div>
                                                                                                 <a tabindex="0" class="share-button bg-hover-whiten-light rounded-circle d-inline-block d-flex align-items-center justify-content-center"
                                                                                                    style="width: 38px; height: 38px;"
-                                                                                                   data-toggle="description" data-content="Copy Link">
+                                                                                                   data-toggle="description" data-content="Copy Link" data-ques-no="${answerPair.quesNo}">
                                                                                                     <svg width="24" height="24" viewBox="0 0 24 24"
                                                                                                          xmlns="http://www.w3.org/2000/svg">
                                                                                                         <path d="m21 12-9.778-8v5.333c-1.926.45-3.5 1.172-4.722 2.167-1.222.995-2.389 2.495-3.5 4.5 1.333-.659 2.833-1.157 4.5-1.496 1.667-.34 2.908-.285 3.722.163V20L21 12Z"
