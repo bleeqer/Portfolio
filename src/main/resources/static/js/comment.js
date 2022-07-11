@@ -36,11 +36,11 @@ function getComments(data, order) {
                 }
             })
 
-            lastComment = $(comments).get(-1)
-
-
+            const lastCoNo = getLastCoNo(data.ansNo)
+            console.log(lastCoNo)
+            console.log(data.ansNo)
             // 댓글이 없거나 댓글 리스트의 마지막 댓글이 전체 댓글의 마지막 댓글일 경우 view more comments 숨기기
-            if (typeof lastComment === 'undefined' || isLastComment(lastComment.coNo, lastComment.ansNo)) {
+            if (typeof lastCoNo === 'undefined' || isLastComment(lastCoNo, data.ansNo)) {
                 $('.answer[data-ans-no=' + data.ansNo + '] .view-more-comments').addClass('hidden')
             }
 
@@ -110,6 +110,8 @@ function hideCommentTree (rootCoNo) {
     if (typeof rootCoNo === 'undefined') {
         return
     }
+
+    console.log(rootCoNo)
 
     // 해당 댓글 지우기
     $('.comment-section .comment[data-parent-co-no="' + rootCoNo + '"]').hide()

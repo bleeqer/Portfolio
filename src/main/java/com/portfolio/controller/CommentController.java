@@ -281,12 +281,14 @@ public class CommentController {
     public ResponseEntity<Object> checkLast(CommentVO commentVO) {
 
         logger.info("answer number: " + commentVO.getAnsNo());
+        logger.info("last comment number from client side: " + commentVO.getCoNo());
 
         Integer lastCoNo;
 
         try {
 
             lastCoNo = answerCommentService.selectLastCoNo(commentVO.getAnsNo());
+            logger.info("last comment number from server side: " + lastCoNo);
 
             if (Objects.equals(commentVO.getCoNo(), lastCoNo)) {
 
