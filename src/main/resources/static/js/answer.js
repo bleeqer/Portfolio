@@ -154,7 +154,6 @@ $('body').on('click', '.answer-button', function() {
                         $('#answer-modal #add-answer-button').show()
                         $('#answer-modal #edit-answer-button').hide()
 
-                        $('#answer-modal #asked-question').html($('.question-text').text())
                         $('#answer-modal #user-img').attr('src', '/uploadedImages' + user.photo)
                         $('#answer-modal #user-name').html(user.name)
                         $('#answer-modal #user-occupation').html(user.occupation)

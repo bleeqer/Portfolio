@@ -565,7 +565,7 @@
                                     <%--questions--%>
                                     <c:if test="${questions != null}">
                                         <c:forEach var="question" items="${questions}">
-                                            <div>
+                                            <div class="question" data-ques-no="${question.quesNo}">
 
                                                 <div>
 
@@ -575,18 +575,17 @@
                                                             <div>
                                                                     <%--title and close--%>
                                                                 <div>
-                                                                    <div class="d-flex justify-content-between position-relative">
+                                                                    <div class="d-flex justify-content-start position-relative align-items-center">
                                                                             <%--Question title--%>
-                                                                        <div class="pe-2 d-flex align-items-center">
-                                                                            <a class="hover-underline"
-                                                                               href="/question/${question.quesNo}"><b>${question.question}</b></a>
-                                                                            <span class="color-gray" style="font-size: 11px;">&nbsp<span> · </span>
-                                                                                <c:choose>
-                                                                                    <c:when test="${question.answerCnt <= 0}">No answer yet</c:when>
-                                                                                    <c:otherwise>${question.answerCnt} answers</c:otherwise>
-                                                                                </c:choose>
-                                                                            </span>
+                                                                        <div class="question-text">
+                                                                            <a class="hover-underline" href="/question/${question.quesNo}"><strong style="line-height: 1.6;">${question.question}</strong></a>
                                                                         </div>
+                                                                        <span class="color-gray" style="font-size: 11px;">&nbsp<span> · </span>
+                                                                            <c:choose>
+                                                                                <c:when test="${question.answerCnt <= 0}">No answer yet</c:when>
+                                                                                <c:otherwise>${question.answerCnt} answers</c:otherwise>
+                                                                            </c:choose>
+                                                                        </span>
                                                                     </div>
                                                                 </div>
 
@@ -681,51 +680,7 @@
                                                                                 </sec:authorize>
 
 
-                                                                                    <%--Comment 버튼--%>
-                                                                                    <%--          <div role="button">--%>
-
-                                                                                    <%--              &lt;%&ndash;Container&ndash;%&gt;--%>
-                                                                                    <%--              <div class="d-inline">--%>
-
-                                                                                    <%--            &lt;%&ndash;Comment button&ndash;%&gt;--%>
-                                                                                    <%--            <div class="d-flex rounded-pill px-2 bg-hover-whiten-light">--%>
-
-                                                                                    <%--                &lt;%&ndash;Comment icon&ndash;%&gt;--%>
-                                                                                    <%--                <span class="d-inline-block d-flex align-items-center justify-content-center" style="height: 38px;">--%>
-                                                                                    <%--              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">--%>
-                                                                                    <%--            <path d="M12.071 18.86c4.103 0 7.429-3.102 7.429-6.93C19.5 8.103 16.174 5 12.071 5s-7.429 3.103-7.429 6.93c0 1.291.379 2.5 1.037 3.534.32.501-1.551 3.058-1.112 3.467.46.429 3.236-1.295 3.803-.99 1.09.585 2.354.92 3.701.92Z" class="icon_svg-stroke icon_svg-fill" stroke="#666" stroke-width="1.5" fill="none"></path>--%>
-                                                                                    <%--              </svg>--%>
-                                                                                    <%--                </span>--%>
-
-                                                                                    <%--                &lt;%&ndash;Comment count&ndash;%&gt;--%>
-                                                                                    <%--                <div class="d-flex align-items-center justify-content-center">--%>
-                                                                                    <%--            100--%>
-                                                                                    <%--                </div>--%>
-                                                                                    <%--            </div>--%>
-                                                                                    <%--              </div>--%>
-                                                                                    <%--          </div>--%>
-
-                                                                                    <%--Pass button--%>
-                                                                                    <%--          <button class="px-2 rounded-pill bg-hover-whiten-light" style="height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;">--%>
-                                                                                    <%--              <div class="d-flex justify-content-center align-items-center">--%>
-                                                                                    <%--            &lt;%&ndash;Answer icon&ndash;%&gt;--%>
-                                                                                    <%--            <div>--%>
-                                                                                    <%--                <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">--%>
-                                                                                    <%--            <g fill="none" fill-rule="evenodd">--%>
-                                                                                    <%--                <path d="m11.828 9.314 3.9-3.9a2 2 0 1 1 2.828 2.829l-3.9 3.9m-3.535 3.535-2.464 2.464-4.241 1.416 1.412-4.244 2.465-2.465" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"></path>--%>
-                                                                                    <%--                <path class="icon_svg-fill_as_stroke" fill="#666" d="m4.414 19.556 2.652-.884-1.768-1.767z"></path>--%>
-                                                                                    <%--                <path d="M4.636 5.636 18.5 19.5" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" stroke-linecap="round"></path>--%>
-                                                                                    <%--            </g>--%>
-                                                                                    <%--                </svg>--%>
-                                                                                    <%--            </div>--%>
-                                                                                    <%--            &lt;%&ndash;Answer text&ndash;%&gt;--%>
-                                                                                    <%--            <div class="color-gray ms-1" style="font-size: 14px;">--%>
-                                                                                    <%--                <div>Pass</div>--%>
-                                                                                    <%--            </div>--%>
-                                                                                    <%--              </div>--%>
-                                                                                    <%--          </button>--%>
                                                                             </div>
-
                                                                                 <%--right side of footer--%>
                                                                             <div class="d-flex">
 

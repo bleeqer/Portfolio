@@ -229,26 +229,6 @@
                                           </button>
                                         </c:if>
 
-
-                                        <%--Pass button--%>
-<%--                                        <button class="px-2 rounded-pill bg-hover-whiten-light" style="height: 38px; min-width: 38px; outline: none; border: none; transition: background-color 125ms;">--%>
-<%--                                          <div class="d-flex justify-content-center align-items-center">--%>
-<%--                                            &lt;%&ndash;Answer icon&ndash;%&gt;--%>
-<%--                                            <div>--%>
-<%--                                              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">--%>
-<%--                                                <g fill="none" fill-rule="evenodd">--%>
-<%--                                                  <path d="m11.828 9.314 3.9-3.9a2 2 0 1 1 2.828 2.829l-3.9 3.9m-3.535 3.535-2.464 2.464-4.241 1.416 1.412-4.244 2.465-2.465" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"></path>--%>
-<%--                                                  <path class="icon_svg-fill_as_stroke" fill="#666" d="m4.414 19.556 2.652-.884-1.768-1.767z"></path>--%>
-<%--                                                  <path d="M4.636 5.636 18.5 19.5" class="icon_svg-stroke" stroke="#666" stroke-width="1.5" stroke-linecap="round"></path>--%>
-<%--                                                </g>--%>
-<%--                                              </svg>--%>
-<%--                                            </div>--%>
-<%--                                            &lt;%&ndash;Answer text&ndash;%&gt;--%>
-<%--                                            <div class="color-gray ms-1" style="font-size: 14px;">--%>
-<%--                                              <div>Pass</div>--%>
-<%--                                            </div>--%>
-<%--                                          </div>--%>
-<%--                                        </button>--%>
                                       </div>
 
                                       <%--Options--%>
