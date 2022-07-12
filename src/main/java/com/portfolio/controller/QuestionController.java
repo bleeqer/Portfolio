@@ -44,7 +44,7 @@ public class QuestionController {
 
         questionService.create(questionVO);
 
-        // 새로 생성된 질문글
+//        // 새로 생성된 질문글
 //        QuestionVO question = questionService.select(questionVO.getQuesNo());
 //
 //        // 기존 질문 리스트의 첫번째 질문에 새로 생성된 질문글 추가
@@ -54,10 +54,10 @@ public class QuestionController {
 //        if(questions.size() > 10) {
 //            questions.remove(questions.size() - 1);
 //        }
-//
-//        model.addAttribute("questions", questions);
-//
-//        model.addAttribute("categories", questionService.selectCategories());
+
+        model.addAttribute("questions", questions);
+
+        model.addAttribute("categories", questionService.selectCategories());
 
         return "redirect:/questions";
     }
