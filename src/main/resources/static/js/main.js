@@ -5,6 +5,7 @@ function addPair (pair) {
 
     // pair data 속성 셋팅
     template.find('.pair').attr('data-ques-no', pair.quesNo)
+    template.find('.answer').attr('data-ans-no', pair.ansNo)
 
     // pair 셋팅
     template.find('.question-text').html(pair.question)
@@ -16,6 +17,7 @@ function addPair (pair) {
     template.find('.answer-reg-date').html(pair.answerRegDate)
     template.find('.question-link').attr('href', '/question/' + pair.quesNo)
     template.find('.share-button').attr('data-ques-no', pair.quesNo)
+    template.find('.footer-container').attr('data-ans-no', pair.ansNo)
 
     // if ($('#logged-in-user').val() !== question.userEmail) {
     //     template.find('.answer-button').show()
