@@ -153,10 +153,8 @@ $('#login-button').click(function (e) {
             }
         },
         error: function (error) {
-
-            $('#login-message .message').text(error.responseJSON.message)
             // console.log(Object.keys(error.responseJSON))
-            // $('#login-message .message').text(error.responseJSON.e)
+            $('#login-message .message').text(error.responseJSON.message)
             $('#login-message').fadeOut(50).fadeIn(50)
 
         }

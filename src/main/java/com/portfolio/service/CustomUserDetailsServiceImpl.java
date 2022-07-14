@@ -50,11 +50,10 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
         try {
 
-
             userMapper.insert(userVO);
 
         } catch (Exception e) {
-
+      System.out.println(e.getMessage());
             throw new SQLException("회원가입에 실패했습니다.");
 
         }

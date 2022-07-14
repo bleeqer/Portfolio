@@ -43,7 +43,10 @@ public class UploadFileUtils {
             String date = getTodayDate();
 
             // 업로드 경로
-            String savePath = mtfRequest.getSession().getServletContext().getRealPath(File.separator + "WEB-INF" + File.separator + "uploadedImages" + File.separator + date + File.separator);
+            String savePath = "/var/lib/tomcat9/webapps/ROOT/WEB-INF/uploadedImages/" + date + "/";
+//            String savePath = mtfRequest.getSession().getServletContext().getRealPath("/var/lib/tomcat9/webapps/ROOT/WEB-INF/uploadedImages/" + date + "/");
+//            String savePath = mtfRequest.getSession().getServletContext().getRealPath(File.separator + "var" + File.separator + "lib" + File.separator + "tomcat9" + File.separator + "webapps" + File.separator + "ROOT" + File.separator + "WEB-INF" + File.separator + "uploadedImages" + File.separator + date + File.separator);
+//            String savePath = mtfRequest.getSession().getServletContext().getRealPath(File.separator + "WEB-INF" + File.separator + "uploadedImages" + File.separator + date + File.separator);
 
             // 파일 이름 중복문제를 해결하기 위한 UUID
             String uuid = UUID.randomUUID().toString();

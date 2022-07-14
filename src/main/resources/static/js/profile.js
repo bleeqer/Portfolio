@@ -87,7 +87,7 @@ $('#profile-edit-submit-button').click(function () {
             },
             error: function (error) {
 
-                alert(error)
+                alert(error.responseText)
 
             }
         })
