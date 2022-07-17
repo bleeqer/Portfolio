@@ -58,6 +58,7 @@
         SELECT NVL(MAX(co_no), 0) co_no
         FROM TB_ANSWER_COMMENT
         WHERE ans_no = #{ansNo}
+            AND parent_co_no = 0
 
     </select>
 
