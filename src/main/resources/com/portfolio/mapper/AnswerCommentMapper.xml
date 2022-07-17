@@ -77,7 +77,7 @@
         FROM tb_answer_comment CO, tb_user U
         WHERE U.email = CO.user_email
         START WITH CO.co_no IN (SELECT co_no
-                                FROM (SELECT ROWNUM AS RN, co_no
+                                FROM (SELECT co_no
                                       FROM tb_answer_comment
                                       WHERE parent_co_no = 0
                                             AND ans_no = #{ansNo}
@@ -85,7 +85,7 @@
                                             AND co_no <![CDATA[>]]> #{coNo}
                                         </if>
                                       ORDER BY co_no)
-                                WHERE RN <![CDATA[<=]]> 3)
+                                WHERE ROWNUM <![CDATA[<=]]> 3)
         CONNECT BY PRIOR CO.co_no = CO.parent_co_no
         ORDER SIBLINGS BY CO.co_no
 

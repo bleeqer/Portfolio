@@ -37,8 +37,7 @@ function getComments(data, order) {
             })
 
             const lastCoNo = getLastCoNo(data.ansNo)
-            console.log(lastCoNo)
-            console.log(data.ansNo)
+
             // 댓글이 없거나 댓글 리스트의 마지막 댓글이 전체 댓글의 마지막 댓글일 경우 view more comments 숨기기
             if (typeof lastCoNo === 'undefined' || isLastComment(lastCoNo, data.ansNo)) {
                 $('.answer[data-ans-no=' + data.ansNo + '] .view-more-comments').addClass('hidden')
